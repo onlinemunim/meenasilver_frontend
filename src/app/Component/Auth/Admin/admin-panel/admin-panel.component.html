@@ -1,0 +1,488 @@
+<div class="flex gap-6">
+  <!-- Sidebar Tabs -->
+  <div class="w-90 flex flex-col border-r border-gray-300">
+    <button
+      (click)="setActiveTab('brand')"
+      class="px-4 py-3 text-left text-sm font-medium"
+      [ngClass]="
+        activeTab === 'brand'
+          ? 'bg-[#c19725] text-white rounded-r-md'
+          : 'text-gray-700 hover:bg-gray-100'
+      "
+    >
+      Add Brand
+    </button>
+
+    <button
+      (click)="setActiveTab('category')"
+      class="px-4 py-3 text-left text-sm font-medium"
+      [ngClass]="
+        activeTab === 'category'
+          ? 'bg-[#c19725] text-white rounded-r-md'
+          : 'text-gray-700 hover:bg-gray-100'
+      "
+    >
+      Add Category
+    </button>
+
+    <button
+      (click)="setActiveTab('login')"
+      class="px-4 py-3 text-left text-sm font-medium"
+      [ngClass]="
+        activeTab === 'login'
+          ? 'bg-[#c19725] text-white rounded-r-md'
+          : 'text-gray-700 hover:bg-gray-100'
+      "
+    >
+      Login Type
+    </button>
+
+    <button
+      (click)="setActiveTab('settings')"
+      class="px-4 py-3 text-left text-sm font-medium"
+      [ngClass]="
+        activeTab === 'settings'
+          ? 'bg-[#c19725] text-white rounded-r-md'
+          : 'text-gray-700 hover:bg-gray-100'
+      "
+    >
+      Customize Settings
+    </button>
+
+    <button
+      routerLink="/admin-customize-invoice"
+      class="px-4 py-3 text-left text-sm font-medium text-gray-700 hover:bg-gray-100"
+    >
+      Invoice Layout
+    </button>
+  </div>
+
+  <div
+    *ngIf="activeTab === 'invoice'"
+    class="w-full py-3 px-4 flex justify-center"
+  >
+    <!-- Add Brand Form -->
+    <div
+      class="w-full max-w-3xl p-4 mb-4 bg-white rounded-md shadow border border-gray-200"
+    >
+      <div class="flex justify-center items-center gap-4">
+        <a
+          routerLink="/admin-customize-invoice"
+          routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+          class="flex-1 px-4 py-2 rounded-tr-[5px] rounded-br-[5px] border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black"
+        >
+          Invoice Layout
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= BRAND TAB ================= -->
+  <div *ngIf="activeTab === 'brand'" class="w-full py-3 px-4">
+    <!-- Add Brand Form -->
+    <div
+      class="w-full p-4 mb-4 bg-white rounded-md shadow border border-gray-200"
+    >
+      <!-- Flex wrapper for two sections -->
+      <div class="flex flex-col lg:flex-row gap-6">
+        <!-- Utility Section: Add New Category -->
+        <div class="flex-1 bg-white rounded-md">
+          <h3 class="text-lg font-medium text-center text-[#c19725] mb-4">
+            Add New Brand
+          </h3>
+          <div
+            class="max-w-xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <input
+              type="text"
+              [(ngModel)]="newBrandName"
+              name="newBrandName"
+              autocomplete="off"
+              placeholder="Enter Brand Name"
+              class="flex-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c19725] focus:border-[#c19725] text-sm"
+            />
+            <button
+              type="button"
+              (click)="saveBrandName()"
+              class="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-c19725 transition"
+            >
+              Add Brand
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full py-3 px-4" *ngIf="brandList.length > 0">
+      <p class="font-semibold text-sm sm:text-base lg:text-xl text-444 mb-4">
+        Brands List
+      </p>
+
+      <div class="overflow-x-auto whitespace-nowrap hide-scrollbar mt-4">
+        <table
+          class="w-full table bg-white border border-[#D9D9D9] overflow-hidden"
+        >
+          <thead
+            class="bg-[#F1F8FF] border border-[#0C447D] text-444 text-xs sm:text-xs"
+          >
+            <tr>
+              <th class="p-2 font-medium text-center border-r border-[#0C447D]">
+                No.
+              </th>
+              <th class="p-2 font-medium text-center border-r border-[#0C447D]">
+                Brand name
+              </th>
+              <th class="p-2 font-medium text-center border-r border-[#0C447D]">
+                Action>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="text-xs sm:text-xs" *ngIf="brandList.length > 0">
+            <tr
+              class="odd:bg-white even:bg-[#F2F2F2] text-[#5A5959]"
+              *ngFor="let brand of brandList; let i = index"
+            >
+              <td class="p-3 text-center">{{ i + 1 }}</td>
+              <td class="p-3 text-center">{{ brand.assembly_brand_name }}</td>
+              <td class="p-3 text-center">
+                <button
+                  aria-label="Delete Firm"
+                  class="icon-btn text-[#BB0000] hover:scale-110 hover:text-[#990000]"
+                  (click)="deleteBrang(brand.id)"
+                  title="Delete"
+
+                >
+                  <svg
+                    class="w-5 h- md:w-6 md:h-6"
+                    fill="none"
+                    viewBox="0 0 24 25"
+                  >
+                    <path
+                      d="M10 12.5V17.5"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M14 12.5V17.5"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M4 7.5H20"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M6 10.5V18.5C6 20.1569 7.34315 21.5 9 21.5H15C16.6569 21.5 18 20.1569 18 18.5V10.5"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M9 5.5C9 4.39543 9.89543 3.5 11 3.5H13C14.1046 3.5 15 4.39543 15 5.5V7.5H9V5.5Z"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CATEGORY TAB ================= -->
+  <div *ngIf="activeTab === 'category'" class="w-full py-3 px-4">
+    <div class="flex flex-col xl:flex-row gap-6">
+      <!-- Utility Section: Add New Category -->
+      <div
+        class="xl:w-3/4 p-4 bg-white rounded-md shadow border border-gray-200"
+      >
+        <h3 class="text-lg font-medium text-center text-[#c19725] mb-4">
+          Add New Category
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+
+          <input
+            type="text"
+            [(ngModel)]="newCategoryName"
+            name="newCategoryName"
+            autocomplete="off"
+            placeholder="Enter new category name"
+            class="flex-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c19725] focus:border-[#c19725] text-sm"
+          />
+          <input
+            type="text"
+            [(ngModel)]="newGroupName"
+            name="newGroupName"
+            placeholder="Enter new Group name"
+            autocomplete="off"
+            class="flex-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c19725] focus:border-[#c19725] text-sm"
+          />
+          <select
+            [(ngModel)]="newUnit"
+            name="newUnit"
+            class="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c19725] focus:border-[#c19725] text-sm"
+          >
+            <option value="">Select Unit</option>
+            <option value="By Gram">By Gram</option>
+            <option value="By Silver Rate">By Silver Rate</option>
+            <option value="By MRP">By MRP</option>
+          </select>
+          <input
+            type="text"
+            [(ngModel)]="MRP"
+            name="MRP"
+            placeholder="Enter Per Gm Rate"
+            autocomplete="off"
+            class="flex-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c19725] focus:border-[#c19725] text-sm"
+          />
+          <button
+            type="button"
+            (click)="addCategory()"
+            class="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= LOGIN TYPE TAB ================= -->
+  <div *ngIf="activeTab === 'login'" class="w-full py-3 px-4">
+    <div class="xl:w-1/2 p-4 bg-white rounded-md shadow border border-gray-200">
+      <h3 class="text-lg font-medium text-center text-[#c19725] mb-4">
+        Select Login Form Type
+      </h3>
+      <div class="flex justify-center gap-6 mb-4">
+        <label class="flex items-center gap-4">
+          <input
+            type="radio"
+            [(ngModel)]="loginType"
+            name="loginType"
+            value="main"
+          />
+          Main Login
+        </label>
+        <label class="flex items-center gap-2">
+          <input
+            type="radio"
+            [(ngModel)]="loginType"
+            name="loginType"
+            value="simple"
+          />
+          Simple Login
+        </label>
+      </div>
+      <div class="flex justify-center">
+        <button
+          (click)="saveLoginType()"
+          class="bg-[#c19725] text-white px-4 py-2 rounded-md hover:opacity-90"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CUSTOMIZE SETTINGS TAB ================= -->
+  <div *ngIf="activeTab === 'settings'" class="w-full py-3 px-4">
+    <!-- Prefix Form -->
+    <div
+      class="w-full p-4 mb-4 bg-white rounded-md shadow border border-gray-200"
+    >
+      <!-- Title -->
+      <div class="flex justify-center mb-6">
+        <h2
+          class="text-xl font-semibold text-[#c19725] relative inline-block text-center drop-shadow-sm before:content-[''] before:absolute before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:w-16 before:h-0.5 before:rounded-full before:bg-gradient-to-r before:from-yellow-400 before:to-[#c19725]"
+        >
+          Customize Settings
+        </h2>
+      </div>
+
+      <!-- Section for Main Menu Visibility -->
+      <div class="mb-8">
+        <h3 class="text-lg font-semibold text-[#c19725] mb-4">
+          Main Menu Visibility
+        </h3>
+
+        <!-- Select/Unselect Buttons -->
+        <div class="max-w-2xl mx-auto flex justify-center gap-4 mb-6">
+          <button
+            type="button"
+            class="px-4 py-1.5 bg-green-600 text-white text-sm font-medium rounded-md shadow hover:bg-green-700 transition"
+            (click)="selectAllMainMenu()"
+          >
+            Select All
+          </button>
+          <button
+            type="button"
+            class="px-4 py-1.5 bg-red-600 text-white text-sm font-medium rounded-md shadow hover:bg-red-700 transition"
+            (click)="unselectAllMainMenu()"
+          >
+            Unselect All
+          </button>
+        </div>
+
+        <!-- Checkboxes -->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3"
+        >
+          <div *ngFor="let item of mainMenuItems">
+            <label
+              class="flex items-center space-x-2 p-3 bg-gray-50 rounded-md border border-gray-200 hover:bg-gray-100 transition duration-200"
+              [ngClass]="{
+                'cursor-not-allowed opacity-70':
+                  item.path === '/home' || item.path === '/dropdown-settings'
+              }"
+            >
+              <input
+                type="checkbox"
+                [checked]="item.visible"
+                [disabled]="
+                  item.path === '/home' || item.path === '/dropdown-settings'
+                "
+                (change)="item.visible = !item.visible"
+                class="form-checkbox h-4 w-4 accent-[#c19725] cursor-pointer disabled:cursor-not-allowed"
+              />
+              <span class="text-sm text-gray-800 font-medium">{{
+                item.lable
+              }}</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section for Submenu Visibility -->
+      <div class="mb-8">
+        <h3 class="text-lg font-semibold text-[#c19725] mb-4">
+          Submenu Visibility
+        </h3>
+        <!-- Select/Unselect Buttons -->
+        <div class="max-w-2xl mx-auto flex justify-center gap-4 mb-6">
+          <button
+            type="button"
+            class="px-4 py-1.5 bg-green-600 text-white text-sm font-medium rounded-md shadow hover:bg-green-700 transition"
+            (click)="selectAllSubmenu()"
+          >
+            Select All
+          </button>
+          <button
+            type="button"
+            class="px-4 py-1.5 bg-red-600 text-white text-sm font-medium rounded-md shadow hover:bg-red-700 transition"
+            (click)="unselectAllSubmenu()"
+          >
+            Unselect All
+          </button>
+        </div>
+        <!-- Grouped Checkboxes -->
+        <div class="space-y-6">
+          <div *ngFor="let group of submenuGroups">
+            <h3 class="text-lg font-semibold text-[#c19725] mb-2 pl-1">
+              {{ group.parentLabel }}
+            </h3>
+            <div
+              class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3"
+            >
+              <div *ngFor="let item of group.submenu">
+                <label
+                  class="flex items-center space-x-2 p-3 bg-gray-50 rounded-md border border-gray-200 hover:bg-gray-100 transition duration-200 cursor-pointer"
+                >
+                  <input
+                    type="checkbox"
+                    [checked]="item.visible"
+                    (change)="toggleSubItem(item.path, group.parentPath)"
+                    class="form-checkbox h-4 w-4 accent-[#c19725]"
+                  />
+                  <span class="text-sm text-gray-800 font-medium">{{
+                    item.lable
+                  }}</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <hr class="my-8 border-gray-200" />
+
+      <!-- Section for Prefixes -->
+      <div class="mb-8">
+        <h3 class="text-lg font-semibold text-center text-[#c19725] mb-4">
+          Product Code Prefixes
+        </h3>
+        <form [formGroup]="prefixForm">
+          <div class="lg:w-1/2 mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <input
+              type="text"
+              formControlName="customize_metal_prefix"
+              placeholder="Enter Metal prefix"
+              autocomplete="off"
+              (keydown.enter)="focusNext($event)"
+              class="flex-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c19725] focus:border-[#c19725] text-sm"
+            />
+            <input
+              type="text"
+              formControlName="customize_stone_prefix"
+              placeholder="Enter Stone prefix"
+              autocomplete="off"
+              (keydown.enter)="focusNext($event)"
+              class="flex-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c19725] focus:border-[#c19725] text-sm"
+            />
+            <input
+              type="text"
+              formControlName="customize_ready_product_prefix"
+              placeholder="Enter lot number prefix"
+              autocomplete="off"
+              (keydown.enter)="focusNext($event)"
+              class="flex-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c19725] focus:border-[#c19725] text-sm"
+            />
+            <input
+              type="text"
+              formControlName="customize_barcode_prefix"
+              placeholder="Enter Barcode prefix"
+              autocomplete="off"
+              (keydown.enter)="focusNext($event)"
+              class="flex-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c19725] focus:border-[#c19725] text-sm"
+            />
+          </div>
+        </form>
+      </div>
+
+      <!-- Main Action Buttons (Back and Save) -->
+      <div class="max-w-2xl mx-auto flex justify-center gap-4 mt-10 mb-6">
+        <button
+          type="button"
+          class="block cursor-pointer capitalize w-[110px] lg:w-[100px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center"
+          routerLink="/product-creation"
+        >
+          <!-- Assuming this is the correct back link -->
+          Back
+        </button>
+
+        <!-- *** THE FIX IS HERE *** -->
+        <!-- This single button now saves all settings on the page -->
+        <button
+          type="button"
+          class="px-8 py-2 bg-[#c19725] text-white rounded-md shadow hover:bg-yellow-700 transition"
+          (click)="saveAllChanges()"
+        >
+          Save Settings
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

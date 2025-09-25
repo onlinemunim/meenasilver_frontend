@@ -1,0 +1,22 @@
+
+<ng-container *ngIf="isUnauthPage && loginTypeLoaded">
+  <ng-container *ngIf="true">
+    <app-unauthenticated-layout/>
+  </ng-container>
+  <ng-container *ngIf="simplelogin">
+    <app-simple-unauth/>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf="isSignupPage">
+  <app-signup/>
+</ng-container>
+
+<ng-container *ngIf="isHomePage">
+  <app-home/>
+</ng-container>
+
+
+<ng-container *ngIf="isAuthPage">
+  <app-authenticated-layout/>
+</ng-container>

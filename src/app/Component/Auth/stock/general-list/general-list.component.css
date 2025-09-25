@@ -1,0 +1,28 @@
+@media print {
+  th input,
+  .no-print,
+  button {
+    display: none !important;
+  }
+
+  /* If you want to hide the last "Action" column completely */
+  th:last-child,
+  td:last-child {
+    display: none !important;
+  }
+}
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #print-section, #print-section * {
+    visibility: visible;
+  }
+
+  #print-section {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}

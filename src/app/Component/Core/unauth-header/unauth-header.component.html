@@ -1,0 +1,222 @@
+<div
+  class="flex flex-wrap sm:flex-nowrap items-center justify-between sm:justify-start gap-3 md:gap-3.5 mb-4"
+>
+  <div
+    class="order-1 bg-linear-(--my-gradient5) pl-3 pr-4 py-3 lg:py-2 lg:pl-5 lg:pr-8 flex items-center gap-2 lg:gap-4 rounded-r-full -ml-5"
+  >
+    <button
+      class="w-9 lg:w-13 flex flex-col items-center border-b-2 border-[#C19725]"
+    >
+      <img
+        class="size-5 lg:size-11 my-1"
+        src="/assets/images/rates/gold-coin.png"
+        alt="Gold Rate"
+      />
+      <p class="text-xs lg:text-sm/loose font-normal">Gold</p>
+    </button>
+
+    <button class="w-9 lg:w-13 flex flex-col items-center">
+      <img
+        class="size-5 lg:size-11 my-1"
+        src="/assets/images/rates/silver-coin.png"
+        alt="Silver Rate"
+      />
+      <p class="text-xs lg:text-sm/loose font-normal">Silver</p>
+    </button>
+  </div>
+
+  <div class="order-3 sm:order-2 w-full sm:w-72 md:w-105 flex-1 sm:py-2">
+    <swiper-container
+      #swiper
+      autoplay
+      [slides-per-view]="swiperConfig.slidesPerView"
+      [space-between]="swiperConfig.spaceBetween"
+      [loop]="swiperConfig.loop"
+      [speed]="swiperConfig.speed"
+      [breakpoints]="swiperConfig.breakpoints"
+    >
+      <swiper-slide>
+        <div
+          class="bg-linear-(--my-gradient) p-2 md:p-3 border border-[#FB8C00] rounded-lg text-center sm:text-start sm:flex items-center justify-start gap-2 sm:gap-3 2xl:gap-4"
+        >
+          <img
+            class="size-11 mx-auto sm:mr-auto"
+            src="/assets/images/rates/gold-bar.png"
+            alt="gold-bar"
+          />
+          <div class="w-full sm:w-[calc(100%-60px)]">
+            <p
+              class="text-444 font-bold capitalize text-sm md:text-lg lg:text-base 2xl:text-lg mb-0.5"
+            >
+              Gold 22K<span
+                class="font-normal text-[10px] sm:text-xs ms-2 uppercase"
+                >(10GM)</span
+              >
+            </p>
+            <p
+              class="text-444 font-bold capitalize text-base md:text-xl 2xl:text-xl truncate"
+            >
+              <span class="font-normal mr-1">&#x20B9;</span>85,000.00
+            </p>
+          </div>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div
+          class="bg-linear-(--my-gradient) p-2 md:p-3 border border-[#FB8C00] rounded-lg text-center sm:text-start sm:flex items-center justify-start gap-2 sm:gap-3 2xl:gap-4"
+        >
+          <img
+            class="size-11 mx-auto sm:mr-auto"
+            src="/assets/images/rates/gold-bar.png"
+            alt="gold-bar"
+          />
+          <div class="w-full sm:w-[calc(100%-60px)]">
+            <p
+              class="text-444 font-bold capitalize text-sm md:text-lg lg:text-base 2xl:text-lg mb-0.5"
+            >
+              Gold 22K<span
+                class="font-normal text-[10px] sm:text-xs ms-2 uppercase"
+                >(10GM)</span
+              >
+            </p>
+            <p
+              class="text-444 font-bold capitalize text-base md:text-xl 2xl:text-xl truncate"
+            >
+              <span class="font-normal mr-1">&#x20B9;</span>85,000.00
+            </p>
+          </div>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div
+          class="bg-linear-(--my-gradient) p-2 md:p-3 border border-[#FB8C00] rounded-lg text-center sm:text-start sm:flex items-center justify-start gap-2 sm:gap-3 2xl:gap-4"
+        >
+          <img
+            class="size-11 mx-auto sm:mr-auto"
+            src="/assets/images/rates/gold-bar.png"
+            alt="gold-bar"
+          />
+          <div class="w-full sm:w-[calc(100%-60px)]">
+            <p
+              class="text-444 font-bold capitalize text-sm md:text-lg lg:text-base 2xl:text-lg mb-0.5"
+            >
+              Gold 22K<span
+                class="font-normal text-[10px] sm:text-xs ms-2 uppercase"
+                >(10GM)</span
+              >
+            </p>
+            <p
+              class="text-444 font-bold capitalize text-base md:text-xl 2xl:text-xl truncate"
+            >
+              <span class="font-normal mr-1">&#x20B9;</span>85,000.00
+            </p>
+          </div>
+        </div>
+      </swiper-slide>
+
+      <swiper-slide>
+        <div
+          class="bg-linear-(--my-gradient4) p-2 md:p-3 border border-[#898989] rounded-lg text-center sm:text-start sm:flex items-center justify-start gap-2 sm:gap-3 2xl-4"
+        >
+          <img
+            class="size-11 mx-auto sm:mr-auto"
+            src="/assets/images/rates/silver-bar.png"
+            alt="gold-bar"
+          />
+          <div class="w-full sm:w-[calc(100%-60px)]">
+            <p
+              class="text-444 font-bold capitalize text-sm md:text-lg lg:text-base 2xl:text-lg mb-0.5"
+            >
+              Silver<span
+                class="font-normal text-[10px] sm:text-xs ms-2 uppercase"
+                >(10KG)</span
+              >
+            </p>
+            <p
+              class="text-444 font-bold capitalize text-base md:text-xl 2xl:text-xl truncate"
+            >
+              <span class="font-normal mr-1">&#x20B9;</span>1,02,800.00
+            </p>
+          </div>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div
+          class="bg-linear-(--my-gradient4) p-2 md:p-3 border border-[#898989] rounded-lg text-center sm:text-start sm:flex items-center justify-start gap-2 sm:gap-3 2xl-4"
+        >
+          <img
+            class="size-11 mx-auto sm:mr-auto"
+            src="/assets/images/rates/silver-bar.png"
+            alt="gold-bar"
+          />
+          <div class="w-full sm:w-[calc(100%-60px)]">
+            <p
+              class="text-444 font-bold capitalize text-sm md:text-lg lg:text-base 2xl:text-lg mb-0.5"
+            >
+              Silver<span
+                class="font-normal text-[10px] sm:text-xs ms-2 uppercase"
+                >(10KG)</span
+              >
+            </p>
+            <p
+              class="text-444 font-bold capitalize text-base md:text-xl 2xl:text-xl truncate"
+            >
+              <span class="font-normal mr-1">&#x20B9;</span>1,02,800.00
+            </p>
+          </div>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div
+          class="bg-linear-(--my-gradient4) p-2 md:p-3 border border-[#898989] rounded-lg text-center sm:text-start sm:flex items-center justify-start gap-2 sm:gap-3 2xl-4"
+        >
+          <img
+            class="size-11 mx-auto sm:mr-auto"
+            src="/assets/images/rates/silver-bar.png"
+            alt="gold-bar"
+          />
+          <div class="w-full sm:w-[calc(100%-60px)]">
+            <p
+              class="text-444 font-bold capitalize text-sm md:text-lg lg:text-base 2xl:text-lg mb-0.5"
+            >
+              Silver<span
+                class="font-normal text-[10px] sm:text-xs ms-2 uppercase"
+                >(10KG)</span
+              >
+            </p>
+            <p
+              class="text-444 font-bold capitalize text-base md:text-xl 2xl:text-xl truncate"
+            >
+              <span class="font-normal mr-1">&#x20B9;</span>1,02,800.00
+            </p>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+
+  <div class="order-2 sm:order-3">
+    <label class="inline-flex cursor-pointer items-center">
+      <input type="checkbox" [checked]="isDarkMode" class="peer sr-only" />
+      <div
+        (click)="toggleTheme()"
+        class="peer relative flex h-10 w-19 lg:h-13 lg:w-25 items-center justify-around rounded-full bg-linear-(--my-gradient2) peer-checked:bg-radial-(--my-gradient3) peer-focus:ring-0 peer-focus:outline-none after:absolute after:start-[2px] after:top-[2px] after:h-9 after:w-9 lg:after:h-12 lg:after:w-12 after:rounded-full after:border after:border-gray-300 after:bg-radial-(--my-gradient3) after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white rtl:peer-checked:after:-translate-x-full dark:border-gray-600 dark:bg-radial-(--my-gradient3) dark:after:bg-linear-(--my-gradient2) dark:peer-checked:bg-linear-(--my-gradient2) after:shadow-(--toggle-shadow)"
+      >
+        <span>
+          <img
+            class="size-6 lg:size-9"
+            src="/assets/images/theme/cloudy.png"
+            alt="light theme"
+          />
+        </span>
+        <span>
+          <img
+            class="size-6 lg:size-9"
+            src="/assets/images/theme/night.png"
+            alt="dark theme"
+          />
+        </span>
+      </div>
+    </label>
+  </div>
+</div>

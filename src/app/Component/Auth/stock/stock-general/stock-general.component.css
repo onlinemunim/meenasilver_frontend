@@ -1,0 +1,6 @@
+ .grey-text {
+  background-color: #ebebeb !important;
+  color: #000000 !important;
+  cursor: not-allowed;
+  pointer-events: none;
+}

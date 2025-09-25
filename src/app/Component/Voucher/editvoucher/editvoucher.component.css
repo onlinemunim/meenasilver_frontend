@@ -1,0 +1,54 @@
+/* Custom Form Styling */
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1e293b; /* Dark Gray */
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+  font-weight: 600;
+  color: #f8fafc; /* Light Gray */
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #94a3b8;
+  background-color: #334155;
+  color: #f8fafc;
+}
+
+.form-input:focus {
+  border-color: #38bdf8;
+  outline: none;
+  box-shadow: 0 0 5px rgba(56, 189, 248, 0.5);
+}
+
+/* Button Styling */
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #2563eb;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: background 0.3s ease-in-out;
+}
+
+.submit-btn:hover {
+  background-color: #1e40af;
+}
+
+/* Success Message */
+.success-message {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+  text-align: center;
+}

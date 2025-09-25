@@ -1,0 +1,278 @@
+<div class="w-full py-3 px-4">
+  <!-- Title Section -->
+  <div class="sm:flex items-center justify-between mb-4">
+    <div class="flex items-center justify-start gap-1 lg:gap-2 mb-3 lg:mb-0">
+      <svg class="size-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <mask id="mask0_848_1764" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="#C19725" /></mask>
+        <g mask="url(#mask0_848_1764)"><path d="M16 22L6 12L16 2L17.775 3.775L9.55 12L17.775 20.225L16 22Z" fill="#C19725" /></g>
+      </svg>
+      <img class="size-6 sm:size-8 lg:size-10" src="/assets/images/raw-metal/raw-metal.png" alt="Report" />
+      <span class="font-semibold text-sm sm:text-base lg:text-xl text-444">Report</span>
+    </div>
+  </div>
+
+  <!-- Navigation Tabs -->
+  <div class="w-full relative flex-1">
+    <div class="min-w-max flex justify-end items-center gap-4">
+      <div class="w-full flex justify-start items-center">
+
+        <!-- Fine Jewellery Tab - UPDATED -->
+        <a routerLink="/report/fine-jewellery"
+           [ngClass]="{ 'bg-c19725 text-white font-medium': isFineJewelleryActive() }"
+           class="flex-1 px-4 py-2 rounded-tl-[5px] rounded-bl-[5px] border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black"
+           *ngIf="tabVisibility['fine_jewellery']">
+          Fine Jewellery
+        </a>
+
+        <!-- Imitation Jewellery Tab -->
+        <a routerLink="/report/imitation-jewellery"
+           [ngClass]="{ 'bg-c19725 text-white font-medium': isTabActive('/report/imitation-jewellery') }"
+           class="flex-1 px-4 py-2 border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black"
+           *ngIf="tabVisibility['imitation_jewelry']">
+          Imitation Jewellery
+        </a>
+
+        <!-- Raw Metal Tab -->
+        <a routerLink="/report/raw-metal"
+           [ngClass]="{ 'bg-c19725 text-white font-medium': isRawMetalActive() }"
+           class="flex-1 px-4 py-2 border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black"
+           *ngIf="tabVisibility['raw_metal']">
+          Raw Metal
+        </a>
+
+        <!-- Ready Product Stock Tab -->
+        <a routerLink="/report/ready-product-list"
+           [ngClass]="{ 'bg-c19725 text-white font-medium': isTabActive('/report/ready-product-list') }"
+           class="flex-1 px-4 py-2 border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black"
+           *ngIf="tabVisibility['ready_product_stock']">
+          Ready Product Stock
+        </a>
+
+        <!-- Stock Tally Tab -->
+        <a routerLink="/report/stock-tally"
+           [ngClass]="{ 'bg-c19725 text-white font-medium': isTabActive('/report/stock-tally') }"
+           class="flex-1 px-4 py-2 border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black"
+           *ngIf="tabVisibility['stock_tally']">
+          Stock Tally
+        </a>
+
+        <!-- Stocks Dropdown -->
+        <div #stocksDropdownContainer class="w-full relative flex-1" *ngIf="tabVisibility['stock_ins']">
+          <button (click)="toggleDropdown()"
+                  [ngClass]="{ 'bg-c19725 text-white font-medium': isStocksActive() }"
+                  class="w-full px-4 py-2 border-[0.50px] border-[#D9D9D9] flex justify-between items-center text-sm sm:text-sm lg:text-base transition-colors duration-200 ease-in-out hover:bg-[#f6f1cb] hover:text-black">
+            Stocks
+            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd" /></svg>
+          </button>
+          <div *ngIf="showStocksDropdown" class="absolute z-50 left-0 mt-1 w-full bg-white rounded-md shadow-lg border border-gray-200">
+            <a routerLink="/report/stock-ins" (click)="closeDropdown()" routerLinkActive="bg-c19725 text-white" class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Stock In List</a>
+            <a routerLink="/report/stock-outs" (click)="closeDropdown()" routerLinkActive="bg-c19725 text-white" class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Stock Out List</a>
+            <a routerLink="/report/stock-list" (click)="closeDropdown()" routerLinkActive="bg-c19725 text-white" class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Stock List</a>
+          </div>
+        </div>
+
+        <!-- Other Tabs -->
+        <a routerLink="/report/reorder-list"
+           [ngClass]="{ 'bg-c19725 text-white font-medium': isTabActive('/report/reorder-list') }"
+           class="flex-1 px-4 py-2 border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black"
+           *ngIf="tabVisibility['reorder_list']">
+          Reorder-list
+        </a>
+        <a routerLink="/report/stock-packaging-list"
+           [ngClass]="{ 'bg-c19725 text-white font-medium': isTabActive('/report/stock-packaging-list') }"
+           class="flex-1 px-4 py-2 border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black"
+           *ngIf="tabVisibility['stock_packaging_list']">
+          Packaging-list
+        </a>
+        <a routerLink="/report/other-panel"
+           [ngClass]="{ 'bg-c19725 text-white font-medium': isTabActive('/report/other-panel') }"
+           class="flex-1 px-4 py-2 rounded-tr-[5px] rounded-br-[5px] border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black"
+           *ngIf="tabVisibility['other_panel']">
+          Other Panel
+        </a>
+      </div>
+    </div>
+  </div>
+  <router-outlet />
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="w-full py-3 px-4">
+
+  <div class="sm:flex items-center justify-between mb-4">
+    <div class="flex items-center justify-start gap-1 lg:gap-2 mb-3 lg:mb-0">
+      <svg
+        class="size-6"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <mask
+          id="mask0_848_1764"
+          style="mask-type: alpha"
+          maskUnits="userSpaceOnUse"
+          x="0"
+          y="0"
+          width="24"
+          height="24"
+        >
+          <rect width="24" height="24" fill="#C19725" />
+        </mask>
+        <g mask="url(#mask0_848_1764)">
+          <path
+            d="M16 22L6 12L16 2L17.775 3.775L9.55 12L17.775 20.225L16 22Z"
+            fill="#C19725"
+          />
+        </g>
+      </svg>
+      <img
+        class="size-6 sm:size-8 lg:size-10"
+        src="/assets/images/raw-metal/raw-metal.png"
+        alt="Report"
+      />
+      <span class="font-semibold text-sm sm:text-base lg:text-xl text-444"
+        >Report</span
+      >
+    </div>
+  </div>
+
+  <div class="w-full relative flex-1">
+    <div class="min-w-max flex justify-end items-center gap-4">
+      <div class="w-full flex justify-start items-center">
+        <a
+          routerLink="/report/fine-jewellery"
+          routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+          class="flex-1 px-4 py-2 rounded-tl-[5px] rounded-bl-[5px] border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black"
+          *ngIf="tabVisibility['fine_jewellery']"
+        >
+          Fine Jewellery
+        </a>
+
+        <a
+          routerLink="/report/imitation-jewellery"
+          routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+          class="flex-1 px-4 py-2 border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black"
+          *ngIf="tabVisibility['imitation_jewelry']"
+        >
+          Imitation Jewellery
+        </a>
+
+        <a
+        routerLink="/report/raw-metal"
+        [ngClass]="{ 'bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white': isRawMetalActive() }"
+        class="flex-1 px-4 py-2 border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black"
+        *ngIf="tabVisibility['raw_metal']"
+      >
+        Raw Metal
+      </a>
+
+        <a
+          routerLink="/report/ready-product-list"
+          routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+          class="flex-1 px-4 py-2 border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black"
+          *ngIf="tabVisibility['ready_product_stock']"
+        >
+          Ready Product Stock
+        </a>
+
+        <a
+          routerLink="/report/stock-tally"
+          routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+          class="flex-1 px-4 py-2 border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black"
+          *ngIf="tabVisibility['stock_tally']"
+        >
+          Stock Tally
+        </a>
+
+        <div
+          #stocksDropdownContainer
+          class="w-full relative flex-1"
+          *ngIf="tabVisibility['stock_ins']"
+        >
+          <button
+            (click)="toggleDropdown('stocks')"
+            routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+            class="w-full px-4 py-2 border-[0.50px] border-[#D9D9D9] flex justify-between items-center text-sm sm:text-sm lg:text-base transition-colors duration-200 ease-in-out"
+          >
+            Stocks
+            <svg
+              class="h-5 w-5"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01.02-1.06z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+          <div
+            *ngIf="showStocksDropdown"
+            class="absolute z-50 left-0 mt-1 w-full bg-white rounded-md shadow-lg border border-gray-200"
+          >
+            <a
+              routerLink="/report/stock-ins"
+              (click)="closeDropdown('stocks')"
+              routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+              class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+            >
+              Stock In List
+            </a>
+            <a
+              routerLink="/report/stock-outs"
+              (click)="closeDropdown('stocks')"
+              class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+            >
+              Stock Out List
+            </a>
+            <a
+              routerLink="/report/stock-list"
+              (click)="closeDropdown('stocks')"
+              class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+            >
+              Stock List
+            </a>
+          </div>
+        </div>
+
+        <a
+          routerLink="/report/reorder-list"
+          routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+          class="flex-1 px-4 py-2 border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black"
+          *ngIf="tabVisibility['reorder_list']"
+        >
+          Reorder-list
+        </a>
+        <a
+          routerLink="/report/stock-packaging-list"
+          routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+          class="flex-1 px-4 py-2 border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black"
+          *ngIf="tabVisibility['stock_packaging_list']"
+        >
+          Packaging-list
+        </a>
+        <a
+          routerLink="/report/other-panel"
+          routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+          class="flex-1 px-4 py-2 rounded-tr-[5px] rounded-br-[5px] border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black"
+          *ngIf="tabVisibility['other_panel']"
+        >
+          Other Panel
+        </a>
+      </div>
+    </div>
+  </div>
+  <router-outlet />
+</div> -->

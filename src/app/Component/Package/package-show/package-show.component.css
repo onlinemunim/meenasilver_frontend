@@ -1,0 +1,35 @@
+/* Ensure modal is on top */
+.fixed {
+  z-index: 9999; /* Higher value ensures it appears on top */
+}
+
+.bg-gray-900 {
+  z-index: 9998; /* Ensure background overlay is behind the modal */
+}
+
+
+/* Optional: Add styles to ensure smooth transitions */
+.fixed {
+  position: fixed;
+}
+.transition-transform {
+  transition: transform 0.3s ease-in-out;
+}
+.translate-x-0 {
+  transform: translateX(0);
+}
+.translate-x-full {
+  transform: translateX(100%);
+}
+.bg-gray-500 {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.bg-white {
+  background-color: #fff;
+}
+.shadow-lg {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.z-50 {
+  z-index: 50;
+}

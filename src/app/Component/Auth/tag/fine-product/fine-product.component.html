@@ -1,0 +1,406 @@
+<form action="">
+    <div class="w-full md:flex py-4 bg-[#FFFFF6] rounded-md ">
+        <div class="w-full md:w-3/4 xl:w-6/7 mb-3 md:mb-0">
+            <div
+                class="w-full px-3 grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5">
+
+                <div class="col-span-2 sm:col-span-1">
+                    <app-custom-select label="Product Category" [options]="productCategory"
+                        [(selected)]="selectedCategory" selectId="productCategory">
+                    </app-custom-select>
+                </div>
+
+                <div class="col-span-1">
+                    <div class="relative">
+                        <input type="text" id=""
+                            class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                            placeholder=" " />
+                        <label for=""
+                            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Item
+                            Code</label>
+                    </div>
+                </div>
+
+                <div class="col-span-1">
+                    <div class="relative">
+                        <input type="text" id=""
+                            class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                            placeholder=" " />
+                        <label for=""
+                            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Size</label>
+                    </div>
+                </div>
+
+                <div class="col-span-1">
+                    <div class="relative">
+                        <input type="text" id=""
+                            class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                            placeholder=" " />
+                        <label for=""
+                            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">MRP</label>
+                    </div>
+                </div>
+
+                <div class="col-span-1">
+                    <div class="relative">
+                        <input type="text" id=""
+                            class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                            placeholder=" " />
+                        <label for=""
+                            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Rate List Code</label>
+                    </div>
+                </div>
+
+                <div class="col-span-2 sm:col-span-1">
+                    <div class="relative">
+                        <input type="text" id=""
+                            class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                            placeholder=" " />
+                        <label for=""
+                            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Weight of the item</label>
+                    </div>
+                </div>
+                <div class="col-span-2 xl:col-start-5 xl:col-span-2 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-5">
+                   <div class="col-span-2 xl:col-start-3 xl:col-span-4 2xl:col-start-3 2xl:col-span-3">
+                    <div class="relative"><input type="text" id="" placeholder=" " disabled="" class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-semibold bg-[#F2F2F2] rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"><label for="" class="absolute font-semibold text-sm lg:text-sm text-444 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-[#F2F2F2] dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Per Gm Cost With Packaging</label></div>
+                   </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="ml-auto w-1/2 sm:w-1/4 md:w-1/4 xl:w-1/7 px-3 md:border-l border-[#d9d9d9]">
+            <button _ngcontent-ng-c1370905582="" type="button"
+                class="block w-full mb-3 ml-auto sm:ml-0 cursor-pointer bg-[#FFF3D4] text-xs sm:text-sm lg:text-base text-c19725 font-bold border border-c19725 px-1.5 py-1 lg:py-2 h-[32px] lg:h-[40px] rounded-sm"><svg
+                    _ngcontent-ng-c1370905582="" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="size-5 inline-flex">
+                    <path _ngcontent-ng-c1370905582=""
+                        d="M14.1667 16.2164H14.175M13 13.3866H15C15.7766 13.3866 16.1648 13.3866 16.4712 13.5301C16.8795 13.7216 17.204 14.0889 17.3732 14.5511C17.5 14.8979 17.5 15.3374 17.5 16.2164C17.5 17.0954 17.5 17.5349 17.3732 17.8817C17.204 18.3439 16.8795 18.7112 16.4712 18.9027C16.1648 19.0462 15.7766 19.0462 15 19.0462H5C4.22343 19.0462 3.83515 19.0462 3.52886 18.9027C3.12048 18.7112 2.79603 18.3439 2.62687 17.8817C2.5 17.5349 2.5 17.0954 2.5 16.2164C2.5 15.3374 2.5 14.8979 2.62687 14.5511C2.79603 14.0889 3.12048 13.7216 3.52886 13.5301C3.83515 13.3866 4.22343 13.3866 5 13.3866H7M10 14.3298V3.95383M10 3.95383L12.5 6.78365M10 3.95383L7.5 6.78365"
+                        stroke="#C19725" stroke-width="1.32464" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg> Upload Photo</button>
+
+            <div class="grid grid-cols-2 gap-3">
+                
+                <div class="col-span-1">
+                    <div class="bg-white border border-[#D9D9D9] rounded-lg overflow-hidden aspect-square"><img
+                            src="/assets/images/stock/product-2.png" alt="Product" class="w-full object-contain">
+                    </div>
+                </div>
+                <div class="col-span-1">
+                    <div class="bg-white border border-[#D9D9D9] rounded-lg overflow-hidden aspect-square"><img
+                            src="/assets/images/stock/product-3.png" alt="Product" class="w-full object-contain">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- buttons -->
+    <div class="flex items-center justify-center mt-4 md:mt-8 space-x-1.5 md:space-x-4">
+        <button type="submit"
+            class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6">Clear</button>
+
+        <button type="submit"
+            class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">Submit</button>
+    </div>
+</form>
+
+<div class="overflow-x-auto w-full mt-8">
+    <table
+        class="w-full table border border-b-0 border-[#D9D9D9] border-separate border-spacing-0 bg-white overflow-hidden">
+        <thead class="bg-[#F2F2F2] text-444 text-xs sm:text-sm lg:text-base">
+            <tr>
+                <th class="p-2 font-medium text-center border-r border-444 last:border-r-0">No.</th>
+                <th class="font-medium text-left border-r border-444 last:border-r-0 relative">
+                    <input class="w-full placeholder:text-444 text-444 text-xs sm:text-sm lg:text-base border-0 outline-0 focus:ring-c19725 focus:bg-[#fafafa] bg-transparent px-2 pl-2 pr-5 sm:pr-6 lg:pr-7" type="text" placeholder="Date">
+                    <svg class="absolute size-3 sm:size-3.5 lg:size-3.5 top-2.5 right-1.5 sm:top-3 sm:right-2 lg:top-3.5 lg:right-2.5" width="14" height="14" viewBox="0 0 14 14" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12.7 13.75L7.975 9.025C7.6 9.325 7.16875 9.5625 6.68125 9.7375C6.19375 9.9125 5.675 10 5.125 10C3.7625 10 2.60938 9.52812 1.66563 8.58438C0.721875 7.64062 0.25 6.4875 0.25 5.125C0.25 3.7625 0.721875 2.60938 1.66563 1.66563C2.60938 0.721875 3.7625 0.25 5.125 0.25C6.4875 0.25 7.64062 0.721875 8.58438 1.66563C9.52812 2.60938 10 3.7625 10 5.125C10 5.675 9.9125 6.19375 9.7375 6.68125C9.5625 7.16875 9.325 7.6 9.025 7.975L13.75 12.7L12.7 13.75ZM5.125 8.5C6.0625 8.5 6.85938 8.17188 7.51562 7.51562C8.17188 6.85938 8.5 6.0625 8.5 5.125C8.5 4.1875 8.17188 3.39062 7.51562 2.73438C6.85938 2.07812 6.0625 1.75 5.125 1.75C4.1875 1.75 3.39062 2.07812 2.73438 2.73438C2.07812 3.39062 1.75 4.1875 1.75 5.125C1.75 6.0625 2.07812 6.85938 2.73438 7.51562C3.39062 8.17188 4.1875 8.5 5.125 8.5Z"
+                            fill="#C19725" />
+                    </svg>
+                </th>
+                <th class="font-medium text-left border-r border-444 last:border-r-0 relative">
+                    <input class="w-full placeholder:text-444 text-444 text-xs sm:text-sm lg:text-base border-0 outline-0 focus:ring-c19725 focus:bg-[#fafafa] bg-transparent px-2 pl-2 pr-5 sm:pr-6 lg:pr-7" type="text" placeholder="Product Category">
+                    <svg class="absolute size-3 sm:size-3.5 lg:size-3.5 top-2.5 right-1.5 sm:top-3 sm:right-2 lg:top-3.5 lg:right-2.5" width="14" height="14" viewBox="0 0 14 14" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12.7 13.75L7.975 9.025C7.6 9.325 7.16875 9.5625 6.68125 9.7375C6.19375 9.9125 5.675 10 5.125 10C3.7625 10 2.60938 9.52812 1.66563 8.58438C0.721875 7.64062 0.25 6.4875 0.25 5.125C0.25 3.7625 0.721875 2.60938 1.66563 1.66563C2.60938 0.721875 3.7625 0.25 5.125 0.25C6.4875 0.25 7.64062 0.721875 8.58438 1.66563C9.52812 2.60938 10 3.7625 10 5.125C10 5.675 9.9125 6.19375 9.7375 6.68125C9.5625 7.16875 9.325 7.6 9.025 7.975L13.75 12.7L12.7 13.75ZM5.125 8.5C6.0625 8.5 6.85938 8.17188 7.51562 7.51562C8.17188 6.85938 8.5 6.0625 8.5 5.125C8.5 4.1875 8.17188 3.39062 7.51562 2.73438C6.85938 2.07812 6.0625 1.75 5.125 1.75C4.1875 1.75 3.39062 2.07812 2.73438 2.73438C2.07812 3.39062 1.75 4.1875 1.75 5.125C1.75 6.0625 2.07812 6.85938 2.73438 7.51562C3.39062 8.17188 4.1875 8.5 5.125 8.5Z"
+                            fill="#C19725" />
+                    </svg>
+                </th>
+                <th class="font-medium text-left border-r border-444 last:border-r-0 relative">
+                    <input class="w-full placeholder:text-444 text-444 text-xs sm:text-sm lg:text-base border-0 outline-0 focus:ring-c19725 focus:bg-[#fafafa] bg-transparent px-2 pl-2 pr-5 sm:pr-6 lg:pr-7" type="text" placeholder="Item Code">
+                    <svg class="absolute size-3 sm:size-3.5 lg:size-3.5 top-2.5 right-1.5 sm:top-3 sm:right-2 lg:top-3.5 lg:right-2.5" width="14" height="14" viewBox="0 0 14 14" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12.7 13.75L7.975 9.025C7.6 9.325 7.16875 9.5625 6.68125 9.7375C6.19375 9.9125 5.675 10 5.125 10C3.7625 10 2.60938 9.52812 1.66563 8.58438C0.721875 7.64062 0.25 6.4875 0.25 5.125C0.25 3.7625 0.721875 2.60938 1.66563 1.66563C2.60938 0.721875 3.7625 0.25 5.125 0.25C6.4875 0.25 7.64062 0.721875 8.58438 1.66563C9.52812 2.60938 10 3.7625 10 5.125C10 5.675 9.9125 6.19375 9.7375 6.68125C9.5625 7.16875 9.325 7.6 9.025 7.975L13.75 12.7L12.7 13.75ZM5.125 8.5C6.0625 8.5 6.85938 8.17188 7.51562 7.51562C8.17188 6.85938 8.5 6.0625 8.5 5.125C8.5 4.1875 8.17188 3.39062 7.51562 2.73438C6.85938 2.07812 6.0625 1.75 5.125 1.75C4.1875 1.75 3.39062 2.07812 2.73438 2.73438C2.07812 3.39062 1.75 4.1875 1.75 5.125C1.75 6.0625 2.07812 6.85938 2.73438 7.51562C3.39062 8.17188 4.1875 8.5 5.125 8.5Z"
+                            fill="#C19725" />
+                    </svg>
+                </th>
+                <th class="font-medium text-left border-r border-444 last:border-r-0 relative">
+                    <input class="w-full placeholder:text-444 text-444 text-xs sm:text-sm lg:text-base border-0 outline-0 focus:ring-c19725 focus:bg-[#fafafa] bg-transparent px-2 pl-2 pr-5 sm:pr-6 lg:pr-7" type="text" placeholder="Size">
+                    <svg class="absolute size-3 sm:size-3.5 lg:size-3.5 top-2.5 right-1.5 sm:top-3 sm:right-2 lg:top-3.5 lg:right-2.5" width="14" height="14" viewBox="0 0 14 14" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12.7 13.75L7.975 9.025C7.6 9.325 7.16875 9.5625 6.68125 9.7375C6.19375 9.9125 5.675 10 5.125 10C3.7625 10 2.60938 9.52812 1.66563 8.58438C0.721875 7.64062 0.25 6.4875 0.25 5.125C0.25 3.7625 0.721875 2.60938 1.66563 1.66563C2.60938 0.721875 3.7625 0.25 5.125 0.25C6.4875 0.25 7.64062 0.721875 8.58438 1.66563C9.52812 2.60938 10 3.7625 10 5.125C10 5.675 9.9125 6.19375 9.7375 6.68125C9.5625 7.16875 9.325 7.6 9.025 7.975L13.75 12.7L12.7 13.75ZM5.125 8.5C6.0625 8.5 6.85938 8.17188 7.51562 7.51562C8.17188 6.85938 8.5 6.0625 8.5 5.125C8.5 4.1875 8.17188 3.39062 7.51562 2.73438C6.85938 2.07812 6.0625 1.75 5.125 1.75C4.1875 1.75 3.39062 2.07812 2.73438 2.73438C2.07812 3.39062 1.75 4.1875 1.75 5.125C1.75 6.0625 2.07812 6.85938 2.73438 7.51562C3.39062 8.17188 4.1875 8.5 5.125 8.5Z"
+                            fill="#C19725" />
+                    </svg>
+                </th>
+                <th class="font-medium text-left border-r border-444 last:border-r-0 relative">
+                    <input class="w-full placeholder:text-444 text-444 text-xs sm:text-sm lg:text-base border-0 outline-0 focus:ring-c19725 focus:bg-[#fafafa] bg-transparent px-2 pl-2 pr-5 sm:pr-6 lg:pr-7" type="text" placeholder="MRP">
+                    <svg class="absolute size-3 sm:size-3.5 lg:size-3.5 top-2.5 right-1.5 sm:top-3 sm:right-2 lg:top-3.5 lg:right-2.5" width="14" height="14" viewBox="0 0 14 14" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12.7 13.75L7.975 9.025C7.6 9.325 7.16875 9.5625 6.68125 9.7375C6.19375 9.9125 5.675 10 5.125 10C3.7625 10 2.60938 9.52812 1.66563 8.58438C0.721875 7.64062 0.25 6.4875 0.25 5.125C0.25 3.7625 0.721875 2.60938 1.66563 1.66563C2.60938 0.721875 3.7625 0.25 5.125 0.25C6.4875 0.25 7.64062 0.721875 8.58438 1.66563C9.52812 2.60938 10 3.7625 10 5.125C10 5.675 9.9125 6.19375 9.7375 6.68125C9.5625 7.16875 9.325 7.6 9.025 7.975L13.75 12.7L12.7 13.75ZM5.125 8.5C6.0625 8.5 6.85938 8.17188 7.51562 7.51562C8.17188 6.85938 8.5 6.0625 8.5 5.125C8.5 4.1875 8.17188 3.39062 7.51562 2.73438C6.85938 2.07812 6.0625 1.75 5.125 1.75C4.1875 1.75 3.39062 2.07812 2.73438 2.73438C2.07812 3.39062 1.75 4.1875 1.75 5.125C1.75 6.0625 2.07812 6.85938 2.73438 7.51562C3.39062 8.17188 4.1875 8.5 5.125 8.5Z"
+                            fill="#C19725" />
+                    </svg>
+                </th>
+                <th class="font-medium text-left border-r border-444 last:border-r-0 relative">
+                    <input class="w-full placeholder:text-444 text-444 text-xs sm:text-sm lg:text-base border-0 outline-0 focus:ring-c19725 focus:bg-[#fafafa] bg-transparent px-2 pl-2 pr-5 sm:pr-6 lg:pr-7" type="text" placeholder="Rate List Code">
+                    <svg class="absolute size-3 sm:size-3.5 lg:size-3.5 top-2.5 right-1.5 sm:top-3 sm:right-2 lg:top-3.5 lg:right-2.5" width="14" height="14" viewBox="0 0 14 14" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12.7 13.75L7.975 9.025C7.6 9.325 7.16875 9.5625 6.68125 9.7375C6.19375 9.9125 5.675 10 5.125 10C3.7625 10 2.60938 9.52812 1.66563 8.58438C0.721875 7.64062 0.25 6.4875 0.25 5.125C0.25 3.7625 0.721875 2.60938 1.66563 1.66563C2.60938 0.721875 3.7625 0.25 5.125 0.25C6.4875 0.25 7.64062 0.721875 8.58438 1.66563C9.52812 2.60938 10 3.7625 10 5.125C10 5.675 9.9125 6.19375 9.7375 6.68125C9.5625 7.16875 9.325 7.6 9.025 7.975L13.75 12.7L12.7 13.75ZM5.125 8.5C6.0625 8.5 6.85938 8.17188 7.51562 7.51562C8.17188 6.85938 8.5 6.0625 8.5 5.125C8.5 4.1875 8.17188 3.39062 7.51562 2.73438C6.85938 2.07812 6.0625 1.75 5.125 1.75C4.1875 1.75 3.39062 2.07812 2.73438 2.73438C2.07812 3.39062 1.75 4.1875 1.75 5.125C1.75 6.0625 2.07812 6.85938 2.73438 7.51562C3.39062 8.17188 4.1875 8.5 5.125 8.5Z"
+                            fill="#C19725" />
+                    </svg>
+                </th>
+                <th class="font-medium text-left border-r border-444 last:border-r-0 relative">
+                    <input class="w-full placeholder:text-444 text-444 text-xs sm:text-sm lg:text-base border-0 outline-0 focus:ring-c19725 focus:bg-[#fafafa] bg-transparent px-2 pl-2 pr-5 sm:pr-6 lg:pr-7" type="text" placeholder="Item WT">
+                    <svg class="absolute size-3 sm:size-3.5 lg:size-3.5 top-2.5 right-1.5 sm:top-3 sm:right-2 lg:top-3.5 lg:right-2.5" width="14" height="14" viewBox="0 0 14 14" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12.7 13.75L7.975 9.025C7.6 9.325 7.16875 9.5625 6.68125 9.7375C6.19375 9.9125 5.675 10 5.125 10C3.7625 10 2.60938 9.52812 1.66563 8.58438C0.721875 7.64062 0.25 6.4875 0.25 5.125C0.25 3.7625 0.721875 2.60938 1.66563 1.66563C2.60938 0.721875 3.7625 0.25 5.125 0.25C6.4875 0.25 7.64062 0.721875 8.58438 1.66563C9.52812 2.60938 10 3.7625 10 5.125C10 5.675 9.9125 6.19375 9.7375 6.68125C9.5625 7.16875 9.325 7.6 9.025 7.975L13.75 12.7L12.7 13.75ZM5.125 8.5C6.0625 8.5 6.85938 8.17188 7.51562 7.51562C8.17188 6.85938 8.5 6.0625 8.5 5.125C8.5 4.1875 8.17188 3.39062 7.51562 2.73438C6.85938 2.07812 6.0625 1.75 5.125 1.75C4.1875 1.75 3.39062 2.07812 2.73438 2.73438C2.07812 3.39062 1.75 4.1875 1.75 5.125C1.75 6.0625 2.07812 6.85938 2.73438 7.51562C3.39062 8.17188 4.1875 8.5 5.125 8.5Z"
+                            fill="#C19725" />
+                    </svg>
+                </th>
+                <th class="p-2 font-medium text-center border-r border-444 last:border-r-0">Action</th>
+            </tr>
+        </thead>
+        <tbody class="text-xs sm:text-sm lg:text-base">
+            <tr class="text-444">
+                <td class="p-2 border-r border-b border-[#D9D9D9] text-center">1</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">09-04-2025</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">Diamond Ring</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">Dring51548</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">5</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">60,000</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">abcd</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">1.25</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9] text-center">
+                    <div class="flex items-center justify-center gap-2 xl:gap-4"><button class="cursor-pointer"><svg
+                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                class="size-5 lg:size-6">
+                                <path
+                                    d="M15.552 4.332L19.5109 8.29075M3.2815 16.452L2.75 21.25L7.54788 20.7185L21.25 7.00912V5.39287L18.6071 2.75H16.9909L3.2815 16.452Z"
+                                    stroke="#C19725" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                                <path d="M14.7166 9.23962L8.10638 15.8499" stroke="#C19725" stroke-miterlimit="5"
+                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg></button><button class="cursor-pointer"><svg viewBox="0 0 24 25" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="size-5 lg:size-6">
+                                <path d="M10 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path d="M14 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path d="M4 7.5H20" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path
+                                    d="M6 10.5V18.5C6 20.1569 7.34315 21.5 9 21.5H15C16.6569 21.5 18 20.1569 18 18.5V10.5"
+                                    stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                                <path
+                                    d="M9 5.5C9 4.39543 9.89543 3.5 11 3.5H13C14.1046 3.5 15 4.39543 15 5.5V7.5H9V5.5Z"
+                                    stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                            </svg></button></div>
+                </td>
+            </tr>
+            <tr class="text-444">
+                <td class="p-2 border-r border-b border-[#D9D9D9] text-center">3</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">09-04-2025</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">Diamond Ring</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">Dring51548</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">5</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">60,000</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">abcd</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">1.25</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9] text-center">
+                    <div class="flex items-center justify-center gap-2 xl:gap-4"><button class="cursor-pointer"><svg
+                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                class="size-5 lg:size-6">
+                                <path
+                                    d="M15.552 4.332L19.5109 8.29075M3.2815 16.452L2.75 21.25L7.54788 20.7185L21.25 7.00912V5.39287L18.6071 2.75H16.9909L3.2815 16.452Z"
+                                    stroke="#C19725" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                                <path d="M14.7166 9.23962L8.10638 15.8499" stroke="#C19725" stroke-miterlimit="5"
+                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg></button><button class="cursor-pointer"><svg viewBox="0 0 24 25" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="size-5 lg:size-6">
+                                <path d="M10 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path d="M14 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path d="M4 7.5H20" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path
+                                    d="M6 10.5V18.5C6 20.1569 7.34315 21.5 9 21.5H15C16.6569 21.5 18 20.1569 18 18.5V10.5"
+                                    stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                                <path
+                                    d="M9 5.5C9 4.39543 9.89543 3.5 11 3.5H13C14.1046 3.5 15 4.39543 15 5.5V7.5H9V5.5Z"
+                                    stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                            </svg></button></div>
+                </td>
+            </tr>
+            <tr class="text-444">
+                <td class="p-2 border-r border-b border-[#D9D9D9] text-center">1</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">09-04-2025</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">Diamond Ring</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">Dring51548</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">5</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">60,000</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">abcd</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">1.25</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9] text-center">
+                    <div class="flex items-center justify-center gap-2 xl:gap-4"><button class="cursor-pointer"><svg
+                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                class="size-5 lg:size-6">
+                                <path
+                                    d="M15.552 4.332L19.5109 8.29075M3.2815 16.452L2.75 21.25L7.54788 20.7185L21.25 7.00912V5.39287L18.6071 2.75H16.9909L3.2815 16.452Z"
+                                    stroke="#C19725" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                                <path d="M14.7166 9.23962L8.10638 15.8499" stroke="#C19725" stroke-miterlimit="5"
+                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg></button><button class="cursor-pointer"><svg viewBox="0 0 24 25" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="size-5 lg:size-6">
+                                <path d="M10 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path d="M14 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path d="M4 7.5H20" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path
+                                    d="M6 10.5V18.5C6 20.1569 7.34315 21.5 9 21.5H15C16.6569 21.5 18 20.1569 18 18.5V10.5"
+                                    stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                                <path
+                                    d="M9 5.5C9 4.39543 9.89543 3.5 11 3.5H13C14.1046 3.5 15 4.39543 15 5.5V7.5H9V5.5Z"
+                                    stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                            </svg></button></div>
+                </td>
+            </tr>
+            <tr class="text-444">
+                <td class="p-2 border-r border-b border-[#D9D9D9] text-center">4</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">09-04-2025</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">Diamond Ring</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">Dring51548</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">5</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">60,000</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">abcd</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">1.25</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9] text-center">
+                    <div class="flex items-center justify-center gap-2 xl:gap-4"><button class="cursor-pointer"><svg
+                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                class="size-5 lg:size-6">
+                                <path
+                                    d="M15.552 4.332L19.5109 8.29075M3.2815 16.452L2.75 21.25L7.54788 20.7185L21.25 7.00912V5.39287L18.6071 2.75H16.9909L3.2815 16.452Z"
+                                    stroke="#C19725" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                                <path d="M14.7166 9.23962L8.10638 15.8499" stroke="#C19725" stroke-miterlimit="5"
+                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg></button><button class="cursor-pointer"><svg viewBox="0 0 24 25" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="size-5 lg:size-6">
+                                <path d="M10 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path d="M14 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path d="M4 7.5H20" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path
+                                    d="M6 10.5V18.5C6 20.1569 7.34315 21.5 9 21.5H15C16.6569 21.5 18 20.1569 18 18.5V10.5"
+                                    stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                                <path
+                                    d="M9 5.5C9 4.39543 9.89543 3.5 11 3.5H13C14.1046 3.5 15 4.39543 15 5.5V7.5H9V5.5Z"
+                                    stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                            </svg></button></div>
+                </td>
+            </tr>
+            <tr class="text-444">
+                <td class="p-2 border-r border-b border-[#D9D9D9] text-center">5</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">09-04-2025</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">Diamond Ring</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">Dring51548</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">5</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">60,000</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">abcd</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9]">1.25</td>
+                <td class="p-2 border-r border-b border-[#D9D9D9] text-center">
+                    <div class="flex items-center justify-center gap-2 xl:gap-4"><button class="cursor-pointer"><svg
+                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                class="size-5 lg:size-6">
+                                <path
+                                    d="M15.552 4.332L19.5109 8.29075M3.2815 16.452L2.75 21.25L7.54788 20.7185L21.25 7.00912V5.39287L18.6071 2.75H16.9909L3.2815 16.452Z"
+                                    stroke="#C19725" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                                <path d="M14.7166 9.23962L8.10638 15.8499" stroke="#C19725" stroke-miterlimit="5"
+                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg></button><button class="cursor-pointer"><svg viewBox="0 0 24 25" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" class="size-5 lg:size-6">
+                                <path d="M10 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path d="M14 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path d="M4 7.5H20" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path
+                                    d="M6 10.5V18.5C6 20.1569 7.34315 21.5 9 21.5H15C16.6569 21.5 18 20.1569 18 18.5V10.5"
+                                    stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                                <path
+                                    d="M9 5.5C9 4.39543 9.89543 3.5 11 3.5H13C14.1046 3.5 15 4.39543 15 5.5V7.5H9V5.5Z"
+                                    stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                            </svg></button></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="flex items-center justify-end border-t border-gray-200 bg-white py-3">
+    <div class="flex sm:flex-1 sm:items-center sm:justify-end">
+        <div>
+            <nav class="isolate inline-flex gap-2 -space-x-px rounded-md shadow-xs" aria-label="Pagination">
+                <a href="#"
+                    class="relative inline-flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-[5px] text-c19725 ring-1 ring-c19725 ring-inset hover:bg-[#f6f1cb] focus:z-20 focus:outline-offset-0">
+                    <span class="sr-only">Previous</span>
+                    <svg class="size-6" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                        <path fill-rule="evenodd"
+                            d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </a>
+                <a href="#" aria-current="page"
+                    class="relative z-10 inline-flex items-center justify-center bg-c19725 w-6 h-6 md:w-7 md:h-7 rounded-[5px] text-sm font-normal text-white focus:z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-c19725">1</a>
+                <a href="#"
+                    class="relative inline-flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-[5px] text-sm font-normal text-c19725 ring-1 ring-c19725 ring-inset hover:bg-[#f6f1cb] focus:z-20 focus:outline-offset-0">2</a>
+                <span
+                    class="relative inline-flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-[5px] text-sm font-normal text-gray-700 focus:outline-offset-0">...</span>
+                <a href="#"
+                    class="relative inline-flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-[5px] text-sm font-normal text-c19725 ring-1 ring-c19725 ring-inset hover:bg-[#f6f1cb] focus:z-20 focus:outline-offset-0">10</a>
+                <a href="#"
+                    class="relative inline-flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-[5px] text-c19725 ring-1 ring-c19725 ring-inset hover:bg-[#f6f1cb] focus:z-20 focus:outline-offset-0">
+                    <span class="sr-only">Next</span>
+                    <svg class="size-6" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                        <path fill-rule="evenodd"
+                            d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </nav>
+        </div>
+    </div>
+</div>

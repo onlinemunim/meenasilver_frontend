@@ -1,0 +1,275 @@
+  <div class="bg-gray-100 p-4 sm:p-8">
+
+    <!-- NEW: Loading State Indicator -->
+    <div *ngIf="isLoading" class="fixed inset-0 flex items-center justify-center z-50 backdrop-blur-sm">
+      <i class="fas fa-spinner fa-spin text-6xl" style="color:#c19725;"></i>
+    </div>
+
+    <!-- NEW: Error State Message -->
+    <div *ngIf="loadingError" class="text-center p-10">
+      <p class="text-lg text-red-600 font-semibold">Failed to load invoice data.</p>
+      <p class="text-gray-500">The invoice may not exist or there was a network error. Please try again.</p>
+    </div>
+
+    <!-- MODIFIED: Main content now also checks for loading/error states -->
+    <div *ngIf="!isLoading && !loadingError && invoiceSettings && invoiceData" class="max-w-4xl mx-auto bg-white shadow-lg" [style.border]="'5px solid ' + invoiceSettings.header.borderColor">
+
+      <!-- Header Section -->
+      <header class="relative">
+        <div class="relative w-full">
+          <img *ngIf="invoiceSettings.header.backgroundImage?.visible" [src]="invoiceSettings.header.backgroundImage.url" alt="Top Banner" class="w-full object-cover">
+          <div class="absolute top-1 -bottom-1 right-2 text-right rounded">
+            <div *ngIf="invoiceSettings.header.contactInfo.phoneLabel.visible" class="flex gap-x-2" [style.color]="invoiceSettings.header.contactInfo.phoneLabel.color" [style.fontSize.px]="invoiceSettings.header.contactInfo.phoneLabel.fontSize">
+              <p class="font-medium">{{invoiceSettings.header.contactInfo.phoneLabel.text}}</p>
+              <p>{{invoiceSettings.header.contactInfo.phoneValue?.text}}</p>
+            </div>
+            <div *ngIf="invoiceSettings.header.contactInfo.emailLabel.visible" class="flex gap-x-2" [style.color]="invoiceSettings.header.contactInfo.emailLabel.color" [style.fontSize.px]="invoiceSettings.header.contactInfo.emailLabel.fontSize">
+              <p class="font-medium">{{invoiceSettings.header.contactInfo.emailLabel?.text}}</p>
+              <p>{{invoiceSettings.header.contactInfo.emailValue?.text}}</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-3 items-center gap-4 mt-0 pl-4">
+            <div class="flex items-center">
+              <img *ngIf="invoiceSettings.header.topLogo.visible" [src]="invoiceSettings.header.topLogo.url" alt="Logo" class="h-16 w-16">
+            </div>
+            <div class="text-center">
+              <h1 *ngIf="invoiceSettings.header.firmTitle.visible" class="text-3xl font-bold" [style.color]="invoiceSettings.header.firmTitle.color" [style.fontSize.px]="invoiceSettings.header.firmTitle.fontSize">{{invoiceSettings.header.firmTitle.text}}</h1>
+              <p *ngIf="invoiceSettings.header.tagline.visible" [style.color]="invoiceSettings.header.tagline.color" [style.fontSize.px]="invoiceSettings.header.tagline.fontSize">{{invoiceSettings.header.tagline.text}}</p>
+              <p *ngIf="invoiceSettings.header.address.visible" [style.color]="invoiceSettings.header.address.color" [style.fontSize.px]="invoiceSettings.header.address.fontSize">{{invoiceSettings.header.address.text}}</p>
+            </div>
+            <div class="flex flex-col items-end pr-5">
+              <img *ngIf="invoiceSettings.header.bisLogo.visible" [src]="invoiceSettings.header.bisLogo.url" alt="BIS Hallmark Logo" class="h-20 w-auto">
+              <p *ngIf="invoiceSettings.header.bisLabel1.visible" class="font-semibold text-sm" [style.color]="invoiceSettings.header.bisLabel1.color" [style.fontSize.px]="invoiceSettings.header.bisLabel1.fontSize">{{invoiceSettings.header.bisLabel1.text}}</p>
+              <p *ngIf="invoiceSettings.header.bisLabel2.visible" class="font-semibold text-sm" [style.color]="invoiceSettings.header.bisLabel2.color" [style.fontSize.px]="invoiceSettings.header.bisLabel2.fontSize">{{invoiceSettings.header.bisLabel2.text}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="absolute -bottom-0 w-full border-b-2" [style.borderColor]="invoiceSettings.header.borderColor"></div>
+      </header>
+
+      <!-- (The rest of your HTML template remains exactly the same...) -->
+      <!-- DYNAMIC Customer and Invoice Details -->
+      <section class="p-5 pt-1">
+        <div class="flex justify-between">
+          <div>
+            <div class="flex mb-1">
+              <strong *ngIf="invoiceSettings.labels.customerName.visible" class="w-20 text-[#333333]">{{invoiceSettings.labels.customerName.text}}</strong>
+              <span>: {{invoiceData?.customer?.name}} {{invoiceData?.customer?.user_last_name}}</span>
+            </div>
+            <div class="flex mb-1">
+              <strong *ngIf="invoiceSettings.labels.customerAddress.visible" class="w-20 text-[#333333]">{{invoiceSettings.labels.customerAddress.text}}</strong>
+              <span>: {{invoiceData?.customer?.address[0]?.add1}} - {{invoiceData?.customer?.address[0]?.pincode}}</span>
+            </div>
+            <p class="ml-[88px]">{{invoiceData?.customer?.address[0]?.state?.name}}, {{invoiceData?.customer?.address[0]?.country?.name}}</p>
+            <div class="flex">
+              <strong *ngIf="invoiceSettings.labels.customerPhone.visible" class="w-20 text-[#333333]">{{invoiceSettings.labels.customerPhone.text}}</strong>
+              <span>: {{invoiceData?.customer?.mobilenumber}}</span>
+            </div>
+          </div>
+          <div class="text-left">
+            <div class="flex mb-1">
+              <strong *ngIf="invoiceSettings.labels.invoiceNo.visible" class="w-20 text-[#333333]">{{invoiceSettings.labels.invoiceNo.text}}</strong>
+              <span>: {{invoiceData.invoice_number}}</span>
+            </div>
+            <div class="flex mb-1">
+              <strong *ngIf="invoiceSettings.labels.invoiceDate.visible" class="w-20 text-[#333333]">{{invoiceSettings.labels.invoiceDate.text}}</strong>
+              <span>: {{invoiceData.invoice_date}}</span>
+            </div>
+            <div class="flex mb-1">
+              <strong *ngIf="invoiceSettings.labels.gstin.visible" class="w-20 text-[#333333]">{{invoiceSettings.labels.gstin.text}}</strong>
+              <span>: {{invoiceData?.customer?.gstnumber}}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DYNAMIC Items Table -->
+      <section class="px-6">
+        <table class="w-full text-sm text-center border-collapse">
+          <thead *ngIf="invoiceSettings.table.header.visible" [style.backgroundColor]="invoiceSettings.table.header.backgroundColor" [style.color]="invoiceSettings.table.header.color" [style.fontSize.px]="invoiceSettings.table.header.fontSize">
+            <tr>
+              <th class="p-2 border border-gray-300">Prod Id</th>
+              <th class="p-2 border border-gray-300">Design</th>
+              <th class="p-2 border border-gray-300">Desc</th>
+              <th class="p-2 border border-gray-300">Qty</th>
+              <th class="p-2 border border-gray-300"> Wt</th>
+              <th class="p-2 border border-gray-300">MRP</th>
+              <th class="p-2 border border-gray-300">Amount</th>
+            </tr>
+          </thead>
+          <tbody [style.color]="invoiceSettings.table.body.color" [style.fontSize.px]="invoiceSettings.table.body.fontSize">
+            <tr *ngFor="let item of invoiceData?.items">
+              <td class="p-2 border border-gray-300 align-top">{{item?.stout_id}}</td>
+              <td class="p-2 border border-gray-300 align-top"><img [src]="item?.stout_image" alt="Item Image" class="h-10 w-10 mx-auto"></td>
+              <td class="p-2 border border-gray-300 text-left align-top">
+                <div>{{item?.stout_item_name}}</div>
+                <div class="text-xs">{{item?.stout_barcode}}</div>
+              </td>
+              <td class="p-2 border border-gray-300 align-top">{{item?.stout_quantity}}</td>
+              <td class="p-2 border border-gray-300 align-top">{{item?.stout_total_wt}}</td>
+              <td class="p-2 border border-gray-300 align-top">{{item?.stout_unit_price}}</td>
+              <td class="p-2 border border-gray-300 align-top text-right pr-4">{{item?.stout_final_amount}}</td>
+            </tr>
+            <tr class="font-semibold" [style.backgroundColor]="invoiceSettings.table.summaryRow.backgroundColor" [style.color]="invoiceSettings.table.summaryRow.color">
+              <td class="p-2 border border-gray-300 text-left" colspan="4">
+                  <span *ngIf="invoiceSettings.table.summaryRow.label.visible">{{invoiceSettings.table.summaryRow.label.text}}</span>
+              </td>
+              <td class="p-2 border border-gray-300">{{itemsTotalWeight}} Gm</td>
+              <td class="p-2 border border-gray-300"></td>
+              <td class="p-2 border border-gray-300 text-right pr-4">{{itemsTotalAmount}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- DYNAMIC Payment and Totals Section -->
+      <section class="p-6 pt-0">
+        <div class="grid grid-cols-2 gap-6 pl-3" [style.backgroundColor]="invoiceSettings.paymentDetails.backgroundColor">
+          <div class="text-sm">
+            <div class="flex justify-between items-center  py-1" *ngIf="invoiceData?.cash_amount">
+              <span class="font-medium">Cash Receive :</span>
+              <span>{{invoiceData?.cash_amount || 0.0}}</span>
+            </div>
+            <div class="flex justify-between items-center  py-1" *ngIf="invoiceData?.bank_amount">
+              <span class="font-medium">Cheque Receive :</span>
+              <span>{{invoiceData?.bank_amount || 0.0}}</span>
+            </div>
+            <div class="flex justify-between items-center  py-1" *ngIf="invoiceData?.total_card_amount">
+              <span class="font-medium">Card Receive :</span>
+              <span>{{invoiceData?.total_card_amount || 0.0}}</span>
+            </div>
+            <div class="flex justify-between items-center  py-1" *ngIf="invoiceData?.total_online_amount">
+              <span class="font-medium">Online Payment :</span>
+              <span>{{invoiceData?.total_online_amount || 0.0}}</span>
+            </div>
+          </div>
+          <div class="text-sm pr-3">
+            <div class="flex justify-between items-center py-1">
+              <span *ngIf="invoiceSettings.totals.labels.taxable.visible" class="font-medium">{{invoiceSettings.totals.labels.taxable.text}}</span>
+              <span>{{invoiceData?.taxable_amount}}</span>
+            </div>
+            <div class="flex justify-between items-center py-1">
+              <span *ngIf="invoiceSettings.totals.labels.cgst.visible" class="font-medium">{{invoiceSettings.totals.labels.cgst.text.replace('_', invoiceData?.cgst_percent)}}</span>
+              <span>{{invoiceData?.cgst}}</span>
+            </div>
+            <div class="flex justify-between items-center py-1">
+              <span *ngIf="invoiceSettings.totals.labels.sgst.visible" class="font-medium">{{invoiceSettings.totals.labels.sgst.text.replace('_', invoiceData?.sgst_percent)}}</span>
+              <span>{{invoiceData?.sgst}}</span>
+            </div>
+            <div class="flex justify-between items-center py-1">
+              <span *ngIf="invoiceSettings.totals.labels.roundOff.visible" class="font-medium">{{invoiceSettings.totals.labels.roundOff.text}}</span>
+              <span>{{invoiceData?.round_off}}</span>
+            </div>
+            <div class="flex justify-between items-center py-1 font-semibold">
+              <span *ngIf="invoiceSettings.totals.labels.totalAmount.visible">{{invoiceSettings.totals.labels.totalAmount.text}}</span>
+              <span>{{totalAmount}}</span>
+            </div>
+            <div class="flex justify-between items-center py-1 font-semibold">
+              <span *ngIf="invoiceSettings.totals.labels.totalReceived.visible">{{invoiceSettings.totals.labels.totalReceived.text}}</span>
+              <span>{{invoiceData?.amount_paid}}</span>
+            </div>
+          </div>
+        </div>
+
+
+      </section>
+
+
+
+
+      <!-- DYNAMIC Tax Summary Table -->
+      <section class="px-6 pb-6">
+        <table class="w-full text-sm text-center border-collapse">
+          <thead *ngIf="invoiceSettings.taxSummaryTable.header.visible" [style.backgroundColor]="invoiceSettings.taxSummaryTable.header.backgroundColor" [style.color]="invoiceSettings.taxSummaryTable.header.color" [style.fontSize.px]="invoiceSettings.taxSummaryTable.header.fontSize">
+            <tr>
+              <th *ngFor="let header of invoiceSettings.taxSummaryTable.headers" class="p-2 border border-gray-300">
+                  <span *ngIf="header.visible">{{header.text}}</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-2 border border-gray-300">7108</td>
+              <td class="p-2 border border-gray-300">{{invoiceData?.taxable_amount}}</td>
+              <td class="p-2 border border-gray-300">{{invoiceData?.cgst_percent}}%</td>
+              <td class="p-2 border border-gray-300">{{invoiceData?.cgst}}</td>
+              <td class="p-2 border border-gray-300">{{invoiceData?.sgst_percent}}%</td>
+              <td class="p-2 border border-gray-300">{{invoiceData?.sgst}}</td>
+              <td class="p-2 border border-gray-300">{{totalAmount}}</td>
+            </tr>
+          </tbody>
+          <tfoot *ngIf="invoiceSettings.taxSummaryTable.footer">
+            <tr class="font-semibold" [style.backgroundColor]="invoiceSettings.taxSummaryTable.footer.backgroundColor" [style.color]="invoiceSettings.taxSummaryTable.footer.color">
+              <td colspan="6" class="p-2 text-right pr-4 border border-gray-300">
+                <span *ngIf="invoiceSettings.taxSummaryTable.footer.label.visible">{{invoiceSettings.taxSummaryTable.footer.label.text}}</span>
+              </td>
+              <td class="p-2 border border-gray-300">{{invoiceData?.balance_due}}</td>
+            </tr>
+          </tfoot>
+        </table>
+
+      <!--Bank Details Row -->
+      <div *ngIf="bankDetails" class="mt-4 p-2 border border-gray-200 bg-white shadow-sm">
+        <div class="flex items-center border-b border-gray-200 pb-2 mb-3">
+          <img src="https://cdn-icons-png.flaticon.com/128/9555/9555155.png"
+               alt="Bank Icon"
+               class="h-5 w-5 mr-2 opacity-75" />
+          <h2 class="text-lg font-semibold text-gray-800">Bank Details</h2>
+        </div>
+
+        <div class="flex flex-wrap gap-x-6 text-sm text-gray-700">
+        <p><span class="font-medium text-gray-900">🏦 Bank:</span> {{bankDetails?.bank_details}}</p>
+        <p><span class="font-medium text-gray-900">📍 Branch:</span> Golden Temple, Amritsar</p>
+        <p><span class="font-medium text-gray-900">💳 A/c No:</span> {{bankDetails?.bank_account_no}}</p>
+        <p><span class="font-medium text-gray-900">🔑 IFSC:</span> {{bankDetails?.bank_ifsc_code}}</p>
+      </div>
+
+      </div>
+
+
+
+      </section>
+
+      <!-- DYNAMIC Terms and Conditions & Signature -->
+      <section class="p-6 pt-2 pb-0 text-sm text-gray-700">
+        <div class="flex justify-between items-start gap-8">
+          <div class="flex-1">
+            <h4 *ngIf="invoiceSettings.terms.title.visible" class="font-bold mb-2" [style.color]="invoiceSettings.terms.title.color" [style.fontSize.px]="invoiceSettings.terms.title.fontSize">{{invoiceSettings.terms.title.text}}</h4>
+            <div *ngIf="invoiceSettings.terms.content.visible" class="whitespace-pre-wrap" [style.color]="invoiceSettings.terms.content.color" [style.fontSize.px]="invoiceSettings.terms.content.fontSize">{{invoiceSettings.terms.content.text}}</div>
+          </div>
+        </div>
+        <div class="mt-20 pt-4 flex justify-between items-start">
+          <div class="text-left">
+            <p *ngIf="invoiceSettings.signature.customer.visible" class="font-bold" [style.color]="invoiceSettings.signature.customer.color" [style.fontSize.px]="invoiceSettings.signature.customer.fontSize">{{invoiceSettings.signature.customer.text}}</p>
+            <p *ngIf="invoiceSettings.signature.thankYou.visible" class="font-semibold mt-2" [style.color]="invoiceSettings.signature.thankYou.color" [style.fontSize.px]="invoiceSettings.signature.thankYou.fontSize">{{invoiceSettings.signature.thankYou.text}}</p>
+          </div>
+          <div class="text-center">
+            <p *ngIf="invoiceSettings.signature.authorized.visible" class="font-bold" [style.color]="invoiceSettings.signature.authorized.color" [style.fontSize.px]="invoiceSettings.signature.authorized.fontSize">{{invoiceSettings.signature.authorized.text}}</p>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- DYNAMIC Footer/Promotional Banner -->
+      <footer class="p-6 border-t" [style.backgroundColor]="invoiceSettings.footer.backgroundColor">
+        <div class="flex justify-between items-center flex-wrap gap-8 max-w-7xl mx-auto">
+          <div class="text-center">
+              <img *ngIf="invoiceSettings.footer.qrCode.visible" [src]="'https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=' + invoiceSettings.footer.qrCode.url" alt="QR Code" class="h-28 w-28 mx-auto rounded-lg shadow-md">
+              <p *ngIf="invoiceSettings.footer.qrCode.line1.visible" class="font-serif font-semibold mt-3" [style.color]="invoiceSettings.footer.qrCode.line1.color" [style.fontSize.px]="invoiceSettings.footer.qrCode.line1.fontSize">{{invoiceSettings.footer.qrCode.line1.text}}</p>
+              <p *ngIf="invoiceSettings.footer.qrCode.line2.visible" class="text-sm mt-1" [style.color]="invoiceSettings.footer.qrCode.line2.color" [style.fontSize.px]="invoiceSettings.footer.qrCode.line2.fontSize">{{invoiceSettings.footer.qrCode.line2.text}}</p>
+          </div>
+          <div class="text-center max-w-xs">
+              <p *ngIf="invoiceSettings.footer.tagline.line1.visible" class="font-serif italic" [style.color]="invoiceSettings.footer.tagline.line1.color" [style.fontSize.px]="invoiceSettings.footer.tagline.line1.fontSize">{{invoiceSettings.footer.tagline.line1.text}}</p>
+              <p *ngIf="invoiceSettings.footer.tagline.line2.visible" class="font-bold text-lg mt-3" [style.color]="invoiceSettings.footer.tagline.line2.color" [style.fontSize.px]="invoiceSettings.footer.tagline.line2.fontSize">{{invoiceSettings.footer.tagline.line2.text}}</p>
+              <p *ngIf="invoiceSettings.footer.tagline.line3.visible" class="text-2xl font-extrabold tracking-wide" [style.color]="invoiceSettings.footer.tagline.line3.color" [style.fontSize.px]="invoiceSettings.footer.tagline.line3.fontSize">{{invoiceSettings.footer.tagline.line3.text}}</p>
+          </div>
+          <div class="text-center max-w-xs" *ngIf="invoiceSettings.footer.offer">
+            <h3 *ngIf="invoiceSettings.footer.offer.line1.visible" class="font-extrabold" [style.color]="invoiceSettings.footer.offer.line1.color" [style.fontSize.px]="invoiceSettings.footer.offer.line1.fontSize">{{ invoiceSettings.footer.offer.line1.text }}</h3>
+            <p *ngIf="invoiceSettings.footer.offer.line2.visible" class="mt-1" [style.color]="invoiceSettings.footer.offer.line2.color" [style.fontSize.px]="invoiceSettings.footer.offer.line2.fontSize">{{ invoiceSettings.footer.offer.line2.text }}</p>
+            <p *ngIf="invoiceSettings.footer.offer.line3.visible" class="font-extrabold leading-none" [style.color]="invoiceSettings.footer.offer.line3.color" [style.fontSize.px]="invoiceSettings.footer.offer.line3.fontSize">{{ invoiceSettings.footer.offer.line3.text }}</p>
+            <p *ngIf="invoiceSettings.footer.offer.line4.visible" [style.color]="invoiceSettings.footer.offer.line4.color" [style.fontSize.px]="invoiceSettings.footer.offer.line4.fontSize">{{ invoiceSettings.footer.offer.line4.text }}</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>

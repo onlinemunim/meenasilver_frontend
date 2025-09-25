@@ -1,0 +1,26 @@
+/* package-details-modal.component.css */
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1050;  /* Ensure it's above other elements */
+  pointer-events: auto;  /* Ensure pointer events are captured */
+}
+
+.bg-opacity-50 {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.bg-white {
+  background-color: #ffffff;
+}
+.shadow-lg {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+.p-6 {
+  padding: 1.5rem;
+}
+.max-w-lg {
+  max-width: 32rem;
+}

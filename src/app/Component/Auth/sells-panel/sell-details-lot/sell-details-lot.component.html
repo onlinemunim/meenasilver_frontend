@@ -1,0 +1,542 @@
+<div *ngIf="isLoading" class="fixed inset-0 flex items-center justify-center z-50 backdrop-blur-sm">
+  <i class="fas fa-spinner fa-spin text-6xl" style="color:#c19725;"></i>
+</div>
+<div class="sm:flex items-center justify-between mb-4">
+  <div class="flex items-center justify-start gap-1 lg:gap-2 mb-3 lg:mb-0">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="size-6"
+    >
+      <mask
+        id="mask0_848_1764"
+        maskUnits="userSpaceOnUse"
+        x="0"
+        y="0"
+        width="24"
+        height="24"
+        style="mask-type: alpha"
+      >
+        <rect width="24" height="24" fill="#C19725"></rect>
+      </mask>
+      <g mask="url(#mask0_848_1764)">
+        <path
+          d="M16 22L6 12L16 2L17.775 3.775L9.55 12L17.775 20.225L16 22Z"
+          fill="#C19725"
+        ></path>
+      </g>
+    </svg>
+    <img
+      [src]="customerDetails?.documents?.[0]?.doc_user_img"
+      alt="Report"
+      class="size-6 sm:size-8 lg:size-10"
+    />
+
+    <span class="font-semibold text-sm sm:text-base lg:text-xl text-c19725">{{
+      customerDetails?.user_title
+    }}</span>
+    <span class="font-semibold text-sm sm:text-base lg:text-xl text-c19725">{{
+      customerDetails?.name
+    }}</span>
+    <span class="font-semibold text-sm sm:text-base lg:text-xl text-c19725"
+      >| Mobile No. : {{ customerDetails?.mobilenumber }}</span
+    >
+    <span class="font-semibold text-sm sm:text-base lg:text-xl text-c19725"
+      >| Type : {{ customerDetails?.user_customer_type }}</span
+    >
+  </div>
+  <!-- <a routerLink="/product-creation" class="block cursor-pointer px-3 py-1.5 text-xs sm:text-sm lg:text-base font-semibold text-white bg-c19725 border-2 border-c19725 hover:bg-[#fdffc6] hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:bg-c19725 dark:hover:bg-[#fdffc6]">
+    Add Product
+  </a> -->
+</div>
+<div class="w-full py-3 px-4">
+  <div class="flex justify-end">
+    <a
+      href="#"
+      class="flex items-center w-28 px-4 py-1 rounded-[5px] border border-[#BB0000] bg-[#BB0000] text-white text-sm lg:text-base hover:bg-white hover:text-[#BB0000] hover:shadow-lg"
+    >
+      <img
+        class="w-4 h-4 mr-2"
+        src="/assets/images/stock/youtube.png"
+        alt="youtube"
+      />
+      Help
+    </a>
+  </div>
+  <!-- Parent wrapper to center content vertically & horizontally -->
+  <div class="flex justify-center items-center min-h-[100px] py-4">
+    <div class="flex flex-wrap gap-x-8 gap-y-6">
+      <!-- First input + GO -->
+      <form [formGroup]="addProductForm">
+        <div class="flex items-center relative">
+          <div class="relative w-full">
+            <input
+              readonly
+              type="text"
+              id="start_range_1"
+              formControlName="start_range_1"
+              (focus)="onFocusInput()"
+              (blur)="onBlurInput()"
+              autocomplete="off"
+              (keydown)="onKeyDown($event)"
+              class="block px-20 py-4.5 w-full text-base text-gray-800 bg-gradient-to-r from-white via-yellow-50 to-white rounded-l-md rounded-r-none border border-[#DCDCDC] appearance-none focus:outline-none focus:ring-0 focus:border-[#c19725] peer shadow-sm"
+              placeholder=" "
+            />
+            <label
+              for="start_range_1"
+              class="absolute text-base text-[#898989] duration-300 transform -translate-y-5 scale-90 top-3 z-0 bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-3 peer-focus:scale-90 peer-focus:-translate-y-5 start-1"
+            >
+              Add Product Id / Barcode / RFID
+            </label>
+
+            <!-- Dropdown -->
+            <ul
+              *ngIf="isDropdownVisible && filteredBarcodes.length"
+              class="absolute left-0 right-0 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto z-50"
+            >
+              <li
+                *ngFor="let item of filteredBarcodes; let i = index"
+                (click)="onSelectBarcode(item.barcode)"
+                [class.bg-yellow-100]="i === selectedIndex"
+                class="px-4 py-2 cursor-pointer hover:bg-yellow-50"
+              >
+                {{ item.barcode }}
+              </li>
+            </ul>
+          </div>
+
+          <button
+            type="submit"
+            (click)="
+              onGoClick(
+                'add',
+                selectedProductCode,
+                selectedQuantity,
+                selectedWt,
+                selectedFinalValue
+              )
+            "
+            class="px-5 py-4 rounded-r-md rounded-l-none border border-[#C19725] bg-[#C19725] text-white text-base xl:text-lg font-bold capitalize text-center hover:bg-white hover:text-[#C19725] hover:shadow-lg transition-shadow shadow-sm focus:ring-0 focus:outline-none"
+          >
+            GO
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="isProductDetailsVisible">
+    <form [formGroup]="sellProductForm">
+        <div class="mt-10 p-3 w-full bg-[#E6EFFF] rounded-[5px]">
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
+            <div class="col-span-1">
+              <div class="relative w-full ">
+                <input
+                  datepicker
+                  datepicker-autohide
+                  id="billDate"
+                  type="date"
+                  formControlName="stout_bill_date"
+                  class="block w-full px-2 py-2 text-sm text-gray-700 font-normal bg-white rounded-md border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#c19725] peer"
+                  placeholder=" "
+                />
+                <div
+                  class="absolute inset-y-0 end-0 flex items-center pe-1 pointer-events-none"
+                >
+                  <svg
+                    class="size-6"
+                    viewBox="0 0 24 25"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M18.9773 3.67371H4.02272C3.48663 3.67491 2.97284 3.8884 2.59376 4.26748C2.21469 4.64655 2.0012 5.16034 2 5.69644V20.651C2.0012 21.1871 2.21469 21.7009 2.59376 22.0799C2.97284 22.459 3.48663 22.6725 4.02272 22.6737H18.9773C19.5134 22.6725 20.0272 22.459 20.4062 22.0799C20.7853 21.7009 20.9988 21.1871 21 20.651V5.69644C20.9988 5.16034 20.7853 4.64655 20.4062 4.26748C20.0272 3.8884 19.5134 3.67491 18.9773 3.67371Z"
+                      stroke="#C19725"
+                      stroke-miterlimit="10"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M6.06836 9.59113H10.8865"
+                      stroke="#C19725"
+                      stroke-miterlimit="10"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M6.06836 13.2744H16.5002"
+                      stroke="#C19725"
+                      stroke-miterlimit="10"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M8.56836 2.5V6.44491"
+                      stroke="#C19725"
+                      stroke-miterlimit="10"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M14.4326 2.5V6.44491"
+                      stroke="#C19725"
+                      stroke-miterlimit="10"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+                <label
+                  for="billDate"
+                  class="capitalize absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Bill Date</label
+                >
+              </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative w-full">
+                <input
+                  id="customerName"
+                  type="text"
+                  formControlName="stout_customer_name"
+                  class="block w-full px-2 py-2 text-sm text-gray-700 font-normal bg-white rounded-md border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#c19725] peer"
+                  placeholder=" "
+                />
+                <label
+                  class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1"
+                  >Customer Name</label
+                >
+              </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative w-full">
+                <input
+                  id="billingName"
+                  type="text"
+                  formControlName="stout_billing_name"
+                  class="block w-full px-2 py-2 text-sm text-gray-700 font-normal bg-white rounded-md border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#c19725] peer"
+                  placeholder=" "
+                />
+                <label
+                  for="billingName"
+                  class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1"
+                >
+                  Billing Name</label
+                >
+              </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative w-full">
+                <input
+                  id="invoiceNumber"
+                  type="text"
+                  formControlName="stout_invoice_number"
+                  class="block w-full px-2 py-2 text-sm text-gray-700 font-normal bg-white rounded-md border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#c19725] peer"
+                  placeholder=" "
+                />
+                <label
+                  for="invoiceNumber"
+                  class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1"
+                  >Invoice Number</label
+                >
+              </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative">
+                <select
+                  formControlName="stout_firm_id"
+                  name="firmType"
+                  id="stout_firm_id"
+                  class="block pl-2 pr-6 py-2 w-full text-sm lg:text-sm text-444 capitalize font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                >
+                  <option value="" disabled selected>Select firm</option>
+                  <option *ngFor="let firm of firmTypes" [value]="firm.id">
+                    {{ firm.name }}
+                  </option>
+                </select>
+
+                <div
+                  class="absolute inset-y-0 right-2 flex items-center pointer-events-none"
+                >
+                  <svg
+                    width="14"
+                    height="7"
+                    viewBox="0 0 14 7"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z"
+                      fill="#C19725"
+                    />
+                  </svg>
+                </div>
+                <label
+                  for="rproduct_firm_id"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Firm</label
+                >
+              </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative w-full">
+                <input
+                  datepicker
+                  datepicker-autohide
+                  id="billDate"
+                  type="date"
+                  formControlName="stout_sale_month"
+                  class="block w-full px-2 py-2 text-sm text-gray-700 font-normal bg-white rounded-md border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#c19725] peer"
+                  placeholder=" "
+                />
+                <div
+                  class="absolute inset-y-0 end-0 flex items-center pe-1 pointer-events-none"
+                >
+                  <svg
+                    class="size-6"
+                    viewBox="0 0 24 25"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M18.9773 3.67371H4.02272C3.48663 3.67491 2.97284 3.8884 2.59376 4.26748C2.21469 4.64655 2.0012 5.16034 2 5.69644V20.651C2.0012 21.1871 2.21469 21.7009 2.59376 22.0799C2.97284 22.459 3.48663 22.6725 4.02272 22.6737H18.9773C19.5134 22.6725 20.0272 22.459 20.4062 22.0799C20.7853 21.7009 20.9988 21.1871 21 20.651V5.69644C20.9988 5.16034 20.7853 4.64655 20.4062 4.26748C20.0272 3.8884 19.5134 3.67491 18.9773 3.67371Z"
+                      stroke="#C19725"
+                      stroke-miterlimit="10"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M6.06836 9.59113H10.8865"
+                      stroke="#C19725"
+                      stroke-miterlimit="10"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M6.06836 13.2744H16.5002"
+                      stroke="#C19725"
+                      stroke-miterlimit="10"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M8.56836 2.5V6.44491"
+                      stroke="#C19725"
+                      stroke-miterlimit="10"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M14.4326 2.5V6.44491"
+                      stroke="#C19725"
+                      stroke-miterlimit="10"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+
+                <label
+                  for="billDate"
+                  class="capitalize absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Sale Month</label
+                >
+              </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative w-full">
+                <input
+                  id="invoiceNumber"
+                  type="text"
+                  autocomplete="off"
+                  formControlName="stout_metal_rate"
+                  class="block w-full px-2 py-2 text-sm text-gray-700 font-normal bg-white rounded-md border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#c19725] peer"
+                  placeholder=" "
+                />
+                <label
+                  for="invoiceNumber"
+                  class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1"
+                  >Silver Rate</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The main container for your component -->
+        <div
+          class="col-span-4 sm:col-span-4 lg:col-span-2 bg-[#E6EFFF] rounded-[5px] p-0 mt-3 order-3"
+        >
+          <div class="col-span-1 w-full bg-[#FFF9F9] p-3 rounded-md">
+            <div
+              class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-10 gap-2 sm:gap-2.5 lg:gap-3"
+            >
+              <div class="col-span-1">
+                <div class="relative w-full">
+                  <input
+                    type="text"
+                    placeholder=" "
+                    formControlName="stout_item_category"
+                    class="block px-2 py-2 w-full text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none peer focus:outline-none focus:ring-0 focus:border-c19725"
+                  />
+                  <label
+                    class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1"
+                    >Category</label
+                  >
+                </div>
+              </div>
+
+              <div class="col-span-1">
+                <div class="relative w-full">
+                  <input
+                    type="text"
+                    placeholder=" "
+                    formControlName="stout_weight_range"
+                    class="block px-2 py-2 w-full text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none peer focus:outline-none focus:ring-0 focus:border-c19725"
+                  />
+                  <label
+                    class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1"
+                    >Weight Range</label
+                  >
+                </div>
+              </div>
+
+              <div class="col-span-1">
+                <div class="relative w-full">
+                  <input
+                    type="text"
+                    placeholder=" "
+                    formControlName="stout_quantity"
+                    class="block px-2 py-2 w-full text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none peer focus:outline-none focus:ring-0 focus:border-c19725"
+                  />
+                  <label
+                    class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1"
+                    >Qty</label
+                  >
+                </div>
+              </div>
+
+              <div class="col-span-1">
+                <div class="relative w-full">
+                  <input
+                    type="text"
+                    placeholder=" "
+                    formControlName="stout_net_weight"
+                    class="block px-2 py-2 w-full text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none peer focus:outline-none focus:ring-0 focus:border-c19725"
+                  />
+                  <label
+                    class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1"
+                    >Net Weight</label
+                  >
+                </div>
+              </div>
+
+              <div class="col-span-1">
+                <div class="relative w-full">
+                  <input
+                    type="text"
+                    placeholder=" "
+                    formControlName="stout_per_gram_labour"
+                    class="block px-2 py-2 w-full text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none peer focus:outline-none focus:ring-0 focus:border-c19725"
+                  />
+                  <label
+                    class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1"
+                    >Lbr</label
+                  >
+                </div>
+              </div>
+
+              <div class="col-span-1">
+                <div class="relative w-full">
+                  <input
+                    type="text"
+                    placeholder=" "
+                    formControlName="stout_unit_price"
+                    class="block px-2 py-2 w-full text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none peer focus:outline-none focus:ring-0 focus:border-c19725"
+                  />
+                  <label
+                    class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1"
+                    >MRP</label
+                  >
+                </div>
+              </div>
+
+              <div class="col-span-1">
+                <div class="relative w-full">
+                  <input
+                    type="text"
+                    placeholder=" "
+                    formControlName="stout_mrp_percent"
+                    class="block px-2 py-2 w-full text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none peer focus:outline-none focus:ring-0 focus:border-c19725"
+                  />
+                  <label
+                    class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1"
+                    >MRP %</label
+                  >
+                </div>
+              </div>
+
+              <div class="col-span-1">
+                <div class="relative w-full">
+                  <input
+                    type="text"
+                    placeholder=" "
+                    formControlName="stout_purity"
+                    class="block px-2 py-2 w-full text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none peer focus:outline-none focus:ring-0 focus:border-c19725"
+                  />
+                  <label
+                    class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1"
+                    >Tunch</label
+                  >
+                </div>
+              </div>
+
+              <div class="col-span-1">
+                <div class="relative w-full">
+                  <input
+                    type="text"
+                    placeholder=" "
+                    formControlName="stout_fine_weight"
+                    class="block px-2 py-2 w-full text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none peer focus:outline-none focus:ring-0 focus:border-c19725"
+                  />
+                  <label
+                    class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1"
+                    >Fine</label
+                  >
+                </div>
+              </div>
+
+              <div class="col-span-1">
+                <div class="relative w-full">
+                  <input
+                    type="text"
+                    placeholder=" "
+                    formControlName="stout_final_amount"
+                    class="block px-2 py-2 w-full text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none peer focus:outline-none focus:ring-0 focus:border-c19725"
+                  />
+                  <label
+                    class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1"
+                    >Amount</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="flex justify-center">
+        <button
+          type="button"
+          (click)="submitForm()"
+          class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 center text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6 __web-inspector-hide-shortcut__"
+        >
+          Submit
+        </button>
+
+        <button
+          type="button"
+          (click)="submitForm()"
+          class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 center text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6 __web-inspector-hide-shortcut__"
+        >
+          Submit -> Bill
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

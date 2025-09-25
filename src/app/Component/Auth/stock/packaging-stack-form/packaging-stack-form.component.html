@@ -1,0 +1,248 @@
+<div class="w-full py-3 px-4">
+  <div class="md:flex items-center justify-between mb-4">
+    <div class="flex items-center justify-start gap-1 lg:gap-2 mb-3 lg:mb-0">
+        <svg class="size-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_848_1764" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
+                height="24">
+                <rect width="24" height="24" fill="#C19725" />
+            </mask>
+            <g mask="url(#mask0_848_1764)">
+                <path d="M16 22L6 12L16 2L17.775 3.775L9.55 12L17.775 20.225L16 22Z" fill="#C19725" />
+            </g>
+        </svg>
+        <img class="size-6 sm:size-8 lg:size-10" src="/assets/images/stock/ready-product.png" alt="user">
+        <span class="font-semibold text-sm sm:text-base lg:text-xl text-444">Add Packaging</span>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-center mt-4 md:mt-8 space-x-1.5 md:space-x-4">
+    <label
+      class="block cursor-pointer capitalize w-[110px] lg:w-[400px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">
+      Add major packaging
+    </label>
+  </div>
+
+  <form [formGroup]="packagingStackForm">
+    <div class="w-full py-4 bg-[#FFFFF6] rounded-md">
+      <div class="w-full px-3 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 2xl:grid-cols-10 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5">
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="text" id="st_packaging_stack_name" formControlName="st_packaging_stack_name" autocomplete="off" (keydown.enter)="focusNext($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="st_packaging_stack_name"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Name
+              </label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <select
+              autocomplete="off"
+              id="st_type_stack"
+              formControlName="st_type_stack"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+              (keydown.enter)="focusNext($event)">
+              <option value="major" selected>Major</option>
+            </select>
+
+            <label for="st_type_stack"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              Major
+            </label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <select
+              id="st_item_name"
+              formControlName="st_item_name"
+              (change)="onPackagingItemSelect()"
+              (keydown.enter)="focusNext($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              >
+              <option value="" disabled hidden selected>Select Name</option>
+              <option *ngFor="let item of packagingList" [ngValue]="item">
+                {{ item.st_item_name }}
+              </option>
+            </select>
+            <label for="st_item_name"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              Major List
+            </label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="text" id="st_unit_price" formControlName="st_unit_price" autocomplete="off" (keydown.enter)="focusNext($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="st_unit_price"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Cost
+             </label>
+          </div>
+        </div>
+
+        <div class="col-span-2 sm:col-span-2 lg:col-span-1 ">
+          <div class="relative">
+            <input type="text" id="st_no_of_primary_minor" formControlName="st_no_of_primary_minor" autocomplete="off" (keydown.enter)="focusNext($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="st_no_of_primary_minor"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">No of primary minor
+            </label>
+          </div>
+        </div>
+
+        <div class="ol-span-1">
+          <div class="relative">
+            <input type="number" id="st_major_cost_on_minor" formControlName="st_major_cost_on_minor" autocomplete="off" (keydown.enter)="focusNext($event)"
+              class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="st_major_cost_on_minor"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Major Cost on minor</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center mt-4 md:mt-8 space-x-1.5 md:space-x-4">
+      <label
+        class="block cursor-pointer capitalize w-[110px] lg:w-[400px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">
+        Add minor packaging
+      </label>
+    </div>
+
+    <div class="flex items-center justify-center mt-4 md:mt-8 space-x-1.5 md:space-x-4">
+      <button type="button" (click)="addPackagingItem()"
+        class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">
+        + Add minor
+      </button>
+    </div>
+
+    <div formArrayName="st_minor_packaging_items"
+     class="w-full grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 2xl:grid-cols-10 gap-2 mt-2">
+    <ng-container *ngFor="let item of packagingItems.controls; let i = index" [formGroupName]="i">
+    <!-- Packaging Name -->
+          <div class="col-span-1">
+            <div class="relative">
+              <select
+                autocomplete="off"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                formControlName="st_item_name"
+                (change)="onPackagingItemSelectFromArray(i)"
+                placeholder=" ">
+                <option value="" disabled hidden>Select Name</option>
+                <option *ngFor="let pItem of minorPackagingList" [ngValue]="pItem">{{ pItem.st_item_name }}</option>
+              </select>
+              <label
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                Minor List
+              </label>
+            </div>
+          </div>
+
+          <!-- Unit Price -->
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="text" formControlName="st_unit_price" autocomplete="off"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                Cost
+              </label>
+            </div>
+          </div>
+
+        </ng-container>
+      </div>
+
+      <div class="w-full py-4 bg-[#FFFFF6] rounded-md" *ngIf="finalValueButto">
+        <div class="w-full px-3 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 2xl:grid-cols-10 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5">
+        <div class="col-span-2 sm:col-span-1">
+          <div class="relative">
+            <input type="number" id="st_final_valuation" formControlName="st_final_valuation" autocomplete="off" (keydown.enter)="focusNext($event)" readonly
+              class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-[#F2F2F2] rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="st_final_valuation"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-[#F2F2F2] dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Final Value </label>
+          </div>
+        </div>
+      </div>
+     </div>
+
+    <div class="flex items-center justify-center mt-4 md:mt-8 space-x-1.5 md:space-x-4">
+      <button type="button"
+        class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6">
+        Clear
+      </button>
+
+      <button type="button" *ngIf="submitbutton" (click)="onSubmit()"
+        class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">
+        Submit
+      </button>
+
+      <button type="button" *ngIf="updatebutton" (click)="editpackage()"
+        class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">
+        Update
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="w-full py-3 px-4">
+  <p class="font-semibold text-sm sm:text-base lg:text-xl text-444 mb-4">Packaging Stack List</p>
+
+  <div class="overflow-x-auto whitespace-nowrap hide-scrollbar mt-4">
+    <table class="w-full table bg-white border border-[#D9D9D9] overflow-hidden">
+      <thead class="bg-[#F1F8FF] border border-[#0C447D] text-444 text-xs sm:text-xs">
+        <tr>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">No.</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">Stack Name</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">Item Name</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">Cost</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">No. of Primary Minor</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">Major Cost on Minor</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">More Minor Packaging Items</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">Final Valuation</th>
+        </tr>
+      </thead>
+      <tbody class="text-xs sm:text-xs">
+        <tr
+          *ngFor="let item of packagingDataList; let i = index"
+          class="odd:bg-white even:bg-[#F2F2F2] text-[#5A5959]"
+        >
+          <td class="p-3 text-center">{{ i + 1 }}</td>
+          <td class="p-3">{{ item.st_packaging_stack_name || '-' }}</td>
+          <td class="p-3">{{ item.st_item_name || '-' }}</td>
+          <td class="p-3">{{ item.st_unit_price || '-' }}</td>
+          <td class="p-3">{{ item.st_no_of_primary_minor || '-' }}</td>
+          <td class="p-3">{{ item.st_major_cost_on_minor || '-' }}</td>
+          <td class="p-3">
+            <table class="w-full border text-[10px]">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="border px-1">Item Name</th>
+                  <th class="border px-1">Cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let sub of item.st_minor_packaging_items">
+                  <td class="border px-1">{{ sub.st_item_name }}</td>
+                  <td class="border px-1">{{ sub.st_item_cost }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+          <td class="p-3">{{ item.st_final_valuation || '-' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

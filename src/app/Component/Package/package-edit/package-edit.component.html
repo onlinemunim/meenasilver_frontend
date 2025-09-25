@@ -1,0 +1,76 @@
+<div>
+  <form class="max-w-sm mx-auto mt-10" [formGroup]="editPackageForm" (ngSubmit)="onSubmit()">
+    <div class="mb-5">
+      <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+      <input type="text" formControlName="name" id="name"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="John Doe" required />
+    </div>
+
+    <div class="mb-5">
+      <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+      <input type="text" formControlName="description" id="description"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Enter description" required />
+    </div>
+
+    <div class="mb-5">
+      <label for="components" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Components</label>
+
+      <div formArrayName="components">
+      <div *ngFor="let component of components.controls; let i = index" [formGroupName]="i" >
+        <div class="flex flex-wrap gap-4 mb-4 border p-4 rounded-lg shadow-md">
+          <div class="flex-1">
+            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-white">Component Name</label>
+            <input type="text" formControlName="name" id="name"
+                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="Component Name" required />
+          </div>
+
+          <div class="flex-1">
+            <label for="price" class="block text-sm font-medium text-gray-700 dark:text-white">Price</label>
+            <input type="text" formControlName="price" id="price"
+                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="Price" required />
+          </div>
+
+          <!-- Remove Component Button -->
+          <div class="flex justify-end items-center">
+            <button type="button" (click)="removeComponent(i)" class="text-red-500 hover:text-red-700">
+              Remove
+            </button>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="total_amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Amount</label>
+      <input type="text" formControlName="total_amount" id="total_amount"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Total amount" required />
+    </div>
+
+    <div class="mb-5">
+      <label for="min_amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Min Amount</label>
+      <input type="text" formControlName="min_amount" id="min_amount"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Min amount" required />
+    </div>
+
+    <div class="mb-5">
+      <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+      <select formControlName="status" id="status"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        required>
+        <option value="" disabled>Select Status</option>
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+        <option value="pending">Pending</option>
+      </select>
+    </div>
+
+    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+  </form>
+</div>

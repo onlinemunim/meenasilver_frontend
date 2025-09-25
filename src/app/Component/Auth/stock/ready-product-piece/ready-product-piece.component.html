@@ -1,0 +1,519 @@
+<form [formGroup]="readyProductForm" (submit)="onSubmit()">
+  <div class="w-full lg:flex lg:flex-wrap xl:flex-nowrap items-start lg:gap-3">
+      <div class="w-full lg:w-full xl:w-1/3 mb-4 lg:mb-0">
+          <div
+              class="w-full bg-[#FFFFF6] p-3 rounded-md grid grid-cols-1 sm:grid-cols-3  gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5">
+
+              <app-custom-select label="Product Categories" [options]="prodCategory" formControlName="rproduct_categories" (keydown.enter)="focusNext($event)"
+                    [(selected)]="selectedProdCategory" selectId="prodCategory" [readonly]="true">
+              </app-custom-select>
+
+              <div class="col-span-1">
+                <app-custom-select label="Sub Categories" [options]="subCategory" formControlName="rproduct_subcategories" (keydown.enter)="focusNext($event)"
+                    [(selected)]="selectedSubCategory" selectId="subCategory">
+                </app-custom-select>
+              </div>
+
+              <div class="col-span-1">
+                <div class="relative">
+                  <input
+                    autocomplete="off"
+                    readonly
+                    type="text"
+                    id="rproduct_code"
+                    formControlName="rproduct_code"
+                    (focus)="onFocusProductCode()"
+                    (blur)="onBlurProductCode()"
+                    (input)="onInputProductCode($event)"
+                    (keydown)="onCodeKeyDown($event)"
+                    (keydown.enter)="focusNext($event)"
+                    class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                    placeholder=" " autocomplete="off" />
+
+                    <label for="rproduct_code"
+                      class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                      Product Code
+                    </label>
+
+                    <!-- Dropdown -->
+                    <ul *ngIf="showDropdown && filteredProductCodes.length"
+                      class="absolute z-10 w-full bg-white border border-gray-300 max-h-40 overflow-y-auto rounded shadow-md">
+                      <li
+                        *ngFor="let code of filteredProductCodes; let i = index"
+                        (mousedown)="onSelectProductCode(code)"
+                        [class.code-list-item]="true"
+                        [class.bg-gray-200]="i === activeCodeIndex"
+                        class="px-3 py-2 text-sm cursor-pointer hover:bg-gray-100"
+                      >
+                        {{ code }}
+                      </li>
+                    </ul>
+                </div>
+              </div>
+
+              <div class="col-span-1">
+                <div class="relative">
+                    <input type="text" id="rproduct_name" formControlName="rproduct_name" (keydown.enter)="focusNext($event)"
+                        class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                        placeholder=" " autocomplete="off" />
+                    <label for="rproduct_name"
+                        class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Product
+                        Name</label>
+                </div>
+            </div>
+
+              <div class="col-span-1">
+                <div class="relative max-w-sm">
+                  <input id="date" type="text" formControlName="rproduct_date" (keydown.enter)="focusNext($event)" autocomplete="off"
+                    class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                    placeholder="" />
+                  <div class="absolute inset-y-0 end-0 flex items-center pe-1 pointer-events-none">
+                    <svg class="size-6" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M18.9773 3.67371H4.02272C3.48663 3.67491 2.97284 3.8884 2.59376 4.26748C2.21469 4.64655 2.0012 5.16034 2.0012 5.69644V20.651C2.0012 21.1871 2.21469 21.7009 2.59376 22.0799C2.97284 22.459 3.48663 22.6725 4.02272 22.6737H18.9773C19.5134 22.6725 20.0272 22.459 20.4062 22.0799C20.7853 21.7009 20.9988 21.1871 21 20.651V5.69644C20.9988 5.16034 20.7853 4.64655 20.4062 4.26748C20.0272 3.8884 19.5134 3.67491 18.9773 3.67371Z"
+                        stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                      <path d="M6.06836 9.59113H10.8865" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                      <path d="M6.06836 13.2744H16.5002" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                      <path d="M8.56836 2.5V6.44491" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                      <path d="M14.4326 2.5V6.44491" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                    </svg>
+                  </div>
+                  <label for=""
+                    class="capitalize absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Date</label>
+                </div>
+              </div>
+
+            <div class="col-span-1">
+              <div class="relative">
+                <select
+                  formControlName="rproduct_firm_id"
+                  (keydown.enter)="focusNext($event)"
+                  name="firmType"
+                  id="rproduct_firm_id"
+                  class="block pl-2 pr-6 py-2 w-full text-sm lg:text-sm text-444 capitalize font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                >
+                  <option value="" disabled selected>Select firm</option>
+                  <option *ngFor="let firm of firmTypes" [value]="firm.id">
+                    {{ firm.name }}
+                  </option>
+                </select>
+
+                <div
+                  class="absolute inset-y-0 right-2 flex items-center pointer-events-none"
+                >
+                  <svg
+                    width="14"
+                    height="7"
+                    viewBox="0 0 14 7"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z"
+                      fill="#C19725"
+                    />
+                  </svg>
+                </div>
+                <label
+                  for="rproduct_firm_id"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Firm</label
+                >
+              </div>
+              </div>
+
+              <div class="col-span-1 sm:col-span-2 md:col-span-1 xl:col-span-2 relative">
+                <input
+                  type="text"
+                  id="supplier_name"
+                  formControlName="rproduct_supplier_name"
+                  [(ngModel)]="supplierSearchText"
+                  (input)="filterSuppliers()"
+                  (keydown)="sNameHandleKeyDown($event)"
+                  (focus)="sNameShowDropdown = true"
+                  (blur)="sNameHideDropdown()"
+                  autocomplete="off"
+                  placeholder=" "
+                  class="block px-2 py-2 w-full text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                />
+
+                <label
+                  for="supplier_name"
+                  class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1"
+                >
+                  Supplier Name
+                </label>
+
+                <!-- Search Dropdown -->
+                <ul
+                  *ngIf="sNameShowDropdown && filteredSuppliers.length > 0"
+                  class="absolute z-10 w-full bg-white border border-gray-300 rounded shadow-md max-h-40 overflow-y-auto"
+                  >
+                  <li
+                      #supplierItem
+                      *ngFor="let supplier of filteredSuppliers; let i = index"
+                      [ngClass]="{
+                      'bg-c19725 text-white': i === activeIndex,
+                      'cursor-pointer hover:bg-gray-100': true
+                    }"
+                    class="px-3 py-1 text-sm"
+                    (click)="selectSupplier(i, supplier)"
+                    >
+                    {{ supplier.name }}
+                  </li>
+                </ul>
+              </div>
+              <div class="col-span-1">
+                  <div class="relative">
+                      <input type="text" id="supplier_code" #nextField formControlName="rproduct_supplier_code" (keydown.enter)="focusNext($event)" autocomplete="off"
+                          class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                          placeholder=" " />
+                      <label for="supplier_code"
+                          class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Supplier
+                          Code</label>
+                  </div>
+              </div>
+
+              <div class="col-span-1 sm:col-span-2 md:col-span-1 xl:col-span-2">
+                  <div class="relative">
+                      <input type="text" id="supplier_product_code" formControlName="rproduct_supplier_product_code" (keydown.enter)="focusNext($event)" autocomplete="off"
+                          class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                          placeholder=" " />
+                      <label for="supplier_product_code"
+                          class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Supplier
+                          Product Code</label>
+                  </div>
+              </div>
+
+              <div class="col-span-1">
+                  <app-custom-select label="Unit" [options]="saleUnit" [(selected)]="selectedSaleUnit" formControlName="rproduct_unit" (keydown.enter)="focusNext($event)"
+                      selectId="saleUnit">
+                  </app-custom-select>
+              </div>
+          </div>
+      </div>
+      <div class="w-full lg:w-full xl:w-1/3 mb-4 lg:mb-0">
+          <div
+              class="w-full bg-[#F1F8FF] p-3 rounded-md grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-2 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5 mb-4">
+              <div class="col-span-1">
+                  <div class="relative">
+                      <input type="number" id="rproduct_silver_rate_per_gm" formControlName="rproduct_silver_rate_per_gm" (keydown.enter)="focusNext($event)" autocomplete="off"
+                          class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                          placeholder=" " />
+                      <label for="rproduct_silver_rate_per_gm"
+                          class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Silver
+                          Rate Per Gram</label>
+                  </div>
+              </div>
+
+              <div class="col-span-1">
+                  <div class="relative">
+                      <input type="number" id="rproduct_per_gram_labour" formControlName="rproduct_per_gram_labour" (keydown.enter)="focusNext($event)" autocomplete="off"
+                          class="no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                          placeholder=" " />
+                      <label for="rproduct_per_gram_labour"
+                          class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Per
+                          Gram Labour</label>
+                  </div>
+              </div>
+
+              <div class="col-span-1">
+                  <div class="relative">
+                      <input type="number" id="rproduct_shipping_per_gm" formControlName="rproduct_shipping_per_gm" (keydown.enter)="focusNext($event)" autocomplete="off"
+                          class="no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                          placeholder=" " />
+                      <label for="rproduct_shipping_per_gm"
+                          class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Shipping
+                          Per Gram</label>
+                  </div>
+              </div>
+
+              <div class="col-span-1">
+                  <div class="relative">
+                      <input type="number" id="rproduct_other_expense_per_gm" formControlName="rproduct_other_expense_per_gm" (keydown.enter)="focusNext($event)" autocomplete="off"
+                          class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                          placeholder=" " />
+                      <label for="rproduct_other_expense_per_gm"
+                          class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Other
+                          Expense Per Gram</label>
+                  </div>
+              </div>
+
+              <div class="col-span-1 relative" (clickOutside)="hideDropdown()">
+                <input
+                  type="text"
+                  id="rproduct_packaging_stock"
+                  formControlName="rproduct_packaging_stock"
+                  (input)="onSearchPackagingStack()"
+                  (keydown)="handleKeyDown($event)"
+                  (focus)="showPackagingDropdown = true"
+                  autocomplete="off"
+                  class="no-spinner px-2 py-2 w-full text-sm text-444 border border-dcdcdc rounded-md focus:outline-none"
+                  placeholder="Search Packaging Stack" />
+
+                <!-- Dropdown List -->
+                <ul *ngIf="showPackagingDropdown && filteredPackagingStack.length"
+                    class="absolute z-10 bg-white border border-gray-300 rounded-md mt-1 max-h-48 overflow-y-auto w-full">
+                  <li *ngFor="let item of filteredPackagingStack; let i = index"
+                      (click)="selectPackagingStack(item)"
+                      [class.bg-blue-100]="i === highlightedIndex"
+                      class="px-3 py-2 cursor-pointer hover:bg-blue-100">
+                    {{ item[1] }}
+                  </li>
+                </ul>
+              </div>
+
+              <div class="col-span-1">
+                  <div class="relative">
+                      <input type="number" id="rproduct_packaging_cost" formControlName="rproduct_packaging_cost" (keydown.enter)="focusNext($event)" autocomplete="off"
+                          class="no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                          placeholder=" " />
+                      <label for="rproduct_packaging_cost"
+                          class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Item
+                          Packaging Cost</label>
+                  </div>
+              </div>
+
+              <div class="col-span-1">
+                  <div class="relative">
+                    <!-- Readonly input field showing image name -->
+                    <input formControlName="rproduct_image_display"
+                    (keydown.enter)="focusNext($event)"
+                      type="text"
+                      class="block ps-10 pe-8 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer placeholder:text-c19725 truncate overflow-hidden text-ellipsis whitespace-nowrap"
+                      placeholder="Upload Photo" autocomplete="off"
+                      readonly>
+
+                    <!-- Image Icon -->
+                    <img class="size-6 absolute inset-y-1 left-2" src="/assets/images/stock/img.png" alt="image" />
+
+                    <!-- Upload SVG Icon -->
+                    <svg class="size-6 absolute inset-y-1 right-2" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M14.1667 16.2164H14.175M13 13.3866H15C15.7766 13.3866 16.1648 13.3866 16.4712 13.5301C16.8795 13.7216 17.204 14.0889 17.3732 14.5511C17.5 14.8979 17.5 15.3374 17.5 16.2164C17.5 17.0954 17.5 17.5349 17.3732 17.8817C17.204 18.3439 16.8795 18.7112 16.4712 18.9027C16.1648 19.0462 15.7766 19.0462 15 19.0462H5C4.22343 19.0462 3.83515 19.0462 3.52886 18.9027C3.12048 18.7112 2.79603 18.3439 2.62687 17.8817C2.5 17.5349 2.5 17.0954 2.5 16.2164C2.5 15.3374 2.5 14.8979 2.62687 14.5511C2.79603 14.0889 3.12048 13.7216 3.52886 13.5301C3.83515 13.3866 4.22343 13.3866 5 13.3866H7M10 14.3298V3.95383M10 3.95383L12.5 6.78365M10 3.95383L7.5 6.78365"
+                        stroke="#C19725"
+                        stroke-width="1.32464"
+                        stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+
+                    <!-- Hidden file input that captures the actual image -->
+                    <input type="file" autocomplete="off"
+                      accept="image/*"
+                      (change)="onImageSelected($event)"
+                      class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    />
+                  </div>
+              </div>
+              <div class="col-span-1">
+                  <div class="relative">
+                      <input type="text" id="rproduct_per_gm_cost_without_packaging" (keydown.enter)="focusNext($event)" formControlName="rproduct_per_gm_cost_without_packaging" autocomplete="off"
+                       class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-semibold bg-[#F2F2F2] rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer cursor-not-allowed"
+                       placeholder=" " readonly />
+                      <label for="rproduct_per_gm_cost_without_packaging"
+                          class="absolute font-semibold text-sm lg:text-sm text-444 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-[#F2F2F2] dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Per
+                          Gm Cost without Packaging</label>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="w-full lg:w-full xl:w-1/3 mb-4 lg:mb-0">
+          <div
+              class="w-full bg-[#EEFFF4] p-3 rounded-md grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-2 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5 mb-4">
+              <div class="col-span-1">
+                  <app-custom-select label="Stone Type" [options]="stoneTypes" [(selected)]="selectedStoneType"  formControlName="rproduct_stonetype"
+                  (keydown.enter)="focusNext($event)"
+                      selectId="stoneTypes">
+                  </app-custom-select>
+              </div>
+
+              <div class="col-span-1">
+                  <app-custom-select label="Stone Color" [options]="stoneColors" [(selected)]="selectedStoneColor" formControlName="rproduct_stone_color"
+                  (keydown.enter)="focusNext($event)"
+                      selectId="stoneColors">
+                  </app-custom-select>
+              </div>
+
+              <div *ngIf="selectedStoneType === 'Mossenite'"
+                  class="col-span-1 md:col-span-2 xl:col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2.5 lg:gap-3">
+                  <div class="col-span-1">
+                      <div class="relative">
+                          <input type="text" id="rproduct_carat" formControlName="rproduct_carat" (keydown.enter)="focusNext($event)" autocomplete="off"
+                              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                              placeholder=" " />
+                          <label for="rproduct_carat"
+                              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Carat</label>
+                      </div>
+                  </div>
+
+                  <div class="col-span-1">
+                      <div class="relative">
+                          <input type="number" id="rproduct_per_carat_price" formControlName="rproduct_per_carat_price" (keydown.enter)="focusNext($event)" autocomplete="off"
+                              class="no-spinner  px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                              placeholder=" " />
+                          <label for="rproduct_per_carat_price"
+                              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Per
+                              Carat Price</label>
+                      </div>
+                  </div>
+
+                  <div class="col-span-1">
+                      <div class="relative">
+                          <input type="number" id="rproduct_total_carat_price" formControlName="rproduct_total_carat_price" (keydown.enter)="focusNext($event)" autocomplete="off"
+                              class="no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                              placeholder=" " />
+                          <label for="rproduct_total_carat_price"
+                              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Total
+                              Carat Price</label>
+                      </div>
+                  </div>
+              </div>
+              <div *ngIf="selectedStoneType === 'Other'" class="col-span-1">
+                  <div class="relative">
+                      <input type="number" id="rproduct_stone_price" formControlName="rproduct_stone_price" (keydown.enter)="focusNext($event)" autocomplete="off"
+                          class="no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                          placeholder=" " />
+                      <label for="rproduct_stone_price"
+                          class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Total Stone Price</label>
+                  </div>
+              </div>
+
+              <div class="col-span-1">
+                  <app-custom-select label="Polish Type" [options]="polishType" [(selected)]="selectedPolish" formControlName="rproduct_polishtype"
+                  (keydown.enter)="focusNext($event)"
+                      selectId="polishType">
+                  </app-custom-select>
+              </div>
+
+              <div class="grid grid-cols-0 gap-1 items-end">
+                <div
+                  [ngClass]="
+                    readyProductForm.get('rproduct_sizeadjust')?.value === 'no' ? 'col-span-1' : 'col-span-1'
+                  "
+                  class="flex gap-2 items-end"
+                >
+                  <app-custom-select
+                    label="Size Adjust"
+                    [options]="sizeAdjust"
+                    formControlName="rproduct_sizeadjust"
+                    (keydown.enter)="focusNext($event)"
+                    selectId="sizeAdjust"
+                  >
+                  </app-custom-select>
+
+                  <ng-container *ngIf="readyProductForm.get('rproduct_sizeadjust')?.value === 'no'">
+                    <div class="relative w-full">
+                      <input
+                        type="text"
+                        id="rproduct_size"
+                        formControlName="rproduct_size"
+                        (keydown.enter)="focusNext($event)"
+                        class="block px-2 py-2 w-full text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                        placeholder=" " autocomplete="off"
+                      />
+                      <label
+                        for="rproduct_size"
+                        class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                      >
+                        Size
+                      </label>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="col-span-1">
+                  <div class="relative">
+                      <input type="number" id="rproduct_quantity" formControlName="rproduct_quantity" (keydown.enter)="focusNext($event)"
+                          class="no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                          placeholder=" " autocomplete="off" />
+                      <label for="rproduct_quantity"
+                          class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Quantity</label>
+                  </div>
+              </div>
+
+              <div class="col-span-1">
+                  <div class="relative">
+                      <input type="number" id="rproduct_total_wt" formControlName="rproduct_total_wt" (keydown.enter)="focusNext($event)"
+                          class="no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                          placeholder=" " autocomplete="off" />
+                      <label for="rproduct_total_wt"
+                          class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Total
+                          WT</label>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- buttons -->
+  <div class="flex items-center justify-center mt-4 md:mt-8 space-x-1.5 md:space-x-4">
+      <button type="button"
+          class="block cursor-pointer capitalize w-[140px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6">Save<svg
+              class="inline mx-1 sm:mx-2" width="12" height="13" viewBox="0 0 12 13" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.13125 7.25H0V5.75H9.13125L4.93125 1.55L6 0.5L12 6.5L6 12.5L4.93125 11.45L9.13125 7.25Z"
+                  fill="#C19725" />
+          </svg>Similar</button>
+
+      <button type="submit" *ngIf="submitButton"
+          class="block cursor-pointer capitalize w-[140px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">Save<svg
+              class="inline mx-1 sm:mx-2" width="12" height="13" viewBox="0 0 12 13" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.13125 7.25H0V5.75H9.13125L4.93125 1.55L6 0.5L12 6.5L6 12.5L4.93125 11.45L9.13125 7.25Z"
+                  fill="#ffffff" />
+          </svg>New</button>
+
+
+      <button type="button" (click)="UpdateReadyProduct()" *ngIf="updateButton"
+          class="block cursor-pointer capitalize w-[140px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">Update</button>
+  </div>
+</form>
+<div class="overflow-x-auto whitespace-nowrap hide-scrollbar mt-4">
+<table class="w-full table bg-white border border-[#D9D9D9] overflow-hidden">
+  <thead class="bg-[#F1F8FF] border border-[#0C447D] text-444 text-xs sm:text-xs">
+    <tr>
+      <th class="p-2 font-medium text-center border-r border-[#0C447D]">No.</th>
+      <th class="p-2 font-medium text-center border-r border-[#0C447D]">Product Code</th>
+      <th class="p-2 font-medium text-center border-r border-[#0C447D]">Supplier Code</th>
+      <th class="p-2 font-medium text-left border-r border-[#0C447D]">Name</th>
+      <th class="p-2 font-medium text-left border-r border-[#0C447D]">Size</th>
+      <th class="p-2 font-medium text-left border-r border-[#0C447D]">Qty</th>
+      <th class="p-2 font-medium text-left border-r border-[#0C447D]">Total WT</th>
+      <th class="p-2 font-medium text-left border-r border-[#0C447D]">Silver Rate</th>
+      <th class="p-2 font-medium text-left border-r border-[#0C447D]">Per GM Labour</th>
+      <th class="p-2 font-medium text-left border-r border-[#0C447D]">Per GM Shipping</th>
+      <th class="p-2 font-medium text-left border-r border-[#0C447D]">Other Expense</th>
+      <th class="p-2 font-medium text-left border-r border-[#0C447D]">Packaging Cost</th>
+      <th class="p-2 font-medium text-left border-r border-[#0C447D]">Per Gm Cost Without packaging</th>
+      <th class="p-2 font-medium text-left border-r border-[#0C447D]">Stone Type</th>
+      <th class="p-2 font-medium text-left border-r border-[#0C447D]">Stone Color</th>
+      <th class="p-2 font-medium text-left border-r border-[#0C447D]">Polish Type</th>
+      <!-- <th class="p-2 font-medium text-center">Date</th> -->
+    </tr>
+  </thead>
+  <tbody class="text-xs sm:text-xs">
+    <tr
+      class="odd:bg-white even:bg-[#F2F2F2] text-[#5A5959]"
+      *ngFor="let metal of readyProductDataList; let i = index"
+    >
+      <td class="p-3 text-center">{{ i + 1 }}</td>
+      <td class="p-3">{{ metal.rproduct_code  || '-'}}</td>
+      <td class="p-3">{{ metal.rproduct_supplier_code || '-' }}</td>
+      <td class="p-3">{{ metal.rproduct_name || '-'}}</td>
+      <td class="p-3">{{ metal.rproduct_size || '-'}}</td>
+      <td class="p-3">{{ metal.rproduct_quantity || '-'}}</td>
+      <td class="p-3">{{ metal.rproduct_total_wt || '-'}}</td>
+      <td class="p-3">{{ metal.rproduct_silver_rate_per_gm || '-'}}</td>
+      <td class="p-3">{{ metal.rproduct_per_gram_labour || '-'}}</td>
+      <td class="p-3">{{ metal.rproduct_shipping_per_gm || '-'}}</td>
+      <td class="p-3">{{ metal.rproduct_other_expense_per_gm || '-'}}</td>
+      <td class="p-3">{{ metal.rproduct_packaging_cost || '-'}}</td>
+      <td class="p-3">{{ metal.rproduct_per_gm_cost_without_packaging || '-'}}</td>
+      <td class="p-3">{{ metal.rproduct_stonetype|| '-'}}</td>
+      <td class="p-3">{{ metal.rproduct_stone_color || '-'}}</td>
+      <td class="p-3">{{ metal.rproduct_polishtype || '-'}}</td>
+      <!-- <td class="p-3 text-center">{{ metal.rproduct_date | date: 'dd-MM-yyyy' }}</td> -->
+    </tr>
+  </tbody>
+</table>
+</div>

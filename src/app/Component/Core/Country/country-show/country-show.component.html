@@ -1,0 +1,58 @@
+<div class="relative overflow-x-auto py-6 bg-black shadow-lg rounded-xl p-6 border border-gray-700">
+  <h1 class="text-3xl font-bold text-yellow-400 pb-4 border-b border-gray-700">
+    🌍 Country List
+  </h1>
+
+  <div class="py-4">
+    <app-country-filter />
+  </div>
+
+  <div class="flex justify-end py-4">
+    <a
+      routerLink="/countries/create"
+      class="bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 text-white font-bold py-2 px-6 rounded-full shadow-md transition duration-300"
+    >
+      ➕ Add Country
+    </a>
+  </div>
+
+  <table class="w-full text-sm text-left text-yellow-300 border border-gray-700 rounded-lg overflow-hidden">
+    <thead class="text-md text-yellow-400 uppercase bg-gray-900">
+      <tr>
+        <th scope="col" class="px-6 py-4">ID</th>
+        <th scope="col" class="px-6 py-4">Country Name</th>
+        <th scope="col" class="px-6 py-4">Country Code</th>
+        <th scope="col" class="px-6 py-4">Currency</th>
+        <th scope="col" class="px-6 py-4 text-center">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr
+        class="bg-gray-900 border-b border-gray-700 hover:bg-gray-800 transition duration-300"
+        *ngFor="let country of countries"
+      >
+        <th scope="row" class="px-6 py-4 font-semibold text-yellow-300">
+          {{ country.id }}
+        </th>
+        <td class="px-6 py-4">{{ country.name }}</td>
+        <td class="px-6 py-4">{{ country.code }}</td>
+        <td class="px-6 py-4">{{ country.currency }}</td>
+        <td class="px-6 py-4 text-center flex justify-center space-x-4">
+          <a
+            routerLink="/countries/{{ country.id }}/edit"
+            class="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-full shadow-lg transform hover:scale-105 transition-all duration-300"
+          >
+            ✏️ Edit
+          </a>
+          <button
+            (click)="deleteCountry($event, country.id)"
+            class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-lg transform hover:scale-105 transition-all duration-300"
+          >
+            🗑️ Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

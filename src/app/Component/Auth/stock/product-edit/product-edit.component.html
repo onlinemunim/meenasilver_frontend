@@ -1,0 +1,129 @@
+<div class="w-full py-3 px-4">
+  <!-- Stock Title Section -->
+  <div class="flex items-center justify-between mb-4">
+    <div class="flex items-center justify-start gap-1 lg:gap-2">
+      <img
+        class="size-6 sm:size-8 lg:size-10"
+        src="/assets/images/stock/stock.png"
+        alt="Stock"
+      />
+      <span class="font-semibold text-sm sm:text-base lg:text-xl text-444"
+        >Product Creation</span
+      >
+    </div>
+
+    <div class="flex items-center justify-end gap-3">
+      <button (click)="goToCustomizeForm()"
+        class="hidden sm:block cursor-pointer bg-white text-sm sm:text-base text-c19725 font-bold border border-c19725 px-1.5 py-1 sm:px-3 sm:py-2 h-[32px] sm:h-[45px] rounded-sm"
+      >
+        <svg
+          class="size-4 inline-flex"
+          viewBox="0 0 18 19"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <mask
+            id="mask0_655_1657"
+            style="mask-type: alpha"
+            maskUnits="userSpaceOnUse"
+            x="0"
+            y="0"
+            width="18"
+            height="19"
+          >
+            <rect y="0.5" width="18" height="18" fill="#D9D9D9" />
+          </mask>
+          <g mask="url(#mask0_655_1657)">
+            <path
+              d="M8.25 16.25V10.25H2.25V8.75H8.25V2.75H9.75V8.75H15.75V10.25H9.75V16.25H8.25Z"
+              fill="#C19725"
+            />
+          </g>
+        </svg>
+        Customize Form
+      </button>
+      <div class="relative w-[80px] xl:w-[100px] 2xl:w-[120px]">
+        <select
+          [(ngModel)]="selectedListType"
+          (click)="showRelatedList()"
+          class="w-full capitalize cursor-pointer border border-c19725 text-c19725 font-bold text-sm sm:text-base rounded-sm py-1 sm:py-2 pl-1.5 sm:pl-2 pr-5 h-[32px] sm:h-[45px] bg-[#FFF7E6] appearance-none !bg-none focus:outline-none focus:ring-0 focus:border-[#C19725]"
+        >
+          <option value="" disabled selected>list</option>
+          <option *ngFor="let type of listTypes" [value]="type">
+            {{ type }}
+          </option>
+        </select>
+        <div
+          class="absolute inset-y-0 right-1.5 flex items-center pointer-events-none"
+        >
+          <svg
+            class="size-4 sm:size-5"
+            viewBox="0 0 18 19"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15.7942 6.70594L9.00011 13.5L2.20605 6.70595L3.412 5.5L9.00011 11.0881L14.5882 5.5L15.7942 6.70594Z"
+              fill="#C19725"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- stock tabs -->
+  <div
+    class="overflow-x-auto overflow-y-hidden whitespace-nowrap scrollbar-hide lg:overflow-x-hidden"
+  >
+    <ul
+      class="min-w-max flex justify-start text-sm sm:text-sm lg:text-base text-center"
+    >
+      <li
+        *ngFor="let tab of tabs; let i = index"
+        role="presentation"
+        class="flex-shrink-0 sm:flex-1"
+      >
+        <!-- <button class="sm:w-auto min-w-[160px] lg:w-full capitalize inline-block px-4 py-2 border transition-all duration-300"
+                    [ngClass]="{
+                          'rounded-l-md': i === 0,
+                          'rounded-r-md': i === tabs.length - 1,
+                          'font-bold bg-c19725 text-white border-c19725 hover:shadow-lg': activeTab === i,
+                          'font-normal bg-white text-[#898989] border-[#D9D9D9] hover:text-gray-600': activeTab !== i
+                        }" type="button" role="tab" (click)="selectTab(i)">
+                    {{ tab.label }}
+                </button> -->
+        <button
+          class="sm:w-auto min-w-[160px] lg:w-full capitalize inline-block px-4 py-2 border transition-all duration-300"
+          [ngClass]="{
+            'rounded-l-md': i === 0,
+            'rounded-r-md': i === tabs.length - 1,
+            'font-bold bg-c19725 text-white border-c19725 hover:shadow-lg':
+              activeTab === i,
+            'font-normal bg-white text-[#898989] border-[#D9D9D9] hover:text-gray-600':
+              activeTab !== i,
+            'cursor-not-allowed opacity-50':
+              !isProductIdPresent && tab.id !== 'general'
+          }"
+          [disabled]="!isProductIdPresent && tab.id !== 'general'"
+          type="button"
+          role="tab"
+          (click)="selectTab(i)"
+        >
+          {{ tab.label }}
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="transition-opacity duration-300">
+    <ng-container [ngSwitch]="tabs[activeTab].id">
+      <app-stock-general *ngSwitchCase="'general'"></app-stock-general>
+      <app-stock-metal *ngSwitchCase="'metal'"></app-stock-metal>
+      <app-stock-stone *ngSwitchCase="'stone'"></app-stock-stone>
+      <app-stock-packaging *ngSwitchCase="'packaging'"></app-stock-packaging>
+      <app-stock-feature *ngSwitchCase="'feature'"></app-stock-feature>
+      <app-stock-price *ngSwitchCase="'price'"></app-stock-price>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="w-full">
+    <swiper-container #swiper autoplay [slides-per-view]="swiperConfig.slidesPerView" [space-between]="swiperConfig.spaceBetween"
+        [loop]="swiperConfig.loop" [speed]="swiperConfig.speed" [breakpoints]="swiperConfig.breakpoints"
+        [pagination]="true">
+        <swiper-slide class="pb-10" *ngFor="let group of customerGroups">
+            <div *ngFor="let customer of group"
+                class="customwer-card border-b border-[#D9D9D9]  bg-white px-3 py-2 sm:flex items-center justify-between gap-2 overflow-hidden">
+                <div class="flex items-center justify-start gap-2 lg:gap-4">
+                    <img src="/assets/images/rmportal/staff.png" alt="user profile" class="size-[50px]">
+                    <div class="space-y-0.5 text-444 font-normal text-xs md:text-sm">
+                        <p class="text-xs sm:text-sm lg:text-base font-medium">{{ customer.name }}</p>
+                        <p>
+                            <span class="text-xs sm:text-sm me-1">{{ customer.phone }}</span>|
+                            <span class="text-xs sm:text-sm ms-1">{{ customer.location }}</span>
+                        </p>
+                        <p class="text-sm text-c19725">
+                            <span class="text-xs sm:text-sm me-1"> {{ customer.orderId }}</span>|
+                            <span class="text-xs sm:text-sm mx-1">{{ customer.prodName }}</span>|
+                            <span class="text-xs sm:text-sm mx-1">{{ customer.qty }} Qty</span>|
+                            <span class="text-xs sm:text-sm mx-1">{{ customer.weight }}</span>|
+                            <span class="text-xs sm:text-sm mx-1">{{ customer.amount }}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="flex items-center justify-end gap-x-3 lg:gap-x-4">
+                    <button class="cursor-pointer">
+                        <img src="/assets/images/rmportal/call.png" alt="user profile" class="size-6"></button>
+                    <button class="cursor-pointer">
+                        <img src="/assets/images/rmportal/whatsapp.png" alt="user profile" class="size-6"></button>
+                </div>
+            </div>
+        </swiper-slide>
+    </swiper-container>
+    <div class="swiper-pagination"></div>
+</div>

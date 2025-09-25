@@ -1,0 +1,289 @@
+<div class="w-full py-3 px-4">
+
+  <!-- Toggle Button for Mobile -->
+  <div class="lg:hidden flex justify-end">
+    <button (click)="mobileMenuOpen = !mobileMenuOpen" class="p-1 border rounded-md text-c19725 border-c19725">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          [attr.d]="mobileMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Main Menu -->
+  <div class="w-full flex-col lg:flex-row flex justify-start items-start lg:items-center"
+    [ngClass]="{ 'hidden': !mobileMenuOpen && screenIsSmall, 'block': mobileMenuOpen && screenIsSmall, 'lg:flex': true }">
+
+    <!-- FINE STOCK DROPDOWN -->
+    <div class="w-full relative flex-1" (clickOutside)="showFineStockDropdown = false">
+      <button
+        (click)="toggleDropdown('fine')"
+        [ngClass]="{
+          'bg-[#C49E44] text-white font-medium outline-[#C49E44] hover:bg-[#B38930] border border-[#D9D9D9]': showFineStockDropdown,
+          'bg-[#DDE9F7] text-[#2A4D8F] font-medium border border-[#D9D9D9]': selectedStockLabel !== 'Fine Stock' && !showFineStockDropdown,
+          'text-[#898989] font-normal border border-[#D9D9D9] hover:bg-[#f6f1cb] hover:text-black': selectedStockLabel === 'Fine Stock' && !showFineStockDropdown
+        }"
+
+        class="w-full capitalize px-4 py-2 text-left text-sm xl:text-base rounded-md lg:rounded-r-none flex justify-between items-center transition-colors duration-200 ease-in-out"
+      >
+        {{ selectedStockLabel }}
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd"
+            d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01.02-1.06z"
+            clip-rule="evenodd" />
+        </svg>
+      </button>
+
+      <div
+        *ngIf="showFineStockDropdown"
+        class="absolute z-50 left-0 right-0 bg-white rounded-md shadow-lg mt-1 w-full lg:w-auto"
+      >
+        <a
+          routerLink="/add-stock/add-retail-fine-stock-b1"
+          (click)="selectStock('Fine', 'Add Fine Stock B1')"
+          class="dropdown-link capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+        >Add Fine Stock B1</a>
+
+        <a
+          routerLink="/add-stock/add-retail-fine-stock-b1-scroll"
+          (click)="selectStock('Fine', 'Add Fine Stock B1 Scroll')"
+          class="dropdown-link capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+        >Add Fine Stock B1 Scroll</a>
+
+        <a
+          routerLink="/add-stock/add-retail-fine-stock-b2"
+          (click)="selectStock('Fine', 'Add Fine Stock B2')"
+          class="dropdown-link capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+        >Add Fine Stock B2</a>
+
+        <a
+          routerLink="/add-stock/add-retail-fine-stock-b3"
+          (click)="selectStock('Fine', 'Add Fine Stock B3')"
+          class="dropdown-link capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+        >Add Fine Stock B3</a>
+
+        <a
+          routerLink="/add-stock/add-cad-stock"
+          (click)="selectStock('Fine', 'Add CAD Stock')"
+          class="dropdown-link capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+        >Add CAD Stock</a>
+
+        <a
+          routerLink="/add-stock/add-metal-form-b2"
+          (click)="selectStock('Fine', 'Add Metal Form B2')"
+          class="dropdown-link capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+        >Add Metal Form B2</a>
+      </div>
+    </div>
+
+    <!-- [ngClass]="{
+      'bg-[#C49E44] text-white font-normal outline-[#C49E44] hover:bg-[#B38930] border border-[#D9D9D9]': showImitationDropdown,
+      'bg-[#DDE9F7] text-[#2A4D8F] font-normal border border-[#D9D9D9]': selectedImitationStockLabel !== 'Imitation Stock' && !showImitationDropdown,
+      'text-[#898989] border border-[#D9D9D9] hover:bg-[#f6f1cb] hover:text-black': selectedImitationStockLabel === 'Imitation Stock' && !showImitationDropdown
+    }" -->
+
+
+   <!-- Imitation STOCK DROPDOWN -->
+   <div class="w-full relative flex-1" (clickOutside)="showImitationDropdown = false">
+    <button
+      (click)="toggleDropdown('imitation')"
+      [ngClass]="{
+        'bg-[#C49E44] text-white font-medium outline-[#C49E44] hover:bg-[#B38930] border border-[#D9D9D9]': showImitationDropdown,
+        'bg-[#DDE9F7] text-[#2A4D8F] font-medium border border-[#D9D9D9]': selectedImitationStockLabel !== 'Imitation Stock' && !showImitationDropdown,
+        'text-[#898989] font-normal border border-[#D9D9D9] hover:bg-[#f6f1cb] hover:text-black': selectedImitationStockLabel === 'Imitation Stock' && !showImitationDropdown
+      }"
+
+
+
+      class="w-full capitalize px-4 py-2 text-left text-sm xl:text-base rounded-md lg:rounded-none flex justify-between items-center transition-colors duration-200 ease-in-out"
+    >
+      {{ selectedImitationStockLabel }}
+      <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd"
+          d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01.02-1.06z"
+          clip-rule="evenodd" />
+      </svg>
+    </button>
+
+    <div *ngIf="showImitationDropdown"
+      class="absolute z-50 left-0 right-0 bg-white rounded-md shadow-lg mt-1 w-full lg:w-auto">
+
+      <a routerLink="/add-stock/add-retail-imitation-stock-b1"
+         (click)="selectStock('Imitation', 'Imitation Stock B1')"
+         class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+        Imitation Stock B1
+      </a>
+
+      <!-- <a routerLink="/add-stock/add-metal-form-b2"
+         (click)="selectStock('Imitation', 'Add Metal Form B2')"
+         class="dropdown-link capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+        Add Metal Form B2
+      </a> -->
+
+      <a routerLink="/add-stock/add-retail-imitation-stock-b2"
+         (click)="selectStock('Imitation', 'Imitation Stock B2')"
+         class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+        Imitation Stock B2
+      </a>
+
+      <a routerLink="/add-stock/add-retail-imitation-stock-b3"
+         (click)="selectStock('Imitation', 'Imitation Stock B3')"
+         class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+        Imitation Stock B3
+      </a>
+
+      <a routerLink="/add-stock/add-retail-imitation-fashion-jewellery"
+         (click)="selectStock('Imitation', 'Imitation Fashion Jewellery')"
+         class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+        Imitation Fashion Jewellery
+      </a>
+
+      <a routerLink="/add-stock/add-retail-add-sterling-jewellery-stock"
+         (click)="selectStock('Imitation', 'Add Sterling Jewellery Stock')"
+         class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+        Add Sterling Jewellery Stock
+      </a>
+
+    </div>
+  </div>
+
+
+
+    <a routerLink="/add-stock/raw-metal-stock"
+      routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+      class="flex-1 w-full px-4 py-2 border-[0.50px] border-[#D9D9D9] flex justify-between items-center text-[#898989] text-sm xl:text-base rounded-md lg:rounded-none hover:bg-[#f6f1cb] hover:text-black">
+      Raw Metal Stock
+    </a>
+
+    <a routerLink="/add-stock/diamond-stone-stock"
+      routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+      class="flex-1 w-full px-4 py-2 border-[0.50px] border-[#D9D9D9] flex justify-between items-center text-[#898989] text-sm xl:text-base rounded-md lg:rounded-none hover:bg-[#f6f1cb] hover:text-black">
+      Diamond/Stone Stock
+    </a>
+
+    <!-- STOCK REPORTS DROPDOWN -->
+    <div class="w-full relative flex-1" (clickOutside)="showStockReportsDropdown = false">
+      <button (click)="toggleDropdown('reports')" [ngClass]="{
+      'bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white': showStockReportsDropdown,
+      'border-[0.50px] border-[#D9D9D9] text-[#898989] hover:bg-[#f6f1cb] hover:text-black': !showStockReportsDropdown
+    }"
+        class="w-full capitalize px-4 py-2 text-left text-sm xl:text-base rounded-md lg:rounded-none flex justify-between items-center transition-colors duration-200 ease-in-out">
+        Stock Reports
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd"
+            d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01.02-1.06z"
+            clip-rule="evenodd" />
+        </svg>
+      </button>
+      <div *ngIf="showStockReportsDropdown"
+        class="absolute z-50 left-0 right-0 bg-white rounded-md shadow-lg mt-1 w-full lg:w-auto">
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Purchase Retail
+          Stock List</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Retail Tag
+          Stock List</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Purchase
+          Wholesale Stock List</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Crystal Retail
+          Stock List</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Crystal
+          Wholesale Stock List</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Retail Stock
+          List With Stone</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Wholesale Stock
+          List With Stone</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">All Wholesale
+          Stock List</a>
+        <a routerLink="/available-retail-stock-list" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Available
+          Retail Stock List</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Available Cad
+          Stock Reports</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Available
+          Wholesale Stock List</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Available
+          Retail Stock List with Stone</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Available Stock
+          List with MRP</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Available Stock
+          List with 0 Qty</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Lot Stock List
+          (To Create Tag)</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Lot Stock List
+          (To Create Tag For Imitation)</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Stock Transfer
+          List</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Stock Transfer
+          - Pending Approval List</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Stock Transfer
+          - Approved List</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Stock Transfer
+          - Return List</a>
+        <a routerLink="#" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Deleted Stock
+          List</a>
+        <a routerLink="/ready-product-list" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Ready Product
+          List</a>
+        <a routerLink="/raw-metal-list" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Raw Metal
+          List</a>
+        <a routerLink="/raw-stone-list" (click)="closeDropdown('reports')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Raw Stone
+          List</a>
+      </div>
+    </div>
+    <!-- other option DROPDOWN -->
+    <div class="w-full relative flex-1" (clickOutside)="showOtherOptionsDropdown = false">
+      <button (click)="toggleDropdown('others')" [ngClass]="{
+      'bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white': showOtherOptionsDropdown,
+      'border-[0.50px] border-[#D9D9D9] text-[#898989] hover:bg-[#f6f1cb] hover:text-black': !showOtherOptionsDropdown
+    }"
+        class="w-full capitalize px-4 py-2 text-left text-sm xl:text-base rounded-md lg:rounded-l-none flex justify-between items-center transition-colors duration-200 ease-in-out">
+        Other Option
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd"
+            d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01.02-1.06z"
+            clip-rule="evenodd" />
+        </svg>
+      </button>
+      <div *ngIf="showOtherOptionsDropdown"
+        class="absolute z-50 left-0 right-0 bg-white rounded-md shadow-lg mt-1 w-full lg:w-auto">
+        <a routerLink="#" (click)="closeDropdown('others')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Stock
+          Setting</a>
+        <a routerLink="#" (click)="closeDropdown('others')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Stock
+          Master</a>
+        <a routerLink="#" (click)="closeDropdown('others')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Stock
+          Transfer</a>
+        <a routerLink="#" (click)="closeDropdown('others')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Setup
+          Option</a>
+        <a routerLink="#" (click)="closeDropdown('others')"
+          class="capitalize block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Multiple Stock
+          Delete</a>
+      </div>
+    </div>
+  </div>
+  <router-outlet />
+</div>

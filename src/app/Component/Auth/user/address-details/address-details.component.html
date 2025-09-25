@@ -1,0 +1,321 @@
+<form [formGroup]="addressForm" (submit)="onSubmit()">
+    <div class="w-full py-4">
+        <!-- address details form -->
+        <p class="font-medium text-sm xl:text-base text-444 capitalize mb-3">Address Details</p>
+        <div
+            class="w-full bg-[#F7F5FF] p-3 rounded-md grid grid-cols-2 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-7 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5">
+
+            <div class="col-span-1">
+                <app-custom-select label="Copy From" [options]="copyType" [(selected)]="selectedCopy" (keydown.enter)="focusNextOnEnter($event)"
+                    selectId="copyType">
+                </app-custom-select>
+            </div>
+            <div class="col-span-1">
+                <app-custom-select label="Address Type" [options]="addressType" [(selected)]="selectedAddress" formControlName="type" (keydown.enter)="focusNextOnEnter($event)"
+                    selectId="addressType">
+                </app-custom-select>
+            </div>
+
+            <div class="col-span-2">
+                <div class="relative">
+                    <input type="text" id="gst_number" formControlName="gst_number" (keydown.enter)="focusNextOnEnter($event)"
+                        class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                        placeholder=" " />
+                    <label for="gst_number"
+                        class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">GST
+                        No.</label>
+                </div>
+            </div>
+
+            <div class="col-span-2 sm:col-span-4 lg:col-span-3">
+                <div class="relative">
+                    <input type="text" id="add1" formControlName="add1" (keydown.enter)="focusNextOnEnter($event)"
+                        class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                        placeholder=" " />
+                    <label for="add1"
+                        class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Address</label>
+                </div>
+            </div>
+
+            <div class="col-span-1">
+                <!-- <app-custom-select label="Country" [options]="countryTypes" [(selected)]="selectedCountry"
+                    selectId="countryTypes">
+                </app-custom-select> -->
+                <div class="relative">
+                  <select
+                    formControlName="country_id" (keydown.enter)="focusNextOnEnter($event)"
+                    (change)="onCountryChange()"
+                    class="block pl-2 pr-6 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  >
+                    <option value="" disabled selected class="text-sm">
+                      Select Country
+                    </option>
+                    <option
+                      *ngFor="let country of countryTypes"
+                      [value]="country.id"
+                    >
+                      {{ country.name }}
+                    </option>
+                  </select>
+                  <div
+                    class="absolute inset-y-0 right-2 flex items-center pointer-events-none"
+                  >
+                    <svg
+                      width="14"
+                      height="7"
+                      viewBox="0 0 14 7"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z"
+                        fill="#C19725"
+                      />
+                    </svg>
+                  </div>
+                  <label
+                    for="country"
+                    class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                    >Country</label
+                  >
+                </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative">
+                <select
+                  formControlName="state_id" (keydown.enter)="focusNextOnEnter($event)"
+                  id="state"
+                  (change)="onStateChange()"
+                  class="block pl-2 pr-6 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                >
+                  <option value="" disabled>Select State</option>
+                  <option *ngFor="let state of stateTypes" [value]="state.id">
+                    {{ state.name }}
+                  </option>
+                </select>
+                <div
+                  class="absolute inset-y-0 right-2 flex items-center pointer-events-none"
+                >
+                  <svg
+                    width="14"
+                    height="7"
+                    viewBox="0 0 14 7"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z"
+                      fill="#C19725"
+                    />
+                  </svg>
+                </div>
+                <label
+                  for="state"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >State</label
+                >
+              </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative">
+                <select
+                  id="city"
+                  formControlName="city_id" (keydown.enter)="focusNextOnEnter($event)"
+                  class="block pl-2 pr-6 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                >
+                  <option value="" disabled>Select City</option>
+                  <option *ngFor="let city of cityTypes" [value]="city.id">
+                    {{ city.name }}
+                  </option>
+                </select>
+                <div
+                  class="absolute inset-y-0 right-2 flex items-center pointer-events-none"
+                >
+                  <svg
+                    width="14"
+                    height="7"
+                    viewBox="0 0 14 7"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z"
+                      fill="#C19725"
+                    />
+                  </svg>
+                </div>
+                <label
+                  for="city"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >City</label
+                >
+              </div>
+            </div>
+
+            <div class="col-span-1">
+                <div class="relative">
+                    <input type="number" id="pincode" formControlName="pincode" (keydown.enter)="focusNextOnEnter($event)"
+                        class="block no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                        placeholder=" " />
+                    <label for="pincode"
+                        class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Pincode</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- buttons -->
+        <div class="flex items-center justify-center mt-4 md:mt-8 space-x-1.5 md:space-x-4">
+            <button type="submit"
+                class="size-6 md:size-9 block cursor-pointer capitalize p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6">
+                <svg class="size-3 xl:size-4 mx-auto" viewBox="0 0 12 20" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.1123 20L0.112305 10L10.1123 0L11.8873 1.775L3.6623 10L11.8873 18.225L10.1123 20Z"
+                        fill="#C19725" />
+                </svg>
+            </button>
+
+            <button type="button" (click)="clearForm()"
+                class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6">Clear</button>
+
+            <button type="submit" *ngIf="submitButton"
+                class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">Submit</button>
+
+                <button type="button" *ngIf="updateButton" (click)="updateAddress()"
+                class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">Update</button>
+
+            <button type="button"
+                class="size-6 md:size-9 block cursor-pointer capitalize p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6">
+                <svg class="size-3 xl:size-4 mx-auto" viewBox="0 0 12 20" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.8877 20L11.8877 10L1.8877 0L0.112695 1.775L8.3377 10L0.112695 18.225L1.8877 20Z"
+                        fill="#C19725" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</form>
+<!-- address details -->
+<div class="w-full py-5 grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div class="col-span-1" *ngFor="let address of addressess">
+        <div class="border border-[#d9d9d9] rounded-lg">
+            <div class="flex items-center justify-between pt-3">
+                <p
+                    class="px-3 py-2 bg-[#E6EFFF] text-[#0C447D] font-semibold text-sm lg:text-base xl:text-lg rounded-r-md">
+                    {{address.type}}</p>
+                <div class="flex items-center gap-3 pr-3">
+                    <button class="cursor-pointer">
+                        <svg class="size-5 lg:size-6" viewBox="0 0 24 24" fill="none" (click)="patchData(address.id)"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M15.552 4.332L19.5109 8.29075M3.2815 16.452L2.75 21.25L7.54788 20.7185L21.25 7.00912V5.39287L18.6071 2.75H16.9909L3.2815 16.452Z"
+                                stroke="#C19725" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M14.7166 9.23962L8.10638 15.8499" stroke="#C19725" stroke-miterlimit="5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="cursor-pointer">
+                        <svg class="size-5 lg:size-6" viewBox="0 0 24 25" fill="none" (click)="deleteAddress(address.id)"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M14 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M4 7.5H20" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M6 10.5V18.5C6 20.1569 7.34315 21.5 9 21.5H15C16.6569 21.5 18 20.1569 18 18.5V10.5"
+                                stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M9 5.5C9 4.39543 9.89543 3.5 11 3.5H13C14.1046 3.5 15 4.39543 15 5.5V7.5H9V5.5Z"
+                                stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="w-full p-3 space-y-1">
+              <div class="space-y-1">
+                  <!-- FIX 1: Bind the GST number dynamically -->
+                  <p class="text-444 font-normal text-xs lg:text-sm xl:text-base"><span class="font-semibold">GST No.
+                          :</span><span class="ms-1">{{ address.gst_number }}</span></p>
+                  <p class="text-444 font-normal text-xs lg:text-sm xl:text-base"><span class="font-semibold">Address
+                          :</span><span class="ms-1 capitalize">{{ address.add1 }}</span></p>
+              </div>
+              <div class="flex flex-wrap items-start gap-x-2 gap-y-0.5 sm:gap-x-3 md:gap-x-2 lg:gap-x-3.5">
+                  <!-- FIX 2: Use the maps to look up names by ID -->
+                  <p class="text-444 font-normal  text-xs lg:text-sm xl:text-base"><span
+                          class="font-semibold">Country
+                          :</span><span class="ms-1">{{ countryMap.get(address.country_id) }}</span></p>
+                  <p class="text-444 font-normal  text-xs lg:text-sm xl:text-base"><span
+                          class="font-semibold">State
+                          :</span><span class="ms-1 capitalize">{{ stateMap.get(address.state_id) }}</span></p>
+                  <p class="text-444 font-normal  text-xs lg:text-sm xl:text-base"><span
+                          class="font-semibold">City
+                          :</span><span class="ms-1">{{ cityMap.get(address.city_id) }}</span></p>
+                  <p class="text-444 font-normal  text-xs lg:text-sm xl:text-base"><span
+                          class="font-semibold">Pincode
+                          :</span><span class="ms-1">{{ address.pincode }}</span></p>
+              </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- <div class="col-span-1">
+        <div class="border border-[#d9d9d9] rounded-lg">
+            <div class="flex items-center justify-between pt-3">
+                <p
+                    class="px-3 py-2 bg-[#E6EFFF] text-[#0C447D] font-semibold text-sm lg:text-base xl:text-lg rounded-r-md">
+                    Billing Address</p>
+                <div class="flex items-center gap-3 pr-3">
+                    <button class="cursor-pointer">
+                        <svg class="size-5 lg:size-6" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M15.552 4.332L19.5109 8.29075M3.2815 16.452L2.75 21.25L7.54788 20.7185L21.25 7.00912V5.39287L18.6071 2.75H16.9909L3.2815 16.452Z"
+                                stroke="#C19725" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M14.7166 9.23962L8.10638 15.8499" stroke="#C19725" stroke-miterlimit="5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="cursor-pointer">
+                        <svg class="size-5 lg:size-6" viewBox="0 0 24 25" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M14 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M4 7.5H20" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M6 10.5V18.5C6 20.1569 7.34315 21.5 9 21.5H15C16.6569 21.5 18 20.1569 18 18.5V10.5"
+                                stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M9 5.5C9 4.39543 9.89543 3.5 11 3.5H13C14.1046 3.5 15 4.39543 15 5.5V7.5H9V5.5Z"
+                                stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="w-full p-3 space-y-1">
+                <div class="space-y-1">
+                    <p class="text-444 font-normal text-xs lg:text-sm xl:text-base"><span class="font-semibold">GST No.
+                            :</span><span class="ms-1">27AAACH7409R1Z1</span></p>
+                    <p class="text-444 font-normal text-xs lg:text-sm xl:text-base"><span class="font-semibold">Address
+                            :</span><span class="ms-1 capitalize">Marvel Fuego, Survey No. 137, Magarpatta Rd, opp.
+                            Seasons Mall, Amanora Park Town, Hadapsar</span></p>
+                </div>
+                <div class="flex flex-wrap items-start gap-x-2 gap-y-0.5 sm:gap-x-3 md:gap-x-2 lg:gap-x-3.5">
+                    <p class="text-444 font-normal  text-xs lg:text-sm xl:text-base"><span
+                            class="font-semibold">Country
+                            :</span><span class="ms-1">India</span></p>
+                    <p class="text-444 font-normal  text-xs lg:text-sm xl:text-base"><span
+                            class="font-semibold">State
+                            :</span><span class="ms-1 capitalize">Maharashtra</span></p>
+                    <p class="text-444 font-normal  text-xs lg:text-sm xl:text-base"><span
+                            class="font-semibold">City
+                            :</span><span class="ms-1">Pune</span></p>
+                    <p class="text-444 font-normal  text-xs lg:text-sm xl:text-base"><span
+                            class="font-semibold">Pincode
+                            :</span><span class="ms-1">411028</span></p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>

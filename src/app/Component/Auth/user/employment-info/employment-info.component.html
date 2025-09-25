@@ -1,0 +1,1178 @@
+<form [formGroup]="employmentForm">
+  <div class="w-full lg:flex items-start py-4 lg:gap-3">
+    <div class="w-full lg:w-1/2 mb-4 lg:mb-0">
+      <!-- Employment Details -->
+      <p class="font-medium text-sm xl:text-base text-444 capitalize mb-3">
+        Employment Details
+      </p>
+      <div
+        class="w-full bg-[#F9E7FF] p-3 rounded-md grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5 mb-4"
+      >
+        <div class="col-span-1">
+          <div class="relative max-w-sm">
+            <input id="user_interview_date" type="date" formControlName="user_interview_date" (keydown.enter)="focusNext($event)"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder="">
+            <div class="absolute inset-y-0 end-0 flex items-center pe-1 pointer-events-none">
+                <svg class="size-6" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M18.9773 3.67371H4.02272C3.48663 3.67491 2.97284 3.8884 2.59376 4.26748C2.21469 4.64655 2.0012 5.16034 2 5.69644V20.651C2.0012 21.1871 2.21469 21.7009 2.59376 22.0799C2.97284 22.459 3.48663 22.6725 4.02272 22.6737H18.9773C19.5134 22.6725 20.0272 22.459 20.4062 22.0799C20.7853 21.7009 20.9988 21.1871 21 20.651V5.69644C20.9988 5.16034 20.7853 4.64655 20.4062 4.26748C20.0272 3.8884 19.5134 3.67491 18.9773 3.67371Z"
+                        stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                    <path d="M6.06836 9.59113H10.8865" stroke="#C19725" stroke-miterlimit="10"
+                        stroke-linecap="round" />
+                    <path d="M6.06836 13.2744H16.5002" stroke="#C19725" stroke-miterlimit="10"
+                        stroke-linecap="round" />
+                    <path d="M8.56836 2.5V6.44491" stroke="#C19725" stroke-miterlimit="10"
+                        stroke-linecap="round" />
+                    <path d="M14.4326 2.5V6.44491" stroke="#C19725" stroke-miterlimit="10"
+                        stroke-linecap="round" />
+                </svg>
+            </div>
+            <label for="user_interview_date"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Interview Date</label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative max-w-sm">
+            <input id="user_date_of_joining" type="date" formControlName="user_date_of_joining" (keydown.enter)="focusNext($event)"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder="">
+            <div class="absolute inset-y-0 end-0 flex items-center pe-1 pointer-events-none">
+                <svg class="size-6" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M18.9773 3.67371H4.02272C3.48663 3.67491 2.97284 3.8884 2.59376 4.26748C2.21469 4.64655 2.0012 5.16034 2 5.69644V20.651C2.0012 21.1871 2.21469 21.7009 2.59376 22.0799C2.97284 22.459 3.48663 22.6725 4.02272 22.6737H18.9773C19.5134 22.6725 20.0272 22.459 20.4062 22.0799C20.7853 21.7009 20.9988 21.1871 21 20.651V5.69644C20.9988 5.16034 20.7853 4.64655 20.4062 4.26748C20.0272 3.8884 19.5134 3.67491 18.9773 3.67371Z"
+                        stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                    <path d="M6.06836 9.59113H10.8865" stroke="#C19725" stroke-miterlimit="10"
+                        stroke-linecap="round" />
+                    <path d="M6.06836 13.2744H16.5002" stroke="#C19725" stroke-miterlimit="10"
+                        stroke-linecap="round" />
+                    <path d="M8.56836 2.5V6.44491" stroke="#C19725" stroke-miterlimit="10"
+                        stroke-linecap="round" />
+                    <path d="M14.4326 2.5V6.44491" stroke="#C19725" stroke-miterlimit="10"
+                        stroke-linecap="round" />
+                </svg>
+            </div>
+            <label for="user_date_of_joining"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Date of Joining</label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="text"
+              id="user_emp_id"
+              formControlName="user_emp_id"
+              (keydown.enter)="focusNext($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="user_emp_id"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Employee ID</label
+            >
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <select
+              formControlName="user_firm_id"
+              (keydown.enter)="focusNext($event)"
+              name="firmTypes"
+              id="rproduct_firm_id"
+              class="block pl-2 pr-6 py-2 w-full text-sm lg:text-sm text-444 capitalize font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            >
+              <option value="" disabled selected>Select firm</option>
+              <option *ngFor="let firm of firmTypes" [value]="firm.id">
+                {{ firm.name }}
+              </option>
+            </select>
+            <div
+                        class="absolute inset-y-0 right-2 flex items-center pointer-events-none"
+                      >
+                        <svg
+                          width="14"
+                          height="7"
+                          viewBox="0 0 14 7"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z"
+                            fill="#C19725"
+                          />
+                        </svg>
+                      </div>
+                      <label
+                        for="rproduct_firm_id"
+                        class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                        >Firm</label
+                      >
+                    </div>
+                    </div>
+
+        <div class="col-span-1">
+          <app-custom-select
+            label="Department"
+            [options]="departmentTypes"
+            [(selected)]="selectedDepartment"
+            formControlName="user_department"
+            selectId="departmentTypes"
+            (keydown.enter)="focusNext($event)"
+          >
+          </app-custom-select>
+        </div>
+
+        <div class="col-span-1">
+          <app-custom-select
+            label="Designation"
+            [options]="designationTypes"
+            formControlName="user_designation"
+            [(selected)]="selectedDesignation"
+            selectId="designationTypes"
+            (keydown.enter)="focusNext($event)"
+          >
+          </app-custom-select>
+        </div>
+
+        <div class="col-span-1">
+          <app-custom-select
+            label="Employee Type"
+            [options]="employeeTypes"
+            [(selected)]="selectedEmployee"
+            formControlName="user_employee_type"
+            selectId="employeeTypes"
+            (keydown.enter)="focusNext($event)"
+          >
+          </app-custom-select>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="text"
+              id="user_manager"
+              formControlName="user_manager"
+              (keydown.enter)="focusNext($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="user_manager"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Manager</label
+            >
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <app-custom-select
+            label="Salary Type"
+            [options]="salaryTypes"
+            [(selected)]="selectedSalary"
+            formControlName="user_salary_type"
+            selectId="salaryTypes"
+            (keydown.enter)="focusNext($event)"
+          >
+          </app-custom-select>
+        </div>
+
+        <div class="col-span-1">
+          <app-custom-select
+            label="Probation Period"
+            [options]="probationTypes"
+            formControlName="user_probation_period"
+            [(selected)]="selectedProbation"
+            selectId="probationTypes"
+            (keydown.enter)="focusNext($event)"
+          >
+          </app-custom-select>
+        </div>
+
+        <div class="col-span-1">
+          <app-custom-select
+            label="Notice Period"
+            [options]="noticeTypes"
+            formControlName="user_notice_period"
+            [(selected)]="selectedNotice"
+            selectId="noticeTypes"
+            (keydown.enter)="focusNext($event)"
+          >
+          </app-custom-select>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="text"
+              id="user_bio_gate_id"
+              formControlName="user_bio_gate_id"
+              (keydown.enter)="focusNext($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="user_bio_gate_id"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Bio Gate ID</label
+            >
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="text"
+              id="user_telegram_bot_id"
+              formControlName="user_telegram_bot_id"
+              (keydown.enter)="focusNext($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="user_telegram_bot_id"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Telegram Bot ID</label
+            >
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="text"
+              id="user_telegram_bot_key"
+              formControlName="user_telegram_bot_key"
+              (keydown.enter)="focusNext($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="user_telegram_bot_key"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Telegram BOT Key</label
+            >
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="text"
+              id="user_telegram_group_id"
+              formControlName="user_telegram_group_id"
+              (keydown.enter)="focusNext($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="user_telegram_group_id"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Telegram Group ID</label
+            >
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <mat-form-field class="w-full">
+            <mat-select
+              formControlName="user_assets"
+              (keydown.enter)="focusNext($event)"
+              placeholder="Assets"
+              [multiple]="true"
+              #multiSelect
+            >
+              <mat-option>
+                <ngx-mat-select-search
+                  [formControl]="assetFilterCtrl"
+                  placeholderLabel="Search asset"
+                ></ngx-mat-select-search>
+              </mat-option>
+
+              <mat-option
+                *ngFor="let asset of filteredAssets | async"
+                [value]="asset"
+              >
+                {{ asset.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <!-- Display selected items below -->
+        <div *ngIf="assetCtrl.value?.length > 0" class="mt-0">
+          <p class="text-base">Selected Assets:</p>
+          <ul class="flex flex-wrap gap-1">
+            <li
+              *ngFor="let asset of assetCtrl.value"
+              class="text-444 font-normal text-sm"
+            >
+              {{ asset.name }},
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Salary Details -->
+      <p class="font-medium text-sm xl:text-base text-444 capitalize mb-3">
+        Salary Details
+      </p>
+      <div
+        class="w-full bg-[#F9E7FF] p-3 rounded-md grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5 mb-4"
+      >
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="number"
+              id="user_basic_salary"
+              formControlName="user_basic_salary"
+              (keydown.enter)="focusNext($event)"
+              class="block no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="user_basic_salary"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Basic Salary</label
+            >
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="number"
+              id="user_house_rent_allowance"
+              formControlName="user_house_rent_allowance"
+              (keydown.enter)="focusNext($event)"
+              class="block no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="user_house_rent_allowance"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >House Rent Allowance</label
+            >
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="number"
+              id="user_other_allowances"
+              formControlName="user_other_allowances"
+              (keydown.enter)="focusNext($event)"
+              class="block no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="user_other_allowances"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Other Allowances</label
+            >
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="number"
+              id="user_incentives"
+              formControlName="user_incentives"
+              (keydown.enter)="focusNext($event)"
+              class="block no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="user_incentives"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Incentives / Bonuses</label
+            >
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="number"
+              id="user_deductions"
+              formControlName="user_deductions"
+              (keydown.enter)="focusNext($event)"
+              class="block no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="user_deductions"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Deductions</label
+            >
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="number"
+              id="user_net_salary"
+              formControlName="user_net_salary"
+              (keydown.enter)="focusNext($event)"
+              class="block no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-wuserhite dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="user_net_salary"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Net Salary</label
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Upload Resume & Experience Letter -->
+      <div class="sm:flex items-center justify-between mb-3">
+        <p
+          class="font-medium text-sm xl:text-base text-444 capitalize mb-2 sm:mb-0"
+        >
+          Upload Resume & Experience Letter
+        </p>
+        <button
+          type="button"
+          class="block ml-auto sm:ml-0 cursor-pointer bg-[#FFF3D4] text-xs sm:text-sm lg:text-base text-c19725 font-bold border border-c19725 px-1.5 py-1 lg:py-2 h-[32px] lg:h-[40px] rounded-sm"
+        >
+          <svg
+            class="size-5 inline-flex"
+            viewBox="0 0 20 23"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14.1667 16.2164H14.175M13 13.3866H15C15.7766 13.3866 16.1648 13.3866 16.4712 13.5301C16.8795 13.7216 17.204 14.0889 17.3732 14.5511C17.5 14.8979 17.5 15.3374 17.5 16.2164C17.5 17.0954 17.5 17.5349 17.3732 17.8817C17.204 18.3439 16.8795 18.7112 16.4712 18.9027C16.1648 19.0462 15.7766 19.0462 15 19.0462H5C4.22343 19.0462 3.83515 19.0462 3.52886 18.9027C3.12048 18.7112 2.79603 18.3439 2.62687 17.8817C2.5 17.5349 2.5 17.0954 2.5 16.2164C2.5 15.3374 2.5 14.8979 2.62687 14.5511C2.79603 14.0889 3.12048 13.7216 3.52886 13.5301C3.83515 13.3866 4.22343 13.3866 5 13.3866H7M10 14.3298V3.95383M10 3.95383L12.5 6.78365M10 3.95383L7.5 6.78365"
+              stroke="#C19725"
+              stroke-width="1.32464"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Upload Document
+        </button>
+      </div>
+      <div
+        class="w-full bg-[#F9E7FF] p-3 rounded-md grid grid-cols-2 sm:grid-cols-4 gap-3"
+      >
+        <div class="col-span-1">
+          <div class="bg-white rounded-md overflow-hidden">
+            <div class="w-full px-5 py-2 relative group cursor-pointer">
+              <img
+                class="w-full h-18 object-contain"
+                [src]="resumePreview || '/assets/images/user/resume.png'"
+                alt="Resume"
+                (click)="resumeInput.click()"
+              />
+              <input
+                type="file"
+                accept="image/*"
+                class="hidden"
+                #resumeInput
+                (change)="onResumeSelected($event)"
+                (keydown.enter)="focusNext($event)"
+              />
+            </div>
+
+            <div class="w-full border-t border-[#D9D9D9]">
+              <p
+                class="flex items-center justify-between bg-white px-2 py-1.5 text-444 text-xs font-normal capitalize"
+              >
+                Resume
+                <svg
+                  class="size-5 cursor-pointer"
+                  viewBox="0 0 20 23"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  (click)="resumeInput.click()"
+                >
+                  <path
+                    d="M14.1667 16.2164H14.175M13 13.3866H15C15.7766 13.3866 16.1648 13.3866 16.4712 13.5301C16.8795 13.7216 17.204 14.0889 17.3732 14.5511C17.5 14.8979 17.5 15.3374 17.5 16.2164C17.5 17.0954 17.5 17.5349 17.3732 17.8817C17.204 18.3439 16.8795 18.7112 16.4712 18.9027C16.1648 19.0462 15.7766 19.0462 15 19.0462H5C4.22343 19.0462 3.83515 19.0462 3.52886 18.9027C3.12048 18.7112 2.79603 18.3439 2.62687 17.8817C2.5 17.5349 2.5 17.0954 2.5 16.2164C2.5 15.3374 2.5 14.8979 2.62687 14.5511C2.79603 14.0889 3.12048 13.7216 3.52886 13.5301C3.83515 13.3866 4.22343 13.3866 5 13.3866H7M10 14.3298V3.95383M10 3.95383L12.5 6.78365M10 3.95383L7.5 6.78365"
+                    stroke="#C19725"
+                    stroke-width="1.32464"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </p>
+            </div>
+            <div *ngIf="resumeFileName" class="w-full bg-white px-2 pb-2">
+              <p class="text-[10px] text-gray-500 truncate">{{ resumeFileName }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="bg-white rounded-md overflow-hidden">
+            <div class="w-full px-5 py-2 relative group cursor-pointer">
+              <img
+                class="w-full h-18 object-contain"
+                [src]="offerLetterPreview || '/assets/images/user/offer-letter.png'"
+                alt="offer letter"
+                (click)="offerInput.click()"
+              />
+              <input
+                type="file"
+                accept="image/*"
+                class="hidden"
+                #offerInput
+                (change)="onOfferLetterSelected($event)"
+                (keydown.enter)="focusNext($event)"
+              />
+            </div>
+            <div class="w-full border-t border-[#D9D9D9]">
+              <p
+                class="flex items-center justify-between bg-white px-2 py-1.5 text-444 text-xs font-normal capitalize"
+              >
+                offer letter
+                <svg
+                  class="size-5 cursor-pointer"
+                  viewBox="0 0 20 23"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  (click)="offerInput.click()"
+                >
+                  <path
+                    d="M14.1667 16.2164H14.175M13 13.3866H15C15.7766 13.3866 16.1648 13.3866 16.4712 13.5301C16.8795 13.7216 17.204 14.0889 17.3732 14.5511C17.5 14.8979 17.5 15.3374 17.5 16.2164C17.5 17.0954 17.5 17.5349 17.3732 17.8817C17.204 18.3439 16.8795 18.7112 16.4712 18.9027C16.1648 19.0462 15.7766 19.0462 15 19.0462H5C4.22343 19.0462 3.83515 19.0462 3.52886 18.9027C3.12048 18.7112 2.79603 18.3439 2.62687 17.8817C2.5 17.5349 2.5 17.0954 2.5 16.2164C2.5 15.3374 2.5 14.8979 2.62687 14.5511C2.79603 14.0889 3.12048 13.7216 3.52886 13.5301C3.83515 13.3866 4.22343 13.3866 5 13.3866H7M10 14.3298V3.95383M10 3.95383L12.5 6.78365M10 3.95383L7.5 6.78365"
+                    stroke="#C19725"
+                    stroke-width="1.32464"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </p>
+            </div>
+            <div *ngIf="offerLetterFileName" class="w-full bg-white px-2 pb-2">
+              <p class="text-[10px] text-gray-500 truncate">{{ offerLetterFileName }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="bg-white rounded-md overflow-hidden">
+            <div class="w-full px-5 py-2 relative group cursor-pointer">
+              <img
+                class="w-full h-18 object-contain"
+                [src]="salarySlipPreview || '/assets/images/user/offer-letter.png'"
+                alt="Salary Slip"
+                (click)="salarySlipInput.click()"
+              />
+              <input
+                type="file"
+                accept="image/*"
+                class="hidden"
+                #salarySlipInput
+                (change)="onSalarySlipSelected($event)"
+                (keydown.enter)="focusNext($event)"
+              />
+            </div>
+            <div class="w-full border-t border-[#D9D9D9]">
+              <p
+                class="flex items-center justify-between bg-white px-2 py-1.5 text-444 text-xs font-normal capitalize"
+              >
+                Salary Slip
+                <svg
+                  class="size-5 cursor-pointer"
+                  viewBox="0 0 20 23"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  (click)="salarySlipInput.click()"
+                >
+                  <path
+                    d="M14.1667 16.2164H14.175M13 13.3866H15C15.7766 13.3866 16.1648 13.3866 16.4712 13.5301C16.8795 13.7216 17.204 14.0889 17.3732 14.5511C17.5 14.8979 17.5 15.3374 17.5 16.2164C17.5 17.0954 17.5 17.5349 17.3732 17.8817C17.204 18.3439 16.8795 18.7112 16.4712 18.9027C16.1648 19.0462 15.7766 19.0462 15 19.0462H5C4.22343 19.0462 3.83515 19.0462 3.52886 18.9027C3.12048 18.7112 2.79603 18.3439 2.62687 17.8817C2.5 17.5349 2.5 17.0954 2.5 16.2164C2.5 15.3374 2.5 14.8979 2.62687 14.5511C2.79603 14.0889 3.12048 13.7216 3.52886 13.5301C3.83515 13.3866 4.22343 13.3866 5 13.3866H7M10 14.3298V3.95383M10 3.95383L12.5 6.78365M10 3.95383L7.5 6.78365"
+                    stroke="#C19725"
+                    stroke-width="1.32464"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </p>
+            </div>
+            <div *ngIf="salarySlipFileName" class="w-full bg-white px-2 pb-2">
+              <p class="text-[10px] text-gray-500 truncate">{{ salarySlipFileName }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="bg-white rounded-md overflow-hidden">
+            <div class="w-full px-5 py-2 relative group cursor-pointer">
+              <img
+                class="w-full h-18 object-contain"
+                [src]="experienceLetterPreview || '/assets/images/user/offer-letter.png'"
+                alt="Experience Letter"
+                (click)="experienceLetterInput.click()"
+              />
+              <input
+                type="file"
+                accept="image/*"
+                class="hidden"
+                #experienceLetterInput
+                (change)="onExperienceLetterSelected($event)"
+                (keydown.enter)="focusNext($event)"
+              />
+            </div>
+            <div class="w-full border-t border-[#D9D9D9]">
+              <p
+                class="flex items-center justify-between bg-white px-2 py-1.5 text-444 text-xs font-normal capitalize"
+              >
+                Experience Letter
+                <svg
+                  class="size-5 cursor-pointer"
+                  viewBox="0 0 20 23"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  (click)="experienceLetterInput.click()"
+                >
+                  <path
+                    d="M14.1667 16.2164H14.175M13 13.3866H15C15.7766 13.3866 16.1648 13.3866 16.4712 13.5301C16.8795 13.7216 17.204 14.0889 17.3732 14.5511C17.5 14.8979 17.5 15.3374 17.5 16.2164C17.5 17.0954 17.5 17.5349 17.3732 17.8817C17.204 18.3439 16.8795 18.7112 16.4712 18.9027C16.1648 19.0462 15.7766 19.0462 15 19.0462H5C4.22343 19.0462 3.83515 19.0462 3.52886 18.9027C3.12048 18.7112 2.79603 18.3439 2.62687 17.8817C2.5 17.5349 2.5 17.0954 2.5 16.2164C2.5 15.3374 2.5 14.8979 2.62687 14.5511C2.79603 14.0889 3.12048 13.7216 3.52886 13.5301C3.83515 13.3866 4.22343 13.3866 5 13.3866H7M10 14.3298V3.95383M10 3.95383L12.5 6.78365M10 3.95383L7.5 6.78365"
+                    stroke="#C19725"
+                    stroke-width="1.32464"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </p>
+            </div>
+            <div *ngIf="experienceLetterFileName" class="w-full bg-white px-2 pb-2">
+              <p class="text-[10px] text-gray-500 truncate">{{ experienceLetterFileName }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <!-- login details -->
+        <div class="w-full mb-4 lg:mb-0">
+          <p class="font-medium text-sm xl:text-base text-444 capitalize mb-3">Login Details</p>
+          <div
+              class="w-full bg-[#F9E7FF] p-3 rounded-md grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5 mb-4">
+              <div class="col-span-1">
+                  <div class="relative">
+                      <input type="text" id="user_login_id" formControlName="user_login_id" (keydown.enter)="focusNext($event)"readonly
+                          class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                          placeholder=" " />
+                      <label for="user_login_id"
+                          class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Login
+                          ID</label>
+                  </div>
+              </div>
+
+              <!-- ==================== MODIFIED: PASSWORD FIELD ==================== -->
+              <div class="col-span-1">
+                  <div class="relative">
+                      <!-- Input type is now dynamic -->
+                      <input [type]="passwordVisible ? 'text' : 'password'" id="user_password" formControlName="password" (keydown.enter)="focusNext($event)"
+                          class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                          placeholder=" " />
+                      <label for="user_password"
+                          class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password</label>
+
+                      <!-- Clickable icon container -->
+                      <div class="absolute right-[10px] top-[9px] cursor-pointer" (click)="togglePasswordVisibility()">
+                          <!-- Slashed-eye icon (password is hidden) -->
+                          <svg *ngIf="!passwordVisible" class="size-4 lg:size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#C19725">
+                              <path d="m644-428-58-58q9-47-27-88t-93-32l-58-58q17-8 34.5-12t37.5-4q75 0 127.5 52.5T660-500q0 20-4 37.5T644-428Zm128 126-58-56q38-29 67.5-63.5T832-500q-50-101-143.5-160.5T480-720q-29 0-57 4t-55 12l-62-62q41-17 84-25.5t90-8.5q151 0 269 83.5T920-500q-23 59-60.5 109.5T772-302Zm20 246L624-222q-35 11-70.5 16.5T480-200q-151 0-269-83.5T40-500q21-53 53-98.5t73-81.5L56-792l56-56 736 736-56 56ZM222-624q-29 26-53 57t-41 67q50 101 143.5 160.5T480-280q20 0 39-2.5t39-5.5l-36-38q-11 3-21 4.5t-21 1.5q-75 0-127.5-52.5T300-500q0-11 1.5-21t4.5-21l-84-82Zm319 93Zm-151 75Z" />
+                          </svg>
+                          <!-- Open-eye icon (password is visible) -->
+                          <svg *ngIf="passwordVisible" class="size-4 lg:size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#C19725">
+                              <path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Z"/>
+                          </svg>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- ==================== MODIFIED: MASTER PASSWORD FIELD ==================== -->
+              <div class="col-span-1">
+                  <div class="relative">
+                      <!-- Input type is now dynamic -->
+                      <input [type]="masterPasswordVisible ? 'text' : 'password'" id="user_master_password" formControlName="master_password"
+                          class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                          placeholder=" " />
+                      <label for="user_master_password"
+                          class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Master
+                          Password</label>
+
+                      <!-- Clickable icon container -->
+                      <div class="absolute right-[10px] top-[9px] cursor-pointer" (click)="toggleMasterPasswordVisibility()">
+                          <!-- Slashed-eye icon (password is hidden) -->
+                          <svg *ngIf="!masterPasswordVisible" class="size-4 lg:size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#C19725">
+                              <path d="m644-428-58-58q9-47-27-88t-93-32l-58-58q17-8 34.5-12t37.5-4q75 0 127.5 52.5T660-500q0 20-4 37.5T644-428Zm128 126-58-56q38-29 67.5-63.5T832-500q-50-101-143.5-160.5T480-720q-29 0-57 4t-55 12l-62-62q41-17 84-25.5t90-8.5q151 0 269 83.5T920-500q-23 59-60.5 109.5T772-302Zm20 246L624-222q-35 11-70.5 16.5T480-200q-151 0-269-83.5T40-500q21-53 53-98.5t73-81.5L56-792l56-56 736 736-56 56ZM222-624q-29 26-53 57t-41 67q50 101 143.5 160.5T480-280q20 0 39-2.5t39-5.5l-36-38q-11 3-21 4.5t-21 1.5q-75 0-127.5-52.5T300-500q0-11 1.5-21t4.5-21l-84-82Zm319 93Zm-151 75Z" />
+                          </svg>
+                          <!-- Open-eye icon (password is visible) -->
+                          <svg *ngIf="masterPasswordVisible" class="size-4 lg:size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#C19725">
+                              <path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Z"/>
+                          </svg>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+    </div>
+
+    <!-- Experience Details -->
+
+    <div class="w-full lg:w-1/2 mb-4 lg:mb-0">
+      <p class="font-medium text-sm xl:text-base text-444 capitalize mb-3">
+        Experience Details
+      </p>
+    <form [formGroup]="staffExpDetailsForm">
+      <div
+        class="w-full bg-[#F9E7FF] p-3 rounded-md grid grid-cols-2 sm:grid-cols-10 lg:grid-cols-4 xl:grid-cols-10 gap-2 sm:gap-2.5 lg:gap-3 mb-4"
+      >
+        <div
+          class="col-span-2 sm:col-span-10 lg:col-span-4 xl:col-span-10 2xl:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5"
+        >
+          <div class="col-span-1 sm:col-span-2">
+            <div class="relative">
+              <input
+                type="text"
+                id=""
+                formControlName="user_prev_company_name"
+                (keydown.enter)="focusNext($event)"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" "
+              />
+              <label
+                for=""
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                >Company Name</label
+              >
+            </div>
+          </div>
+
+          <div class="col-span-1 sm:col-span-2">
+            <div class="relative">
+              <input
+                type="text"
+                id="designation"
+                formControlName="designation"
+                (keydown.enter)="focusNext($event)"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" "
+              />
+              <label
+                for="designation"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                >Designation</label
+              >
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <div class="relative">
+              <input
+                type="text"
+                id="location"
+                formControlName="location"
+                (keydown.enter)="focusNext($event)"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" "
+              />
+              <label
+                for="location"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                >Location</label
+              >
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <div class="relative max-w-sm">
+              <input
+                id="joiningDate"
+                type="date"
+                formControlName="user_prev_joining_date"
+                (keydown.enter)="focusNext($event)"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=""
+              />
+              <div
+                class="absolute inset-y-0 end-0 flex items-center pe-1 pointer-events-none"
+              >
+                <svg
+                  class="size-6"
+                  viewBox="0 0 24 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M18.9773 3.67371H4.02272C3.48663 3.67491 2.97284 3.8884 2.59376 4.26748C2.21469 4.64655 2.0012 5.16034 2 5.69644V20.651C2.0012 21.1871 2.21469 21.7009 2.59376 22.0799C2.97284 22.459 3.48663 22.6725 4.02272 22.6737H18.9773C19.5134 22.6725 20.0272 22.459 20.4062 22.0799C20.7853 21.7009 20.9988 21.1871 21 20.651V5.69644C20.9988 5.16034 20.7853 4.64655 20.4062 4.26748C20.0272 3.8884 19.5134 3.67491 18.9773 3.67371Z"
+                    stroke="#C19725"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M6.06836 9.59113H10.8865"
+                    stroke="#C19725"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M6.06836 13.2744H16.5002"
+                    stroke="#C19725"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M8.56836 2.5V6.44491"
+                    stroke="#C19725"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M14.4326 2.5V6.44491"
+                    stroke="#C19725"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <label
+                for="joiningDate"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                >Joining Date</label
+              >
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <div class="relative max-w-sm">
+              <input
+                id="leavingDate"
+                type="date"
+                formControlName="user_prev_leaving_date"
+                (keydown.enter)="focusNext($event)"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=""
+              />
+              <div
+                class="absolute inset-y-0 end-0 flex items-center pe-1 pointer-events-none"
+              >
+                <svg
+                  class="size-6"
+                  viewBox="0 0 24 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M18.9773 3.67371H4.02272C3.48663 3.67491 2.97284 3.8884 2.59376 4.26748C2.21469 4.64655 2.0012 5.16034 2 5.69644V20.651C2.0012 21.1871 2.21469 21.7009 2.59376 22.0799C2.97284 22.459 3.48663 22.6725 4.02272 22.6737H18.9773C19.5134 22.6725 20.0272 22.459 20.4062 22.0799C20.7853 21.7009 20.9988 21.1871 21 20.651V5.69644C20.9988 5.16034 20.7853 4.64655 20.4062 4.26748C20.0272 3.8884 19.5134 3.67491 18.9773 3.67371Z"
+                    stroke="#C19725"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M6.06836 9.59113H10.8865"
+                    stroke="#C19725"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M6.06836 13.2744H16.5002"
+                    stroke="#C19725"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M8.56836 2.5V6.44491"
+                    stroke="#C19725"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M14.4326 2.5V6.44491"
+                    stroke="#C19725"
+                    stroke-miterlimit="10"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+              <label
+                for="leavingDate"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                >Leaving Date</label
+              >
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <div class="relative">
+              <input
+                type="number "
+                id="user_total_experience"
+                formControlName="user_total_experience"
+                (keydown.enter)="focusNext($event)"
+                class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" "
+              />
+              <label
+                for="user_total_experience"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                >Total Exp.</label
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-span-2 sm:col-span-10 lg:col-span-4 xl:col-span-10 2xl:col-span-2">
+          <div class="flex items-center justify-end gap-3">
+            <p *ngIf="addButton" class="flex items-center gap-1 text-sm lg:text-lg text-[#0BB60B] font-medium">
+              <svg
+              (click)="addUserExperience()"
+              class="cursor-pointer size-6 lg:size-10"
+              fill="#0BB60B"
+              viewBox="0 0 56.00 56.00"
+              xmlns="http://www.w3.org/2000/svg"
+              stroke="#0BB60B"
+            >
+              <g
+                id="SVGRepo_bgCarrier"
+                stroke-width="0"
+                transform="translate(9.52,9.52), scale(0.66)"
+              >
+                <rect
+                  x="0"
+                  y="0"
+                  width="56.00"
+                  height="56.00"
+                  rx="0"
+                  fill="#ffffff"
+                  strokewidth="0"
+                ></rect>
+              </g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M 13.7851 49.5742 L 42.2382 49.5742 C 47.1366 49.5742 49.5743 47.1367 49.5743 42.3086 L 49.5743 13.6914 C 49.5743 8.8633 47.1366 6.4258 42.2382 6.4258 L 13.7851 6.4258 C 8.9101 6.4258 6.4257 8.8398 6.4257 13.6914 L 6.4257 42.3086 C 6.4257 47.1602 8.9101 49.5742 13.7851 49.5742 Z M 27.9882 39.6367 C 26.6523 39.6367 25.9492 38.6758 25.9492 37.3164 L 25.9492 30.0274 L 18.2617 30.0274 C 16.8788 30.0274 15.9179 29.3008 15.9179 28.0118 C 15.9179 26.6758 16.8320 25.9258 18.2617 25.9258 L 25.9492 25.9258 L 25.9492 18.1680 C 25.9492 16.8086 26.6523 15.8477 27.9882 15.8477 C 29.2773 15.8477 30.0742 16.7617 30.0742 18.1680 L 30.0742 25.9258 L 37.7851 25.9258 C 39.2148 25.9258 40.1054 26.6758 40.1054 28.0118 C 40.1054 29.3008 39.1679 30.0274 37.7851 30.0274 L 30.0742 30.0274 L 30.0742 37.3164 C 30.0742 38.7227 29.2773 39.6367 27.9882 39.6367 Z"
+                ></path>
+              </g>
+            </svg> Add
+            </p>
+            <p *ngIf="editButton" class="flex items-center gap-1 text-sm lg:text-lg text-[#649dcd] font-medium">
+            <svg
+              (click)="updateUserExperience()"
+
+              class="cursor-pointer size-5 lg:size-8"
+              viewBox="0 0 30 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="30" height="30" rx="5" fill="#649dcd" />
+              <mask
+                id="mask0_1227_7952"
+                style="mask-type: alpha"
+                maskUnits="userSpaceOnUse"
+                x="3"
+                y="3"
+                width="24"
+                height="24"
+              >
+                <rect x="3" y="3" width="24" height="24" fill="#D9D9D9" />
+              </mask>
+              <g mask="url(#mask0_1227_7952)">
+                <path
+                  d="M11.6 25.5L9.7 22.3L6.1 21.5L6.45 17.8L4 15L6.45 12.2L6.1 8.5L9.7 7.7L11.6 4.5L15 5.95L18.4 4.5L20.3 7.7L23.9 8.5L23.55 12.2L26 15L23.55 17.8L23.9 21.5L20.3 22.3L18.4 25.5L15 24.05L11.6 25.5ZM12.45 22.95L15 21.85L17.6 22.95L19 20.55L21.75 19.9L21.5 17.1L23.35 15L21.5 12.85L21.75 10.05L19 9.45L17.55 7.05L15 8.15L12.4 7.05L11 9.45L8.25 10.05L8.5 12.85L6.65 15L8.5 17.1L8.25 19.95L11 20.55L12.45 22.95ZM13.95 18.55L19.6 12.9L18.2 11.45L13.95 15.7L11.8 13.6L10.4 15L13.95 18.55Z"
+                  fill="white"
+                />
+              </g>
+            </svg> Edit
+            </p>
+
+            <p class="flex items-center gap-1 text-sm lg:text-lg text-[#BB0000] font-medium">
+            <svg
+              (click)="clearUserExperience()"
+              class="cursor-pointer size-5 lg:size-8"
+              viewBox="0 0 30 31"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect y="0.5" width="30" height="30" rx="5" fill="#BB0000" />
+              <path
+                d="M7.06189 17C7.02104 16.6724 7 16.3387 7 16C7 11.5817 10.5817 8 15 8C17.5006 8 19.7332 9.14727 21.2002 10.9442M21.2002 10.9442V8M21.2002 10.9442V10.9999L18.2002 11M22.9381 15C22.979 15.3276 23 15.6613 23 16C23 20.4183 19.4183 24 15 24C12.6106 24 10.4659 22.9525 9 21.2916M9 21.2916V21H12M9 21.2916V24"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg> Clear
+            </p>
+          </div>
+        </div>
+      </div>
+    </form>
+      <!-- experience details card-->
+      <div class="w-full grid grid-cols-1 space-y-3">
+        <div class="col-span-1" *ngFor="let data of empExperienceData;let i = index">
+          <div class="border border-[#d9d9d9] rounded-lg" >
+            <div class="flex items-center justify-between pt-3">
+              <p
+                class="px-3 py-1 bg-[#F9E7FF] text-444 font-normal text-sm lg:text-base rounded-r-md capitalize"
+              >
+                <span class="me-1 font-semibold">{{data.company_name}}</span>|<span
+                  class="ms-1"
+                  >Designation :</span
+                ><span class="ms-1">{{data.designation}}</span>
+              </p>
+              <div class="flex items-center gap-3 pr-3">
+                <button class="cursor-pointer">
+                  <svg (click)="patchExperienceData(i)"
+                    class="size-5 lg:size-6"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15.552 4.332L19.5109 8.29075M3.2815 16.452L2.75 21.25L7.54788 20.7185L21.25 7.00912V5.39287L18.6071 2.75H16.9909L3.2815 16.452Z"
+                      stroke="#C19725"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M14.7166 9.23962L8.10638 15.8499"
+                      stroke="#C19725"
+                      stroke-miterlimit="5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+                <button class="cursor-pointer">
+                  <svg (click)="deleteUserExperience(i)"
+                    class="size-5 lg:size-6"
+                    viewBox="0 0 24 25"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M10 12.5V17.5"
+                      stroke="#BB0000"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M14 12.5V17.5"
+                      stroke="#BB0000"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M4 7.5H20"
+                      stroke="#BB0000"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M6 10.5V18.5C6 20.1569 7.34315 21.5 9 21.5H15C16.6569 21.5 18 20.1569 18 18.5V10.5"
+                      stroke="#BB0000"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M9 5.5C9 4.39543 9.89543 3.5 11 3.5H13C14.1046 3.5 15 4.39543 15 5.5V7.5H9V5.5Z"
+                      stroke="#BB0000"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="w-full p-3 space-y-1">
+              <div
+                class="flex flex-wrap items-start gap-x-2 gap-y-0.5 sm:gap-x-3 md:gap-x-2 xl:gap-x-5"
+              >
+                <p
+                  class="text-444 font-normal text-xs lg:text-sm xl:text-base capitalize"
+                >
+                  <span class="font-semibold">Date of joining :</span
+                  ><span class="ms-1">{{data.date_of_joining}}</span>
+                </p>
+                <p
+                  class="text-444 font-normal text-xs lg:text-sm xl:text-base capitalize"
+                >
+                  <span class="font-semibold">Date of leaving :</span
+                  ><span class="ms-1">{{data.date_of_leaving}}</span>
+                </p>
+                <p
+                  class="text-444 font-normal text-xs lg:text-sm xl:text-base BNY Mellon"
+                >
+                  <span class="font-semibold">Total Exp :</span
+                  ><span class="ms-1">{{data.user_total_experience}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- buttons -->
+  <div
+    class="flex items-center justify-center mt-4 md:mt-8 space-x-1.5 md:space-x-4"
+  >
+    <button
+      type="submit"
+      class="size-6 md:size-9 block cursor-pointer capitalize p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6"
+    >
+      <svg
+        class="size-3 xl:size-4 mx-auto"
+        viewBox="0 0 12 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10.1123 20L0.112305 10L10.1123 0L11.8873 1.775L3.6623 10L11.8873 18.225L10.1123 20Z"
+          fill="#C19725"
+        />
+      </svg>
+    </button>
+
+    <button
+      type="button"
+      class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6"
+    >
+      Clear
+    </button>
+
+    <button
+      type="button"
+      (click)="onSubmit()"
+      class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6"
+    >
+      Submit
+    </button>
+
+    <button
+      type="button"
+      class="size-6 md:size-9 block cursor-pointer capitalize p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6"
+    >
+      <svg
+        class="size-3 xl:size-4 mx-auto"
+        viewBox="0 0 12 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1.8877 20L11.8877 10L1.8877 0L0.112695 1.775L8.3377 10L0.112695 18.225L1.8877 20Z"
+          fill="#C19725"
+        />
+      </svg>
+    </button>
+  </div>
+</form>

@@ -1,0 +1,81 @@
+<div class="w-full py-3 px-4">
+    <!-- create user Title Section -->
+    <div class="xl:flex items-center justify-between mb-4">
+        <div class="flex items-center justify-start gap-1 lg:gap-2 mb-3 lg:mb-0">
+            <svg class="size-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <mask id="mask0_848_1764" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
+                    height="24">
+                    <rect width="24" height="24" fill="#C19725" />
+                </mask>
+                <g mask="url(#mask0_848_1764)">
+                    <path d="M16 22L6 12L16 2L17.775 3.775L9.55 12L17.775 20.225L16 22Z" fill="#C19725" />
+                </g>
+            </svg>
+            <img class="size-6 sm:size-8 lg:size-10" src="/assets/images/user/create-user.png" alt="user">
+            <span class="font-semibold text-sm sm:text-base lg:text-xl text-444">{{ listTitle }}</span>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-end gap-2 sm:gap-2.5 lg:gap-3">
+            <div class="relative w-[150px] xl:w-[180px] 2xl:w-[220px] order-first">
+                <input type="text" placeholder="Search"
+                    class="w-full h-[34px] md:h-[36px] lg:h-[40px] border bg-white border-[#D9D9D9] text-444 placeholder:text-[#898989] rounded-[5px] pl-1.5 pr-7 py-1 lg:pl-2 lg:py-2 text-sm sm:text-sm focus:outline-none focus:ring-0 focus:border-[#C19725]" />
+                <span class="cursor-pointer absolute right-2 top-2.5 md:top-3 lg:top-[14px]">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12.7 13.75L7.975 9.025C7.6 9.325 7.16875 9.5625 6.68125 9.7375C6.19375 9.9125 5.675 10 5.125 10C3.7625 10 2.60938 9.52812 1.66563 8.58438C0.721875 7.64062 0.25 6.4875 0.25 5.125C0.25 3.7625 0.721875 2.60938 1.66563 1.66563C2.60938 0.721875 3.7625 0.25 5.125 0.25C6.4875 0.25 7.64062 0.721875 8.58438 1.66563C9.52812 2.60938 10 3.7625 10 5.125C10 5.675 9.9125 6.19375 9.7375 6.68125C9.5625 7.16875 9.325 7.6 9.025 7.975L13.75 12.7L12.7 13.75ZM5.125 8.5C6.0625 8.5 6.85938 8.17188 7.51562 7.51562C8.17188 6.85938 8.5 6.0625 8.5 5.125C8.5 4.1875 8.17188 3.39062 7.51562 2.73438C6.85938 2.07812 6.0625 1.75 5.125 1.75C4.1875 1.75 3.39062 2.07812 2.73438 2.73438C2.07812 3.39062 1.75 4.1875 1.75 5.125C1.75 6.0625 2.07812 6.85938 2.73438 7.51562C3.39062 8.17188 4.1875 8.5 5.125 8.5Z"
+                            fill="#C19725" />
+                    </svg>
+                </span>
+            </div>
+
+            <!-- list tabs -->
+            <div
+                class="overflow-x-auto overflow-y-hidden whitespace-nowrap scrollbar-hide md:overflow-x-hidden order-last lg:order-none">
+                <div class="min-w-max flex justify-end items-center gap-4">
+                    <div class="w-[460px] lg:w-[600px] flex justify-start items-center">
+                        <a routerLink="/user-list/customer-list"
+                            routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            class="flex-1 px-4 py-2 rounded-tl-[5px] rounded-bl-[5px] border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+                            Customer List
+                        </a>
+
+                        <a routerLink="/user-list/staff-list"
+                            routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+                            class="flex-1 px-4 py-2 border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+                            Staff List
+                        </a>
+
+                        <a routerLink="/user-list/supplier-list"
+                            routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+                            class="flex-1 px-4 py-2 border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+                            Supplier List
+                        </a>
+
+                        <a routerLink="/user-list/investor-list"
+                            routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+                            class="flex-1 px-4 py-2 rounded-tr-[5px] rounded-br-[5px] border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+                            Investor List
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" [routerLink]="addUserLink"
+                class="block ml-auto sm:ml-0 cursor-pointer bg-[#FFF3D4] text-xs sm:text-sm lg:text-base text-c19725 font-bold border border-c19725 px-1.5 py-1 lg:py-2 h-[32px] lg:h-[40px] rounded-sm lg:order-last">
+                <svg class="size-5 inline-flex" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path d="M6 12H18M12 6V18" stroke="#C19725" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                        </path>
+                    </g>
+                </svg>
+                {{ addUserText }}
+            </button>
+
+        </div>
+    </div>
+    <router-outlet />
+</div>

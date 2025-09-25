@@ -1,0 +1,58 @@
+<div class="max-w-md mx-auto mt-10 bg-black shadow-xl rounded-xl p-6 border border-gray-700">
+  <!-- Title -->
+  <h2 class="text-2xl font-semibold text-yellow-400 pb-4 border-b border-gray-700">
+    ✨ Create City
+  </h2>
+
+  <form [formGroup]="createCityForm" (ngSubmit)="onSubmit()" class="mt-4">
+    <!-- City Name -->
+    <div class="mb-5">
+      <label for="name" class="block text-sm font-medium text-yellow-300">City Name</label>
+      <input
+        type="text"
+        formControlName="name"
+        id="name"
+        placeholder="Enter City Name"
+        class="block w-full rounded-lg bg-gray-900 border border-gray-700 px-4 py-2 text-yellow-300 placeholder-gray-500 focus:ring-yellow-500 focus:border-yellow-500 shadow-md"
+        required
+      />
+    </div>
+
+    <!-- State Selection -->
+    <div class="mb-5">
+      <label for="state_id" class="block text-sm font-medium text-yellow-300">State</label>
+      <select
+        formControlName="state_id"
+        id="state_id"
+        class="block w-full rounded-lg bg-gray-900 border border-gray-700 px-4 py-2 text-yellow-300 placeholder-gray-500 focus:ring-yellow-500 focus:border-yellow-500 shadow-md"
+        required
+      >
+        <option value="" class="text-gray-500">Select State</option>
+        <option *ngFor="let state of states" [value]="state.id" class="text-yellow-300">
+          {{ state.name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Country ID -->
+    <div class="mb-5">
+      <label for="country_id" class="block text-sm font-medium text-yellow-300">Country ID</label>
+      <input
+        type="text"
+        formControlName="country_id"
+        id="country_id"
+        placeholder="Enter Country ID"
+        class="block w-full rounded-lg bg-gray-900 border border-gray-700 px-4 py-2 text-yellow-300 placeholder-gray-500 focus:ring-yellow-500 focus:border-yellow-500 shadow-md"
+        required
+      />
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      type="submit"
+      class="w-full py-2 bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-600 hover:to-yellow-800 text-white font-bold rounded-full shadow-lg transform hover:scale-105 transition-all duration-300"
+    >
+      ✅ Create City
+    </button>
+  </form>
+</div>

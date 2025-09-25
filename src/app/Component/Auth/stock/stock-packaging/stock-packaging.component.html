@@ -1,0 +1,647 @@
+<form [formGroup]="packagingForm" (submit)="onSubmit()"(keydown.control.enter)="onCtrlEnter()">
+  <div
+    class="w-full bg-[#FFF9F9] border border-t-0 border-[#FFE5E5] rounded-b-sm py-6 px-3"
+  >
+    <div
+      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-15 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5"
+    >
+
+        <div
+        class="col-span-2 sm:col-span-1 md:col-span-1 lg:col-span-2 2xl:col-span-2"
+      >
+      <div class="relative">
+        <input
+          type="text"
+          id="code"
+          formControlName="product_code"
+          (input)="onCodeInputChange($event)"
+          (focus)="onFocusCode()"
+          (blur)="onBlurCode()"
+          (keydown)="onCodeKeyDown($event)"
+          (keydown.enter)="focusNext($event)"
+          #code
+          class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+          placeholder=" "
+          autocomplete="off"
+        />
+
+        <ul
+          *ngIf="showCodeDropdown && filteredProductCodes.length > 0"
+          class="absolute z-10 bg-white w-full max-h-60 overflow-y-auto shadow-md rounded-md mt-1"
+        >
+          <li
+            *ngFor="let code of filteredProductCodes; let i = index"
+            (mousedown)="selectProductCode(code)"
+            class="code-list-item px-2 py-0.5 text-sm text-[#444] font-normal hover:bg-gray-100 cursor-pointer"
+            [class.bg-gray-200]="i === activeCodeIndex"
+          >
+            {{ code }}
+          </li>
+        </ul>
+
+
+        <label
+          for="code"
+          class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+          >Product Code</label
+        >
+      </div>
+    </div>
+
+      <div class="col-span-2 sm:col-span-1 lg:col-span-3 2xl:col-span-2">
+        <app-custom-select
+        *ngIf="showMetalTypeSelectTag"
+        [options]="materialTypes"
+        #materialCategories
+        (keydown.enter)="focusNext($event)"
+        formControlName="material_categories"
+        label="Material Categories"
+        selectId="materialTypes"
+        [highlightAddCategory]="true"
+        (change)="onMaterialCategoryChange($event)"
+      >
+      </app-custom-select>
+
+        <div class="relative" *ngIf="showMetalTypeInputTag">
+          <input
+            type="text"
+            id="material_categories"
+            #materialCategories
+            (keydown.enter)="focusNext($event)"
+            formControlName="material_categories"
+            class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            placeholder=" " autocomplete="off"
+          />
+          <label
+            for="material_categories"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+            >Add Category</label
+          >
+          <!-- Button inside input for refresh field -->
+
+          <svg
+            (click)="resetCategoryField()"
+            class="absolute top-1/2 right-2 -translate-y-1/2 cursor-pointer size-3.5"
+            width="15"
+            height="15"
+            viewBox="0 0 15 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1.05029 8.3125C1.0171 8.04632 1 7.77519 1 7.5C1 3.91015 3.91015 1 7.5 1C9.53174 1 11.3457 1.93216 12.5377 3.39213M12.5377 3.39213V1M12.5377 3.39213V3.43744L10.1002 3.4375M13.9497 6.6875C13.9829 6.95368 14 7.22481 14 7.5C14 11.0899 11.0899 14 7.5 14C5.55862 14 3.81604 13.1489 2.625 11.7994M2.625 11.7994V11.5625H5.0625M2.625 11.7994V14"
+              stroke="#C19725"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+
+          <label
+            for="material_categories"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+          >
+            Add Category
+          </label>
+        </div>
+      </div>
+
+      <div class="col-span-1 lg:col-span-2">
+        <app-custom-select
+          *ngIf="showMaterialNameSelectTag"
+          #materialName1
+          formControlName="material_name"
+          label="Material Name"
+          (keydown.enter)="focusNext($event)"
+          [options]="materialName"
+          selectId="materialName"
+
+        >
+        </app-custom-select>
+
+        <div class="relative" *ngIf="showMaterialNameSelectInputTag">
+          <input
+            type="text"
+            id="material_name"
+            #materialName1
+            (keydown.enter)="focusNext($event)"
+            formControlName="material_name"
+            class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            placeholder=" " autocomplete="off"
+          />
+          <label
+            for="material_name"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+            >Add Material Name</label
+          >
+          <!-- Button inside input for refresh field -->
+
+          <svg
+            (click)="resetMaterialNameField()"
+            class="absolute top-1/2 right-2 -translate-y-1/2 cursor-pointer size-3.5"
+            width="15"
+            height="15"
+            viewBox="0 0 15 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1.05029 8.3125C1.0171 8.04632 1 7.77519 1 7.5C1 3.91015 3.91015 1 7.5 1C9.53174 1 11.3457 1.93216 12.5377 3.39213M12.5377 3.39213V1M12.5377 3.39213V3.43744L10.1002 3.4375M13.9497 6.6875C13.9829 6.95368 14 7.22481 14 7.5C14 11.0899 11.0899 14 7.5 14C5.55862 14 3.81604 13.1489 2.625 11.7994M2.625 11.7994V11.5625H5.0625M2.625 11.7994V14"
+              stroke="#C19725"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+
+          <label
+            for="material_name"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+          >
+            Add Material Name
+          </label>
+        </div>
+
+      </div>
+
+      <div class="col-span-1 lg:col-span-1">
+        <app-custom-select
+          formControlName="size"
+          #size
+          *ngIf="showSizeSelectTag"
+          label="Size"
+          (keydown.enter)="focusNext($event)"
+          [options]="materialSize"
+          selectId="categoryTypes"
+
+        >
+        </app-custom-select>
+
+        <div class="relative" *ngIf="showSizeInputTag">
+          <input
+            type="text"
+            id="size"
+            #size
+            (keydown.enter)="focusNext($event)"
+            formControlName="size"
+            class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            placeholder=" " autocomplete="off"
+          />
+          <label
+            for="size"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+            >Add Size</label
+          >
+          <!-- Button inside input for refresh field -->
+
+          <svg
+            (click)="resetSizeField()"
+            class="absolute top-1/2 right-2 -translate-y-1/2 cursor-pointer size-3.5"
+            width="15"
+            height="15"
+            viewBox="0 0 15 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1.05029 8.3125C1.0171 8.04632 1 7.77519 1 7.5C1 3.91015 3.91015 1 7.5 1C9.53174 1 11.3457 1.93216 12.5377 3.39213M12.5377 3.39213V1M12.5377 3.39213V3.43744L10.1002 3.4375M13.9497 6.6875C13.9829 6.95368 14 7.22481 14 7.5C14 11.0899 11.0899 14 7.5 14C5.55862 14 3.81604 13.1489 2.625 11.7994M2.625 11.7994V11.5625H5.0625M2.625 11.7994V14"
+              stroke="#C19725"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+
+          <label
+            for="size"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+          >
+            Add Size
+          </label>
+        </div>
+
+        <!-- <div class="col-span-2 sm:col-span-1 lg:col-span-2">
+          <div class="relative">
+            <input
+              type="text"
+              id="supplier_code"
+              #supplierCode
+              (keydown.enter)="focusNext($event)"
+              formControlName="supplier_code"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="supplier_code"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Supplier Code</label
+            >
+          </div>
+        </div> -->
+
+      </div>
+
+      <div class="col-span-1 lg:col-span-1">
+        <div class="relative">
+          <input
+            type="number"
+            id="quantity"
+            #quantity
+            (keydown.enter)="focusNext($event)"
+            formControlName="quantity"
+            class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            placeholder=" " autocomplete="off"
+          />
+          <label
+            for="quantity"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+            >Qty</label
+          >
+        </div>
+      </div>
+
+      <div class="col-span-1 lg:col-span-2">
+        <div class="relative">
+          <input
+            type="number"
+            id="per_piece"
+            #perPiece
+            (keydown.enter)="focusNext($event)"
+            formControlName="per_piece"
+            class="no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            placeholder=" " autocomplete="off"
+          />
+          <label
+            for="per_piece"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+            >Per Piece Price</label
+          >
+        </div>
+      </div>
+
+      <div class="col-span-1 lg:col-span-2 2xl:col-span-1" *ngIf="showQuantityListFieldForDevide">
+        <div class="relative">
+          <select
+            id="add_name"
+            (keydown.enter)="focusNext($event)"
+            formControlName="add_name"
+            class="block px-2 py-2 pr-8 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc
+                   appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none
+                   focus:ring-0 focus:border-c19725 peer"
+            autocomplete="off"
+          >
+            <option value="" disabled hidden selected>Select</option>
+            <option *ngFor="let item of packagingDataListQty" [value]="item.quantity">
+              {{ item.quantity }} | <span style="color: #C19725;">{{ item.artical_name }}</span>
+            </option>
+          </select>
+
+          <div class="pointer-events-none absolute inset-y-0 right-2 flex items-center text-gray-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-1 lg:col-span-2 2xl:col-span-1">
+        <div class="relative">
+          <input
+            type="number"
+            id="total_price"
+            #totalPrice
+            (keydown.enter)="focusNext($event)"
+            formControlName="total_price"
+            readonly
+            class="no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            placeholder=" " autocomplete="off"
+          />
+          <label
+            for="total_price"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+            >Total Price</label
+          >
+        </div>
+      </div>
+
+      <div class="col-span-1 md:col-span-1 lg:col-span-3 2xl:col-span-2">
+        <div
+            class="flex items-center justify-start px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-transparent">
+            <input type="checkbox" formControlName="include_in_total_price" (keydown.enter)="focusNext($event)"autocomplete="off"
+                class="cursor-pointer w-[18px] h-[18px] me-1 text-c19725 border-2 border-c19725 rounded focus:ring-1 focus:ring-[#757575]" />
+            <span>Include in total price</span>
+        </div>
+      </div>
+
+      <div class="col-span-2 lg:col-span-4 md:col-span-1 xl:col-span-3 2xl:col-span-2">
+        <div class="flex items-center justify-end gap-3">
+          <p *ngIf="addButton" class="flex items-center gap-1 text-sm lg:text-lg text-[#0BB60B] font-medium">
+            <svg
+            (click)="addDetail()"
+            class="cursor-pointer size-6 lg:size-10"
+            fill="#0BB60B"
+            viewBox="0 0 56.00 56.00"
+            xmlns="http://www.w3.org/2000/svg"
+            stroke="#0BB60B"
+          >
+            <g
+              id="SVGRepo_bgCarrier"
+              stroke-width="0"
+              transform="translate(9.52,9.52), scale(0.66)"
+            >
+              <rect
+                x="0"
+                y="0"
+                width="56.00"
+                height="56.00"
+                rx="0"
+                fill="#ffffff"
+                strokewidth="0"
+              ></rect>
+            </g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M 13.7851 49.5742 L 42.2382 49.5742 C 47.1366 49.5742 49.5743 47.1367 49.5743 42.3086 L 49.5743 13.6914 C 49.5743 8.8633 47.1366 6.4258 42.2382 6.4258 L 13.7851 6.4258 C 8.9101 6.4258 6.4257 8.8398 6.4257 13.6914 L 6.4257 42.3086 C 6.4257 47.1602 8.9101 49.5742 13.7851 49.5742 Z M 27.9882 39.6367 C 26.6523 39.6367 25.9492 38.6758 25.9492 37.3164 L 25.9492 30.0274 L 18.2617 30.0274 C 16.8788 30.0274 15.9179 29.3008 15.9179 28.0118 C 15.9179 26.6758 16.8320 25.9258 18.2617 25.9258 L 25.9492 25.9258 L 25.9492 18.1680 C 25.9492 16.8086 26.6523 15.8477 27.9882 15.8477 C 29.2773 15.8477 30.0742 16.7617 30.0742 18.1680 L 30.0742 25.9258 L 37.7851 25.9258 C 39.2148 25.9258 40.1054 26.6758 40.1054 28.0118 C 40.1054 29.3008 39.1679 30.0274 37.7851 30.0274 L 30.0742 30.0274 L 30.0742 37.3164 C 30.0742 38.7227 29.2773 39.6367 27.9882 39.6367 Z"
+              ></path>
+            </g>
+          </svg> Add
+          </p>
+          <p *ngIf="editButton" class="flex items-center gap-1 text-sm lg:text-lg text-[#649dcd] font-medium">
+          <svg
+            (click)="editDetail()"
+
+            class="cursor-pointer size-5 lg:size-8"
+            viewBox="0 0 30 30"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="30" height="30" rx="5" fill="#649dcd" />
+            <mask
+              id="mask0_1227_7952"
+              style="mask-type: alpha"
+              maskUnits="userSpaceOnUse"
+              x="3"
+              y="3"
+              width="24"
+              height="24"
+            >
+              <rect x="3" y="3" width="24" height="24" fill="#D9D9D9" />
+            </mask>
+            <g mask="url(#mask0_1227_7952)">
+              <path
+                d="M11.6 25.5L9.7 22.3L6.1 21.5L6.45 17.8L4 15L6.45 12.2L6.1 8.5L9.7 7.7L11.6 4.5L15 5.95L18.4 4.5L20.3 7.7L23.9 8.5L23.55 12.2L26 15L23.55 17.8L23.9 21.5L20.3 22.3L18.4 25.5L15 24.05L11.6 25.5ZM12.45 22.95L15 21.85L17.6 22.95L19 20.55L21.75 19.9L21.5 17.1L23.35 15L21.5 12.85L21.75 10.05L19 9.45L17.55 7.05L15 8.15L12.4 7.05L11 9.45L8.25 10.05L8.5 12.85L6.65 15L8.5 17.1L8.25 19.95L11 20.55L12.45 22.95ZM13.95 18.55L19.6 12.9L18.2 11.45L13.95 15.7L11.8 13.6L10.4 15L13.95 18.55Z"
+                fill="white"
+              />
+            </g>
+          </svg> Edit
+          </p>
+
+          <p class="flex items-center gap-1 text-sm lg:text-lg text-[#BB0000] font-medium">
+          <svg
+            (click)="clearForm()"
+            class="cursor-pointer size-5 lg:size-8"
+            viewBox="0 0 30 31"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect y="0.5" width="30" height="30" rx="5" fill="#BB0000" />
+            <path
+              d="M7.06189 17C7.02104 16.6724 7 16.3387 7 16C7 11.5817 10.5817 8 15 8C17.5006 8 19.7332 9.14727 21.2002 10.9442M21.2002 10.9442V8M21.2002 10.9442V10.9999L18.2002 11M22.9381 15C22.979 15.3276 23 15.6613 23 16C23 20.4183 19.4183 24 15 24C12.6106 24 10.4659 22.9525 9 21.2916M9 21.2916V21H12M9 21.2916V24"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg> Clear
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- feature list desktop layout -->
+ <div class="overflow-x-auto whitespace-nowrap hide-scrollbar">
+<table
+  class="w-full table border border-b-0 border-[#D9D9D9] border-separate border-spacing-0 bg-white overflow-hidden mt-10"
+>
+  <thead class="bg-[#F2F2F2] text-444 text-xs sm:text-sm lg:text-base">
+    <tr>
+      <th
+        class="p-3 font-medium text-center border-r border-444 last:border-r-0"
+      >
+        No.
+      </th>
+      <th class="p-3 font-medium text-left border-r border-444 last:border-r-0">
+        Product Code
+      </th>
+      <th class="p-3 font-medium text-left border-r border-444 last:border-r-0">
+        Material Categories
+      </th>
+      <th class="p-3 font-medium text-left border-r border-444 last:border-r-0">
+        Material Name
+      </th>
+      <th class="p-3 font-medium text-left border-r border-444 last:border-r-0">
+        Size
+      </th>
+      <th class="p-3 font-medium text-left border-r border-444 last:border-r-0">
+        Quantity
+      </th>
+      <th class="p-3 font-medium text-left border-r border-444 last:border-r-0">
+        Per Piece Price
+      </th>
+      <th class="p-3 font-medium text-left border-r border-444 last:border-r-0">
+        Total Price
+      </th>
+      <th class="p-3 font-medium text-center border-r border-444 last:border-r-0">
+        Added in total
+      </th>
+      <th
+        class="p-3 font-medium text-center border-r border-444 last:border-r-0"
+      >
+        Action
+      </th>
+    </tr>
+  </thead>
+  <tbody class="text-xs sm:text-sm lg:text-base">
+    <tr
+      class="text-444"
+      *ngFor="let packaging of packagingDetail; let i = index"
+    >
+      <td class="p-3 border-r border-b border-[#D9D9D9] text-center">
+        {{ i + 1 }}
+      </td>
+      <td class="p-3 border-r border-b border-[#D9D9D9]">
+        {{ packaging.product_code }}
+      </td>
+      <td class="p-3 border-r border-b border-[#D9D9D9]">
+        {{ packaging.material_categories }}
+      </td>
+      <td class="p-3 border-r border-b border-[#D9D9D9]">
+        {{ packaging.material_name }}
+      </td>
+      <td class="p-3 border-r border-b border-[#D9D9D9]">
+        {{ packaging.size || '-' }}
+      </td>
+      <td class="p-3 border-r border-b border-[#D9D9D9]">
+        {{ packaging.quantity }}
+      </td>
+      <td class="p-3 border-r border-b border-[#D9D9D9]">
+        {{ packaging.per_piece }}
+      </td>
+      <td class="p-3 border-r border-b border-[#D9D9D9]">
+        {{ packaging.total_price }}
+      </td>
+      <td class="p-3 border-r border-b border-[#D9D9D9]">
+        {{ packaging.include_in_total_price === false ? 'No' : 'Yes' }}
+      </td>
+      <td class="p-3 border-r border-b border-[#D9D9D9] text-center">
+        <div class="flex items-center justify-center gap-2 xl:gap-4">
+          <button class="cursor-pointer" (click)="patchData(packaging.id)">
+            <svg
+              class="size-5 lg:size-6"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15.552 4.332L19.5109 8.29075M3.2815 16.452L2.75 21.25L7.54788 20.7185L21.25 7.00912V5.39287L18.6071 2.75H16.9909L3.2815 16.452Z"
+                stroke="#C19725"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M14.7166 9.23962L8.10638 15.8499"
+                stroke="#C19725"
+                stroke-miterlimit="5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <button class="cursor-pointer" (click)="deleteItem(packaging.id)">
+            <svg
+              class="size-5 lg:size-6"
+              viewBox="0 0 24 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 12.5V17.5"
+                stroke="#BB0000"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M14 12.5V17.5"
+                stroke="#BB0000"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M4 7.5H20"
+                stroke="#BB0000"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M6 10.5V18.5C6 20.1569 7.34315 21.5 9 21.5H15C16.6569 21.5 18 20.1569 18 18.5V10.5"
+                stroke="#BB0000"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M9 5.5C9 4.39543 9.89543 3.5 11 3.5H13C14.1046 3.5 15 4.39543 15 5.5V7.5H9V5.5Z"
+                stroke="#BB0000"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<!-- buttons -->
+<div
+  class="flex items-center justify-center mt-4 md:mt-10 space-x-1.5 md:space-x-4"
+>
+  <button (click)="goToAssemblyStoneTab()"
+    type="submit"
+    class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6"
+  >
+    Back
+  </button>
+
+  <button (click)="goToFeatureTab()"
+    type="submit"
+    class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6"
+  >
+    Next
+  </button>
+</div>
+<div class="overflow-x-auto whitespace-nowrap hide-scrollbar">
+<table
+  class="w-full table border border-b-0 border-[#D9D9D9] border-separate border-spacing-0 bg-white overflow-hidden mt-10">
+  <tbody *ngIf="newlyCreatedProduct">
+    <tr>
+      <td colspan="5" class="p-4">
+        <div class="bg-white rounded-xl p-4 border border-gray-200">
+          <h2 class="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
+            <svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" stroke-width="1.5"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M11.25 3.375L2.25 9.75l9 6.375 9-6.375-9-6.375zM2.25 14.25l9 6.375 9-6.375" />
+            </svg>
+            Product Details
+          </h2>
+          <div class="flex flex-wrap gap-x-16 gap-y-4 text-gray-700">
+            <div class="flex items-center space-x-2">
+              <span class="font-semibold text-gray-600">🔍 Model Number:</span>
+              <span class="text-gray-900">{{ newlyCreatedProduct.model_number }}</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="font-semibold text-gray-600">🏷️ Product Name:</span>
+              <span class="text-gray-900">{{ newlyCreatedProduct.product_name }}</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="font-semibold text-gray-600">📂 Type:</span>
+              <span class="text-gray-900">{{ newlyCreatedProduct.type }}</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="font-semibold text-gray-600">🔖 SKU:</span>
+              <span class="text-gray-900">{{ newlyCreatedProduct.unique_code_sku }}</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="font-semibold text-gray-600">🧾 HSN Code:</span>
+              <span class="text-gray-900">{{ newlyCreatedProduct.hsn_code }}</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="font-semibold text-gray-600">🏷️ Brand:</span>
+              <span class="text-gray-900">{{ newlyCreatedProduct.brand_name }}</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="font-semibold text-gray-600">👥 Group:</span>
+              <span class="text-gray-900">{{ newlyCreatedProduct.group }}</span>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>

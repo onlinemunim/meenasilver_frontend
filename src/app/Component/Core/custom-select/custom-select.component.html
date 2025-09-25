@@ -1,0 +1,73 @@
+<div class="relative">
+  <!-- If searchable, show input with filtered options -->
+  <ng-container *ngIf="searchable; else regularSelect">
+    <input
+      type="text"
+      [id]="selectId"
+      [readonly]="readonly"
+      [(ngModel)]="searchQuery"
+      (focus)="onFocusInput()"
+      (mousedown)="showDropdown = true"
+      (blur)="handleInputBlur($event)"
+      (keydown)="onKeydown($event)"
+      [disabled]="disabled"
+      autocomplete="off"
+      class="peer capitalize block pl-2 pr-5 py-2 w-full text-sm text-[#444] font-normal bg-white rounded-md border border-dcdcdc appearance-none !bg-none dark:bg-[#121212] dark:text-white dark:border-gray-600 dark:focus:border-c19725 focus:outline-none focus:ring-0 focus:border-[#c19725]"
+    />
+
+    <ul
+      *ngIf="showDropdown"
+      class="absolute z-10 w-full bg-white text-[#444] rounded shadow max-h-80 overflow-auto dark:bg-[#121212] dark:text-[#fafafa]"
+    >
+    <li
+      *ngFor="let option of filteredOptions; let i = index"
+      #dropdownOption
+      (mousedown)="handleSelect(option)"
+      class="px-4 py-2 text-sm text-[#444] capitalize hover:bg-gray-100 cursor-pointer dark:text-[#fafafa] dark:hover:bg-stone-700"
+      [ngClass]="{
+        'add-category-option': isAddOtherOption(option),
+        'bg-yellow-100': i === highlightedIndex
+      }"
+    >
+      {{ option }}
+    </li>
+  </ul>
+
+  </ng-container>
+
+  <!-- Regular dropdown version -->
+  <ng-template #regularSelect>
+    <select
+      [id]="selectId"
+      [value]="selected"
+      [disabled]="disabled"
+      (change)="handleChange($event)"
+      class="peer capitalize block pl-2 pr-5 py-2 w-full text-sm text-[#444] font-normal bg-white rounded-md border border-dcdcdc appearance-none !bg-none dark:text-white dark:border-[#6D7279] dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-[#c19725]">
+      <option value="" disabled hidden></option>
+      <option
+        *ngFor="let opt of options"
+        [value]="opt"
+        [ngClass]="{ 'add-category-option': isAddOtherOption(opt) }">
+        {{ opt }}
+      </option>
+    </select>
+  </ng-template>
+
+  <!-- Down arrow icon -->
+  <div class="absolute inset-y-0 right-2 flex items-center pointer-events-none">
+    <svg width="11" height="6" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z" fill="#C19725" />
+    </svg>
+  </div>
+
+  <!-- Floating label -->
+  <label
+    [for]="selectId"
+    class="capitalize absolute text-sm text-[#898989] dark:text-gray-400 bg-white dark:bg-[#121212] px-1.5 duration-300 transform origin-[0] start-1 pointer-events-none transition-all"
+    [ngClass]="{
+      'top-2 scale-75 -translate-y-4 text-[#c19725]': selected || searchQuery,
+      'top-1/2 -translate-y-1/2 scale-100': !selected && !searchQuery
+    }">
+    {{ label }}
+  </label>
+</div>

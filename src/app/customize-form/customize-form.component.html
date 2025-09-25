@@ -1,0 +1,88 @@
+<div class="w-full py-3 px-4">
+  <form #customizeForm="ngForm">
+    <!-- Section for General Form Fields -->
+    <div class="w-full p-4 mb-4 bg-white rounded-md shadow border border-gray-200">
+      <div class="flex justify-center mb-6">
+        <h2 class="text-xl font-semibold text-[#c19725] relative inline-block text-center drop-shadow-sm before:content-[''] before:absolute before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:w-16 before:h-0.5 before:rounded-full before:bg-gradient-to-r before:from-yellow-400 before:to-[#c19725]">
+          Customize General Form Fields
+        </h2>
+      </div>
+
+      <!-- Checkbox Grid for General Fields -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+        <ng-container *ngFor="let field of fields">
+            <div>
+              <label
+                class="flex items-center space-x-3 p-3 bg-gray-50 rounded-[5px] border border-gray-200 hover:bg-gray-100 transition duration-200 cursor-pointer"
+                [class.opacity-60]="field.required" [class.cursor-not-allowed]="field.required">
+                <input type="checkbox"
+                  [(ngModel)]="tempSelectedFields[field.key]"
+                  name="{{ field.key }}"
+                  id="{{ field.key }}"
+                  class="form-checkbox h-4 w-4 accent-[#c19725]"
+                  [disabled]="field.required" />
+                <span class="text-gray-700 text-sm font-medium">{{ field.label }}<span *ngIf="field.required" class="text-red-500 ml-1">*</span></span>
+              </label>
+            </div>
+        </ng-container>
+      </div>
+
+      <!-- Select/Unselect Buttons for General Fields -->
+      <div class="max-w-2xl mx-auto flex justify-center gap-4 mb-6 mt-6">
+        <button type="button" class="px-4 py-1.5 bg-green-600 text-white text-sm font-medium rounded-md shadow hover:bg-green-700 transition" (click)="selectAll()">
+          Select All
+        </button>
+        <button type="button" class="px-4 py-1.5 bg-red-600 text-white text-sm font-medium rounded-md shadow hover:bg-red-700 transition" (click)="unselectAll()">
+          Unselect All
+        </button>
+      </div>
+    </div>
+
+    <!-- Section for Price Details Fields -->
+    <div class="w-full p-4 mb-4 bg-white rounded-md shadow border border-gray-200">
+      <div class="flex justify-center mb-6 mt-6">
+        <h2 class="text-xl font-semibold text-[#c19725] relative inline-block text-center drop-shadow-sm before:content-[''] before:absolute before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:w-16 before:h-0.5 before:rounded-full before:bg-gradient-to-r before:from-yellow-400 before:to-[#c19725]">
+          Customize Price Details Form Fields
+        </h2>
+      </div>
+      <!-- Checkbox Grid for Price Fields -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+        <ng-container *ngFor="let field of priceFields">
+            <div>
+              <label
+                class="flex items-center space-x-3 p-3 bg-gray-50 rounded-[5px] border border-gray-200 hover:bg-gray-100 transition duration-200 cursor-pointer"
+                [class.opacity-60]="field.required" [class.cursor-not-allowed]="field.required">
+                <input type="checkbox"
+                  [(ngModel)]="tempSelectedPriceFields[field.key]"
+                  name="{{ field.key }}"
+                  id="{{ field.key }}"
+                  class="form-checkbox h-4 w-4 accent-[#c19725]"
+                  [disabled]="field.required" />
+                <span class="text-gray-700 text-sm font-medium">{{ field.label }}<span *ngIf="field.required" class="text-red-500 ml-1">*</span></span>
+              </label>
+            </div>
+        </ng-container>
+      </div>
+      <!-- Select/Unselect Buttons for Price Fields -->
+      <div class="max-w-2xl mx-auto flex justify-center gap-4 mb-6 mt-6">
+        <button type="button" class="px-4 py-1.5 bg-green-600 text-white text-sm font-medium rounded-md shadow hover:bg-green-700 transition" (click)="selectAllPriceFields()">
+          Select All
+        </button>
+        <button type="button" class="px-4 py-1.5 bg-red-600 text-white text-sm font-medium rounded-md shadow hover:bg-red-700 transition" (click)="unselectAllPriceFields()">
+          Unselect All
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Action Buttons: Back + Save Settings -->
+    <div class="mt-8 flex justify-center gap-4 mb-6">
+      <button type="button" class="block cursor-pointer capitalize w-[200px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center" (click)="goBack()">
+        Back
+      </button>
+
+      <button type="button" (click)="saveAllSettings()" class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">
+        Save
+      </button>
+    </div>
+  </form>
+</div>

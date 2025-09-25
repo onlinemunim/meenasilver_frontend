@@ -1,0 +1,478 @@
+<div class="w-full py-3 px-4">
+  <!-- create user Title Section -->
+  <div class="sm:flex items-center justify-between mb-4">
+      <div class="flex items-center justify-start gap-1 lg:gap-2 mb-3 lg:mb-0">
+          <svg class="size-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <mask id="mask0_848_1764" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
+                  height="24">
+                  <rect width="24" height="24" fill="#C19725" />
+              </mask>
+              <g mask="url(#mask0_848_1764)">
+                  <path d="M16 22L6 12L16 2L17.775 3.775L9.55 12L17.775 20.225L16 22Z" fill="#C19725" />
+              </g>
+          </svg>
+          <img class="size-6 sm:size-8 lg:size-10" src="/assets/images/user/create-user.png" alt="user">
+          <span class="font-semibold text-sm sm:text-base lg:text-xl text-444">Add / Select Customer</span>
+      </div>
+
+      <div
+          class="overflow-x-auto overflow-y-hidden whitespace-nowrap scrollbar-hide md:overflow-x-hidden order-last lg:order-none">
+          <div class="min-w-max flex justify-end items-center gap-4">
+          </div>
+      </div>
+  </div>
+</div>
+
+<form [formGroup]="sellCustomerForm">
+  <div class="w-full md:flex py-4 bg-[#FFFFF6] rounded-md">
+    <div class="w-full md:w-3/4 xl:w-6/7 mb-3 md:mb-0">
+      <div class="w-full px-3 grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-8 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5">
+
+        <div class="col-span-1">
+          <app-custom-select label="Customer Type" formControlName="user_customer_type" [options]="customerTypes" [(selected)]="selectedCustomer"
+              selectId="customerTypes" (keydown.enter)="focusNext($event)">
+          </app-custom-select>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="text" id="mobilenumber" formControlName="mobilenumber" (keydown.enter)="focusNext($event)"
+              autocomplete="off"
+              (input)="filterCustomersByMobile($event)"
+              class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc
+                     appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500
+                     focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="mobilenumber"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              Mobile Number
+            </label>
+          </div>
+        </div>
+
+
+        <!-- otp field -->
+        <div class="col-span-2 sm:col-span-2 xl:col-span-2">
+          <div class="flex items-center gap-2">
+
+            <!-- Send OTP Button -->
+            <button type="button" (keydown.enter)="focusNext($event)"
+              (click)="sendOtp()"
+              class="h-[38px] bg-c19725 hover:bg-[#a57f1d] text-white text-sm font-medium px-4 rounded-md shadow whitespace-nowrap">
+              Send OTP
+            </button>
+
+            <!-- OTP Input with Icon + Label -->
+            <div class="relative w-60">
+              <input type="text" id="otp" formControlName="otp" (keydown.enter)="focusNext($event)"
+                maxlength="6"
+                autocomplete="off"
+                class="block pl-10 px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc
+                      appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500
+                      focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+
+              <!-- Icon -->
+              <svg class="absolute left-2 top-1/2 -translate-y-1/2 size-5 text-gray-500 peer-focus:text-c19725"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 11c0-1.105-.895-2-2-2s-2 .895-2 2v2h4v-2zm6 2v-2a6 6 0 10-12 0v2a2 2 0 00-2 2v5a2 2 0 002 2h12a2 2 0 002-2v-5a2 2 0 00-2-2z" />
+              </svg>
+
+              <!-- Label -->
+              <label for="otp"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5
+                      peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500
+                      peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2
+                      peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4">
+                OTP
+              </label>
+            </div>
+
+            <!-- Verify OTP Button -->
+            <button type="button" (keydown.enter)="focusNext($event)"
+              (click)="verifyOtp()"
+              class="h-[38px] bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-4 rounded-md shadow whitespace-nowrap">
+              Verify OTP
+            </button>
+
+          </div>
+        </div>
+
+        <div class="col-span-1 relative">
+          <div class="relative">
+            <app-custom-select label="Mr." [options]="prodCategory" formControlName="user_title" (keydown.enter)="focusNext($event)"
+              [(selected)]="selectedProdCategory" selectId="prodCategory">
+            </app-custom-select>
+          </div>
+        </div>
+
+        <div class="col-span-2 grid grid-cols-2 gap-2">
+          <div class="col-span-1 relative">
+            <div class="relative">
+              <input type="text" id="name" formControlName="name" (keydown.enter)="focusNext($event)"
+                autocomplete="off"
+                (input)="filterCustomersByName($event)"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc
+                       appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500
+                       focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="name"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                First Name
+              </label>
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="text" id="user_last_name" formControlName="user_last_name" (keydown.enter)="focusNext($event)"
+                autocomplete="off"
+                class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="user_last_name"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Last Name</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="text" id="user_secondary_mobile_no" formControlName="user_secondary_mobile_no" (keydown.enter)="focusNext($event)"
+              autocomplete="off"
+              class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="user_secondary_mobile_no"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              Phone Number</label>
+          </div>
+        </div>
+
+
+        <!-- <div class="col-span-1 relative">
+          <div class="relative">
+            <input type="text" id="user_father_name
+            " formControlName="user_father_name
+            "
+              autocomplete="off"
+              (input)="filterCustomersByName($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc
+                     appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500
+                     focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="user_father_name
+            "
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              Father Name
+            </label>
+          </div>
+        </div> -->
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="text" id="user_middle_name" formControlName="user_middle_name" (keydown.enter)="focusNext($event)"
+              autocomplete="off"
+              class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="user_middle_name"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Father name</label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <select
+              formControlName="country_id" (keydown.enter)="focusNext($event)"
+              (change)="onCountryChange()"
+              class="block pl-2 pr-6 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            >
+              <option value="" disabled selected class="text-sm">
+                Select Country
+              </option>
+              <option
+                *ngFor="let country of countries"
+                [value]="country.id"
+              >
+                {{ country.name }}
+              </option>
+            </select>
+            <div
+              class="absolute inset-y-0 right-2 flex items-center pointer-events-none"
+            >
+              <svg
+                width="14"
+                height="7"
+                viewBox="0 0 14 7"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z"
+                  fill="#C19725"
+                />
+              </svg>
+            </div>
+            <label
+              for="country"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Country<span class="text-red-500"> *</span></label
+            >
+          </div>
+          <div
+            *ngIf="
+              sellCustomerForm.controls['country_id'].invalid &&
+              (sellCustomerForm.controls['country_id'].touched ||
+              sellCustomerForm.controls['country_id'].dirty)
+            "
+            class="text-red-500 text-xs mt-1"
+          >
+            <span
+              class="text-danger"
+              *ngIf="sellCustomerForm.controls['country_id'].errors?.['required']"
+              >*Country is required</span
+            >
+            <span
+              class="text-danger"
+              *ngIf="sellCustomerForm.controls['country_id'].errors?.['invalidCountry']"
+              >*Invalid country selected</span
+            >
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <select
+              formControlName="state_id" (keydown.enter)="focusNext($event)"
+              id="state"
+              (change)="onStateChange()"
+              class="block pl-2 pr-6 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            >
+              <option value="" disabled selected class="text-sm">
+                Select state
+              </option>
+              <option *ngFor="let state of states" [value]="state.id">
+                {{ state.name }}
+              </option>
+            </select>
+            <div
+              class="absolute inset-y-0 right-2 flex items-center pointer-events-none"
+            >
+              <svg
+                width="14"
+                height="7"
+                viewBox="0 0 14 7"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z"
+                  fill="#C19725"
+                />
+              </svg>
+            </div>
+            <label
+              for="state"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >State<span class="text-red-500"> *</span></label
+            >
+          </div>
+          <div
+          *ngIf="
+            sellCustomerForm.get('state_id')?.invalid &&
+            (sellCustomerForm.get('state_id')?.touched || sellCustomerForm.get('state_id')?.dirty)
+          "
+          class="text-red-500 text-xs mt-1"
+        >
+          <span *ngIf="sellCustomerForm.get('state_id')?.errors?.['required']">
+            *State is required
+          </span>
+        </div>
+        </div>
+
+        <!-- <div class="col-span-1 relative">
+          <div class="relative">
+            <input type="text" id="name" formControlName=""
+              autocomplete="off"
+              (input)="filterCustomersByName($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc
+                     appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500
+                     focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="name"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              City/Village
+            </label>
+          </div>
+        </div> -->
+
+        <div class="relative">
+          <select
+            formControlName="user_firm_id" (keydown.enter)="focusNext($event)"
+            name="firmType"
+            id="user_firm_id"
+            class="block pl-2 pr-6 py-2 w-full text-sm lg:text-sm text-444 capitalize font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+          >
+            <option value="" disabled selected>Select firm</option>
+            <option *ngFor="let firm of firmTypes" [value]="firm.id">
+              {{ firm.name }}
+            </option>
+          </select>
+
+          <div
+            class="absolute inset-y-0 right-2 flex items-center pointer-events-none"
+          >
+            <svg
+              width="14"
+              height="7"
+              viewBox="0 0 14 7"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z"
+                fill="#C19725"
+              />
+            </svg>
+          </div>
+          <label
+            for="user_firm_id"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+            >Firm Name</label
+          >
+        </div>
+
+
+        <div class="col-span-1 relative">
+          <div class="relative">
+            <input type="text" id="name" formControlName="address" (keydown.enter)="focusNext($event)"
+              autocomplete="off"
+              (input)="filterCustomersByName($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc
+                     appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500
+                     focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="address"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              Address
+            </label>
+          </div>
+        </div>
+
+        <div class="col-span-1 relative">
+          <div class="relative">
+            <input type="text" id="gstnumber" formControlName="gstnumber" (keydown.enter)="focusNext($event)"
+              autocomplete="off"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc
+                     appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500
+                     focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="gstnumber"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              GST number
+            </label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="text" id="user_pan_card_no" formControlName="user_pan_card_no" (keydown.enter)="focusNext($event)"
+              autocomplete="off"
+              class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="user_pan_card_no"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Pan No.</label>
+          </div>
+        </div>
+
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="text" id="user_aadhar_card_no" formControlName="user_aadhar_card_no" (keydown.enter)="focusNext($event)"
+              autocomplete="off"
+              class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "/>
+            <label for="user_aadhar_card_no"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Aadhar No.</label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="text" id="pincode" formControlName="pincode" (keydown.enter)="focusNext($event)"
+              autocomplete="off"
+              class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="pincode"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Pincode</label>
+          </div>
+        </div>
+
+        <!-- <div class="col-span-1">
+          <div class="relative">
+            <input type="text" id="user_customer_type" formControlName="user_customer_type" (keydown.enter)="focusNext($event)"
+              autocomplete="off"
+              class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="user_customer_type"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">User-Customer Type</label>
+          </div>
+        </div> -->
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="text" id="email" formControlName="email" (keydown.enter)="focusNext($event)"
+              autocomplete="off"
+              class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="email"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Email ID</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center justify-center mt-4 md:mt-8 space-x-1.5 md:space-x-4">
+    <button type="button" (click)="onSubmit()"
+      class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">
+      Sell
+    </button>
+  </div>
+</form>
+
+<div class="w-full py-3 px-4">
+  <p class="font-semibold text-sm sm:text-base lg:text-xl text-444 mb-4">Customer List</p>
+
+  <div class="overflow-x-auto whitespace-nowrap hide-scrollbar mt-4">
+    <table class="w-full table bg-white border border-[#D9D9D9] overflow-hidden">
+      <thead class="bg-[#F1F8FF] border border-[#0C447D] text-444 text-xs sm:text-xs">
+        <tr>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">No.</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">First name</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">Middle Name</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">Last Name</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Mobile Number</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Aadhar No.</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Pan No.</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Firm Name</th>
+        </tr>
+      </thead>
+      <tbody class="text-xs sm:text-xs" *ngIf="filteredCustomers.length > 0">
+        <tr
+          class="odd:bg-white even:bg-[#F2F2F2] text-[#5A5959]"
+          *ngFor="let customer of filteredCustomers; let i = index"
+        >
+          <td class="p-3 text-center">{{ i + 1 }}</td>
+          <td class="p-3 text-[#c19725] font-medium cursor-pointer" (click)="selectCustomer(customer)">
+            {{ customer.name || '-' }}
+          </td>
+          <td class="p-3">{{ customer.user_middle_name || '-'}}</td>
+          <td class="p-3">{{ customer.user_last_name || '-' }}</td>
+          <td class="p-3">{{ customer.mobilenumber || '-'}}</td>
+          <td class="p-3">{{ customer.user_aadhar_card_no || '-'}}</td>
+          <td class="p-3">{{ customer.user_pan_card_no || '-'}}</td>
+          <td class="p-3">{{ customer.user_firm_id || '-'}}</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="bg-white rounded-sm border border-[#EEEEEE] mb-4">
+    <div class="flex items-center justify-between border-b border-[#EEEEEE] px-3">
+        <p class="text-sm 2xl:text-base capitalize font-medium text-[#5A5959]">Total Sales</p>
+        <div class="border-b border-gray-200 dark:border-gray-700">
+            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-styled-tab"
+                data-tabs-toggle="#default-styled-tab-content"
+                data-tabs-active-classes="text-[#5A5959] hover:text-[#0278F1] dark:text-[5A5959] dark:hover:text-[#0278F1] border-[#0278F1] dark:border-[#0278F1]"
+                data-tabs-inactive-classes="dark:border-transparent text-[#9CA0A9] hover:text-gray-600 dark:text-gray-400 border-gray-100 dark:border-gray-700 dark:hover:text-gray-300"
+                role="tablist">
+                <li class="me-3" role="presentation">
+                    <button (click)="onTabChange('week')"
+                            class="inline-block capitalize px-2 sm:px-4 py-3 border-b-2 rounded-t-lg"
+                            id="week-styled-tab"
+                            data-tabs-target="#styled-week"
+                            type="button" role="tab"
+                            aria-controls="week" aria-selected="false">Week</button>
+                  </li>
+                  <li class="me-3" role="presentation">
+                    <button (click)="onTabChange('month')"
+                            class="inline-block capitalize px-2 sm:px-4 py-3 border-b-2 rounded-t-lg"
+                            id="month-styled-tab"
+                            data-tabs-target="#styled-month"
+                            type="button" role="tab"
+                            aria-controls="month" aria-selected="false">Month</button>
+                  </li>
+                  <li role="presentation">
+                    <button (click)="onTabChange('year')"
+                            class="inline-block capitalize px-2 sm:px-4 py-3 border-b-2 rounded-t-lg"
+                            id="year-styled-tab"
+                            data-tabs-target="#styled-year"
+                            type="button" role="tab"
+                            aria-controls="year" aria-selected="false">Year</button>
+                  </li>
+                  
+            </ul>
+        </div>
+
+    </div>
+
+    <div id="default-styled-tab-content">
+        <div class="hidden px-3 py-1 bg-white dark:bg-gray-800" id="styled-week" role="tabpanel"
+            aria-labelledby="week-tab">
+            <div class="chart-container width-full">
+                <canvas #weekChart></canvas>
+            </div>
+        </div>
+        <div class="hidden px-3 py-1 bg-white dark:bg-gray-800" id="styled-month" role="tabpanel"
+            aria-labelledby="month-tab">
+            <div>
+                <div class="chart-container width-full">
+                    <canvas #monthChart></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="hidden px-3 py-1 bg-white dark:bg-gray-800" id="styled-year" role="tabpanel"
+            aria-labelledby="year-tab">
+            <div class="chart-container width-full">
+                <canvas #yearChart></canvas>
+            </div>
+        </div>
+    </div>
+
+</div>

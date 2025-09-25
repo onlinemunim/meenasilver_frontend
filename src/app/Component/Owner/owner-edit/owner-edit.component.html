@@ -1,0 +1,140 @@
+<div>
+  <form class="max-w-sm mx-auto mt-10" [formGroup]="editOwnerForm" (ngSubmit)="onSubmit()">
+    <div class="mb-5">
+      <label for="fname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Your Name</label>
+      <input type="text" formControlName="fname" id="fname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Jone Doe" required />
+      <div class="text-danger" *ngIf="editOwnerForm.controls['fname'].invalid && (editOwnerForm.controls['fname'].touched || editOwnerForm.controls['fname'].dirty)">
+        <span class="text-danger" *ngIf="editOwnerForm.controls['fname'].errors?.['required']">*First name is required</span>
+        <span class="text-danger" *ngIf="editOwnerForm.controls['fname'].errors?.['pattern']">*Name should contain character only</span>
+      </div>
+    </div>
+    <div class="mb-5">
+      <label for="lname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Your last name</label>
+      <input type="text" formControlName="lname" id="lname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
+      <div class="text-danger" *ngIf="editOwnerForm.controls['lname'].invalid && (editOwnerForm.controls['lname'].touched || editOwnerForm.controls['lname'].dirty)">
+        <span class="text-danger" *ngIf="editOwnerForm.controls['lname'].errors?.['required']">*First name is required</span>
+        <span class="text-danger" *ngIf="editOwnerForm.controls['lname'].errors?.['pattern']">*Name should contain character only</span>
+      </div>
+    </div>
+
+
+    <div class="mb-5">
+      <label for="father_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Your father name</label>
+      <input type="text" formControlName="father_name" id="father_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your father name" required />
+      <div class="text-danger" *ngIf="editOwnerForm.controls['father_name'].invalid && (editOwnerForm.controls['father_name'].touched || editOwnerForm.controls['father_name'].dirty)">
+        <span class="text-danger" *ngIf="editOwnerForm.controls['father_name'].errors?.['required']">*First name is required</span>
+        <span class="text-danger" *ngIf="editOwnerForm.controls['father_name'].errors?.['pattern']">*Name should contain character only</span>
+      </div>
+    </div>
+    <div class="mb-5">
+      <label for="dob" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Your Date of birth</label>
+      <input type="date" formControlName="dob" id="dob" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter date of birth" required />
+      <div class="text-danger" *ngIf="editOwnerForm.controls['dob'].invalid && (editOwnerForm.controls['dob'].touched || editOwnerForm.controls['dob'].dirty)">
+        <span class="text-danger" *ngIf="editOwnerForm.controls['dob'].errors?.['required']">*First name is required</span>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="sex" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Gender</label>
+       <select formControlName="sex" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+       </select>
+       <div class="text-danger" *ngIf="editOwnerForm.controls['sex'].invalid && (editOwnerForm.controls['sex'].touched || editOwnerForm.controls['sex'].dirty)">
+        <span class="text-danger" *ngIf="editOwnerForm.controls['sex'].errors?.['required']">*First name is required</span>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="qualification" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Your Qualification</label>
+      <input type="text" formControlName="qualification" id="qualification" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your qualification" required />
+      <div class="text-danger" *ngIf="editOwnerForm.controls['qualification'].invalid && (editOwnerForm.controls['qualification'].touched || editOwnerForm.controls['qualification'].dirty)">
+        <span class="text-danger" *ngIf="editOwnerForm.controls['qualification'].errors?.['required']">*Qualification is required</span>
+        <span class="text-danger" *ngIf="editOwnerForm.controls['qualification'].errors?.['pattern']">*Qualification should contain character only</span>
+      </div>
+    </div>
+    <div class="mb-5">
+      <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Phone</label>
+      <input type="text" formControlName="phone" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your phone number" required />
+      <div class="text-danger" *ngIf="editOwnerForm.controls['phone'].invalid && (editOwnerForm.controls['phone'].touched || editOwnerForm.controls['phone'].dirty)">
+        <span class="text-danger" *ngIf="editOwnerForm.controls['phone'].errors?.['required']">*Phone number is required</span>
+        <span class="text-danger" *ngIf="editOwnerForm.controls['phone'].errors?.['minlength']"> *Minimun 10 digit required</span>
+        <span class="text-danger" *ngIf="editOwnerForm.controls['phone'].errors?.['maxlength']"> *Maximun 15 digit Allowed</span>
+        <span class="text-danger" *ngIf="editOwnerForm.controls['phone'].errors?.['pattern']"> *Enter only digits</span>
+      </div>
+    </div>
+    <div class="mb-5">
+      <label for="mobile" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Mobile</label>
+      <input type="text" formControlName="mobile" id="mobile" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your mobile number" required />
+      <div class="text-danger" *ngIf="editOwnerForm.controls['mobile'].invalid && (editOwnerForm.controls['mobile'].touched || editOwnerForm.controls['mobile'].dirty)">
+        <span class="text-danger" *ngIf="editOwnerForm.controls['Mobile'].errors?.['required']">*Mobile number is required</span>
+        <span class="text-danger" *ngIf="editOwnerForm.controls['Mobile'].errors?.['minlength']"> *Minimun 10 digit required</span>
+        <span class="text-danger" *ngIf="editOwnerForm.controls['Mobile'].errors?.['maxlength']"> *Maximun 15 digit Allowed</span>
+        <span class="text-danger" *ngIf="editOwnerForm.controls['Mobile'].errors?.['pattern']"> *Enter only digits</span>
+      </div>
+    </div>
+    <div class="mb-5">
+      <label for="sec_mobile" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Alternate Mobile</label>
+      <input type="text" formControlName="sec_mobile" id="sec_mobile" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your second mobile number(Optional)"/>
+      <div class="text-danger" *ngIf="editOwnerForm.controls['sec_mobile'].invalid && (editOwnerForm.controls['sec_mobile'].touched || editOwnerForm.controls['sec_mobile'].dirty)">
+        <span class="text-danger" *ngIf="editOwnerForm.controls['sec_mobile'].errors?.['required']">*Alternate number is required</span>
+        <span class="text-danger" *ngIf="editOwnerForm.controls['sec_mobile'].errors?.['minlength']"> *Minimun 10 digit required</span>
+        <span class="text-danger" *ngIf="editOwnerForm.controls['sec_mobile'].errors?.['maxlength']"> *Maximun 15 digit Allowed</span>
+        <span class="text-danger" *ngIf="editOwnerForm.controls['sec_mobile'].errors?.['pattern']"> *Enter only digits</span>
+      </div>
+    </div>
+    <div class="mb-5">
+      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Your Email</label>
+      <input type="email" formControlName="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your email" required=""/>
+      <div class="text-danger" *ngIf="editOwnerForm.controls['email'].invalid && (editOwnerForm.controls['email'].touched || editOwnerForm.controls['email'].dirty)">
+        <span class="text-danger" *ngIf="editOwnerForm.controls['email'].errors?.['required']">*Alternate number is required</span>
+        <span class="text-danger" *ngIf="editOwnerForm.controls['email'].errors?.['email']">*Email should be valid</span>
+      </div>
+    </div>
+    <div class="mb-5">
+      <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Website</label>
+      <input type="text" formControlName="website" id="website" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter website" required=""/>
+      <div class="text-danger" *ngIf="editOwnerForm.controls['website'].invalid && (editOwnerForm.controls['website'].touched || editOwnerForm.controls['website'].dirty)">
+        <span class="text-danger" *ngIf="editOwnerForm.controls['website'].errors?.['required']">*Website is required</span>
+      </div>
+    </div>
+    <div class="mb-5">
+      <label for="ecomm_website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Ecomm Website</label>
+      <input type="text" formControlName="ecomm_website" id="ecomm_website" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter ecomm website" required=""/>
+      <div class="text-danger" *ngIf="editOwnerForm.controls['ecomm_website'].invalid && (editOwnerForm.controls['ecomm_website'].touched || editOwnerForm.controls['ecomm_website'].dirty)">
+        <span class="text-danger" *ngIf="editOwnerForm.controls['ecomm_website'].errors?.['required']">*Ecomm website is required</span>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="act_contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Active Contact</label>
+      <input type="text" formControlName="act_contact" id="act_contact" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Active Contact" required=""/>
+      <div class="text-danger" *ngIf="editOwnerForm.controls['act_contact'].invalid && (editOwnerForm.controls['act_contact'].touched || editOwnerForm.controls['act_contact'].dirty)">
+        <span class="text-danger" *ngIf="editOwnerForm.controls['act_contact'].errors?.['required']">*Active contact is required</span>
+        <span class="text-danger" *ngIf="editOwnerForm.controls['act_contact'].errors?.['minlength']"> *Minimun 10 digit required</span>
+        <span class="text-danger" *ngIf="editOwnerForm.controls['act_contact'].errors?.['maxlength']"> *Maximun 15 digit Allowed</span>
+        <span class="text-danger" *ngIf="editOwnerForm.controls['act_contact'].errors?.['pattern']"> *Enter only digits</span>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="other_info" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Other Information</label>
+      <input type="text" formControlName="other_info" id="other_info" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Other information" required=""/>
+      <div class="text-danger" *ngIf="editOwnerForm.controls['other_info'].invalid && (editOwnerForm.controls['other_info'].touched || editOwnerForm.controls['other_info'].dirty)">
+        <span class="text-danger" *ngIf="editOwnerForm.controls['other_info'].errors?.['required']">*Ecomm website is required</span>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="last_column" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Last Column</label>
+      <input type="text" formControlName="last_column" id="last_column" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter website" required=""/>
+      <div class="text-danger" *ngIf="editOwnerForm.controls['last_column'].invalid && (editOwnerForm.controls['last_column'].touched || editOwnerForm.controls['last_column'].dirty)">
+        <span class="text-danger" *ngIf="editOwnerForm.controls['last_column'].errors?.['required']">*Last column is required</span>
+      </div>
+    </div>
+
+
+    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,144 @@
+<div class="w-full py-3 px-2">
+  <div class="w-full overflow-x-auto">
+    <div class="grid justify-end">
+      <div class="grid grid-flow-col auto-cols-max gap-2 items-end bg-white p-2 rounded-lg">
+
+        <!-- Start Range -->
+        <div class="relative w-32">
+          <input type="text" id="start_range"
+            class="block px-2 py-2 w-full text-sm text-gray-800 bg-white rounded-md border border-[#DCDCDC] appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            placeholder=" " />
+          <label for="start_range"
+            class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 bg-white px-1.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">
+            Start Range</label>
+        </div>
+
+        <!-- End Range -->
+        <div class="relative w-32">
+          <input type="text" id="end_range"
+            class="block px-2 py-2 w-full text-sm text-gray-800 bg-white rounded-md border border-[#DCDCDC] appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            placeholder=" " />
+          <label for="end_range"
+            class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 bg-white px-1.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">
+            End Range</label>
+        </div>
+        <div class="flex items-center">
+          <input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-yellow-600 focus:ring-yellow-500 -mt-9" />
+        </div>
+
+
+        <!-- Weight Type -->
+        <div class="relative w-20">
+          <select
+            class="block px-2 py-2 w-full text-sm text-gray-800 bg-white rounded-md border border-[#DCDCDC] focus:outline-none focus:ring-0 focus:border-c19725 peer">
+            <option>WT</option>
+            <option>GM</option>
+            <option>MG</option>
+            <option>KG</option>
+          </select>
+        </div>
+
+        <!-- Material Type -->
+        <div class="relative w-24">
+          <select
+            class="block px-2 py-2 w-full text-sm text-gray-800 bg-white rounded-md border border-[#DCDCDC] focus:outline-none focus:ring-0 focus:border-c19725 peer">
+            <option>Gold</option>
+            <option>Silver</option>
+            <option>Crystal</option>
+            <option>Imitation</option>
+            <option>Sterling</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <!-- Item Category -->
+        <div class="relative w-36">
+          <input type="text" id="item_category"
+            class="block px-2 py-2 w-full text-sm text-gray-800 bg-white rounded-md border border-[#DCDCDC] appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            placeholder=" " />
+          <label for="item_category"
+            class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 bg-white px-1.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">
+            Item Category</label>
+        </div>
+
+        <!-- Item Name -->
+        <div class="relative w-36">
+          <input type="text" id="item_name"
+            class="block px-2 py-2 w-full text-sm text-gray-800 bg-white rounded-md border border-[#DCDCDC] appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            placeholder=" " />
+          <label for="item_name"
+            class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 bg-white px-1.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">
+            Item Name</label>
+        </div>
+
+        <!-- GO Button -->
+        <button type="submit"
+          class="px-4 py-2 rounded-tl-[5px] rounded-[5px] border-[0.5px] border-[#D9D9D9] text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+          GO
+        </button>
+
+      </div>
+    </div>
+  </div>
+  <div class="bg-gray-50 font-sans min-h-screen">
+    <main class="p-4 sm:p-8 bg-gray-50">
+      <div class="max-w-screen-2xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+          <a *ngFor="let card of stockCards"
+          [routerLink]="card.route || null"
+            class="group block rounded-xl transition duration-300 ease-in-out transform hover:shadow-xl hover:-translate-y-1 hover:brightness-105"
+            [ngStyle]="{ 'background-color': card.backgroundColor || '#ffffff' }" style="text-decoration: none;">
+
+
+
+            <!-- Card Content -->
+            <div class="flex flex-col h-full rounded-lg p-4 cursor-pointer transition-all duration-300 ease-in-out">
+              <!-- Icon + Header -->
+              <div class="flex items-center space-x-2">
+                <div class="flex-shrink-0">
+                  <div
+                    class="w-14 h-14 flex items-center justify-center rounded-full transition duration-300 ease-in-out group-hover:scale-105"
+                    [ngStyle]="{
+                    'background-color': '#ffffff',
+                    'box-shadow': '0 0 4px ' + card.accentColor + '55'
+                  }">
+                    <img [src]="card.logoUrl" alt="Card Logo" class="w-10 h-10" />
+                  </div>
+                </div>
+
+                <div class="flex-grow text-right">
+                  <h2 class="font-serif text-xl font-bold transition-colors"
+                    [ngStyle]="{ color: card.mainTextColor || '#333' }">
+                    {{ card.mainText }}
+                  </h2>
+                  <h3 class="mt-2 inline-block text-xs font-semibold tracking-wide px-3 py-1 rounded-full bg-gray-50"
+                    style="color: #1e2939;">
+                    {{ card.title }}
+                  </h3>
+
+                </div>
+              </div>
+
+              <!-- Details Section -->
+              <div class="flex-grow space-y-1">
+                <ng-container *ngIf="card.details && card.details.length > 0; else noDetails">
+                  <div *ngFor="let detail of card.details"
+                    class="flex justify-between items-center text-sm font-sans border-t border-gray-200 pt-2">
+                    <span class="text-gray-600">{{ detail.label }}</span>
+                    <span class="font-semibold text-gray-900">{{ detail.value }}</span>
+                  </div>
+                </ng-container>
+                <ng-template #noDetails>
+                  <div class="flex items-center justify-center h-full min-h-[5rem] border-t border-gray-200 pt-2">
+                    <p class="text-gray-400 italic text-sm"></p>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </a>
+        </div>
+
+
+      </div>
+    </main>
+  </div>

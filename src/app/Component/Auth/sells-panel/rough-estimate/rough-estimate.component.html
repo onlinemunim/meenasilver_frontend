@@ -1,0 +1,161 @@
+<div *ngIf="isLoading" class="fixed inset-0 flex items-center justify-center z-50 backdrop-blur-sm">
+  <i class="fas fa-spinner fa-spin text-6xl" style="color:#c19725;"></i>
+</div>
+
+<div class="bg-gray-100 p-4 sm:p-8">
+  <div
+    class="max-w-5xl mx-auto bg-white border-[5px] border-[#006269] shadow-lg"
+  >
+    <!-- Header -->
+    <header class="p-6 border-b-2 border-[#006269] text-center">
+      <h1 class="text-2xl font-bold text-[#006269] mb-2">ROUGH ESTIMATE</h1>
+      <div class="flex justify-between text-sm text-gray-700 px-8">
+        <p><strong>Vou.No.:</strong> 761</p>
+        <p><strong>Date:</strong> 07/08/2025</p>
+      </div>
+    </header>
+
+    <!-- Table -->
+    <section class="px-6 py-4">
+  <div class="overflow-x-auto whitespace-nowrap hide-scrollbar mt-4">
+    <table class="w-full text-sm text-center border-collapse">
+      <thead class="bg-[#006269] text-white">
+        <tr>
+          <th class="p-2 border border-gray-300">S no.</th>
+          <th class="p-2 border border-gray-300">Description</th>
+          <th class="p-2 border border-gray-300">Net Wt</th>
+          <th class="p-2 border border-gray-300">Tunch</th>
+          <th class="p-2 border border-gray-300">Pcs</th>
+          <th class="p-2 border border-gray-300">Mrp</th>
+          <th class="p-2 border border-gray-300">Mrp%</th>
+          <th class="p-2 border border-gray-300">Quantity</th>
+          <th class="p-2 border border-gray-300">Lbr</th>
+          <th class="p-2 border border-gray-300">Fine</th>
+          <th class="p-2 border border-gray-300">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Row 1 -->
+        <tr>
+          <td class="p-2 border border-gray-300">1</td>
+          <td class="p-2 border border-gray-300 text-left">Nazaria</td>
+          <td class="p-2 border border-gray-300">328.600</td>
+          <td class="p-2 border border-gray-300">77.00</td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300">253.020</td>
+          <td class="p-2 border border-gray-300"></td>
+        </tr>
+
+        <!-- Row 2 -->
+        <tr>
+          <td class="p-2 border border-gray-300">2</td>
+          <td class="p-2 border border-gray-300 text-left">Fancy Payal</td>
+          <td class="p-2 border border-gray-300">692.057</td>
+          <td class="p-2 border border-gray-300">77.00</td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300">532.880</td>
+          <td class="p-2 border border-gray-300"></td>
+        </tr>
+
+        <!-- Row 3 -->
+        <tr>
+          <td class="p-2 border border-gray-300">3</td>
+          <td class="p-2 border border-gray-300 text-left">Ladies B Late</td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300">129628.00</td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300">0.45/Pc</td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300">₹ 58,333</td>
+        </tr>
+
+        <!-- Row 4 -->
+        <tr>
+          <td class="p-2 border border-gray-300">4</td>
+          <td class="p-2 border border-gray-300 text-left">Nazaria</td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+        </tr>
+
+        <!-- Total Row -->
+        <tr class="font-semibold bg-[#9ae3e6]">
+          <td colspan="2" class="p-2 border border-gray-300 text-left">Total</td>
+          <td class="p-2 border border-gray-300">534.8657</td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300">4117.986</td>
+          <td class="p-2 border border-gray-300">₹ 58,333</td>
+        </tr>
+
+        <!-- Silver Bhav Row -->
+        <tr>
+          <td colspan="2" class="p-2 border border-gray-300 text-left font-semibold">S Silver Bhav</td>
+          <!-- <td class="p-2 border border-gray-300 text-left"></td> -->
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300">6176.70</td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300">4117.986</td>
+          <td class="p-2 border border-gray-300">₹ 48046.3</td>
+        </tr>
+
+        <!-- Receipt Cash Row -->
+        <tr>
+          <td colspan="2" class="p-2 border border-gray-300 text-left font-semibold">Receipt Cash</td>
+          <!-- <td class="p-2 border border-gray-300 text-left"></td> -->
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300"></td>
+          <td class="p-2 border border-gray-300">₹ 538796</td>
+        </tr>
+
+        <!-- Closing Balance Row -->
+        <tr class="font-bold bg-[#f3f4f6]">
+          <td colspan="10" class="p-2 border border-gray-300 text-right">
+            Closing Balance
+          </td>
+          <td class="p-2 border border-gray-300 text-red-600">₹ 0.00</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+    <!-- Terms & Conditions -->
+    <section class="px-6 py-4 border-t border-gray-300 text-sm text-gray-700">
+      <h2 class="font-bold mb-2">Terms & Conditions:</h2>
+      <p>NO RETURN NO EXCHANGE</p>
+    </section>
+  </div>
+</div>

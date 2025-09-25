@@ -1,0 +1,436 @@
+<!-- Firm Creation Other Details -->
+  <form [formGroup]="mainForm" (ngSubmit)="onSubmit()">
+<div class="w-full">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+    <!-- Payment Details -->
+
+    <div class="col-span-1">
+      <p class="font-medium text-sm xl:text-base text-444 capitalize mb-3">Payment Details</p>
+
+      <div formGroupName="paymentDetails">
+      <div class="bg-[#FFFFF6] px-2 py-3 rounded-lg shadow-(--my-shadow1)">
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5">
+            <div class="col-span-1 sm:col-span-2">
+              <div class="relative">
+                <input type="text" id="bank_details" formControlName="bank_details" autocomplete="off"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " />
+                <label for="bank_details"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Payment
+                  Bank Details</label>
+                  <div *ngIf="mainForm.get('paymentDetails.bank_details')?.touched && mainForm.get('paymentDetails.bank_details')?.invalid"
+                        class="text-red-500 text-xs mt-1">
+                      Bank details are required.
+                    </div>
+
+              </div>
+
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative">
+                <input type="text" id="" formControlName="aggrid" autocomplete="off"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " />
+                <label for="aggrid"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Aggrid</label>
+
+                  <div *ngIf="mainForm.get('paymentDetails.aggrid')?.touched && mainForm.get('paymentDetails.aggrid')?.invalid"
+                    class="text-red-500 text-xs mt-1">
+                  AGGRID is required.
+</div>
+              </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative">
+                <input type="text" id="aggrid" formControlName="aggrid_name" autocomplete="off"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " />
+                <label for="aggrid_name"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Aggrid
+                  Name</label>
+                  <div *ngIf="mainForm.get('paymentDetails.aggrid_name')?.touched && mainForm.get('paymentDetails.aggrid_name')?.invalid"
+                      class="text-red-500 text-xs mt-1">
+                    AGGRID name is required.
+                  </div>
+              </div>
+            </div>
+            <div class="col-span-1 sm:col-span-2">
+              <div class="relative">
+                <input type="text" id="" formControlName="bank_account_no" autocomplete="off"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " />
+                <label for="bank_account_no"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Payment
+                  Bank A/C No.</label>
+                  <div *ngIf="mainForm.get('paymentDetails.bank_account_no')?.touched && mainForm.get('paymentDetails.bank_account_no')?.invalid"
+                      class="text-red-500 text-xs mt-1">
+                    Bank account number is required.
+                  </div>
+
+              </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative">
+                <input type="text" id="" formControlName="user_id" autocomplete="off"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " />
+                <label for=""
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">User
+                  ID</label>
+                  <div *ngIf="mainForm.get('paymentDetails.user_id')?.touched && mainForm.get('paymentDetails.user_id')?.invalid"
+                      class="text-red-500 text-xs mt-1">
+                    Valid user ID is required.
+                  </div>
+              </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative">
+                <input type="text" id="corpid" formControlName="corpid" autocomplete="off"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " />
+                <label for="corpid"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Corpid</label>
+                  <div *ngIf="mainForm.get('paymentDetails.corpid')?.touched && mainForm.get('paymentDetails.corpid')?.invalid"
+                      class="text-red-500 text-xs mt-1">
+                    Corp ID is required.
+                  </div>
+                </div>
+            </div>
+
+            <div class="col-span-1 sm:col-span-2">
+              <div class="relative">
+                <input type="text" id="bank_ifsc_code" formControlName="bank_ifsc_code" autocomplete="off"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " />
+                <label for="bank_ifsc_code"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Payment
+                  Bank IFSC Code</label>
+
+                  <div *ngIf="mainForm.get('paymentDetails.bank_ifsc_code')?.touched && mainForm.get('paymentDetails.bank_ifsc_code')?.invalid"
+                      class="text-red-500 text-xs mt-1">
+                    Bank IFSC code is required.
+                  </div>
+              </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative">
+                <input type="text" id="urn" formControlName="urn" autocomplete="off"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " />
+                <label for="urn"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">URN</label>
+
+                  <div *ngIf="mainForm.get('paymentDetails.urn')?.touched && mainForm.get('paymentDetails.urn')?.invalid"
+                  class="text-red-500 text-xs mt-1">
+                    URN is required.
+                  </div>
+                </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative">
+                <input type="text" id="" formControlName="alias_id" autocomplete="off"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " />
+                <label for="alias_id"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Alliasid</label>
+                  <div *ngIf="mainForm.get('paymentDetails.alias_id')?.touched && mainForm.get('paymentDetails.alias_id')?.invalid"
+                      class="text-red-500 text-xs mt-1">
+                    Alias ID is required.
+                  </div>
+
+
+              </div>
+            </div>
+
+            <div class="col-span-1 sm:col-span-2">
+              <div class="relative">
+                <input type="text" id="" formControlName="declaration" autocomplete="off"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " />
+                <label for="declaration"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Payment
+                  Declaration</label>
+                  <div *ngIf="mainForm.get('paymentDetails.declaration')?.touched && mainForm.get('paymentDetails.declaration')?.invalid"
+                      class="text-red-500 text-xs mt-1">
+                    Declaration is required.
+                  </div>
+              </div>
+            </div>
+
+            <div class="col-span-1 sm:col-span-2">
+              <div class="relative">
+                <input type="text" id="" formControlName="api_key" autocomplete="off"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " />
+                <label for="api_key"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">API
+                  Key</label>
+
+                  <div *ngIf="mainForm.get('paymentDetails.api_key')?.touched && mainForm.get('paymentDetails.api_key')?.invalid"
+                      class="text-red-500 text-xs mt-1">
+                    API key is required.
+                  </div>
+              </div>
+            </div>
+
+
+          </div>
+        <!-- </form> -->
+      </div>
+      </div>
+    </div>
+
+    <!-- SMPT Details -->
+    <div class="col-span-1">
+      <p class="font-medium text-sm xl:text-base text-444 capitalize mb-3">SMPT Details</p>
+      <div class="bg-[#FFF9F9] px-2 py-3 rounded-lg shadow-(--my-shadow1)">
+        <!-- <form action=""> -->
+        <div formGroupName="smtpDetails">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5">
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="text" id="" formControlName="email_id" autocomplete="off"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="EmailID"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">SMPT
+                Email ID</label>
+                  <div *ngIf="mainForm.get('smtpDetails.email_id')?.touched && mainForm.get('smtpDetails.email_id')?.invalid"
+                    class="text-red-500 text-xs mt-1">
+                  Valid Email ID is required.
+                </div>
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="text" id="" formControlName="email_password" autocomplete="off"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="EmailPassword"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">SMPT
+                Email Password</label>
+                <div *ngIf="mainForm.get('smtpDetails.email_password')?.touched && mainForm.get('smtpDetails.email_password')?.invalid"
+                  class="text-red-500 text-xs mt-1">
+                Email password is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="text" id="" formControlName="email_id_cc" autocomplete="off"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="EmailIDCC"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">SMPT
+                Email ID CC</label>
+                <div *ngIf="mainForm.get('smtpDetails.email_id_cc')?.touched && mainForm.get('smtpDetails.email_id_cc')?.invalid"
+                class="text-red-500 text-xs mt-1">
+              Email ID CC is required.
+            </div>
+            </div>
+          </div>
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="text" id="email_id_bcc" formControlName="email_id_bcc" autocomplete="off"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="EmailIDBCC"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">SMPT
+                Email ID BCC</label>
+                <div *ngIf="mainForm.get('smtpDetails.email_id_bcc')?.touched && mainForm.get('smtpDetails.email_id_bcc')?.invalid"
+                    class="text-red-500 text-xs mt-1">
+                  Email BCC must be valid.
+                </div>
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="text" id="" formControlName="server" autocomplete="off"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="Server"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">SMPT
+                Server</label>
+                <div *ngIf="mainForm.get('smtpDetails.server')?.touched && mainForm.get('smtpDetails.server')?.invalid"
+                  class="text-red-500 text-xs mt-1">
+                Server is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="text" id="port" formControlName="port" autocomplete="off"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="Port"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">SMPT
+                Port</label>
+                <div *ngIf="mainForm.get('smtpDetails.port')?.touched && mainForm.get('smtpDetails.port')?.invalid"
+                    class="text-red-500 text-xs mt-1">
+                  Port is required and must be between 1 and 65535.
+                </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- </form> -->
+         </div>
+      </div>
+    </div>
+
+    <!-- E - Invoice Details -->
+    <div class="col-span-1">
+      <p class="font-medium text-sm xl:text-base text-444 capitalize mb-3">E - Invoice Details</p>
+      <div class="bg-[#F1FEFF] px-2 py-3 rounded-lg shadow-(--my-shadow1)">
+        <!-- <form action=""> -->
+        <div formGroupName="eInvoiceDetails">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5">
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="text" id="" formControlName="api_id" autocomplete="off"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="APIID"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">E
+                - Invoice API ID</label>
+
+                <div *ngIf="mainForm.get('eInvoiceDetails.api_id')?.touched && mainForm.get('eInvoiceDetails.api_id')?.invalid"
+                    class="text-red-500 text-xs mt-1">
+                  API ID is required.
+                </div>
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="text" id="api_key" formControlName="api_key" autocomplete="off"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="APIKey"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">E
+                - Invoice API Key</label>
+                <div *ngIf="mainForm.get('eInvoiceDetails.api_key')?.touched && mainForm.get('eInvoiceDetails.api_key')?.invalid"
+                    class="text-red-500 text-xs mt-1">
+                  API key is required.
+                </div>
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="text" id="username" formControlName="username" autocomplete="off"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="Username"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">E
+                - Invoice Username</label>
+                <div *ngIf="mainForm.get('eInvoiceDetails.username')?.touched && mainForm.get('eInvoiceDetails.username')?.invalid"
+                    class="text-red-500 text-xs mt-1">
+                  Username is required.
+                </div>
+            </div>
+          </div>
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="text" id="" formControlName="password" autocomplete="off"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="Password"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">E
+                - Invoice Password</label>
+                <div *ngIf="mainForm.get('eInvoiceDetails.password')?.touched && mainForm.get('eInvoiceDetails.password')?.invalid"
+                    class="text-red-500 text-xs mt-1">
+                  Password is required.
+                </div>
+            </div>
+          </div>
+        </div>
+        <!-- </form> -->
+         </div>
+      </div>
+    </div>
+
+    <!-- social medialinks-Details -->
+    <div class="col-span-1">
+      <p class="font-medium text-sm xl:text-base text-444 capitalize mb-3">Social Media Link</p>
+      <div class="bg-[#EEFFF4] px-2 py-3 rounded-lg shadow-(--my-shadow1)">
+        <!-- <form action=""> -->
+        <div formGroupName="socialLinks">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5">
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="text" id="" formControlName="whatsapp_link" autocomplete="off"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for=""
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">WhatsApp
+                Link</label>
+
+              <div *ngIf="mainForm.get('socialLinks.whatsapp_link')?.touched && mainForm.get('socialLinks.whatsapp_link')?.invalid"
+              class="text-red-500 text-xs mt-1">
+              Valid WhatsApp link is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="text" id="instagramlink" formControlName="facebook_link" autocomplete="off"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for=""
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Facebook
+                Link</label>
+                <div *ngIf="mainForm.get('socialLinks.facebook_link')?.touched && mainForm.get('socialLinks.facebook_link')?.invalid"
+                  class="text-red-500 text-xs mt-1">
+                Valid Facebook link is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="text" id="InstagramLink" formControlName="instagram_link" autocomplete="off"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for=""
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Instagram
+                Link</label>
+                <div *ngIf="mainForm.get('socialLinks.instagram_link')?.touched && mainForm.get('socialLinks.instagram_link')?.invalid"
+                class="text-red-500 text-xs mt-1">
+              Valid Instagram link is required.
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </form> -->
+     </div>
+     <!-- <div class="flex items-center justify-center mt-4 md:mt-8">
+      <button type="submit"
+        class="block cursor-pointer capitalize px-5 w-[150px] lg:w-[200px] py-2 lg:py-2 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">Submit</button>
+    </div> -->
+
+  </div>
+</div>
+
+<!-- </div> -->
+
+<div class="flex items-center justify-center mt-4 md:mt-8">
+  <button type="submit"
+    class="block cursor-pointer capitalize px-5 w-[150px] lg:w-[200px] py-2 lg:py-2 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center">
+    {{ isEditMode ? 'Update' : 'Submit' }}
+  </button>
+</div>
+</form>

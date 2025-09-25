@@ -1,0 +1,270 @@
+<div class="bg-white rounded-sm border border-[#EEEEEE] mb-4">
+    <div class="flex items-center justify-between border-b border-[#EEEEEE] px-3">
+        <p class="text-sm 2xl:text-base capitalize font-medium text-[#5A5959]">To - do List</p>
+        <div class="flex items-center justify-between sm:justify-end">
+            <div class="border-b border-gray-200 dark:border-gray-700">
+                <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-styled-tab"
+                    data-tabs-toggle="#default-styled-tab-content"
+                    data-tabs-active-classes="text-[#5A5959] hover:text-[#0278F1] dark:text-[5A5959] dark:hover:text-[#0278F1] border-[#0278F1] dark:border-[#0278F1]"
+                    data-tabs-inactive-classes="dark:border-transparent text-[#9CA0A9] hover:text-gray-600 dark:text-gray-400 border-gray-100 dark:border-gray-700 dark:hover:text-gray-300"
+                    role="tablist">
+                    <li class="me-3" role="presentation">
+                        <button class="inline-block capitalize px-2 sm:px-4 py-3 border-b-2 rounded-t-lg" id="today-styled-tab"
+                            data-tabs-target="#styled-today" type="button" role="tab" aria-controls="today"
+                            aria-selected="false">Today's</button>
+                    </li>
+                    <li role="presentation">
+                        <button
+                            class="inline-block capitalize px-2 sm:px-4 py-3 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                            id="pending-styled-tab" data-tabs-target="#styled-pending" type="button" role="tab"
+                            aria-controls="pending" aria-selected="false">Pending</button>
+                    </li>
+                </ul>
+            </div>
+            <a href="#" class="ms-3">
+                <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M9.01612 14.333H11.1293V10.333H15.3557V8.33301H11.1293V4.33301H9.01612V8.33301H4.78971V10.333H9.01612V14.333ZM2.6765 18.333C2.09537 18.333 1.59788 18.1372 1.18405 17.7455C0.770212 17.3538 0.563293 16.883 0.563293 16.333V2.33301C0.563293 1.78301 0.770212 1.31217 1.18405 0.920508C1.59788 0.528841 2.09537 0.333008 2.6765 0.333008H17.469C18.0501 0.333008 18.5476 0.528841 18.9614 0.920508C19.3752 1.31217 19.5822 1.78301 19.5822 2.33301V16.333C19.5822 16.883 19.3752 17.3538 18.9614 17.7455C18.5476 18.1372 18.0501 18.333 17.469 18.333H2.6765ZM2.6765 16.333H17.469V2.33301H2.6765V16.333Z"
+                        fill="#0278F1" />
+                </svg>
+            </a>
+        </div>
+
+    </div>
+
+    <div id="default-styled-tab-content">
+        <div class="hidden px-3 pt-3 pb-0.5 bg-white dark:bg-gray-800" id="styled-today" role="tabpanel" aria-labelledby="today-tab">
+            <div>
+                <table class="w-full hidden md:table bg-white overflow-hidden rounded-b-sm">
+                    <thead class="border-b border-[#EEEEEE] text-[#9CA0A9] font-normal text-xs sm:text-sm 2xl:text-base">
+                        <tr>
+                            <th class="p-2 capitalize text-left font-normal">Firm Name</th>
+                            <th class="p-2 capitalize text-left font-normal">Task</th>
+                            <th class="p-2 capitalize text-left font-normal">Staff ID</th>
+                            <th class="p-2 capitalize text-left font-normal">S. Date</th>
+                            <th class="p-2 capitalize text-left font-normal">E. Date</th>
+                            <th class="p-2 capitalize text-center font-normal">
+                                status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-xs sm:text-sm 2xl:text-base">
+                        <tr class="border-b border-[#EEEEEE] last:border-0 text-[#5A5959]">
+                            <td class="p-2 capitalize">Omumin</td>
+                            <td class="p-2 capitalize">Add Stock</td>
+                            <td class="p-2">4515</td>
+                            <td class="p-2">12.02.24</td>
+                            <td class="p-2">15.02.24</td>
+                            <td class="p-2 text-center">
+                                <button class="w-25 px-2 py-2 cursor-pointer capitalize text-center font-normal text-sm text-[#0D5BAB] bg-[#EBF5FF]">
+                                    In Process</button>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-[#EEEEEE] last:border-0 text-[#5A5959]">
+                            <td class="p-2 capitalize">Sky Gold</td>
+                            <td class="p-2 capitalize">Visit Customer Baner</td>
+                            <td class="p-2">252Radhika</td>
+                            <td class="p-2">12.02.24</td>
+                            <td class="p-2">15.02.24</td>
+                            <td class="p-2 text-center">
+                                <button class="w-25 px-2 py-2 cursor-pointer capitalize text-center font-normal text-sm text-[#018F37] bg-[#E6FFEF]">
+                                    Completed</button>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-[#EEEEEE] last:border-0 text-[#5A5959]">
+                            <td class="p-2 capitalize">Omumin</td>
+                            <td class="p-2 capitalize">Task</td>
+                            <td class="p-2">4515</td>
+                            <td class="p-2">12.02.24</td>
+                            <td class="p-2">15.02.24</td>
+                            <td class="p-2 text-center">
+                                <button class="w-25 px-2 py-2 cursor-pointer capitalize text-center font-normal text-sm text-[#0D5BAB] bg-[#EBF5FF]">
+                                    In Process</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- today's todo list Mobile View -->
+                <div class="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="col-span-1">
+                        <div class="relative bg-[#EBF5FF] border border-[#D9D9D9] rounded-lg p-2 shadow-md space-y-1">
+                            <div class="flex items-start justify-start gap-2">
+                                <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Firm Name :</p>
+                                <p class="text-[#5A5959] capitalize text-xs sm:text-sm">Omunim</p>
+                            </div>
+                            <div class="flex items-start justify-start gap-2">
+                                <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Task :</p>
+                                <p class="text-[#5A5959] capitalize text-xs sm:text-sm">Add Stock</p>
+                            </div>
+                            <div class="flex items-start justify-start gap-2">
+                                <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Staff ID :</p>
+                                <p class="text-[#5A5959] text-xs sm:text-sm">4515</p>
+                            </div>
+                            <div class="flex items-start justify-start gap-2">
+                                <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Start Date :</p>
+                                <p class="text-[#5A5959] text-xs sm:text-sm">12.02.24</p>
+                            </div>
+                            <div class="flex items-start justify-start gap-2">
+                                <p class="text-444 capitalize text-xs sm:text-sm font-semibold">End Date :</p>
+                                <p class="text-[#5A5959] text-xs sm:text-sm">15.02.24</p>
+                            </div>
+                            <div class="flex items-start justify-start gap-2">
+                                <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Status :</p>
+                                <button class="cursor-pointer capitalize font-medium text-xs sm:text-sm text-[#0D5BAB] ">
+                                    In Process</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-1">
+                        <div class="relative bg-[#E6FFEF] border border-[#D9D9D9] rounded-lg p-2 shadow-md space-y-1">
+                            <div class="flex items-start justify-start gap-2">
+                                <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Firm Name :</p>
+                                <p class="text-[#5A5959] capitalize text-xs sm:text-sm">Omunim</p>
+                            </div>
+                            <div class="flex items-start justify-start gap-2">
+                                <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Task :</p>
+                                <p class="text-[#5A5959] capitalize text-xs sm:text-sm">Add Stock</p>
+                            </div>
+                            <div class="flex items-start justify-start gap-2">
+                                <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Staff ID :</p>
+                                <p class="text-[#5A5959] text-xs sm:text-sm">4515</p>
+                            </div>
+                            <div class="flex items-start justify-start gap-2">
+                                <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Start Date :</p>
+                                <p class="text-[#5A5959] text-xs sm:text-sm">12.02.24</p>
+                            </div>
+                            <div class="flex items-start justify-start gap-2">
+                                <p class="text-444 capitalize text-xs sm:text-sm font-semibold">End Date :</p>
+                                <p class="text-[#5A5959] text-xs sm:text-sm">15.02.24</p>
+                            </div>
+                            <div class="flex items-start justify-start gap-2">
+                                <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Status :</p>
+                                <button class="cursor-pointer capitalize font-medium text-xs sm:text-sm text-[#018F37] ">
+                                    Completed</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hidden px-3 pt-3 pb-0.5 bg-white dark:bg-gray-800" id="styled-pending" role="tabpanel"
+            aria-labelledby="pending-tab">
+            <div>
+                <table class="w-full hidden md:table bg-white overflow-hidden rounded-b-sm">
+                    <thead class="border-b border-[#EEEEEE] text-[#9CA0A9] font-normal text-xs sm:text-sm 2xl:text-base">
+                        <tr>
+                            <th class="p-2 capitalize text-left font-normal">Firm Name</th>
+                            <th class="p-2 capitalize text-left font-normal">Task</th>
+                            <th class="p-2 capitalize text-left font-normal">Staff ID</th>
+                            <th class="p-2 capitalize text-left font-normal">S. Date</th>
+                            <th class="p-2 capitalize text-left font-normal">E. Date</th>
+                            <th class="p-2 capitalize text-center font-normal">
+                                status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-xs sm:text-sm 2xl:text-base">
+                        <tr class="border-b border-[#EEEEEE] last:border-0 text-[#5A5959]">
+                            <td class="p-2 capitalize">Omumin</td>
+                            <td class="p-2 capitalize">Add Stock</td>
+                            <td class="p-2">4515</td>
+                            <td class="p-2">12.02.24</td>
+                            <td class="p-2">15.02.24</td>
+                            <td class="p-2 text-center">
+                                <button class="w-25 px-2 py-2 cursor-pointer capitalize text-center font-normal text-sm text-[#A27500] bg-[#FFEEBF]">
+                                    Pending</button>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-[#EEEEEE] last:border-0 text-[#5A5959]">
+                            <td class="p-2 capitalize">Sky Gold</td>
+                            <td class="p-2 capitalize">Visit Customer Baner</td>
+                            <td class="p-2">252Radhika</td>
+                            <td class="p-2">12.02.24</td>
+                            <td class="p-2">15.02.24</td>
+                            <td class="p-2 text-center">
+                                <button class="w-25 px-2 py-2 cursor-pointer capitalize text-center font-normal text-sm text-[#A27500] bg-[#FFEEBF]">
+                                    Pending</button>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-[#EEEEEE] last:border-0 text-[#5A5959]">
+                            <td class="p-2 capitalize">Omumin</td>
+                            <td class="p-2 capitalize">Task</td>
+                            <td class="p-2">4515</td>
+                            <td class="p-2">12.02.24</td>
+                            <td class="p-2">15.02.24</td>
+                            <td class="p-2 text-center">
+                                <button class="w-25 px-2 py-2 cursor-pointer capitalize text-center font-normal text-sm text-[#A27500] bg-[#FFEEBF]">
+                                    Pending</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- pending todo list Mobile View -->
+                <div class="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div class="col-span-1">
+                        <div class="bg-[#FFEEBF] border border-[#D9D9D9] rounded-lg p-2 shadow-md space-y-1">
+                            <div class="flex items-start justify-start gap-2">
+                                <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Firm Name :</p>
+                                <p class="text-[#5A5959] capitalize text-xs sm:text-sm">Omunim</p>
+                            </div>
+                            <div class="flex items-start justify-start gap-2">
+                                <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Task :</p>
+                                <p class="text-[#5A5959] capitalize text-xs sm:text-sm">Add Stock</p>
+                            </div>
+                            <div class="flex items-start justify-start gap-2">
+                                <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Staff ID :</p>
+                                <p class="text-[#5A5959] text-xs sm:text-sm">4515</p>
+                            </div>
+                            <div class="flex items-start justify-start gap-2">
+                                <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Start Date :</p>
+                                <p class="text-[#5A5959] text-xs sm:text-sm">12.02.24</p>
+                            </div>
+                            <div class="flex items-start justify-start gap-2">
+                                <p class="text-444 capitalize text-xs sm:text-sm font-semibold">End Date :</p>
+                                <p class="text-[#5A5959] text-xs sm:text-sm">15.02.24</p>
+                            </div>
+                            <div class="flex items-start justify-start gap-2">
+                                <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Status :</p>
+                                <button class="cursor-pointer capitalize font-medium text-xs sm:text-sm text-[#A27500] ">
+                                    pending</button>
+                            </div>
+                        </div>
+                    </div>
+
+                   <div class="col-span-1">
+                    <div class="bg-[#FFEEBF] border border-[#D9D9D9] rounded-lg p-2 shadow-md space-y-1">
+                        <div class="flex items-start justify-start gap-2">
+                            <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Firm Name :</p>
+                            <p class="text-[#5A5959] capitalize text-xs sm:text-sm">Omunim</p>
+                        </div>
+                        <div class="flex items-start justify-start gap-2">
+                            <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Task :</p>
+                            <p class="text-[#5A5959] capitalize text-xs sm:text-sm">Add Stock</p>
+                        </div>
+                        <div class="flex items-start justify-start gap-2">
+                            <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Staff ID :</p>
+                            <p class="text-[#5A5959] text-xs sm:text-sm">4515</p>
+                        </div>
+                        <div class="flex items-start justify-start gap-2">
+                            <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Start Date :</p>
+                            <p class="text-[#5A5959] text-xs sm:text-sm">12.02.24</p>
+                        </div>
+                        <div class="flex items-start justify-start gap-2">
+                            <p class="text-444 capitalize text-xs sm:text-sm font-semibold">End Date :</p>
+                            <p class="text-[#5A5959] text-xs sm:text-sm">15.02.24</p>
+                        </div>
+                        <div class="flex items-start justify-start gap-2">
+                            <p class="text-444 capitalize text-xs sm:text-sm font-semibold">Status :</p>
+                            <button class="cursor-pointer capitalize font-medium text-xs sm:text-sm text-[#A27500] ">
+                                pending</button>
+                        </div>
+                    </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,229 @@
+<nav
+  class="border-b border-[#D9D9D9] clip-path-custom relative overflow-visible"
+>
+  <div class="w-full px-4 relative z-1">
+    <div class="flex justify-between items-center">
+      <!-- Left Section: Menu -->
+      <div class="flex items-center space-x-6">
+        <button class="lg:hidden py-2" (click)="toggleMenu()">
+          <div class="group">
+            <svg
+              class="size-6 text-black group-hover:text-[#C19725] transition-colors duration-300"
+              viewBox="0 0 34 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.85596 10.9124H31.856"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M1.85596 19.6624H31.856"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M1.85596 2.16245H31.856"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </button>
+
+        <div
+          class="hidden lg:flex space-x-1 xl:space-x-3 2xl:space-x-4 text-gray-700"
+        >
+          <!-- Main Menu Items -->
+          <ng-container *ngFor="let item of navbarOptions">
+            <ng-container *ngIf="item.visible">
+              <a
+                [routerLink]="item.path"
+                [ngClass]="{
+                  'text-c19725 border-c19725 font-semibold border-b-2':
+                    router.url.includes(item.path),
+                  'hover:text-[#D19A2A]': true,
+                  'active:font-semibold': router.url.includes(item.path)
+                }"
+                class="relative text-sm xl:text-base text-444 capitalize py-2.5 px-1.5 xl:px-2 group"
+              >
+                {{ item.lable }}
+
+                <!-- Hover Menu -->
+                <div
+                  *ngIf="item.submenu?.length"
+                  class="absolute -left-10 mt-[11px] w-40 rounded-md bg-[#fafafa] overflow-hidden shadow-lg z-50 opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 pointer-events-none"
+                >
+                  <ul>
+                    <li *ngFor="let submenuItem of item.submenu">
+                      <ng-container *ngIf="submenuItem.visible">
+                        <a
+                          [routerLink]="submenuItem.path"
+                          (click)="$event.stopPropagation()"
+                          class="block px-2 py-1 text-sm font-normal text-444 hover:bg-gray-200 hover:font-medium"
+                        >
+                          {{ submenuItem.lable }}
+                        </a>
+                      </ng-container>
+                    </li>
+                  </ul>
+                </div>
+              </a>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Right Section: Search, Profile -->
+      <div class="flex items-center space-x-4">
+        <div class="relative w-[150px] xl:w-[180px] 2xl:w-[220px]">
+          <input
+            type="text"
+            placeholder="Search"
+            class="w-full border bg-white border-[#D9D9D9] placeholder:text-444 text-444 rounded-sm px-2 py-1 text-sm focus:outline-none focus:ring-0 focus:border-[#C19725]"
+          />
+          <span class="absolute right-2 top-2">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12.7 13.75L7.975 9.025C7.6 9.325 7.16875 9.5625 6.68125 9.7375C6.19375 9.9125 5.675 10 5.125 10C3.7625 10 2.60938 9.52812 1.66563 8.58438C0.721875 7.64062 0.25 6.4875 0.25 5.125C0.25 3.7625 0.721875 2.60938 1.66563 1.66563C2.60938 0.721875 3.7625 0.25 5.125 0.25C6.4875 0.25 7.64062 0.721875 8.58438 1.66563C9.52812 2.60938 10 3.7625 10 5.125C10 5.675 9.9125 6.19375 9.7375 6.68125C9.5625 7.16875 9.325 7.6 9.025 7.975L13.75 12.7L12.7 13.75ZM5.125 8.5C6.0625 8.5 6.85938 8.17188 7.51562 7.51562C8.17188 6.85938 8.5 6.0625 8.5 5.125C8.5 4.1875 8.17188 3.39062 7.51562 2.73438C6.85938 2.07812 6.0625 1.75 5.125 1.75C4.1875 1.75 3.39062 2.07812 2.73438 2.73438C2.07812 3.39062 1.75 4.1875 1.75 5.125C1.75 6.0625 2.07812 6.85938 2.73438 7.51562C3.39062 8.17188 4.1875 8.5 5.125 8.5Z"
+                fill="#C19725"
+              />
+            </svg>
+          </span>
+        </div>
+        <div class="relative w-[80px] xl:w-[100px] 2xl:w-[120px]">
+          <select
+            [ngModel]="selectedFirm"
+            (ngModelChange)="onFirmChange($event)"
+            class="w-full cursor-pointer border border-[#D9D9D9] text-c19725 font-normal text-sm rounded-sm px-2 py-1 h-[30px] bg-white appearance-none !bg-none focus:outline-none focus:ring-0 focus:border-[#C19725]"
+          >
+            <option *ngFor="let name of firmnames" [value]="name">
+              {{ name }}
+            </option>
+          </select>
+          <div
+            class="absolute inset-y-0 right-1.5 flex items-center pointer-events-none"
+          >
+            <svg
+              class="size-3"
+              viewBox="0 0 14 7"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z"
+                fill="#C19725"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="relative cursor-pointer w-14 bg-white rounded-sm px-1 py-0.5 hidden sm:block"
+        >
+          <div class="size-6 rounded-full">
+            <img class="size-6" src="/assets/images/firm/user.png" alt="user" />
+          </div>
+
+          <div
+            class="absolute inset-y-0 right-1.5 flex items-center pointer-events-none"
+          >
+            <svg
+              class="size-3"
+              viewBox="0 0 14 7"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z"
+                fill="#C19725"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+      *ngIf="menuOpen"
+      class="lg:hidden bg-[#fafafa] p-3 space-y-0.5 fixed left-[14px] top-[40px] right-[14px] shadow rounded-md z-50"
+    >
+      <ng-container *ngFor="let item of navbarOptions">
+        <div *ngIf="item.visible">
+          <!-- Parent Menu -->
+          <div
+            (click)="
+              item.submenu?.length
+                ? toggleSubmenu(item.path)
+                : navigateTo(item.path)
+            "
+            [ngClass]="{
+              'text-c19725 font-semibold': router.url.includes(item.path),
+              'hover:text-[#D19A2A]': true
+            }"
+            class="flex justify-between items-center text-sm xl:text-base capitalize p-2 cursor-pointer"
+          >
+            <span>{{ item.lable }}</span>
+
+            <!-- Dropdown Arrow if submenu -->
+            <svg
+              *ngIf="item.submenu?.length"
+              [ngClass]="{ 'rotate-180': mobileExpanded === item.path }"
+              class="size-4 transition-transform duration-200"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </div>
+
+          <!-- Submenu (only visible when expanded) -->
+          <div
+            *ngIf="item.submenu?.length && mobileExpanded === item.path"
+            class="ml-4 border-l border-gray-200 pl-3"
+          >
+            <a
+              *ngFor="let submenuItem of item.submenu"
+              (click)="navigateTo(submenuItem.path)"
+              class="block text-sm capitalize px-2 py-1 hover:bg-gray-200"
+            >
+              {{ submenuItem.lable }}
+            </a>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- user profile -->
+      <a
+        href="#"
+        class="flex items-center justify-between border-t border-[#dcdcdc] cursor-pointer py-2 sm:hidden"
+      >
+        <div class="flex items-center justify-start gap-1.5">
+          <div class="size-6 rounded-full">
+            <img class="size-6" src="/assets/images/firm/user.png" alt="user" />
+          </div>
+          <span class="text-sm capitalize font-normal text-444">Sign Out</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</nav>

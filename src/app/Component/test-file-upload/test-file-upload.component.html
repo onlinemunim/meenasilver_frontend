@@ -1,0 +1,31 @@
+<h1>
+  Test File Upload
+  <div class="container px-4 mx-auto mt-10">
+    <form [formGroup]="fileUploadForm">
+      <div class="form-group">
+        <label for="file">Name</label>
+        <input type="text" formControlName="name" />
+      </div>
+
+      <div class="form-group">
+        <label for="file">Email</label>
+        <input type="email" formControlName="email" />
+      </div>
+      <div class="form-group">
+        <label for="file">File Upload</label>
+        <input type="file" id="file" (change)="onFileSelected($event)" />
+      </div>
+      <button
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        type="submit"
+        (click)="onSubmit()"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+
+  <div *ngIf="imagePath" class="mt-4 mx-50">
+      <img [src]="imagePath" alt="" srcset="" class="w-[800px] h-[500px] rounded-lg object-contain" />
+  </div>
+</h1>

@@ -1,0 +1,4 @@
+.text-danger {
+  color: #dc3545;  /* Red color for error messages */
+  font-size: 0.875rem;  /* Optional: set a smaller font size for error messages */
+}

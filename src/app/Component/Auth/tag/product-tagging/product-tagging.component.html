@@ -1,0 +1,282 @@
+<div class="w-full py-3 px-4">
+
+  <div class="sm:flex items-center justify-between mb-4">
+    <div class="flex items-center justify-start gap-1 lg:gap-2 mb-3 lg:mb-0">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="size-6">
+        <mask id="mask0_848_1764" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24" style="mask-type: alpha;">
+          <rect width="24" height="24" fill="#C19725"></rect>
+        </mask>
+        <g mask="url(#mask0_848_1764)">
+          <path d="M16 22L6 12L16 2L17.775 3.775L9.55 12L17.775 20.225L16 22Z" fill="#C19725"></path>
+        </g>
+      </svg>
+      <img src="/assets/images/stock/order.png" alt="Report" class="size-6 sm:size-8 lg:size-10">
+      <span class="font-semibold text-sm sm:text-base lg:text-xl text-444">Product Tagging</span>
+    </div>
+    <!-- <a routerLink="/product-creation" class="block cursor-pointer px-3 py-1.5 text-xs sm:text-sm lg:text-base font-semibold text-white bg-c19725 border-2 border-c19725 hover:bg-[#fdffc6] hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:bg-c19725 dark:hover:bg-[#fdffc6]">
+      Add Product
+    </a> -->
+  </div>
+  <div *ngIf="selectedProduct" class="bg-white rounded-xl p-4 border border-gray-200">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 2xl:grid-cols-12 gap-2 lg:gap-3 space-y-3 text-gray-700">
+      <div class="col-span-1 lg:col-span-2">
+        <div class="flex items-center space-x-2">
+          <span class="font-semibold text-gray-600 text-[13px] smtext-sm lg:text-lg">Product Code:</span>
+          <span class="text-gray-900 text-[13px] smtext-sm lg:text-lg">{{ selectedProduct.rproduct_code }}</span>
+        </div>
+      </div>
+
+      <div class="col-span-1 lg:col-span-2">
+        <div class="flex items-center space-x-2">
+          <span class="font-semibold text-gray-600 text-[13px] smtext-sm lg:text-lg">Product Category:</span>
+          <span class="text-gray-900 text-[13px] smtext-sm lg:text-lg">{{ selectedProduct.rproduct_categories?.name }}</span>
+        </div>
+      </div>
+
+      <div class="col-span-1 lg:col-span-2">
+        <div class="flex items-center space-x-2">
+          <span class="font-semibold text-gray-600 text-[13px] smtext-sm lg:text-lg">Product Name:</span>
+          <span class="text-gray-900 text-[13px] smtext-sm lg:text-lg">{{ selectedProduct.rproduct_name }}</span>
+        </div>
+      </div>
+
+      <div class="col-span-1">
+        <div class="flex items-center space-x-2">
+          <span class="font-semibold text-gray-600 text-[13px] smtext-sm lg:text-lg">Quantity:</span>
+          <span class="text-gray-900 text-[13px] smtext-sm lg:text-lg">{{ selectedProduct.rproduct_quantity }}</span>
+        </div>
+      </div>
+
+      <div class="col-span-1">
+        <div class="flex items-center space-x-2">
+          <span class="font-semibold text-gray-600 text-[13px] smtext-sm lg:text-lg">Size:</span>
+          <span class="text-gray-900 text-[13px] smtext-sm lg:text-lg">{{ selectedProduct.rproduct_size }}</span>
+        </div>
+      </div>
+
+      <div class="col-span-1 lg:col-span-2">
+        <div class="flex items-center space-x-2">
+          <span class="font-semibold text-gray-600 text-[13px] smtext-sm lg:text-lg">Stone Type:</span>
+          <span class="text-gray-900 text-[13px] smtext-sm lg:text-lg">{{ selectedProduct.rproduct_stonetype }}</span>
+        </div>
+      </div>
+
+      <div class="col-span-1 lg:col-span-2">
+        <div class="flex items-center space-x-2">
+          <span class="font-semibold text-gray-600 text-[13px] smtext-sm lg:text-lg">Supplier Code:</span>
+          <span class="text-gray-900 text-[13px] smtext-sm lg:text-lg">{{ selectedProduct.rproduct_supplier_code }}</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <form [formGroup]="productTaggingForm">
+    <div class="w-full mt-3 mb-4 lg:mb-0">
+      <div class="w-full bg-[#FFF5F2] p-3 rounded-md grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-9 gap-2 space-y-0.5">
+
+        <!-- <div class="col-span-1">
+          <div class="relative">
+            <input readonly type="text" id="std_barcode" formControlName="std_barcode" (keydown.enter)="focusNext($event)" class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer" placeholder=" " autocomplete="off" />
+            <label for="std_barcode" class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Product
+              Barcode</label>
+          </div>
+        </div> -->
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="text" id="std_item_code" formControlName="std_item_code" (keydown.enter)="focusNext($event)" class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer" placeholder=" " autocomplete="off" />
+            <label for="std_item_code" class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Product
+              Item Code</label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="text" id="std_item_category" formControlName="std_item_category" (keydown.enter)="focusNext($event)" class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer" placeholder=" " autocomplete="off" />
+            <label for="std_item_category" class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Product
+              Category</label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div tabindex="-1" (keydown.enter)="focusNext($event)" class="group relative flex items-center justify-start py-1 px-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc">
+            <img [src]="productTaggingForm.get('std_image')?.value || '/assets/images/firm/firm-img.png'" alt="Product Image" class="size-7" />
+            <label class="ms-1 text-sm lg:text-sm text-[#898989] truncate">
+              {{ productTaggingForm.get('std_image')?.value?.split('/')?.pop() || 'image.png' }}
+            </label>
+            <div class="absolute left-10 -top-2.5 z-50 opacity-0 scale-90 transition-all duration-300 ease-in-out pointer-events-none group-hover:opacity-100 group-hover:scale-100">
+              <img [src]="productTaggingForm.get('std_image')?.value || '/assets/images/firm/firm-img.png'" alt="Zoom" class="size-20 border border-gray-300 shadow-lg bg-white rounded" />
+            </div>
+          </div>
+          <input type="hidden" formControlName="std_image" />
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="text" id="std_stone_type" formControlName="std_stone_type" (keydown.enter)="focusNext($event)" class="block no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer" placeholder=" " autocomplete="off" />
+            <label for="std_stone_type" class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Stone Type</label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="text" id="std_item_size" formControlName="std_item_size" (keydown.enter)="focusNext($event)" class="block no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer" placeholder=" " autocomplete="off" />
+            <label for="std_item_size" class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Size</label>
+          </div>
+        </div>
+
+        <div class="col-span-1" *ngIf="showWeightField">
+          <div class="relative">
+            <input
+              type="number"
+              id="std_total_wt"
+              formControlName="std_total_wt"
+              (keydown.enter)="focusNext($event)"
+              class="block no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+              autocomplete="off"
+            />
+            <label
+              for="std_total_wt"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+            >
+              Weight Of Item
+              <div fxFlex="value%"></div>
+            </label>
+          </div>
+        </div>
+
+        <div class="col-span-1 relative">
+          <input
+            type="text"
+            id="std_rate_list_code"
+            formControlName="std_rate_list_code"
+            (input)="onRateListCodeInputChange($event)"
+            (keydown)="onRateListKeydown($event)"
+            (focus)="showRateDropdown = true"
+            (blur)="hideDropdownWithDelay()"
+            class="block no-spinner px-2 py-2 w-full text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc"
+            placeholder=" "
+            autocomplete="off"
+          />
+          <label
+            for="std_rate_list_code"
+            class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 bg-white px-1.5 peer-focus:text-c19725"
+          >
+            Rate List Code
+          </label>
+
+          <!-- Dropdown -->
+          <ul
+            *ngIf="showRateDropdown && filteredRateListCodes.length > 0"
+              class="absolute z-50 mt-1 bg-white border border-gray-300 w-full rounded-md shadow-lg max-h-48 overflow-y-auto text-sm"
+            >
+              <li
+                *ngFor="let item of filteredRateListCodes; let i = index"
+                [ngClass]="{
+                  'bg-gray-100': highlightedIndex === i,
+                  'bg-white': highlightedIndex !== i
+                }"
+                (mousedown)="selectRateListCode(item.rlg_code)"
+                class="px-3 py-2 cursor-pointer hover:bg-gray-100"
+              >
+                {{ item.rlg_code }}
+              </li>
+          </ul>
+
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="text" id="std_unit_price" formControlName="std_unit_price" (keydown.enter)="focusNext($event)" class="block no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer" placeholder=" " autocomplete="off" />
+            <label for="std_unit_price" class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">MRP</label>
+          </div>
+        </div>
+        <div class="col-span-1">
+          <div class="h-full flex items-center justify-end gap-3">
+            <p class="flex items-center gap-1 text-sm lg:text-lg text-[#0BB60B] font-medium">
+              <svg class="cursor-pointer size-6 lg:size-10" fill="#0BB60B" viewBox="0 0 56.00 56.00" xmlns="http://www.w3.org/2000/svg" stroke="#0BB60B" (click)="addProductTaggingData()">
+                <g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(9.52,9.52), scale(0.66)">
+                  <rect x="0" y="0" width="56.00" height="56.00" rx="0" fill="#ffffff" strokewidth="0"></rect>
+                </g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M 13.7851 49.5742 L 42.2382 49.5742 C 47.1366 49.5742 49.5743 47.1367 49.5743 42.3086 L 49.5743 13.6914 C 49.5743 8.8633 47.1366 6.4258 42.2382 6.4258 L 13.7851 6.4258 C 8.9101 6.4258 6.4257 8.8398 6.4257 13.6914 L 6.4257 42.3086 C 6.4257 47.1602 8.9101 49.5742 13.7851 49.5742 Z M 27.9882 39.6367 C 26.6523 39.6367 25.9492 38.6758 25.9492 37.3164 L 25.9492 30.0274 L 18.2617 30.0274 C 16.8788 30.0274 15.9179 29.3008 15.9179 28.0118 C 15.9179 26.6758 16.8320 25.9258 18.2617 25.9258 L 25.9492 25.9258 L 25.9492 18.1680 C 25.9492 16.8086 26.6523 15.8477 27.9882 15.8477 C 29.2773 15.8477 30.0742 16.7617 30.0742 18.1680 L 30.0742 25.9258 L 37.7851 25.9258 C 39.2148 25.9258 40.1054 26.6758 40.1054 28.0118 C 40.1054 29.3008 39.1679 30.0274 37.7851 30.0274 L 30.0742 30.0274 L 30.0742 37.3164 C 30.0742 38.7227 29.2773 39.6367 27.9882 39.6367 Z">
+                  </path>
+                </g>
+              </svg> Add
+            </p>
+
+            <p class="flex items-center gap-1 text-sm lg:text-lg text-[#BB0000] font-medium">
+              <svg class="cursor-pointer size-5 lg:size-8" viewBox="0 0 30 31" fill="none" (click)="clearForm()" xmlns="http://www.w3.org/2000/svg">
+                <rect y="0.5" width="30" height="30" rx="5" fill="#BB0000" />
+                <path d="M7.06189 17C7.02104 16.6724 7 16.3387 7 16C7 11.5817 10.5817 8 15 8C17.5006 8 19.7332 9.14727 21.2002 10.9442M21.2002 10.9442V8M21.2002 10.9442V10.9999L18.2002 11M22.9381 15C22.979 15.3276 23 15.6613 23 16C23 20.4183 19.4183 24 15 24C12.6106 24 10.4659 22.9525 9 21.2916M9 21.2916V21H12M9 21.2916V24" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg> Clear
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- Product Details Table (shown below main table) -->
+
+<div class="w-full py-3 px-4">
+  <p class="font-semibold text-sm sm:text-base lg:text-xl text-444 mb-4">Product Tagging List</p>
+
+  <div class="overflow-x-auto whitespace-nowrap hide-scrollbar mt-4">
+    <table class="w-full table bg-white border border-[#D9D9D9] overflow-hidden">
+      <thead class="bg-[#F1F8FF] border border-[#0C447D] text-444 text-xs sm:text-xs">
+        <tr>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">No.</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">Product Code</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">Product Category</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">Supplier Code</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Name</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Size</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Qty</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Total WT</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Silver Rate</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Per GM Labour</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Per GM Shipping</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Other Expense</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Packaging Cost</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Per Gm Cost Without packaging</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">Action</th>
+          <!-- <th class="p-2 font-medium text-center">Date</th> -->
+        </tr>
+      </thead>
+      <tbody class="text-xs sm:text-xs">
+        <tr
+          class="odd:bg-white even:bg-[#F2F2F2] text-[#5A5959]"
+          *ngFor="let metal of readyProductDataList; let i = index"
+        >
+          <td class="p-3 text-center">{{ i + 1 }}</td>
+          <td class="p-3">{{ metal.rproduct_code  || '-'}}</td>
+          <td class="p-3">{{ metal.rproduct_categories?.name || '-'}}</td>
+          <td class="p-3">{{ metal.rproduct_supplier_code || '-' }}</td>
+          <td class="p-3">{{ metal.rproduct_name || '-'}}</td>
+          <td class="p-3">{{ metal.rproduct_size || '-'}}</td>
+          <td class="p-3">{{ metal.rproduct_quantity || '-'}}</td>
+          <td class="p-3">{{ metal.rproduct_total_wt || '-'}}</td>
+          <td class="p-3">{{ metal.rproduct_silver_rate_per_gm || '-'}}</td>
+          <td class="p-3">{{ metal.rproduct_per_gram_labour || '-'}}</td>
+          <td class="p-3">{{ metal.rproduct_shipping_per_gm || '-'}}</td>
+          <td class="p-3">{{ metal.rproduct_other_expense_per_gm || '-'}}</td>
+          <td class="p-3">{{ metal.rproduct_packaging_cost || '-'}}</td>
+          <td class="p-3">{{ metal.rproduct_per_gm_cost_without_packaging || '-'}}</td>
+          <td class="p-3 text-center">
+            <button
+              type="button"
+              class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 text-xs rounded"
+              (click)="onStart(metal)"
+            >
+              Start Tagging
+            </button>
+          </td>
+          <!-- <td class="p-3 text-center">{{ metal.rproduct_date | date: 'dd-MM-yyyy' }}</td> -->
+        </tr>
+      </tbody>
+    </table>
+    </div>
+</div>

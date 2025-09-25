@@ -1,0 +1,11 @@
+.clip-path-custom::before {
+    content: ""; /* Create an empty pseudo-element */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    clip-path: polygon(80% 0, 100% 0%, 100% 100%, 75% 100%);
+    background-color: #c19725;
+    z-index: -1; /* Ensure the pseudo-element stays behind the text */
+  }

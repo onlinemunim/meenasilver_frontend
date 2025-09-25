@@ -1,0 +1,106 @@
+<div class="w-full py-3 px-4">
+  <div class="w-full p-4 mb-4 bg-white rounded-md shadow border border-gray-200">
+    <!-- Title -->
+    <div class="flex justify-center mb-6">
+      <h2
+        class="text-xl font-semibold text-[#c19725] relative inline-block text-center
+             drop-shadow-sm
+             before:content-[''] before:absolute before:-bottom-2 before:left-1/2 before:-translate-x-1/2
+             before:w-16 before:h-0.5 before:rounded-full before:bg-gradient-to-r before:from-yellow-400 before:to-[#c19725]">
+        Customize Settings
+      </h2>
+    </div>
+
+    <!-- Section for Main Menu Visibility -->
+    <div class="mb-8">
+      <h3 class="text-lg font-semibold text-[#c19725] mb-4">Main Menu Visibility</h3>
+
+      <!-- Select/Unselect Buttons -->
+      <div class="max-w-2xl mx-auto flex justify-center gap-4 mb-6">
+        <button type="button"
+          class="px-4 py-1.5 bg-green-600 text-white text-sm font-medium rounded-md shadow hover:bg-green-700 transition"
+          (click)="selectAllMainMenu()">
+          Select All
+        </button>
+        <button type="button"
+          class="px-4 py-1.5 bg-red-600 text-white text-sm font-medium rounded-md shadow hover:bg-red-700 transition"
+          (click)="unselectAllMainMenu()">
+          Unselect All
+        </button>
+      </div>
+
+      <!-- Checkboxes -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        <div *ngFor="let item of mainMenuItems">
+          <label
+            class="flex items-center space-x-2 p-3 bg-gray-50 rounded-md border border-gray-200 hover:bg-gray-100 transition duration-200"
+            [ngClass]="{
+              'cursor-not-allowed opacity-70': item.path === '/home' || item.path === '/dropdown-settings'
+            }">
+            <input
+              type="checkbox"
+              [checked]="item.visible"
+              [disabled]="item.path === '/home' || item.path === '/dropdown-settings'"
+              (change)="item.visible = !item.visible"
+              class="form-checkbox h-4 w-4 accent-[#c19725] cursor-pointer disabled:cursor-not-allowed" />
+            <span class="text-sm text-gray-800 font-medium">{{ item.lable }}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section for Submenu Visibility -->
+    <div class="mb-8">
+      <h3 class="text-lg font-semibold text-[#c19725] mb-4">Submenu Visibility</h3>
+      <!-- Select/Unselect Buttons -->
+      <div class="max-w-2xl mx-auto flex justify-center gap-4 mb-6">
+        <button type="button"
+          class="px-4 py-1.5 bg-green-600 text-white text-sm font-medium rounded-md shadow hover:bg-green-700 transition"
+          (click)="selectAllSubmenu()">
+          Select All
+        </button>
+        <button type="button"
+          class="px-4 py-1.5 bg-red-600 text-white text-sm font-medium rounded-md shadow hover:bg-red-700 transition"
+          (click)="unselectAllSubmenu()">
+          Unselect All
+        </button>
+      </div>
+      <!-- Grouped Checkboxes -->
+      <div class="space-y-6">
+        <div *ngFor="let group of submenuGroups">
+          <h3 class="text-lg font-semibold text-[#c19725] mb-2 pl-1">{{ group.parentLabel }}</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            <div *ngFor="let item of group.submenu">
+              <label
+                class="flex items-center space-x-2 p-3 bg-gray-50 rounded-md border border-gray-200 hover:bg-gray-100 transition duration-200 cursor-pointer">
+                <input
+                  type="checkbox"
+                  [checked]="item.visible"
+                  (change)="toggleSubItem(item.path, group.parentPath)"
+                  class="form-checkbox h-4 w-4 accent-[#c19725]" />
+                <span class="text-sm text-gray-800 font-medium">{{ item.lable }}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Action Buttons (Back and Save) -->
+    <div class="max-w-2xl mx-auto flex justify-center gap-4 mt-10 mb-6">
+      <button type="button"
+          class="block cursor-pointer capitalize w-[110px] lg:w-[100px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center"
+          routerLink="/product-creation"> <!-- Assuming this is the correct back link -->
+          Back
+      </button>
+
+      <!-- *** THE FIX IS HERE *** -->
+      <!-- This single button now saves all settings on the page -->
+      <button type="button"
+        class="px-8 py-2 bg-[#c19725] text-white rounded-md shadow hover:bg-yellow-700 transition"
+        (click)="saveAllChanges()">
+        Save Settings
+      </button>
+    </div>
+  </div>
+</div>

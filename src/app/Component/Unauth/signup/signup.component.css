@@ -1,0 +1,29 @@
+
+::ng-deep .mdc-checkbox__background{
+    border-color: #C19725;
+}
+::ng-deep .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background, .mdc-checkbox__native-control:enabled:indeterminate ~ .mdc-checkbox__background{
+    background-color: #C19725;
+}
+::ng-deep .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background, .mdc-checkbox__native-control:enabled:indeterminate ~ .mdc-checkbox__background{
+    border-color:#C19725;
+}
+::ng-deep .mdc-checkbox:hover > .mdc-checkbox__native-control:checked ~ .mdc-checkbox__background, .mdc-checkbox:hover > .mdc-checkbox__native-control:indeterminate ~ .mdc-checkbox__background{
+    border-color:#C19725;
+    background-color: #C19725;
+}
+::ng-deep .mdc-checkbox__native-control:focus:focus:checked ~ .mdc-checkbox__background, .mdc-checkbox__native-control:focus:focus:indeterminate ~ .mdc-checkbox__background{
+    border-color:#C19725;
+    background-color: #C19725;
+}
+::ng-deep .mdc-checkbox:hover .mdc-checkbox__native-control:checked + .mdc-checkbox__ripple{
+    background-color: #C19725;
+}
+::ng-deep .mdc-checkbox:active > .mdc-checkbox__native-control + .mdc-checkbox__ripple{
+    background-color: #C19725;
+}
+
+.text-danger {
+  color: #dc3545;  /* Red color for error messages */
+  font-size: 0.875rem;  /* Optional: set a smaller font size for error messages */
+}

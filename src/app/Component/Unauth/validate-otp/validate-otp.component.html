@@ -1,0 +1,59 @@
+<div class="w-full rounded-2xl bg-linear-(--my-gradient1) border-[#D9D9D9] shadow-(--my-shadow) pt-8 lg:pt-15 px-2 lg:px-5 mb-4 mb-md-0">
+  <p class="text-white font-bold text-xl md:text-2xl lg:text-4xl xl:text-[45px] capitalize text-center mb-1">Welcome,</p>
+  <p class="text-white font-normaltext-lg md:text-xl lg:text-2xl xl:text-3xl text-center">Enter OTP Here</p>
+  <div class="bg-white mt-6 lg:mt-10 w-full rounded-xl">
+    <div class="p-4 md:py-8 md:px-10 xl:py-10 xl:px-20 rounded-xl bg-white dark:bg-gray-800">
+      <form>
+        <p class="text-444 font-bold text-base md:text-xl xl:text-2xl mb-4 lg:mb-8">Enter OTP Here</p>
+
+        <div class="relative mb-4" [formGroup]="otpForm">
+          <input type="text" id="mobilenum" formControlName="mobilenumber"
+            class="block px-2.5 pb-3 pt-3 w-full text-sm lg:text-base xl:text-base text-444 font-normal bg-transparent rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            placeholder=" " />
+          <label for="mobilenum"
+            class="absolute text-sm lg:text-base xl:text-base text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Mobile No.</label>
+        </div>
+
+        <div class="relative mb-4">
+          <span class="font-normal text-xs md:text-sm text-[#898989]">Enter OTP Code Here</span>
+          <div class="flex items-center justify-between 2xl:justify-start 2xl:gap-10 mt-3">
+            <input type="text" id="otp1" #otpInput maxlength="1"
+              class="block text-center px-2.5 pb-3 pt-3 size-11 xl:size-13 text-sm lg:text-base xl:text-base text-444 font-normal bg-transparent rounded-lg border-2 border-[#d9d9d9] appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              (keyup)="handleOtpInput($event, 0)" />
+            <input type="text" id="otp2" #otpInput maxlength="1"
+              class="block text-center px-2.5 pb-3 pt-3 size-11 xl:size-13 text-sm lg:text-base xl:text-base text-444 font-normal bg-transparent rounded-lg border-2 border-[#d9d9d9] appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              (keyup)="handleOtpInput($event, 1)" />
+            <input type="text" id="otp3" #otpInput maxlength="1"
+              class="block text-center px-2.5 pb-3 pt-3 size-11 xl:size-13 text-sm lg:text-base xl:text-base text-444 font-normal bg-transparent rounded-lg border-2 border-[#d9d9d9] appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              (keyup)="handleOtpInput($event, 2)" />
+            <input type="text" id="otp4" #otpInput maxlength="1"
+              class="block text-center px-2.5 pb-3 pt-3 size-11 xl:size-13 text-sm lg:text-base xl:text-base text-444 font-normal bg-transparent rounded-lg border-2 border-[#d9d9d9] appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              (keyup)="handleOtpInput($event, 3)" />
+            <input type="text" id="otp5" #otpInput maxlength="1"
+              class="block text-center px-2.5 pb-3 pt-3 size-11 xl:size-13 text-sm lg:text-base xl:text-base text-444 font-normal bg-transparent rounded-lg border-2 border-[#d9d9d9] appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              (keyup)="handleOtpInput($event, 4)" />
+            <input type="text" id="otp6" #otpInput maxlength="1"
+              class="block text-center px-2.5 pb-3 pt-3 size-11 xl:size-13 text-sm lg:text-base xl:text-base text-444 font-normal bg-transparent rounded-lg border-2 border-[#d9d9d9] appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              (keyup)="handleOtpInput($event, 5)" />
+          </div>
+        </div>
+
+        <!-- Fixed Button Section -->
+        <div class="flex items-center justify-center mt-8 md:mt-10">
+          <button type="button" (click)="verifyOtp()"
+            class="block cursor-pointer px-5 md:px-7 lg:px-10 w-[150px] lg:w-[300px] py-2
+lg:py-3.5 text-base md:text-lg lg:text-2xl font-bold text-white bg-c19725 border-2 border-c19725 hover:bg-[#fdffc6] hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-lg text-center dark:bg-blue-600 dark:hover:bg-[#fdffc6] dark:focus:ring-blue-800">
+            Login
+          </button>
+        </div>
+
+        <p class="text-[#898989] font-normal text-sm lg:text-lg text-center mt-6">
+          Didn’t receive ?<button type="button" (click)="resendOtp()"
+          class="mx-1 text-c19725 font-bold underline hover:text-c19725/80">
+    Resend Code
+  </button>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

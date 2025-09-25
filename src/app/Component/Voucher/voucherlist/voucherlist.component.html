@@ -1,0 +1,89 @@
+
+<div class="relative overflow-x-auto py-4">
+  <h1 class="text-2xl font-semibold text-gray-800 dark:text-white py-4">
+    VoucherList
+  </h1>
+  <div>
+    <app-voucherfilter/>
+  </div>
+  <br>
+  <a
+  routerLink="/voucher/create"
+  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+>Create Voucher</a>
+
+
+<br>
+<br>
+
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+            <th scope="col" class="px-6 py-3">
+                Id
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Name
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Description
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Code
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Status
+            </th>
+            <th scope="col" class="px-6 py-3">
+              discount_percentage
+          </th>
+            <th scope="col" class="px-6 py-3">
+              Action
+            </th>
+
+        </tr>
+      </thead>
+      <tbody>
+
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200"
+      *ngFor="let voucher of vouchers "
+    >
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          {{ voucher.id}}
+        </th>
+        <td class="px-6 py-4">
+            {{voucher.name}}
+        </td>
+        <td class="px-6 py-4">
+            {{voucher.description}}
+        </td>
+        <td class="px-6 py-4">
+          {{voucher.code}}
+      </td>
+      <td class="px-6 py-4">
+        {{voucher.status}}
+      </td>
+      <td class="px-6 py-4">
+        {{voucher.discount_percentage}}
+      </td>
+
+        <td class="px-6 py-4">
+          <a routerLink="/voucher/{{voucher.id}}/edit">
+            edit
+          </a>
+          <br>
+          <a button (click)="deleteVoucher(voucher.id)">
+            Delete
+          </a>
+          <br>
+          <a routerLink="/voucher/{{voucher.id}}/singlevoucher">
+            Details
+          </a>
+        </td>
+      </tr>
+
+    </tbody>
+</table>
+
+
+</div>

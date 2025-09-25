@@ -1,0 +1,385 @@
+<div class="bg-gray-100 p-4 sm:p-8 ">
+  <div class="max-w-4xl mx-auto bg-white border-[5px] border-[#006269] shadow-lg">
+
+    <!-- Header Section -->
+    <header class="relative ">
+      <div class="relative w-full">
+        <!-- Background Image -->
+        <img src="assets/images/user/topimg.png" alt="Top Banner" class="w-full object-cover">
+
+        <!-- Overlay Text -->
+        <div class="absolute top-1 -bottom-1 right-2 text-right text-white  rounded">
+          <div class="flex gap-x-2">
+            <p class="text-md font-medium">Phone:</p>
+            <p class="text-md">8956428587</p>
+          </div>
+          <div class="flex gap-x-2">
+            <p class="text-md font-medium">Email:</p>
+            <p class="text-md">ramkrishnajewels&#64;gmail.com</p>
+          </div>
+        </div>
+
+
+
+        <!-- 🔻 Main Row -->
+        <div class="grid grid-cols-3 items-center gap-4 mt-0 pl-4">
+
+          <!-- Logo -->
+          <div class="flex items-center">
+            <img src="https://cdn-icons-png.flaticon.com/128/2230/2230534.png" alt="Ramkrishna Jewellers Logo" class="h-16 w-16">
+          </div>
+
+          <!-- Store Name & Address -->
+          <div class="text-center">
+            <h1 class="text-3xl font-bold" style="color: #006269;">Ram Krishna Jewels</h1>
+            <p class="text-gray-600">Gold, Silver & Diamonds</p>
+            <p class="text-gray-600">Magarpatta Road, Hadapsar, Pune</p>
+          </div>
+
+          <!-- BIS Logo & Label -->
+          <div class="flex flex-col items-end pr-5">
+            <img src="https://www.presentations.gov.in/wp-content/uploads/2020/06/BIS-Hallmark_Preview.png" alt="BIS Hallmark Logo" class="h-20 w-auto">
+            <p class="font-semibold text-sm text-gray-800">Bis 916 Hallmark</p>
+            <p class="font-semibold text-sm text-gray-800">Gold Jewellery</p>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="absolute -bottom-0 w-full border-b-2 border-[#006269]"></div>
+
+
+
+
+    </header>
+
+    <!-- Customer and Invoice Details -->
+    <section class="p-5 pt-1">
+      <div class="flex justify-between">
+        <div>
+          <div class="flex mb-1">
+            <strong class="w-20 text-[#333333]">Name</strong>
+            <span>: {{invoiceData?.customer?.name}} {{invoiceData?.customer?.user_last_name}}</span>
+          </div>
+          <div class="flex mb-1">
+            <strong class="w-20 text-[#333333]">Address</strong>
+            <span>: {{invoiceData?.customer?.address[0]?.add1}}, {{invoiceData?.customer?.address[0]?.city?.name}} - {{invoiceData?.customer?.address[0]?.pincode}}</span>
+          </div>
+          <p class="ml-[88px]">{{invoiceData?.customer?.address[0]?.city?.name}}, {{invoiceData?.customer?.address[0]?.state?.name}}, {{invoiceData?.customer?.address[0]?.country?.name}}</p>
+          <div class="flex">
+            <strong class="w-20 text-[#333333]">Phone</strong>
+            <span>: {{invoiceData?.customer?.mobilenumber}}</span>
+          </div>
+        </div>
+        <div class="text-left">
+          <div class="flex mb-1">
+            <strong class="w-20 text-[#333333]">Invoice No</strong>
+            <span>: {{invoiceData.invoice_number}}</span>
+          </div>
+          <div class="flex mb-1">
+            <strong class="w-20 text-[#333333]">Date</strong>
+            <span>: {{invoiceData.invoice_date}}</span>
+          </div>
+          <div class="flex mb-1">
+            <strong class="w-20 text-[#333333]">GSTIN</strong>
+            <span>: {{invoiceData?.customer?.gstnumber}}</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- Items Table -->
+   <!-- Updated Items Table -->
+<section class="px-6">
+  <table class="w-full text-sm text-center border-collapse">
+    <thead class="bg-[#006269] text-white">
+      <tr>
+        <th class="p-2 border border-gray-300">S  no.</th>
+        <th class="p-2 border border-gray-300">Description</th>
+        <th class="p-2 border border-gray-300">Net Wt.</th>
+        <th class="p-2 border border-gray-300">Tunch</th>
+        <th class="p-2 border border-gray-300">Total MRP</th>
+        <th class="p-2 border border-gray-300">Mrp%</th>
+        <th class="p-2 border border-gray-300">Quantity</th>
+        <th class="p-2 border border-gray-300">Lbr</th>
+        <th class="p-2 border border-gray-300">Fine</th>
+        <th class="p-2 border border-gray-300">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of invoiceData?.items; let i= index">
+        <td class="p-2 border border-gray-300">{{i+1}}</td>
+        <td class="p-2 border border-gray-300 text-left align-top">
+          <div>{{item?.stout_item_name}}</div>
+          <div class="text-xs">{{item?.stout_barcode}}</div>
+        </td>
+        <td class="p-2 border border-gray-300 align-top">{{item?.stout_total_wt}}</td>
+        <td class="p-2 border border-gray-300 align-top">{{item?.stout_purity}}</td>
+        <td class="p-2 border border-gray-300 align-top">{{item?.stout_unit_price}}</td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300 align-top">{{item?.stout_quantity}}</td>
+        <td class="p-2 border border-gray-300 align-top">{{item?.stout_lab_charges}}</td>
+        <td class="p-2 border border-gray-300">{{((item?.stout_total_wt)*(item?.stout_purity))/100}}</td>
+        <td class="p-2 border border-gray-300 align-top text-right pr-4">{{item?.stout_final_amount}}</td>
+      </tr>
+      <!-- <tr>
+        <td class="p-2 border border-gray-300">2</td>
+        <td class="p-2 border border-gray-300">Fancy Payal</td>
+        <td class="p-2 border border-gray-300">692.057</td>
+        <td class="p-2 border border-gray-300">77.00</td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300">532.880</td>
+        <td class="p-2 border border-gray-300"></td>
+      </tr>
+      <tr>
+        <td class="p-2 border border-gray-300">3</td>
+        <td class="p-2 border border-gray-300">Ladies B Late</td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300">129628.00</td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300">0.45/Pc</td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300">₹ 58,333</td>
+      </tr> -->
+      <!-- <tr>
+        <td class="p-2 border border-gray-300">4</td>
+        <td class="p-2 border border-gray-300">Nazaria</td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300"></td>
+      </tr> -->
+      <tr class="font-semibold bg-[#9ae3e6]">
+        <td class="p-2 border border-gray-300 text-left" colspan="2">Total</td>
+        <td class="p-2 border border-gray-300">{{itemsTotalWeight}} Gm</td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300"></td>
+        <td class="p-2 border border-gray-300">4117.986</td>
+        <td class="p-2 border border-gray-300">₹ {{itemsTotalAmount}}</td>
+      </tr>
+      <!-- Row: S SILVER BHAV -->
+<tr>
+
+  <td class="p-2 border border-gray-300 text-left" colspan="2">S Silver Bhav </td>
+  <td class="p-2 border border-gray-300"></td>
+  <td class="p-2 border border-gray-300"></td>
+  <td class="p-2 border border-gray-300">6176.70</td>
+  <td class="p-2 border border-gray-300"></td>
+  <td class="p-2 border border-gray-300"></td>
+  <td class="p-2 border border-gray-300"></td>
+  <td class="p-2 border border-gray-300">4117.986</td>
+  <td class="p-2 border border-gray-300">₹ 480463</td>
+</tr>
+
+<!-- Row: RECEIPT CASH -->
+<tr>
+  <td class="p-2 border border-gray-300 text-left" colspan="2">Receipt Cash</td>
+  <td class="p-2 border border-gray-300"></td>
+  <td class="p-2 border border-gray-300"></td>
+  <td class="p-2 border border-gray-300"></td>
+  <td class="p-2 border border-gray-300"></td>
+  <td class="p-2 border border-gray-300"></td>
+  <td class="p-2 border border-gray-300"></td>
+  <td class="p-2 border border-gray-300"></td>
+  <td class="p-2 border border-gray-300">₹ 538796</td>
+</tr>
+
+<!-- Row: Closing Balance -->
+<tr class="font-semibold" style="background-color: #d7f8f9;">
+  <td colspan="9" class="p-2 text-right pr-4 border border-gray-300">Closing Balance</td>
+  <td class="p-2 border border-gray-300">₹ {{invoiceData?.balance_due}}</td>
+</tr>
+
+
+    </tbody>
+  </table>
+</section>
+
+
+
+    <!-- Gold Totals -->
+    <!-- <section class="px-6 mt-0">
+        <div class="bg-[#ff6f61] text-white grid grid-cols-10 text-center text-sm font-bold">
+            <div class="col-span-4 p-1 text-left pl-4">Gold:</div>
+            <div class="p-1">12.800 Gm</div>
+            <div class="p-1">12.000 Gm</div>
+            <div class="col-span-1"></div>
+            <div class="p-1">1,200.00</div>
+            <div class="col-span-1"></div>
+            <div class="p-1 text-right pr-4">75,800.00</div>
+        </div>
+    </section> -->
+
+    <!-- Payment and Totals Section -->
+    <!-- <section class="p-6 pt-0 ">
+      <div class="grid grid-cols-2 gap-6 bg-gray-100 pl-3">
+
+        <div class="text-sm">
+          <div class="flex justify-between items-center  py-1">
+            <span class="font-medium">Cash Receive :</span>
+            <span>35,000.00</span>
+          </div>
+          <div class="flex justify-between items-center  py-1">
+            <span class="font-medium">Cheque Receive :</span>
+            <span>20,000.00</span>
+          </div>
+          <div class="flex justify-between items-center  py-1">
+            <span class="font-medium">Card Receive :</span>
+            <span>15,000.00</span>
+          </div>
+          <div class="flex justify-between items-center  py-1">
+            <span class="font-medium">Online Payment :</span>
+            <span>8,074.00</span>
+          </div>
+        </div>
+
+
+        <div class="text-sm pr-3">
+          <div class="flex justify-between items-center py-1">
+            <span class="font-medium">Taxable Amt :</span>
+            <span>75,800.00</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="font-medium">Cgst(1.5%) :</span>
+            <span>1,137.00</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="font-medium">Sgst(1.5%) :</span>
+            <span>1,137.00</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="font-medium">Round Off :</span>
+            <span>- 0.00</span>
+          </div>
+          <div class="flex justify-between items-center py-1 font-semibold  ">
+            <span>Total Amount :</span>
+            <span>78,074.00</span>
+          </div>
+          <div class="flex justify-between items-center py-1 font-semibold">
+            <span>Total Rec. Amt :</span>
+            <span>78,074.00</span>
+          </div>
+        </div>
+      </div>
+    </section> -->
+<br>
+    <!-- Tax Summary Table -->
+    <!-- <section class="px-6 pb-6">
+      <table class="w-full text-sm text-center border-collapse">
+        <thead class="bg-gray-200 font-medium">
+          <tr>
+            <th class="p-2 border border-gray-300">Silver Bhav</th>
+            <th class="p-2 border border-gray-300">Labour</th>
+            <th class="p-2 border border-gray-300">Amount</th>
+            <th class="p-2 border border-gray-300">Fine</th>
+            <th class="p-2 border border-gray-300" colspan="3">Closing Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="p-2 border border-gray-300">₹11,670</td>
+            <td class="p-2 border border-gray-300">0.45 / Pc</td>
+            <td class="p-2 border border-gray-300">₹58,333</td>
+            <td class="p-2 border border-gray-300">534.8657</td>
+            <td class="p-2 border border-gray-300" colspan="3">-538.956</td>
+          </tr>
+        </tbody>
+      </table>
+    </section> -->
+
+
+    <!-- Terms and Conditions & Signature -->
+    <section class="p-6 text-sm text-gray-700">
+
+      <!-- Row 1: Terms and Conditions + Authorized Signatory -->
+      <div class="flex justify-between items-start gap-8">
+        <!-- Terms and Conditions -->
+        <div class="flex-1">
+          <h4 class="font-bold mb-2 text-[#500000]">Terms And Conditions</h4>
+          <ol class="list-decimal list-inside space-y-1">
+            <li>The price of the product, which is usually listed on the jeweler’s website or in their store, will be the same.</li>
+            <li>We require customers to pay in full at the time of purchase.</li>
+          </ol>
+        </div>
+
+        <!-- Authorized Signature (Right Side) -->
+
+      </div>
+
+      <!-- Row 2: Customer Signature (left) + Thank You (below) | Authorized Signature (right) -->
+      <div class="mt-12 pt-4 flex justify-between items-start">
+        <!-- Left Side: Customer Signature + Thank You -->
+        <div class="text-left">
+          <div class=" w-48 mb-1"></div>
+          <p class="font-bold">Customer Signatory</p>
+          <p class="font-semibold mt-2 text-[#006269]">Thank You For Business With Us</p>
+
+        </div>
+
+        <!-- Right Side: Authorized Signature (again for consistency) -->
+        <div class="text-center">
+          <div class=" w-48 mb-1 mx-auto"></div>
+          <p class="font-bold">Authorized Signatory</p>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- Footer/Promotional Banner -->
+    <footer class="p-6 bg-gradient-to-r from-pink-50 to-orange-50 border-t border-pink-200">
+      <div class="flex justify-between items-center flex-wrap gap-8 max-w-7xl mx-auto">
+
+        <!-- 🔍 Left: QR Scanner -->
+        <div class="text-center">
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://ramkrishnajewellers.com"
+            alt="QR Code"
+            class="h-28 w-28 mx-auto rounded-lg shadow-md"
+          />
+          <p class="font-serif font-semibold text-pink-700 mt-3">Scan To Visit Our Website!</p>
+          <p class="text-sm text-gray-600 mt-1">Don't Miss Out On Amazing Deals!</p>
+        </div>
+
+        <!-- 💬 Center: Tagline -->
+        <div class="text-center max-w-xs">
+          <p class="font-serif italic text-gray-700">Jewelry That Dazzles, Day And Night.</p>
+          <p class="text-pink-700 font-bold text-lg mt-3">Celebrate Every Moment In Style With</p>
+          <p class="text-2xl font-extrabold text-pink-800 tracking-wide">Ramkrishna Jewellers</p>
+
+        </div>
+
+        <!-- 💎 Right: Offer -->
+        <div class="text-center max-w-xs">
+          <h3 class="text-3xl font-extrabold text-pink-700">Be Dazzled</h3>
+          <p class="text-lg text-gray-700 mt-1">Up To</p>
+          <p class="text-7xl font-extrabold text-pink-700 leading-none">20%</p>
+          <p class="text-lg text-gray-700">Off* Diamond Prices</p>
+
+        </div>
+
+      </div>
+      <!-- <div class="mt-2 border-t border- border-black"></div> -->
+
+    </footer>
+
+
+
+  </div>
+</div>

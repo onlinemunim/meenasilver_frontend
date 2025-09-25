@@ -1,0 +1,201 @@
+<div class="w-full rounded-2xl bg-linear-(--my-gradient1) border-[#D9D9D9] shadow-(--my-shadow) pt-8 lg:pt-15 px-2 lg:px-5 mb-4 mb-md-0">
+  <p class="text-white font-bold text-xl md:text-2xl lg:text-4xl xl:text-[45px] capitalize text-center mb-1">Welcome,</p>
+  <p class="text-white font-normaltext-lg md:text-xl lg:text-2xl xl:text-3xl text-center">Please log in to continue</p>
+  <div class="bg-white mt-6 lg:mt-10 w-full rounded-xl">
+
+    <div class="border-b border-[#D9D9D9] dark:border-gray-700">
+      <ul class="flex flex-wrap -mb-px text-sm md:text-[17px] xl:text-[18px] font-medium text-center" id="default-styled-tab"
+        data-tabs-toggle="#default-styled-tab-content"
+        data-tabs-active-classes="text-sm md:text-lg xl:text-xl text-c19725 hover:text-c19725 dark:text-c19725 dark:hover:text-c19725 font-bold border-b-3 border-c19725 dark:border-c19725"
+        data-tabs-inactive-classes="dark:border-transparent text-444 hover:text-gray-600 dark:text-gray-400 font-normal border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300"
+        role="tablist">
+
+        <li class="w-1/3" role="presentation">
+          <button class="w-full inline-block h-full p-4 rounded-t-lg cursor-pointer" id="login-styled-tab"
+            data-tabs-target="#styled-login" type="button" role="tab" aria-controls="login"
+            aria-selected="false">Login</button>
+        </li>
+
+        <li class="w-1/3 border-x border-[#D9D9D9]" role="presentation">
+          <button class="w-full inline-block h-full p-4 rounded-t-lg cursor-pointer hover:text-gray-600 dark:hover:text-gray-300"
+            id="login-otp-styled-tab" data-tabs-target="#styled-login-otp" type="button" role="tab"
+            aria-controls="login-otp" aria-selected="false">Login By OTP</button>
+        </li>
+
+        <li class="w-1/3" role="presentation">
+          <button class="w-full inline-block h-full p-4 rounded-t-lg cursor-pointer hover:text-gray-600 dark:hover:text-gray-300"
+            id="fingure-scan-styled-tab" data-tabs-target="#styled-fingure-scan" type="button" role="tab"
+            aria-controls="fingure-scan" aria-selected="false">Fingure Scan</button>
+        </li>
+      </ul>
+    </div>
+
+    <div id="default-styled-tab-content">
+      <div class="hidden p-4 md:py-8 md:px-10 xl:py-10 xl:px-20 rounded-lg bg-white dark:bg-gray-800" id="styled-login" role="tabpanel"
+        aria-labelledby="login-tab">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <p class="text-444 font-bold text-base md:text-xl xl:text-2xl mb-4 lg:mb-8">Login your account</p>
+
+
+          <div class="w-full flex justify-center mt-4 mb-2">
+            <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+            <app-custom-select
+            label="Select User Type"
+            [options]="UserType"
+            formControlName="user_type"
+            [(selected)]="selectedUser"
+            selectId="customerType">
+            </app-custom-select>
+            </div>
+            </div>
+
+            <div *ngIf="selectedUser !== 'Staff'">
+            <div class="relative mb-6 lg:mb-8">
+              <input type="text" id="email_username" formControlName="email"
+                class="block px-2.5 pb-3 pt-3 w-full text-sm lg:text-base xl:text-base text-444 font-normal bg-transparent rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="email_username"
+                class="absolute text-sm lg:text-base xl:text-base text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Email
+                / Username</label>
+            </div>
+
+            <div class="relative mb-4">
+              <svg class="absolute right-[10px] top-[16px] size-4 lg:size-5 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#C19725"><path d="m644-428-58-58q9-47-27-88t-93-32l-58-58q17-8 34.5-12t37.5-4q75 0 127.5 52.5T660-500q0 20-4 37.5T644-428Zm128 126-58-56q38-29 67.5-63.5T832-500q-50-101-143.5-160.5T480-720q-29 0-57 4t-55 12l-62-62q41-17 84-25.5t90-8.5q151 0 269 83.5T920-500q-23 59-60.5 109.5T772-302Zm20 246L624-222q-35 11-70.5 16.5T480-200q-151 0-269-83.5T40-500q21-53 53-98.5t73-81.5L56-792l56-56 736 736-56 56ZM222-624q-29 26-53 57t-41 67q50 101 143.5 160.5T480-280q20 0 39-2.5t39-5.5l-36-38q-11 3-21 4.5t-21 1.5q-75 0-127.5-52.5T300-500q0-11 1.5-21t4.5-21l-84-82Zm319 93Zm-151 75Z"/></svg>
+              <input type="password" id="password" formControlName="password"
+                class="block tracking-[5px] px-2.5 pb-3 pt-3 w-full text-sm lg:text-base xl:text-base text-444 font-normal bg-transparent rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="password"
+                class="absolute text-sm lg:text-base xl:text-base text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password</label>
+            </div>
+            <div class="xs:col-span-1 sm:col-span-2">
+              <div class="relative flex">
+                <div
+                  class="w-1/2 h-full bg-[#fff7e6] rounded-l-md flex items-center justify-between pl-3 text-base font-semibold text-[#c19725] select-none border-r border-dcdcdc">
+                  <span class="tracking-widest">{{ generatedCaptcha }}</span>
+                  <button type="button" (click)="refreshCaptcha()"
+                    class="block cursor-pointer px-3 py-2.5 text-base lg:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-[#fdffc6] hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-l-md">
+                    <i *ngIf="!isCaptchaLoading; else loadingCaptcha" class="fas fa-sync-alt"></i>
+                    <ng-template #loadingCaptcha>
+                      <i class="fas fa-spinner fa-spin"></i> <!-- Spinner Icon for Loader -->
+                    </ng-template>
+                  </button>
+                </div>
+                <div class="w-1/2">
+                  <input formControlName="Captcha" type="text" id="Captcha" [(ngModel)]="userCaptcha"
+                    class="block pb-3 pt-3 px-2.5 w-full text-sm lg:text-base text-555 font-normal bg-transparent rounded-r-md border border-dcdcdc border-l-0 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                    placeholder="Enter Captcha" />
+                </div>
+              </div>
+
+              <div *ngIf="loginForm.controls['Captcha'].invalid &&
+                (loginForm.controls['Captcha'].touched || loginForm.controls['Captcha'].dirty)">
+                <span class="text-danger" *ngIf="loginForm.controls['Captcha'].errors?.['required']">*Captcha is
+                  required</span>
+              </div>
+            </div>
+            </div>
+
+          <div *ngIf="selectedUser === 'Staff'">
+            <div class="relative mb-6 lg:mb-8">
+              <input type="email" id="Owner_mail" formControlName="owner_email" placeholder=" "
+              class="block px-2.5 pb-3 pt-3 w-full text-sm lg:text-base xl:text-base text-444 font-normal bg-transparent rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              />
+              <label for="Owner_mail"
+                class="absolute text-sm lg:text-base xl:text-base text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Owner Mail
+                / Username</label>
+            </div>
+
+            <div class="relative mb-6 lg:mb-8">
+              <input type="email" id="Staff Mail" placeholder=" " formControlName="email"
+              class="block px-2.5 pb-3 pt-3 w-full text-sm lg:text-base xl:text-base text-444 font-normal bg-transparent rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              />
+              <label for="Staff Mail"
+                class="absolute text-sm lg:text-base xl:text-base text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Staff Mail
+                / Username</label>
+            </div>
+
+            <div class="relative mb-4">
+              <input type="password" id="password" formControlName="password" placeholder=" "
+              class="block tracking-[5px] px-2.5 pb-3 pt-3 w-full text-sm lg:text-base xl:text-base text-444 font-normal bg-transparent rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              />
+              <label for="password"
+                class="absolute text-sm lg:text-base xl:text-base text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Password
+              </label>
+            </div>
+
+            <!-- Reuse Captcha -->
+            <div class="xs:col-span-1 sm:col-span-2">
+              <div class="relative flex">
+                <div
+                  class="w-1/2 h-full bg-[#fff7e6] rounded-l-md flex items-center justify-between pl-3 text-base font-semibold text-[#c19725] select-none border-r border-dcdcdc">
+                  <span class="tracking-widest">{{ generatedCaptcha }}</span>
+                  <button type="button" (click)="refreshCaptcha()"
+                    class="block cursor-pointer px-3 py-2.5 text-base lg:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-[#fdffc6] hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-l-md">
+                    <i *ngIf="!isCaptchaLoading; else loadingCaptcha" class="fas fa-sync-alt"></i>
+                    <ng-template #loadingCaptcha>
+                      <i class="fas fa-spinner fa-spin"></i> <!-- Spinner Icon for Loader -->
+                    </ng-template>
+                  </button>
+                </div>
+                <div class="w-1/2">
+                  <input formControlName="Captcha" type="text" id="Captcha" [(ngModel)]="userCaptcha"
+                    class="block pb-3 pt-3 px-2.5 w-full text-sm lg:text-base text-555 font-normal bg-transparent rounded-r-md border border-dcdcdc border-l-0 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                    placeholder="Enter Captcha" />
+                </div>
+              </div>
+
+              <div *ngIf="loginForm.controls['Captcha'].invalid &&
+                (loginForm.controls['Captcha'].touched || loginForm.controls['Captcha'].dirty)">
+                <span class="text-danger" *ngIf="loginForm.controls['Captcha'].errors?.['required']">*Captcha is
+                  required</span>
+              </div>
+            </div>
+
+          </div>
+
+          <p>
+            <a routerLink="/forgot-password" class="text-c19725 text-xs lg:text-sm font-normal capitalize block text-right">Forgot Password!</a>
+          </p>
+          <div class="flex items-center justify-center mt-4 md:mt-6">
+            <button type="submit"
+              class="block cursor-pointer px-5 md:px-7 lg:px-10 w-[150px] lg:w-[300px] py-2 lg:py-3.5 text-base md:text-lg lg:text-2xl font-bold text-white bg-c19725 border-2 border-c19725 hover:bg-[#fdffc6] hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-lg text-center dark:bg-blue-600 dark:hover:bg-[#fdffc6] dark:focus:ring-blue-800">Login</button>
+          </div>
+          <p class="text-[#898989] font-normal text-sm lg:text-lg text-center mt-6">New here?<a routerLink="/signup" class="underline underline-offset-2 mx-1 font-bold text-c19725">Create an account</a>to get started!</p>
+        </form>
+      </div>
+
+      <div class="hidden p-4 md:py-8 md:px-10 xl:py-10 xl:px-20 rounded-lg bg-white dark:bg-gray-800" id="styled-login-otp" role="tabpanel"
+        aria-labelledby="login-otp-tab">
+        <app-send-otp></app-send-otp>
+      </div>
+
+      <div class="hidden p-4 md:py-8 md:px-10 xl:py-10 xl:px-20 rounded-lg bg-white dark:bg-gray-800" id="styled-fingure-scan" role="tabpanel"
+        aria-labelledby="fingure-scan-tab">
+        <form>
+          <!-- scanner connected -->
+          <p class="text-center text-444 font-bold text-base md:text-xl xl:text-2xl mb-4 lg:mb-8">Connected to - Scanner 458</p>
+
+           <!-- scanner failed -->
+          <!-- <p class="text-center text-[#BB0000] font-bold text-base md:text-xl xl:text-2xl mb-4 lg:mb-8">Failed to connect to Scanner 458.Try Again...!</p> -->
+
+          <div class="mt-10 xl:mt-26">
+            <!-- for finger scanning -->
+            <img class="size-25 xl:size-37 mx-auto" src="/assets/images/login/scanning.gif" alt="fingure-scan">
+
+            <!-- for scanning success -->
+            <!-- <img class="size-25 xl:size-37 mx-auto" src="/assets/images/login/scan-success.gif" alt="fingure-scan"> -->
+
+            <!-- for scanning failed -->
+            <!-- <img class="size-25 xl:size-37 mx-auto" src="/assets/images/login/scan-failed.gif" alt="fingure-scan"> -->
+
+          </div>
+          <div class="flex items-center justify-center mt-8 md:mt-10">
+            <button type="button" (click)="homePage()"
+              class="block cursor-pointer px-5 md:px-7 lg:px-10 w-[150px] lg:w-[300px] py-2 lg:py-3.5 text-base md:text-lg lg:text-2xl font-bold text-white bg-c19725 border-2 border-c19725 hover:bg-[#fdffc6] hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-lg text-center dark:bg-blue-600 dark:hover:bg-[#fdffc6] dark:focus:ring-blue-800">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

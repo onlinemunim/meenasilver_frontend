@@ -1,0 +1,26 @@
+<div class="relative">
+  <app-home-navbar class="fixed top-0 inset-x-0 z-10"></app-home-navbar>
+  <app-left-navbar class="fixed top-14 left-0 hidden xl:block"></app-left-navbar>
+  <app-right-navbar class="fixed top-14 right-0 hidden xl:block"></app-right-navbar>
+</div>
+<div class="w-full gap-2 px-2 xl:px-24 mt-14 xl:mt-26">
+  <app-home-user></app-home-user>
+  <div class="lg:flex items-start gap-3 mt-4">
+    <div class="w-full lg:w-3/5">
+      <app-todo-list></app-todo-list>
+      <app-total-sales></app-total-sales>
+      <app-brand-details></app-brand-details>
+    </div>
+    <div class="w-full lg:w-2/5 space-y-4">
+      <app-todays-transaction></app-todays-transaction>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 spce-y-2 sm:space-y-4">
+        <div class="col-span-1">
+          <app-topsell-product></app-topsell-product>
+        </div>
+        <div class="col-span-1">
+          <app-new-onboard></app-new-onboard>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

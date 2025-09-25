@@ -1,0 +1,31 @@
+<div class="w-full bg-white border border-[#f2f2f2] shadow-(--my-shadow2) rounded-[5px]">
+    <div class="w-full flex justify-start items-center border-b border-[#d9d9d9]">
+        <button
+          (click)="activeTab = 'customers'"
+          [ngClass]="{
+            'bg-white text-[#444] font-medium outline-0 border-b-2 border-[#c19725]': activeTab === 'customers',
+            'text-[#898989]': activeTab !== 'customers'
+          }"
+          class="flex-1 px-4 py-2 rounded-tl-[4px] flex justify-center items-center text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+          Top 10 Customers
+        </button>
+      
+        <button
+          (click)="activeTab = 'orders'"
+          [ngClass]="{
+            'bg-white text-[#444] font-medium outline-0 border-b-2 border-[#c19725]': activeTab === 'orders',
+            'text-[#898989]': activeTab !== 'orders'
+          }"
+          class="flex-1 px-4 py-2 rounded-tr-[4px] flex justify-center items-center text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+          Recent Order List
+        </button>
+      </div>      
+  
+    <div *ngIf="activeTab === 'customers'">
+      <app-top-customers></app-top-customers>
+    </div>
+    <div *ngIf="activeTab === 'orders'">
+      <app-recent-order-list></app-recent-order-list>
+    </div>
+  </div>
+  

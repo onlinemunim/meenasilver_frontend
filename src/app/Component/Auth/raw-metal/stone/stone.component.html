@@ -1,0 +1,526 @@
+<form [formGroup]="stoneEntryForm" >
+  <div class="w-full md:flex py-4 bg-[#FFFFF6] rounded-md">
+    <div class="w-full md:w-3/4 xl:w-6/7 mb-3 md:mb-0">
+      <div class="w-full px-3 grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5">
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              readonly
+              autocomplete="off"
+              type="text"
+              id="stoneCode"
+              formControlName="st_item_code"
+              (focus)="onFocusProductCodeForNewInput()"
+              (blur)="onBlurProductCodeForNewInput()"
+              (input)="onInputProductCodeForNewInput($event)"
+              (keydown)="onCodeKeyDownForNewInput($event)"
+              (keydown.enter)="focusNext($event)"
+              class="cursor-not-allowed block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-[#F2F2F2] rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="stoneCode"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-[#F2F2F2] dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Code</label
+            >
+
+            <ul
+              *ngIf="showDropdown && filteredProductCodes.length"
+              class="absolute z-10 w-full bg-white border border-gray-300 max-h-40 overflow-y-auto rounded shadow-md"
+            >
+              <li
+                *ngFor="let item of filteredProductCodes; let i = index"
+                (mousedown)="onSelectProductCodeForNewInput(item)"
+                [class.new-code-list-item]="true"
+                [class.bg-gray-200]="i === activeCodeIndex"
+                class="px-3 py-2 text-sm cursor-pointer hover:bg-gray-100"
+              >
+                {{ item.code }} - <span style="color: #C19725;"># {{ item.name }}</span>
+              </li>
+            </ul>
+          </div>
+          <div
+            *ngIf="
+              getControl('st_item_code').invalid &&
+              (getControl('st_item_code').dirty || getControl('st_item_code').touched)
+            "
+            class="text-red-500 text-xs mt-1"
+          >
+            <div *ngIf="getControl('st_item_code').errors?.['required']">
+              Code is required.
+            </div>
+            <div *ngIf="getControl('st_item_code').errors?.['maxlength']">
+              Code cannot exceed 255 characters.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              autocomplete="off"
+              type="text"
+              id="stoneCategory"
+              formControlName="st_item_category"
+              (focus)="onFocusCategory()"
+              (blur)="onBlurCategory()"
+              (input)="onInputCategory($event)"
+              (keydown)="onCategoryKeyDown($event)"
+              (keydown.enter)="focusNext($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="stoneCategory"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+            >
+              Stone Category
+            </label>
+
+            <!-- Dropdown -->
+            <ul *ngIf="showCategoryDropdown && filteredStoneCategories.length"
+              class="absolute z-10 w-full bg-white border border-gray-300 max-h-40 overflow-y-auto rounded shadow-md">
+              <li
+                *ngFor="let category of filteredStoneCategories; let i = index"
+                (mousedown)="onSelectCategory(category)"
+                [class.category-list-item]="true"
+                [class.bg-gray-200]="i === activeCategoryIndex"
+                class="px-3 py-2 text-sm cursor-pointer hover:bg-gray-100"
+              >
+                {{ category | uppercase }}
+              </li>
+            </ul>
+          </div>
+
+          <div *ngIf="
+              getControl('st_item_category').invalid &&
+              (getControl('st_item_category').dirty || getControl('st_item_category').touched)"
+            class="text-red-500 text-xs mt-1">
+            <div *ngIf="getControl('st_item_category').errors?.['required']">
+              Stone Category is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <app-custom-select label="Type" [options]="diamondType" [(selected)]="selectedDiamond" selectId="diamondType" (keydown.enter)="focusNext ($event)" formControlName="st_product_type"
+            (selectedChange)="onDiamondSelectionChange($event)">
+          </app-custom-select>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="text" id="stoneName" formControlName="st_item_name" (keydown.enter)="focusNext($event)" autocomplete="off"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="stoneName"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Name</label>
+          </div>
+          <div *ngIf="
+                getControl('st_item_name').invalid &&
+                (getControl('st_item_name').dirty || getControl('st_item_name').touched)
+              " class="text-red-500 text-xs mt-1">
+            <div *ngIf="getControl('st_item_name').errors?.['required']">
+              Name is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-1 grid grid-cols-2 gap-2">
+          <div class="col-span-1">
+          <div class="relative">
+            <input type="number" id="stoneSize" formControlName="st_item_size" (keydown.enter)="focusNext($event)" autocomplete="off"
+              class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="stoneSize"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Size</label>
+
+          </div>
+          <div *ngIf="
+                getControl('st_item_size').invalid &&
+                (getControl('st_item_size').dirty || getControl('st_item_size').touched)
+              " class="text-red-500 text-xs mt-1">
+            <div *ngIf="getControl('st_item_size').errors?.['required']">
+              Size is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+         <app-custom-select label="Size Type" [options]="sizeType" [(selected)]="selectedSizeType" selectId="sizeType" (keydown.enter)="focusNext($event)"
+            (selectedChange)="onSizeTypeChange($event)">
+          </app-custom-select>
+        </div>
+        </div>
+
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="text" id="stoneColor" formControlName="st_color" (keydown.enter)="focusNext($event)" autocomplete="off"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="stoneColor"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Color</label>
+
+          </div>
+          <div *ngIf="
+                getControl('st_color').invalid &&
+                (getControl('st_color').dirty || getControl('st_color').touched)
+              " class="text-red-500 text-xs mt-1">
+            <div *ngIf="getControl('st_color').errors?.['required']">
+              Color is required.
+            </div>
+          </div>
+        </div>
+
+        <ng-container *ngIf="selectedDiamond === 'By Line'">
+          <div class="col-span-2 sm:col-span-1">
+            <div class="relative">
+              <input type="number" id="perLinePrice" formControlName="st_unit_price" (keydown.enter)="focusNext($event)" autocomplete="off"
+                class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="perLinePrice"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Per
+                Line Price</label>
+
+            </div>
+            <div *ngIf="
+                  getControl('st_unit_price').invalid &&
+                  (getControl('st_unit_price').dirty ||
+                    getControl('st_unit_price').touched)
+                " class="text-red-500 text-xs mt-1">
+              <div *ngIf="getControl('st_unit_price').errors?.['required']">
+                Per Line Price is required.
+              </div>
+              <div *ngIf="getControl('st_unit_price').errors?.['min']">
+                Per Line Price must be positive.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-2 sm:col-span-1">
+            <div class="relative">
+              <input type="number" id="stoneInEachLine" formControlName="st_subunit" (keydown.enter)="focusNext($event)" autocomplete="off"
+                class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="stoneInEachLine"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Total Stone
+                in Each Line</label>
+
+            </div>
+            <div *ngIf="
+                  getControl('st_subunit').invalid &&
+                  (getControl('st_subunit').dirty ||
+                    getControl('st_subunit').touched)
+                " class="text-red-500 text-xs mt-1">
+              <div *ngIf="getControl('st_subunit').errors?.['required']">
+                Stone in Each Line is required.
+              </div>
+              <div *ngIf="getControl('st_subunit').errors?.['min']">
+                Stone in Each Line must be positive.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="number" id="totalLine" formControlName="st_unit_quantity" (keydown.enter)="focusNext($event)" autocomplete="off"
+                class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="totalLine"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Total
+                Line</label>
+
+            </div>
+            <div *ngIf="
+                  getControl('st_unit_quantity').invalid &&
+                  (getControl('st_unit_quantity').dirty ||
+                    getControl('st_unit_quantity').touched)
+                " class="text-red-500 text-xs mt-1">
+              <div *ngIf="getControl('st_unit_quantity').errors?.['required']">
+                Total Line is required.
+              </div>
+              <div *ngIf="getControl('st_unit_quantity').errors?.['min']">
+                Total Line must be positive.
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="selectedDiamond === 'By Gram'">
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="number" id="eachStoneWeight" formControlName="st_subunit" (keydown.enter)="focusNext($event)" autocomplete="off"
+                class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="eachStoneWeight"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Each
+                Stone WT</label>
+
+            </div>
+            <div *ngIf="
+                  getControl('st_subunit').invalid &&
+                  (getControl('st_subunit').dirty ||
+                    getControl('st_subunit').touched)
+                " class="text-red-500 text-xs mt-1">
+              <div *ngIf="getControl('st_subunit').errors?.['required']">
+                Each Stone WT is required.
+              </div>
+              <div *ngIf="getControl('st_subunit').errors?.['min']">
+                Each Stone WT must be positive.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="number" id="totalStoneWeight" formControlName="st_total_wt" (keydown.enter)="focusNext($event)" autocomplete="off"
+                class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="totalStoneWeight"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Total
+                Stone WT</label>
+
+            </div>
+            <div *ngIf="
+                  getControl('st_total_wt').invalid &&
+                  (getControl('st_total_wt').dirty ||
+                    getControl('st_total_wt').touched)
+                " class="text-red-500 text-xs mt-1">
+              <div *ngIf="getControl('st_total_wt').errors?.['required']">
+                Total Stone WT is required.
+              </div>
+              <div *ngIf="getControl('st_total_wt').errors?.['min']">
+                Total Stone WT must be positive.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="number" id="perGramPrice" formControlName="st_unit_price" (keydown.enter)="focusNext($event)" autocomplete="off"
+                class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="perGramPrice"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Per
+                Gram Price</label>
+
+            </div>
+            <div *ngIf="
+                  getControl('st_unit_price').invalid &&
+                  (getControl('st_unit_price').dirty ||
+                    getControl('st_unit_price').touched)
+                " class="text-red-500 text-xs mt-1">
+              <div *ngIf="getControl('st_unit_price').errors?.['required']">
+                Per Gram Price is required.
+              </div>
+              <div *ngIf="getControl('st_unit_price').errors?.['min']">
+                Per Gram Price must be positive.
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="number" id="quantity" formControlName="st_quantity" (keydown.enter)="focusNext($event)" [ngClass]="{
+                'cursor-not-allowed bg-[#F2F2F2]':
+                  selectedDiamond === 'By Line' ||
+                  selectedDiamond === 'By Gram',
+                'bg-white': selectedDiamond === 'By Stone'
+              }"
+              class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " autocomplete="off" />
+            <label for="quantity" [ngClass]="{
+                'bg-[#F2F2F2]':
+                  selectedDiamond === 'By Line' ||
+                  selectedDiamond === 'By Gram',
+                'bg-white': selectedDiamond === 'By Stone'
+              }"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Qty</label>
+
+          </div>
+          <div *ngIf="
+                getControl('st_quantity').invalid &&
+                (getControl('st_quantity').dirty ||
+                  getControl('st_quantity').touched)
+              " class="text-red-500 text-xs mt-1">
+            <div *ngIf="getControl('st_quantity').errors?.['required']">
+              Quantity is required.
+            </div>
+            <div *ngIf="getControl('st_quantity').errors?.['min']">
+              Quantity must be positive.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="number" id="perStonePrice" formControlName="st_sub_unit_price" (keydown.enter)="focusNext($event)" [ngClass]="{
+                'cursor-not-allowed bg-[#F2F2F2]':
+                  selectedDiamond === 'By Line' || selectedDiamond === 'By Gram',
+                'bg-white': selectedDiamond === 'By Stone'
+              }"
+              class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "autocomplete="off" />
+            <label for="perStonePrice" [ngClass]="{
+                'bg-[#F2F2F2]':
+                  selectedDiamond === 'By Line' || selectedDiamond === 'By Gram',
+                'bg-white': selectedDiamond === 'By Stone'
+              }"
+              class="absolute text-sm lg:text-sm text-[#898989] font-normal dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Per
+              Stone Price</label>
+
+          </div>
+          <div *ngIf="
+                getControl('st_sub_unit_price').invalid &&
+                (getControl('st_sub_unit_price').dirty ||
+                  getControl('st_sub_unit_price').touched)
+              " class="text-red-500 text-xs mt-1">
+            <div *ngIf="getControl('st_sub_unit_price').errors?.['required']">
+              Per Stone Price is required.
+            </div>
+            <div *ngIf="getControl('st_sub_unit_price').errors?.['min']">
+              Per Stone Price must be positive.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ml-auto w-1/2 sm:w-1/4 md:w-1/4 xl:w-1/7 px-3 md:border-l border-[#d9d9d9]">
+
+      <p class="font-medium text-sm xl:text-base text-444 capitalize mb-3"> Upload Product Images </p>
+
+      <div class="grid grid-cols-2 gap-3">
+        <div class="col-span-1">
+          <div
+            class="bg-white border border-[#D9D9D9] rounded-lg overflow-hidden aspect-square"
+            (click)="fileInput1.click()"
+          >
+            <img
+              [src]="imagePreviews[0] || '/assets/images/stock/product-2.png'"
+              alt="Product 1"
+              class="w-full h-full object-contain"
+            />
+          </div>
+          <input
+            type="file"
+            #fileInput1
+            (change)="onImageSelected($event, 0)"
+            accept="image/jpeg,image/png,image/jpg,image/webp"
+            style="display: none"
+          />
+          <div *ngIf="fileUploadError[0]" class="text-red-500 text-xs mt-1">
+            {{ fileUploadError[0] }}
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div
+            class="bg-white border border-[#D9D9D9] rounded-lg overflow-hidden aspect-square"
+            (click)="fileInput2.click()"
+          >
+            <img
+              [src]="imagePreviews[1] || '/assets/images/stock/product-3.png'"
+              alt="Product 2"
+              class="w-full h-full object-contain"
+            />
+          </div>
+          <input
+            type="file"
+            #fileInput2
+            (change)="onImageSelected($event, 1)"
+            accept="image/jpeg,image/png,image/jpg,image/webp"
+            style="display: none"
+          />
+          <div *ngIf="fileUploadError[1]" class="text-red-500 text-xs mt-1">
+            {{ fileUploadError[1] }}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center justify-center mt-4 md:mt-8 space-x-1.5 md:space-x-4">
+    <button type="button" (click)="clearForm()"
+      class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6">
+      Clear
+    </button>
+    <button type="button" (click)="onSubmit()" *ngIf="submitbutton"
+    class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">
+    Submit
+  </button>
+  <button type="button" *ngIf="updatebutton" (click)="editStone()"
+    class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">
+    Update
+  </button>
+  </div>
+</form>
+<div class="w-full px-3 mb-4 lg:mb-0 mt-4">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center justify-start gap-1 lg:gap-2">
+       <span class="font-semibold text-sm sm:text-base lg:text-xl text-444">Raw Stone List</span>
+    </div>
+
+    <a routerLink="/report/stone-stock"
+          routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+          class=" px-4 py-2 rounded-tl-[5px] rounded-[5px] border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+          View Report
+        </a>
+  </div>
+
+
+  <div class="my-4">
+    <label for="viewMode2" class="text-sm font-medium text-gray-700 mr-2">View Mode:</label>
+    <select
+  id="viewMode2"
+  [(ngModel)]="selectedViewMode2"
+  (change)="updateSecondTableFields(); $event.preventDefault()"
+  class="border p-1 rounded w-[120px]"
+> <option value="all">All Records</option>
+  <option value="byLine">By Line</option>
+  <option value="byStone">By Stone</option>
+  <option value="byGram">By Gram</option>
+</select>
+  </div>
+  <div class="overflow-x-auto whitespace-nowrap hide-scrollbar mt-4">
+    <!-- Desktop Table -->
+    <table class="w-full table bg-white border border-[#D9D9D9] overflow-hidden">
+      <thead class="bg-[#F1F8FF] border border-[#0C447D] text-444 text-xs sm:text-xs">
+        <tr>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">No.</th>
+
+          <th *ngFor="let field of selectedFields2" class="p-2 font-medium text-left border-r border-[#0C447D]">
+            {{ field.label }}
+          </th>
+
+        </tr>
+      </thead>
+      <tbody class="text-xs sm:text-xs">
+        <tr class="odd:bg-white even:bg-[#F2F2F2] text-[#5A5959]" *ngFor="let stone of stoneDataList; let i = index">
+          <td class="p-3 text-center">{{ i + 1 }}</td>
+          <ng-container *ngFor="let field of selectedFields2">
+            <td class="p-3">
+              {{
+                field.key === 'stin_item_size' && stone['stin_item_size'] && stone['stin_size_type']
+                  ? (stone['stin_item_size'] + ' ' + stone['stin_size_type']).toLowerCase()
+                  : field.isDate
+                    ? (stone[field.key] ? (stone[field.key] | date: 'dd-MM-yyyy') : '-')
+                    : (
+                        field.subKey
+                          ? (stone[field.key]?.[field.subKey] == 0 || stone[field.key]?.[field.subKey] == '0.00' || stone[field.key]?.[field.subKey] == 0.00
+                              ? '-'
+                              : stone[field.key]?.[field.subKey])
+                          : (stone[field.key] == 0 || stone[field.key] == '0.00' || stone[field.key] == 0.00
+                              ? '-'
+                              : stone[field.key])
+                      ) || '-'
+              }}
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

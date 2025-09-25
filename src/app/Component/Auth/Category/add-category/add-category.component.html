@@ -1,0 +1,69 @@
+<div class="w-full mb-4 bg-white rounded-md">
+  <div class="p-4 bg-white rounded-md shadow border border-gray-200">
+    <h3 class="text-lg font-medium text-center text-[#c19725] mb-4">
+      Add New Category
+    </h3>
+
+    <form [formGroup]="addCategoryForm" (ngSubmit)="addCategory()">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+
+
+
+        <!-- Category Name -->
+        <input
+          type="text"
+          formControlName="newCategoryName"
+          autocomplete="off"
+          placeholder="Enter new category name"
+          class="flex-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm
+                 focus:outline-none focus:ring-2 focus:ring-[#c19725]
+                 focus:border-[#c19725] text-sm"
+        />
+
+        <!-- Group Name -->
+        <input
+          type="text"
+          formControlName="newGroupName"
+          autocomplete="off"
+          placeholder="Enter new group name"
+          class="flex-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm
+                 focus:outline-none focus:ring-2 focus:ring-[#c19725]
+                 focus:border-[#c19725] text-sm"
+        />
+
+        <!-- Unit -->
+        <select
+          formControlName="newUnit"
+          class="px-4 py-2 border border-gray-300 rounded-md shadow-sm
+                 focus:outline-none focus:ring-2 focus:ring-[#c19725]
+                 focus:border-[#c19725] text-sm"
+        >
+          <option value="">Select Unit</option>
+          <option value="Gram">By Gram</option>
+          <option value="Silver Rate">By Silver Rate</option>
+          <option value="MRP">By MRP</option>
+        </select>
+
+        <!-- MRP -->
+        <input
+          type="text"
+          formControlName="MRP"
+          autocomplete="off"
+          placeholder="Enter Per Gm Rate"
+          class="flex-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm
+                 focus:outline-none focus:ring-2 focus:ring-[#c19725]
+                 focus:border-[#c19725] text-sm"
+        />
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          class="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow
+                 hover:bg-blue-700 transition"
+        >
+          Add
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

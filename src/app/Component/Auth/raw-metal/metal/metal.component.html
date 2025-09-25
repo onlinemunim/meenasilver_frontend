@@ -1,0 +1,412 @@
+<form [formGroup]="rawMetalEntryForm">
+  <div class="w-full md:flex py-4 bg-[#FFFFF6] rounded-md">
+    <div class="w-full md:w-3/4 xl:w-6/7 mb-3 md:mb-0">
+      <div class="w-full px-3 grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-8 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5">
+        <div class="col-span-1">
+          <div class="relative">
+            <input readonly autocomplete="off" type="text" id="st_item_code" formControlName="st_item_code"
+              (focus)="onFocusProductCodeForNewInput()" (blur)="onBlurProductCodeForNewInput()"
+              (input)="onInputProductCodeForNewInput($event)" (keydown)="onCodeKeyDownForNewInput($event)"
+              (keydown.enter)="focusNext($event)"
+              class="cursor-not-allowed block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-[#F2F2F2] rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " [class.border-red-500]="
+                getControl('st_item_code').invalid && getControl('st_item_code').touched
+              " />
+            <label for="st_item_code"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-[#F2F2F2] dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              Code <span class="text-red-500">*</span>
+            </label>
+
+            <ul *ngIf="showDropdown && filteredProductCodes.length"
+              class="absolute z-10 w-full bg-[#F2F2F2] border border-gray-300 max-h-40 overflow-y-auto rounded shadow-md">
+              <li *ngFor="let item of filteredProductCodes; let i = index"
+                (mousedown)="onSelectProductCodeForNewInput(item)" [class.new-code-list-item]="true"
+                [class.bg-gray-200]="i === activeCodeIndex" class="px-3 py-2 text-sm cursor-pointer hover:bg-gray-100">
+                {{ item.code }} <br><span style="color: #C19725;"># {{ item.name }}</span> </li>
+            </ul>
+          </div>
+          <div [hidden]="!(getControl('st_item_code').invalid && getControl('st_item_code').touched)"
+            class="text-red-500 text-xs mt-1">
+            <span [hidden]="!getControl('st_item_code').errors?.['required']">*Code is required.</span>
+            <span [hidden]="!getControl('st_item_code').errors?.['maxlength']">*Code cannot exceed 255
+              characters.</span>
+          </div>
+        </div>
+
+        <div class="col-span-1 relative">
+          <div class="relative">
+            <app-custom-select label="Metal Type" [options]="prodCategory" formControlName="st_metal_type"
+              (keydown.enter)="focusNext($event)" [(selected)]="selectedProdCategory" selectId="prodCategory">
+            </app-custom-select>
+          </div>
+        </div>
+
+        <div class="col-span-2 md:col-span-1">
+          <div class="relative">
+            <input type="text" id="st_item_name" formControlName="st_item_name" (keydown.enter)="focusNext($event)"
+              autocomplete="off"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " [class.border-red-500]="
+                getControl('st_item_name').invalid && getControl('st_item_name').touched
+              " />
+            <label for="st_item_name"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Name
+              <span class="text-red-500">*</span></label>
+          </div>
+          <div [hidden]="!(getControl('st_item_name').invalid && getControl('st_item_name').touched)"
+            class="text-red-500 text-xs mt-1">
+            <span [hidden]="!getControl('st_item_name').errors?.['required']">*Name is required.</span>
+          </div>
+        </div>
+
+        <div class="col-span-2 grid grid-cols-2 gap-2">
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="number" id="st_item_size" formControlName="st_item_size" (keydown.enter)="focusNext($event)"
+                autocomplete="off"
+                class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " />
+              <label for="stoneSize"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Size</label>
+
+            </div>
+            <div *ngIf="
+                getControl('st_item_size').invalid &&
+                (getControl('st_item_size').dirty || getControl('st_item_size').touched)
+              " class="text-red-500 text-xs mt-1">
+              <div *ngIf="getControl('st_item_size').errors?.['required']">
+                Size is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <app-custom-select label="Size Type" [options]="sizeType" [(selected)]="selectedSizeType" class="lowercase"
+              selectId="sizeType" (keydown.enter)="focusNext($event)" (selectedChange)="onSizeTypeChange($event)">
+            </app-custom-select>
+          </div>
+        </div>
+
+        <div class="col-span-2 md:col-span-1">
+          <div class="relative">
+            <input type="number" id="st_subunit" formControlName="st_subunit" (keydown.enter)="focusNext($event)"
+              autocomplete="off"
+              class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " [class.border-red-500]="
+                getControl('st_subunit').invalid &&
+                getControl('st_subunit').touched
+              " />
+            <label for="st_subunit"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Per
+              Piece WT (GM) <span class="text-red-500">*</span></label>
+          </div>
+          <div [hidden]="!(getControl('st_subunit').invalid && getControl('st_subunit').touched)"
+            class="text-red-500 text-xs mt-1">
+            <span [hidden]="!getControl('st_subunit').errors?.['required']">*Per Piece Weight is required.</span>
+            <span [hidden]="!getControl('st_subunit').errors?.['min']">*Weight must be a positive number.</span>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="number" id="st_total_wt" formControlName="st_total_wt" (keydown.enter)="focusNext($event)"
+              autocomplete="off"
+              class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " [class.border-red-500]="
+                getControl('st_total_wt').invalid &&
+                getControl('st_total_wt').touched
+              " />
+            <label for="st_total_wt"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Total
+              WT (GM) <span class="text-red-500">*</span></label>
+          </div>
+          <div [hidden]="!(getControl('st_total_wt').invalid && getControl('st_total_wt').touched)"
+            class="text-red-500 text-xs mt-1">
+            <span [hidden]="!getControl('st_total_wt').errors?.['required']">*Total Weight is required.</span>
+            <span [hidden]="!getControl('st_total_wt').errors?.['min']">*Total Weight must be a positive number.</span>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="number" id="st_quantity" formControlName="st_quantity" (keydown.enter)="focusNext($event)"
+              autocomplete="off"
+              class="cursor-not-allowed block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-[#F2F2F2] rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " />
+            <label for="st_quantity"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-[#F2F2F2] dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Qty
+              <span class="text-red-500">*</span></label>
+          </div>
+        </div>
+
+        <div
+          class="col-span-2 sm:col-span-4 xl:col-span-8 grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-7 gap-2 sm:gap-2.5 lg:gap-3">
+          <div class="col-span-2 sm:col-span-1">
+            <div class="relative">
+              <input type="number" id="st_metal_rate" formControlName="st_metal_rate"
+                (keydown.enter)="focusNext($event)" autocomplete="off"
+                class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " [class.border-red-500]="
+                getControl('st_metal_rate').invalid &&
+                getControl('st_metal_rate').touched
+              " />
+              <label for="st_metal_rate"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Silver
+                Rate Per GM<span class="text-red-500">*</span></label>
+            </div>
+            <div [hidden]="!(getControl('st_metal_rate').invalid && getControl('st_metal_rate').touched)"
+              class="text-red-500 text-xs mt-1">
+              <span [hidden]="!getControl('st_metal_rate').errors?.['required']">*Silver Rate is required.</span>
+              <span [hidden]="!getControl('st_metal_rate').errors?.['min']">*Silver Rate must be a positive
+                number.</span>
+            </div>
+          </div>
+
+          <div class="col-span-2 sm:col-span-1">
+            <div class="relative">
+              <input type="text" id="st_per_piece_silver_price" [value]="calculatedPerPieceSilverPrice"
+                autocomplete="off"
+                class="cursor-not-allowed block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-[#F2F2F2] rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " disabled />
+              <label for="st_per_piece_silver_price"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-[#F2F2F2] dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Per
+                Piece Silver Price</label>
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="number" id="st_per_gm_labour" formControlName="st_per_gm_labour"
+                (keydown.enter)="focusNext($event)" autocomplete="off"
+                class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " [class.border-red-500]="
+                  getControl('st_per_gm_labour').invalid &&
+                  getControl('st_per_gm_labour').touched
+                " />
+              <label for="st_per_gm_labour"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Per
+                GM Labour <span class="text-red-500">*</span></label>
+            </div>
+            <div [hidden]="!(getControl('st_per_gm_labour').invalid && getControl('st_per_gm_labour').touched)"
+              class="text-red-500 text-xs mt-1">
+              <span [hidden]="!getControl('st_per_gm_labour').errors?.['required']">*Per Gram Labour is required.</span>
+              <span [hidden]="!getControl('st_per_gm_labour').errors?.['min']">*Labour must be a positive number.</span>
+            </div>
+          </div>
+
+          <div class="col-span-1">
+            <div class="relative">
+              <input type="text" id="st_per_piece_labour" [value]="calculatedPerPieceLabour" autocomplete="off"
+                class="cursor-not-allowed block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-[#F2F2F2] rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " disabled />
+              <label for="st_per_piece_labour"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-[#F2F2F2] dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Per
+                Piece Labour</label>
+            </div>
+          </div>
+
+          <div class="col-span-2 sm:col-span-1">
+            <div class="relative">
+              <input type="number" id="st_per_gm_shipping" formControlName="st_per_gm_shipping"
+                (keydown.enter)="focusNext($event)" autocomplete="off"
+                class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " [class.border-red-500]="
+                  getControl('st_per_gm_shipping').invalid &&
+                  getControl('st_per_gm_shipping').touched
+                " />
+              <label for="st_per_gm_shipping"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Per
+                GM Shipping <span class="text-red-500">*</span></label>
+            </div>
+            <div [hidden]="!(getControl('st_per_gm_shipping').invalid && getControl('st_per_gm_shipping').touched)"
+              class="text-red-500 text-xs mt-1">
+              <span [hidden]="!getControl('st_per_gm_shipping').errors?.['required']">*Per Gram Shipping is
+                required.</span>
+              <span [hidden]="!getControl('st_per_gm_shipping').errors?.['min']">*Shipping must be a positive
+                number.</span>
+            </div>
+          </div>
+
+          <div class="col-span-2 sm:col-span-1">
+            <div class="relative">
+              <input type="text" id="st_per_piece_shipping" [value]="calculatedPerPieceShipping" autocomplete="off"
+                class="cursor-not-allowed block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-[#F2F2F2] rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " disabled />
+              <label for="st_per_piece_shipping"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-[#F2F2F2] dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Per
+                Piece Shipping</label>
+            </div>
+          </div>
+
+          <div class="col-span-2 sm:col-span-1">
+            <div class="relative">
+              <input type="text" id="st_total_per_piece_price" [value]="calculatedTotalPerPiecePrice" autocomplete="off"
+                class="cursor-not-allowed block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-[#F2F2F2] rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " disabled />
+              <label for="st_total_per_piece_price"
+                class="absolute text-sm lg:text-sm text-[#898989] font-bold dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-[#F2F2F2] dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Total
+                Per Piece Price</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <div class="ml-auto w-1/2 sm:w-1/4 md:w-1/4 xl:w-1/7 px-3 md:border-l border-[#d9d9d9]">
+
+      <p class="font-medium text-sm xl:text-base text-444 capitalize mb-3"> Upload Product Images </p>
+
+      <div class="grid grid-cols-2 gap-3">
+        <div class="col-span-1">
+          <label for="upload_photo_input_1"
+            class="bg-white border border-[#D9D9D9] rounded-lg overflow-hidden aspect-square flex items-center justify-center cursor-pointer">
+            <img [src]="imagePreviews[0] || '/assets/images/stock/product-2.png'" alt="Product 1"
+              class="w-full h-full object-contain" />
+          </label>
+          <input type="file" id="upload_photo_input_1" class="hidden"
+            (change)="onImageSelected($event, 0)"
+            autocomplete="off" accept="image/jpeg,image/png,image/jpg,image/webp" />
+          <div [hidden]="!fileUploadError[0]" class="text-red-500 text-xs mb-2">
+            {{ fileUploadError[0] }}
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <label for="upload_photo_input_2"
+            class="bg-white border border-[#D9D9D9] rounded-lg overflow-hidden aspect-square flex items-center justify-center cursor-pointer">
+            <img [src]="imagePreviews[1] || '/assets/images/stock/product-3.png'" alt="Product 2"
+              class="w-full h-full object-contain" />
+          </label>
+          <input type="file" id="upload_photo_input_2" class="hidden"
+            (change)="onImageSelected($event, 1)"
+            autocomplete="off" accept="image/jpeg,image/png,image/jpg,image/webp" />
+          <div [hidden]="!fileUploadError[1]" class="text-red-500 text-xs mb-2">
+            {{ fileUploadError[1] }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center justify-center mt-4 md:mt-8 space-x-1.5 md:space-x-4">
+    <button type="button" (click)="clearForm()"
+      class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6">
+      Clear
+    </button>
+
+    <button type="button" (click)="onSubmit()" *ngIf="submitbutton"
+      class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">
+      Submit
+    </button>
+    <button type="button" *ngIf="updatebutton" (click)="editMetal()"
+      class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">
+      Update
+    </button>
+  </div>
+</form>
+<div class="w-full px-3 mb-4 lg:mb-0 mt-4">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center justify-start gap-1 lg:gap-2">
+       <span class="font-semibold text-sm sm:text-base lg:text-xl text-444">Raw Metal List</span>
+    </div>
+
+    <a routerLink="/report/raw-metal-stock"
+          routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+          class=" px-4 py-2 rounded-tl-[5px] rounded-[5px] border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+          View Report
+        </a>
+  </div>
+  <div class="overflow-x-auto whitespace-nowrap hide-scrollbar mt-4">
+    <!-- Desktop Table -->
+    <!-- <table class="w-full hidden sm:table bg-white border border-[#D9D9D9] overflow-hidden">
+      <thead class="bg-[#F1F8FF] border border-[#0C447D] text-444 text-xs sm:text-xs">
+        <tr>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">No.</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">Product Code</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">Metal Type</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Product Name</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Size</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Per Piece WT</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Total Weight</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Qty</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Silver Rate</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Per Piece Silver Price</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Per Gram Labour price</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Per Piece Lbr</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Per GM Shipping</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Per Piece Shipping</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Total Per Piece Price</th>
+          <th class="p-2 font-medium text-center">Date</th>
+        </tr>
+      </thead>
+      <tbody class="text-xs sm:text-xs">
+        <tr
+          class="odd:bg-white even:bg-[#F2F2F2] text-[#5A5959]"
+          *ngFor="let metal of rawMetalDataList; let i = index"
+        >
+          <td class="p-3 text-center">{{ i + 1 }}</td>
+          <td class="p-3">{{ metal.st_item_code }}</td>
+          <td class="p-3">{{ metal.st_metal_type }}</td>
+          <td class="p-3">{{ metal.st_item_name }}</td>
+          <td class="p-3">{{ metal.st_item_size }} {{metal.st_size_type.toLowerCase()}}</td>
+          <td class="p-3">{{ metal.st_subunit }}</td>
+          <td class="p-3">{{ metal.st_total_wt }}</td>
+          <td class="p-3">{{ metal.st_quantity }}</td>
+          <td class="p-3">{{ metal.st_metal_rate }}</td>
+          <td class="p-3">{{ metal.st_unit_price }}</td>
+          <td class="p-3">{{ metal.st_per_gm_labour }}</td>
+          <td class="p-3">{{ metal.st_per_piece_labour }}</td>
+          <td class="p-3">{{ metal.st_per_gm_shipping }}</td>
+          <td class="p-3">{{ metal.st_per_piece_shipping }}</td>
+          <td class="p-3">{{ metal.st_sub_unit_price }}</td>
+          <td class="p-3 text-center">{{ metal.created_at | date: 'dd-MM-yyyy' }}</td>
+        </tr>
+      </tbody>
+    </table> -->
+    <table class="w-full table bg-white border border-[#D9D9D9] overflow-hidden">
+      <thead class="bg-[#F1F8FF] border border-[#0C447D] text-444 text-xs sm:text-xs">
+        <tr>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">No.</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">Item Code</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Metal Type</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Item Name</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Size</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Per Piece WT</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Total Weight</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Quantity</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Silver Rate Per GM</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Per Piece Silver Rate</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Per GM Labour</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Per Piece Labour</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Per GM Shipping</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Per Piece Shipping</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Total Per Piece Price</th>
+          <th class="p-2 font-medium text-center">Entry Date</th>
+        </tr>
+      </thead>
+      <tbody class="text-xs sm:text-xs">
+        <tr
+          class="odd:bg-white even:bg-[#F2F2F2] text-[#5A5959]"
+          *ngFor="let entry of stockInList; let i = index"
+        >
+          <td class="p-3 text-center">{{ i + 1 }}</td>
+          <td class="p-3">{{ entry.stin_item_code }}</td>
+          <td class="p-3">{{ entry.stin_metal_type }}</td>
+          <td class="p-3">{{ entry.stin_item_name }}</td>
+          <td class="p-3">{{ entry.stin_item_size }} {{ entry.stin_size_type?.toLowerCase() }}</td>
+          <td class="p-3">{{ entry.stin_per_piece_weight }}</td>
+          <td class="p-3">{{ entry.stin_total_wt }}</td>
+          <td class="p-3">{{ entry.stin_quantity }}</td>
+          <td class="p-3">{{ entry.stin_metal_rate }}</td>
+          <td class="p-3">{{ entry.stin_unit_price }}</td>
+          <td class="p-3">{{ entry.stin_per_gram_labour }}</td>
+          <td class="p-3">{{ entry.stin_per_piece_labour }}</td>
+          <td class="p-3">{{ entry.stin_per_gm_shipping }}</td>
+          <td class="p-3">{{ entry.stin_per_piece_shipping }}</td>
+          <td class="p-3">{{ entry.stin_sub_unit_price }}</td>
+          <td class="p-3 text-center">{{ entry.stin_entry_date | date: 'dd-MM-yyyy' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

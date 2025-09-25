@@ -1,0 +1,35 @@
+/* Bottom Confirm (Close) Button */
+.swal2-confirm.firm-confirm-button {
+  background-color: #c19725 !important;
+  border: none !important;
+  color: white !important;
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+}
+
+.swal2-confirm.firm-confirm-button:hover {
+  background-color: #a47f1f !important;
+}
+
+/* Top-Right Close (X) Button */
+.swal2-close.firm-close-button {
+  background-color: #c19725 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 50% !important;
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  padding: 0;
+  transition: background-color 0.3s;
+}
+
+.swal2-close.firm-close-button:hover {
+  background-color: #a47f1f !important;
+}

@@ -1,0 +1,56 @@
+<div class="w-full sm:w-1/1 md:w-1/3 lg:w-1/8 mb-4">
+    <label for="customerType" class="block text-sm font-medium text-gray-700">Filter by Customer Type:</label>
+      <select id="customerType" name="customerType" [(ngModel)]="selectedCustomerType" (change)="onCustomerTypeChange()" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+        <option value="">All Customers</option>
+        <option *ngFor="let type of customerTypes" [value]="type">{{type}}</option>
+      </select>
+</div>
+<div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5">
+  <div class="col-span-1" *ngFor="let customer of userCustomerList">
+    <div class="border border-[#D9D9D9] rounded-[5px] bg-white px-1.5 py-2 flex items-center justify-between gap-2" routerLink="/payment-details/{{customer.id}}">
+
+      <div class="flex items-center justify-start gap-2">
+        <div class="size-16 bg-[#F9E698] rounded-[5px] flex justify-center items-center">
+          <img class="size-11" [src]="customer?.documents?.[0]?.doc_user_img || '/assets/images/user/user-profile.png'" alt="user profile">
+        </div>
+        <div class="space-y-0.5 text-444 font-normal text-[11px] md:text-[13px]">
+          <p class="text-[13px] lg:text-base font-medium">{{customer.name}}</p>
+          <p>
+              <span class="me-1">{{customer.mobilenumber}}</span>|<span class="ms-1">{{customer.gstnumber}}</span>
+          </p>
+          <p>{{customer.email}}</p>
+      </div>
+      </div>
+      <div class="flex flex-col space-y-3">
+        <button class="cursor-pointer">
+          <svg class="size-5 lg:size-6" viewBox="0 0 24 24" fill="none"
+            routerLink="/create-user/customer/{{customer.id}}/edit"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M15.552 4.332L19.5109 8.29075M3.2815 16.452L2.75 21.25L7.54788 20.7185L21.25 7.00912V5.39287L18.6071 2.75H16.9909L3.2815 16.452Z"
+              stroke="#C19725" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M14.7166 9.23962L8.10638 15.8499" stroke="#C19725" stroke-miterlimit="5"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <button class="cursor-pointer" (click)="onDelete(customer.id)">
+          <svg class="size-5 lg:size-6" viewBox="0 0 24 25" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M14 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M4 7.5H20" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path
+              d="M6 10.5V18.5C6 20.1569 7.34315 21.5 9 21.5H15C16.6569 21.5 18 20.1569 18 18.5V10.5"
+              stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M9 5.5C9 4.39543 9.89543 3.5 11 3.5H13C14.1046 3.5 15 4.39543 15 5.5V7.5H9V5.5Z"
+              stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

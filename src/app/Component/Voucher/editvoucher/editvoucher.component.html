@@ -1,0 +1,40 @@
+<div class="form-container">
+  <form class="max-w-sm mx-auto mt-10" [formGroup]="editVoucherForm" (ngSubmit)="onSubmit()">
+    <div class="mb-5">
+      <label for="name" class="form-label">Voucher Name</label>
+      <input type="text" formControlName="name" id="name" class="form-input" placeholder="Name" required />
+    </div>
+
+    <div class="mb-5">
+      <label for="description" class="form-label">Voucher Description</label>
+      <input type="text" formControlName="description" id="description" class="form-input" placeholder="Description" required />
+    </div>
+
+    <div class="mb-5">
+      <label for="code" class="form-label">Voucher Code</label>
+      <input type="text" formControlName="code" id="code" class="form-input" placeholder="Code" required />
+    </div>
+
+    <div class="mb-5">
+      <label for="approval_id" class="form-label">Approval ID</label>
+      <input type="number" formControlName="approval_id" id="approval_id" class="form-input" placeholder="Approval ID" />
+    </div>
+
+    <div class="mb-5">
+      <label for="status" class="form-label">Status</label>
+      <input type="text" formControlName="status" id="status" class="form-input" placeholder="Status" required />
+    </div>
+
+    <div class="mb-5">
+      <label for="discount_percentage" class="form-label">Discount Percentage</label>
+      <input type="number" formControlName="discount_percentage" id="discount_percentage" class="form-input" placeholder="Discount Percentage" required />
+    </div>
+
+    <button type="submit" class="submit-btn">Submit</button>
+  </form>
+
+  <!-- Success Message -->
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+</div>

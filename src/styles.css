@@ -1,0 +1,83 @@
+/* ------------------ Tailwind & Libraries ------------------ */
+@import "tailwindcss";
+@import "ngx-toastr/toastr";
+
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+
+@theme{
+  --color-444: #444;
+  --color-555: #555;
+  --color-757575: #757575;
+  --color-fffbd0: #fffbd0;
+  --color-c19725: #c19725;
+  --color-dcdcdc: #dcdcdc;
+  --color-bb0000: #BB0000;
+  --color-fdffc6: #fdffc6;
+
+  --toggle-shadow: 3.93px 0px 1.57px 0px #E4E4E440 inset,
+                   0px 1.57px 3.14px 0px #00000040;  /*toggle button shadow*/
+   --my-shadow: 2px 2px 10px 0px #D9E0E799;  /* login div shadow */
+   --my-shadow1: 0px 4px 4px 0px #F6F6F6; /* firm create div shadow */
+   --my-shadow2: 0px 4px 10px 0px #E6E1E140; /* rm portal sub div shadow */
+
+
+  --my-gradient: 94.58deg, #FFFFFF -10.27%, #FFFBF4 11.67%, #FFFFFF 17.6%, #FFFFFF 110.47%; /*gold rate div bg */
+  --my-gradient1: 147.75deg, #B9901F 8.71%, #E1C986 53.24%, #735504 90.72%; /* login div bg*/
+  --my-gradient2: 103.92deg, #5F5A4D 45.66%, #4D4A4A 93.65%; /*night theme toggle bg*/
+  --my-gradient3: 53.12% 53.12% at 48.87% 55.95%, #FFFFFF 35.61%, #FBF8D1 100%; /* day theme toggle bg*/
+  --my-gradient4: 94.58deg, #FFFFFF -3.2%, rgba(234, 234, 234, 0.3) -0.57%, #FFFFFF 42.43%, #FFFFFF 110.47%; /*silver rate div bg */
+  --my-gradient5: 90deg, #FFFFFF -11.26%, #FFF3E4 100%; /* gold silver button div bg */
+  --my-gradient6: 180deg, rgba(255, 255, 255, 0.02) 0%, rgba(91, 70, 62, 0.528234) 61.22%, #2F0F02 113.5%; /* news bg */
+  --my-gradient7: 100.15% 95.82% at 9.12% 4.18%, #F4F9FF 0%, #FFFFFF 46.5%, #F4F9FF 100%; /* news list bg */
+  --my-gradient8: 90deg, #FFFAEB 0%, #FFFFFF 48.66%, #FFFAEB 106.77%; /* error div bg */
+  --my-gradient9: 125.58deg, rgba(255, 236, 184, 0.4) 11.76%, rgba(255, 250, 235, 0.4) 65.64%, rgba(255, 255, 255, 0.4) 82.18%; /* error bg part1 bg */
+  --my-gradient10: 125.58deg, #FFECB8 11.76%, #FFFAEB 65.64%, #FFFFFF 82.18%; /* error bg part2 bg */
+  --my-gradient11: 91.26deg, #FFE9AC 0.24%, #FFF0C7 24.5%, #FFF6DB 48.77%, #FFDD7F 97.3%;  /* star employee div bg */
+}
+
+/* ------------------ Theme Mode Support ------------------ */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+}
+
+.dark-mode {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+}
+
+/* ------------------ Utility Classes ------------------ */
+@layer utilities {
+  .no-spinner::-webkit-inner-spin-button,
+  .no-spinner::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .no-spinner {
+    appearance: textfield;
+  }
+}
+/* ------------------ Global Styles ------------------ */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+
+

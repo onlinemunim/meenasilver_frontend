@@ -1,0 +1,29 @@
+<div class="w-full bg-white border border-[#f2f2f2] shadow-(--my-shadow2) rounded-[5px]">
+  <div class="flex items-center justify-between border-b border-[#d9d9d9]">
+    <p class="text-sm sm:text-sm lg:text-base text-[#444] font-medium capitalize ps-2">Sale Target Overview</p>
+    <div class="w-1/2 sm:w-1/3 flex justify-start items-center">
+      <button (click)="activeTab = 'month'" [ngClass]="{
+          'bg-white text-[#444] font-medium outline-0 border-b-2 border-[#c19725]': activeTab === 'month',
+          'text-[#898989]': activeTab !== 'month'
+        }"
+        class="flex-1 px-4 py-2 rounded-tl-[4px] flex justify-center items-center text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+        Month
+      </button>
+
+      <button (click)="activeTab = 'year'" [ngClass]="{
+          'bg-white text-[#444] font-medium outline-0 border-b-2 border-[#c19725]': activeTab === 'year',
+          'text-[#898989]': activeTab !== 'year'
+        }"
+        class="flex-1 px-4 py-2 rounded-tr-[4px] flex justify-center items-center text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+        Year
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="activeTab === 'month'">
+    <app-sales-target-analysis></app-sales-target-analysis>
+  </div>
+  <div *ngIf="activeTab === 'year'">
+    <app-sales-target-analysis></app-sales-target-analysis>
+  </div>
+</div>

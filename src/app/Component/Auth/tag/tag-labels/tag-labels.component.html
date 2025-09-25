@@ -1,0 +1,461 @@
+<div class="w-full py-3 px-2 sm:px-4">
+  <div class="md:flex items-center justify-between mb-4">
+    <div class="flex items-center justify-start gap-1 lg:gap-2 mb-3 lg:mb-0">
+      <svg
+        class="size-6"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <mask
+          id="mask0_848_1764"
+          style="mask-type: alpha"
+          maskUnits="userSpaceOnUse"
+          x="0"
+          y="0"
+          width="24"
+          height="24"
+        >
+          <rect width="24" height="24" fill="#C19725" />
+        </mask>
+        <g mask="url(#mask0_848_1764)">
+          <path
+            d="M16 22L6 12L16 2L17.775 3.775L9.55 12L17.775 20.225L16 22Z"
+            fill="#C19725"
+          />
+        </g>
+      </svg>
+      <img
+        class="size-6 sm:size-8 lg:size-10"
+        src="/assets/images/stock/ready-product.png"
+        alt="user"
+      />
+      <span class="font-semibold text-sm sm:text-base lg:text-xl text-444"
+        >BAR-CODE PRINT PANEL</span
+      >
+    </div>
+  </div>
+  <form [formGroup]="barcodeSettingsForm" (ngSubmit)="onSettingsSubmit()">
+    <div class="w-full py-4 bg-blue-100 rounded-md">
+      <div
+        class="w-full px-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-11 gap-2 sm:gap-2.5 lg:gap-3"
+      >
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="text"
+              id="label-top-margin"
+              formControlName="topMargin"
+              autocomplete="off"
+              (keydown.enter)="focusNext($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="label-top-margin"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Top Margin
+            </label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="text"
+              id="label-left-margin"
+              formControlName="leftMargin"
+              autocomplete="off"
+              (keydown.enter)="focusNext($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="label-left-margin"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Left Margin
+            </label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="text"
+              id="label-tail-length"
+              formControlName="tailLength"
+              autocomplete="off"
+              (keydown.enter)="focusNext($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="label-tail-length"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Tail Length
+            </label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+            <div class="relative">
+                <select
+                autocomplete="off"
+                (keydown.enter)="focusNext($event)"
+                type="text"
+                id="label-tail-side"
+                formControlName="tailSide"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" "
+                >
+                <option value="none">None</option>
+                <option value="left">Left</option>
+                <option value="right">Right</option>
+                </select>
+                <label
+                for="label-tail-side"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                >
+                Tail Side
+                </label>
+            </div>
+        </div>
+
+        <!-- NEW TEMPLATE TYPE DROPDOWN -->
+        <div class="col-span-1">
+          <div class="relative">
+            <select
+              autocomplete="off"
+              (keydown.enter)="focusNext($event)"
+              id="label-template-type"
+              formControlName="templateType"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+              (change)="onTemplateTypeChange()"
+            >
+              <option value="default">Default</option>
+              <option value="square">200px X 200px</option>
+              <option value="rectangle">300px X 140px</option>
+            </select>
+            <label
+              for="label-template-type"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Template Type
+            </label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="text"
+              id="label-width"
+              formControlName="labelWidth"
+              autocomplete="off"
+              (keydown.enter)="focusNext($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+              [attr.disabled]="barcodeSettingsForm.get('templateType')?.value !== 'default' ? true : null"
+            />
+            <label
+              for="label-width"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Label Width
+            </label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="text"
+              id="label-height"
+              formControlName="labelHeight"
+              autocomplete="off"
+              (keydown.enter)="focusNext($event)"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+              [attr.disabled]="barcodeSettingsForm.get('templateType')?.value !== 'default' ? true : null"
+            />
+            <label
+              for="label-height"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Label Height
+            </label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <select
+              autocomplete="off"
+              (keydown.enter)="focusNext($event)"
+              type="text"
+              id="label-text-align"
+              formControlName="textAlign"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            >
+              <option value="left">Left</option>
+              <option value="center">Center</option>
+              <option value="right">Right</option>
+              <option value="none">None</option>
+            </select>
+            <label
+              for="label-text-align"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+            >
+              Text Align
+            </label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="text"
+              id="label-barcode-size"
+              formControlName="barcodeSize"
+              autocomplete="off"
+              (keydown.enter)="focusNext($event)"
+              class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" "
+            />
+            <label
+              for="label-barcode-size"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Barcode Size</label
+            >
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div
+            class="flex items-center justify-start px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-transparent"
+          >
+            <input
+              type="checkbox"
+              formControlName="deleteAll"
+              autocomplete="off"
+              (keydown.enter)="focusNext($event)"
+              class="cursor-pointer w-[18px] h-[18px] me-1 text-c19725 border-2 border-c19725 rounded focus:ring-1 focus:ring-[#757575]"
+            />
+            <span>Delete All</span>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div
+            class="flex items-center justify-start px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-transparent"
+          >
+            <input
+              type="checkbox"
+              formControlName="generateBarcode"
+              autocomplete="off"
+              (keydown.enter)="focusNext($event)"
+              class="cursor-pointer w-[18px] h-[18px] me-1 text-c19725 border-2 border-c19725 rounded focus:ring-1 focus:ring-[#757575]"
+            />
+            <span>Generate Barcode</span>
+          </div>
+        </div>
+
+        <div class="col-span-1 mt-2 sm:mt-0 flex justify-center sm:justify-start">
+          <button
+            type="submit"
+            class="block cursor-pointer capitalize w-full sm:w-[110px] lg:w-[150px] p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="p-4 bg-white border rounded shadow">
+  <form [formGroup]="fieldSettingsForm" (ngSubmit)="onSubmitFieldSettings()">
+    <div
+      cdkDropList
+      cdkDropListOrientation="horizontal"
+      [cdkDropListData]="fieldKeys"
+      (cdkDropListDropped)="onFieldDrop($event)"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-12 gap-2 text-center py-1 bg-white"
+    >
+      <div
+        *ngFor="let key of fieldKeys"
+        cdkDrag
+        class="relative flex flex-col gap-y-2 cursor-move"
+      >
+        <div class="text-xs font-semibold text-gray-600 py-2 bg-gray-200 rounded-md" cdkDragHandle>
+          {{ getLabel(key) }}
+        </div>
+
+        <div class="relative">
+          <select
+            [id]="key + '_visibility'"
+            (change)="updateFieldVisibility(key, $any($event.target).value)"
+            class="block px-2 py-2 w-full text-sm text-444 bg-white rounded-md border-1 border-dcdcdc"
+          >
+            <option value="show" [selected]="fieldVisibility[key]">Show</option>
+            <option value="hide" [selected]="!fieldVisibility[key]">Hide</option>
+          </select>
+        </div>
+
+        <div class="relative">
+          <input
+            type="text"
+            [id]="'label_input_' + key"
+            [formControlName]="key + 'Label'"
+            class="block px-2 py-2 w-full text-xs text-[#444] font-normal bg-white rounded-md border border-[#dcdcdc] appearance-none focus:outline-none focus:ring-0 focus:border-[#c19725] peer"
+            placeholder=" "
+          />
+          <label
+            [for]="'label_input_' + key"
+            class="absolute text-xs text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-[#c19725] peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1"
+          >
+            Label
+          </label>
+        </div>
+
+        <div class="relative">
+          <input
+            type="text"
+            [id]="'size_input_' + key"
+            [formControlName]="key + 'Size'"
+            class="block px-2 py-2 w-full text-xs text-[#444] font-normal bg-white rounded-md border border-[#dcdcdc] appearance-none focus:outline-none focus:ring-0 focus:border-[#c19725] peer"
+            placeholder=" "
+          />
+          <label
+            [for]="'size_input_' + key"
+            class="absolute text-xs text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-[#c19725] peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1"
+          >
+            Font Size
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-center mt-4">
+      <button
+        type="submit"
+        class="cursor-pointer capitalize w-full sm:w-[150px] p-1.5 text-base font-bold text-white bg-c19725 border border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="w-full py-3 px-2 sm:px-4 bg-blue-100">
+  <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div class="text-center sm:text-left">
+        <span class="font-semibold text-sm sm:text-base lg:text-xl text-444">
+          SEARCH PRODUCT BY ID:
+        </span>
+      </div>
+
+      <div class="relative w-full sm:w-auto" (focusin)="showDropdown = true" (focusout)="onBlurDropdown()">
+        <input
+          type="text"
+          id="search-input"
+          formControlName="searchInput"
+          autocomplete="off"
+          class="block px-2 py-2 w-full sm:w-[250px] text-sm lg:text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer"
+          placeholder=" "
+          (focus)="handleFocus()"
+          (keydown)="onKeydown($event)"
+        />
+        <label
+          for="search-input"
+          class="absolute text-sm lg:text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1"
+        >
+          All
+        </label>
+
+        <ul
+          *ngIf="showDropdown && filteredOptions.length"
+          class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow max-h-48 overflow-y-auto"
+        >
+        <li
+          *ngFor="let option of filteredOptions; let i = index"
+          [class.bg-gray-200]="i === selectedOptionIndex"
+          (mousedown)="onSelectOption(option)"
+          class="px-3 py-2 cursor-pointer hover:bg-gray-100"
+        >
+          {{ option }}
+        </li>
+        </ul>
+      </div>
+
+      <div class="w-full sm:w-auto flex justify-center">
+        <button
+          type="submit"
+          class="cursor-pointer capitalize w-full sm:w-[150px] p-1.5 text-base font-bold text-white bg-c19725 border border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- BARCODE DUMMY DESIGN -->
+<div class="overflow-x-auto w-full mt-8">
+<div class="flex flex-wrap justify-center gap-6 mt-8 p-2 sm:p-0">
+  <div
+    *ngFor="let tag of tags; let i = index"
+    class="flex items-center w-full sm:w-[48%] lg:w-[45%] max-w-md"
+    [ngStyle]="barcodeContainerStyle"
+  >
+    <div *ngIf="barcodeSettingsForm.get('tailSide')?.value === 'left'" [ngStyle]="tailStyle"></div>
+
+    <div
+      class="bg-white rounded-2xl shadow-md border border-gray-200 relative p-2 flex-grow"
+      [ngStyle]="labelStyle"
+      cdkDragBoundary
+    >
+      <button
+        (click)="removeLabel(i)"
+        type="button"
+        class="absolute top-1 right-1 z-20 p-0.5 bg-red-500 text-white rounded-full focus:outline-none no-print"
+        title="Remove this label"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </button>
+      <ng-container *ngFor="let fieldKey of fieldKeys">
+        <div
+          *ngIf="fieldVisibility[fieldKey] && tag[fieldKey]"
+          cdkDrag
+          [cdkDragFreeDragPosition]="fieldPositions[fieldKey]"
+          (cdkDragEnded)="onDragEnded($event, fieldKey)"
+          class="absolute cursor-move text-sm text-gray-700 break-words"
+        >
+          <div *ngIf="fieldKey !== 'barcode'" [ngStyle]="fieldStyles[fieldKey]">
+            <span class="font-medium mr-2">{{ customLabels[fieldKey] || defaultFieldLabels[fieldKey] }}:</span>
+            <span>{{ formatValue(tag, fieldKey) }}</span>
+          </div>
+          <div *ngIf="fieldKey === 'barcode'">
+            <svg #barcodeCanvas></svg>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div *ngIf="barcodeSettingsForm.get('tailSide')?.value === 'right'" [ngStyle]="tailStyle"></div>
+  </div>
+</div>
+</div>
+
+<div class="mt-6 flex flex-wrap items-center justify-center gap-4">
+  <div class="w-full sm:w-auto flex justify-center">
+    <button
+      type="button"
+      (click)="directPrint()"
+      class="cursor-pointer capitalize w-full sm:w-[150px] lg:w-[200px] p-1.5 text-base font-bold text-white bg-blue-600 border border-blue-600 hover:bg-blue-700 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center"
+    >
+      DIRECT -> PRINT
+    </button>
+  </div>
+</div>

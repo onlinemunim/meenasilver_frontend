@@ -1,0 +1,245 @@
+<div class="w-full py-3 px-4">
+  <!-- Stock Title and Add Button Section -->
+  <div class="flex items-center justify-between mb-4">
+    <div class="flex items-center justify-start gap-1 lg:gap-2">
+
+    </div>
+    <div>
+      <a routerLink="/raw-metal/metal"
+        class="block cursor-pointer px-3 py-1.5 text-xs sm:text-sm lg:text-base font-semibold text-white bg-c19725 border-2 border-c19725 hover:bg-[#fdffc6] hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:bg-c19725 dark:hover:bg-[#fdffc6]">
+        Jewellery Retail Stock List
+      </a>
+    </div>
+  </div>
+
+  <!-- Filters and Actions Section -->
+  <div class="flex flex-wrap items-end justify-between gap-4 bg-white p-1 rounded-lg">
+
+    <!-- Rows and Global Search -->
+    <div class="flex items-center gap-4 flex-wrap">
+      <!-- Rows -->
+      <div class="relative flex items-center gap-2">
+        <label for="rowFilter" class="text-xs sm:text-sm font-medium text-gray-800 whitespace-nowrap">Rows :</label>
+        <select id="rowFilter" [(ngModel)]="itemsPerPage" (ngModelChange)="onFilterChange()"
+          class="border border-[#DCDCDC] rounded-[5px] p-1.5 text-xs sm:text-sm pr-6 focus:outline-none focus:ring-0 focus:border-c19725 bg-white appearance-none"
+          style="appearance: none; -webkit-appearance: none; -moz-appearance: none; background-image: none;">
+          <option *ngFor="let count of [5, 10, 20, 30, 40, 50, 100]" [value]="count">
+            {{ count }}
+          </option>
+        </select>
+
+        <div class="absolute inset-y-0 right-1.5 flex items-center pointer-events-none">
+          <svg width="10" height="5" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z" fill="#C19725" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Global Search -->
+      <div class="flex items-center gap-2">
+        <label for="globalSearch" class="text-xs sm:text-sm font-medium text-gray-800 whitespace-nowrap">Search
+          :</label>
+        <input id="globalSearch" type="text" [(ngModel)]="globalSearchText" (ngModelChange)="onFilterChange()"
+          placeholder="Search all columns..."
+          class="border border-dcdcdc rounded-[5px] px-3 py-1 text-xs sm:text-sm w-32 lg:w-64 focus:outline-none focus:ring-0 focus:border-c19725"
+          autocomplete="off" />
+      </div>
+    </div>
+
+    <!-- Advanced Filters -->
+    <div class="flex items-center flex-wrap lg:flex-nowrap justify-center md:justify-end gap-2  ">
+
+      <!-- Copy -->
+      <button
+        class="text-[#8A2BE2] border border-[#8A2BE2] bg-[#f7f0ff] font-medium text-xs md:text-sm px-3 py-2 rounded-[5px] hover:bg-white hover:shadow-lg transition"
+        (click)="copyToClipboard()">
+        Copy
+      </button>
+
+      <!-- CSV -->
+      <button
+        class="text-[#00ad94] border border-[#00ad94] bg-[#e5fffb] font-medium text-xs md:text-sm px-3 py-2 rounded-[5px] hover:bg-white hover:shadow-lg transition"
+        (click)="exportCSV()">
+        CSV
+      </button>
+
+      <!-- Excel -->
+      <button
+        class="text-[#029921] border border-[#029921] bg-[#e6ffe6] font-medium text-xs md:text-sm px-3 py-2 rounded-[5px] hover:bg-white hover:shadow-lg transition"
+        (click)="exportExcel()">
+        Excel
+      </button>
+
+      <!-- JSON -->
+      <button
+        class="text-[#0720EC] border border-[#0720EC] bg-[#E8E6FF] font-medium text-xs md:text-sm px-3 py-2 rounded-[5px] hover:bg-white hover:shadow-lg transition"
+        (click)="exportJSON()">
+        JSON
+      </button>
+
+      <!-- PDF -->
+      <button
+        class="text-[#F20707] border border-[#F20707] bg-[#fff6f3] font-medium text-xs md:text-sm px-3 py-2 rounded-[5px] hover:bg-white hover:shadow-lg transition"
+        (click)="exportPDF()">
+        PDF
+      </button>
+
+      <!-- Print -->
+      <button
+        class="text-[#6B7280] border border-[#6B7280] bg-[#F3F4F6] font-medium text-xs md:text-sm px-3 py-2 rounded-[5px] hover:bg-white hover:shadow-lg transition"
+        (click)="printTable()">
+        Print
+      </button>
+
+      <!-- Print Selected -->
+      <button
+        class="text-[#9B51E0] border border-[#9B51E0] bg-[#f9f0ff] font-medium text-xs md:text-sm px-3 py-2 rounded-[5px] hover:bg-white hover:shadow-lg transition"
+        (click)="printSelected()">
+        Print Selected
+      </button>
+      <!-- Column Visibility -->
+      <button
+        class="text-[#FF8C00] border border-[#FF8C00] bg-[#FFF4E5] font-medium text-xs md:text-sm px-3 py-2 rounded-[5px] hover:bg-white hover:shadow-lg transition"
+        (click)="toggleColumnVisibility()">
+        Column Visibility
+      </button>
+
+    </div>
+
+
+  </div>
+
+
+  <!-- Table Layout -->
+  <div class="overflow-x-auto hide-scrollbar">
+    <table class="min-w-full bg-white border border-[#D9D9D9] text-xs sm:text-sm lg:text-base">
+      <thead class="bg-[#F2F2F2] text-[#444]">
+        <tr>
+          <th class="border border-[#D9D9D9] p-2 text-center font-medium">No.</th>
+
+          <th class="border border-[#D9D9D9] p-2 text-left font-medium" *ngFor="let field of selectedFields" [hidden]="!field.selected">
+            <div class="flex flex-col gap-1 w-40">
+              <input
+                type="text"
+                [(ngModel)]="searchValues[field.key]"
+                (ngModelChange)="onFilterChange()"
+                [placeholder]="'Search ' + field.label"
+                class="border border-[#DCDCDC] rounded-[5px] p-1 text-xs w-full"
+                autocomplete="off"
+              />
+              <div (click)="sortBy(field.key)" class="cursor-pointer select-none text-gray-700 flex items-center gap-1 text-xs font-medium">
+                {{ field.label }}
+                <svg *ngIf="sortKey === field.key" class="w-3 h-3" viewBox="0 0 24 24">
+                  <path *ngIf="sortDirection === 'asc'" d="M12 8l6 6H6z" fill="currentColor" />
+                  <path *ngIf="sortDirection === 'desc'" d="M12 16l-6-6h12z" fill="currentColor" />
+                </svg>
+              </div>
+            </div>
+          </th>
+
+          <th class="border border-[#D9D9D9] p-2 text-center font-medium">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr
+          *ngFor="let item of paginatedStockList; let i = index"
+          class="border-b border-[#D9D9D9]"
+        >
+          <td class="border border-[#D9D9D9] p-2 text-center">
+            {{ (currentPage - 1) * itemsPerPage + i + 1 }}
+          </td>
+
+          <ng-container *ngFor="let field of selectedFields">
+            <td *ngIf="field.selected" class="border border-[#D9D9D9] p-2">
+              {{ getDisplayValue(item, field) }}
+            </td>
+          </ng-container>
+
+          <td class="border border-[#D9D9D9] p-2 text-center">
+            <div class="flex items-center justify-center gap-1 sm:gap-2">
+              <!-- View -->
+              <button
+                aria-label="View"
+                title="View"
+                class="icon-btn text-blue-600 hover:scale-110 hover:text-blue-800"
+                [routerLink]="['/view', item.st_id, 'raw-stone']"
+              >
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4 sm:w-5 sm:h-5">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 4.5C7.305 4.5 3.133 8.118 1.5 12c1.633 3.882 5.805 7.5 10.5 7.5s8.867-3.618 10.5-7.5c-1.633-3.882-5.805-7.5-10.5-7.5z" />
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" fill="none" />
+                </svg>
+              </button>
+
+              <!-- Edit -->
+              <button class="cursor-pointer" [routerLink]="['/edit', item.st_id, 'raw-stone']">
+                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-c19725" viewBox="0 0 24 24" fill="none">
+                  <path d="M15.552 4.332L19.5109 8.29075M3.2815 16.452L2.75 21.25L7.54788 20.7185L21.25 7.00912V5.39287L18.6071 2.75H16.9909L3.2815 16.452Z"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M14.7166 9.23962L8.10638 15.8499" stroke="currentColor" stroke-miterlimit="5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+
+              <!-- Delete -->
+              <button class="cursor-pointer p-1" (click)="deleteMetal(item.st_id)">
+                <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 25" fill="none">
+                  <path d="M10 12.5V17.5" stroke="#BB0000" stroke-width="1.5" />
+                  <path d="M14 12.5V17.5" stroke="#BB0000" stroke-width="1.5" />
+                  <path d="M4 7.5H20" stroke="#BB0000" stroke-width="1.5" />
+                  <path d="M6 10.5V18.5C6 20.1569 7.34315 21.5 9 21.5H15C16.6569 21.5 18 20.1569 18 18.5V10.5" stroke="#BB0000" stroke-width="1.5" />
+                  <path d="M9 5.5C9 4.39543 9.89543 3.5 11 3.5H13C14.1046 3.5 15 4.39543 15 5.5V7.5H9V5.5Z" stroke="#BB0000" stroke-width="1.5" />
+                </svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <tr *ngIf="paginatedStockList.length === 0">
+          <td [attr.colspan]="visibleColumnCount" class="text-center p-4 text-gray-500 italic">
+            No matching records found.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- Pagination Section -->
+  <div class="flex items-center justify-end border-t border-gray-200 bg-white py-3">
+    <nav class="isolate inline-flex gap-2 -space-x-px rounded-md shadow-xs" aria-label="Pagination">
+      <button (click)="goToPreviousPage()" [disabled]="currentPage === 1"
+        class="relative inline-flex items-center justify-center w-7 h-7 rounded-[5px] text-c19725 ring-1 ring-c19725 ring-inset hover:bg-[#f6f1cb] focus:z-20 focus:outline-offset-0 disabled:opacity-50"><span
+          class="sr-only">Previous</span><svg class="size-6" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd"
+            d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"
+            clip-rule="evenodd" />
+        </svg></button>
+      <button *ngIf="totalPages > 0" (click)="goToPage(1)" [class.bg-c19725]="currentPage === 1"
+        [class.text-white]="currentPage === 1"
+        class="relative z-10 inline-flex items-center justify-center w-7 h-7 rounded-[5px] text-sm font-normal text-c19725 ring-1 ring-c19725 ring-inset focus:z-20">1</button>
+      <span *ngIf="totalPages > 5 && currentPage > 3"
+        class="relative inline-flex items-center justify-center w-7 h-7">...</span>
+      <ng-container *ngFor="let page of [currentPage - 1, currentPage, currentPage + 1]">
+        <button *ngIf="page > 1 && page < totalPages" (click)="goToPage(page)" [class.bg-c19725]="currentPage === page"
+          [class.text-white]="currentPage === page"
+          class="relative inline-flex items-center justify-center w-7 h-7 rounded-[5px] text-sm font-normal text-c19725 ring-1 ring-c19725 ring-inset hover:bg-[#f6f1cb] focus:z-20">{{
+          page }}</button>
+      </ng-container>
+      <span *ngIf="totalPages > 5 && currentPage < totalPages - 2"
+        class="relative inline-flex items-center justify-center w-7 h-7">...</span>
+      <button *ngIf="totalPages > 1" (click)="goToPage(totalPages)" [class.bg-c19725]="currentPage === totalPages"
+        [class.text-white]="currentPage === totalPages"
+        class="relative inline-flex items-center justify-center w-7 h-7 rounded-[5px] text-sm font-normal text-c19725 ring-1 ring-c19725 ring-inset hover:bg-[#f6f1cb] focus:z-20">{{
+        totalPages }}</button>
+      <button (click)="goToNextPage()" [disabled]="currentPage === totalPages"
+        class="relative inline-flex items-center justify-center w-7 h-7 rounded-[5px] text-c19725 ring-1 ring-c19725 ring-inset hover:bg-[#f6f1cb] focus:z-20 focus:outline-offset-0 disabled:opacity-50"><span
+          class="sr-only">Next</span><svg class="size-6" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd"
+            d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
+            clip-rule="evenodd" />
+        </svg></button>
+    </nav>
+  </div>
+</div>

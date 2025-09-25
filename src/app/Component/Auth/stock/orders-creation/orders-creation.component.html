@@ -1,0 +1,356 @@
+<div class="w-full py-3 px-4">
+
+  <div class="sm:flex items-center justify-between mb-4">
+    <div class="flex items-center justify-start gap-1 lg:gap-2 mb-3 lg:mb-0"><svg viewBox="0 0 24 24" fill="none"
+        xmlns="http://www.w3.org/2000/svg" class="size-6">
+        <mask id="mask0_848_1764" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"
+          style="mask-type: alpha;">
+          <rect width="24" height="24" fill="#C19725"></rect>
+        </mask>
+        <g mask="url(#mask0_848_1764)">
+          <path d="M16 22L6 12L16 2L17.775 3.775L9.55 12L17.775 20.225L16 22Z" fill="#C19725"></path>
+        </g>
+      </svg><img src="/assets/images/stock/order.png" alt="Report" class="size-6 sm:size-8 lg:size-10"><span
+        class="font-semibold text-sm sm:text-base lg:text-xl text-444">Order Creation</span>
+    </div>
+    <a routerLink="/product-creation"
+      class="block cursor-pointer px-3 py-1.5 text-xs sm:text-sm lg:text-base font-semibold text-white bg-c19725 border-2 border-c19725 hover:bg-[#fdffc6] hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:bg-c19725 dark:hover:bg-[#fdffc6]">
+      Add Product
+    </a>
+  </div>
+  <form [formGroup]="orderCreationForm">
+  <div class="w-full mt-3 mb-4 lg:mb-0">
+    <div
+      class="w-full bg-[#FFF5F2] p-3 rounded-md grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-2 space-y-0.5">
+
+      <div class="col-span-1">
+        <div class="relative">
+          <select
+            id="ordc_product_code"
+            (keydown.enter)="focusNext($event)"
+            formControlName="ordc_product_code"
+            (change)="onProductCodeChange($event)"
+            class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            autocomplete="off">
+            <option value="" selected hidden disabled>Select Product Code</option>
+            <option *ngFor="let item of completedProductCodes" [value]="item.unique_code_sku">
+              {{ item.unique_code_sku }} - {{ item.product_name }}
+            </option>
+          </select>
+          <label
+            for="ordc_product_code"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+            Product Code
+          </label>
+        </div>
+      </div>
+
+      <div class="col-span-1">
+        <div class="relative">
+          <input type="text" id="ordc_product_name" formControlName="ordc_product_name" (keydown.enter)="focusNext($event)"
+            class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            placeholder=" " autocomplete="off" />
+          <label for="ordc_product_name"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Product
+            Name</label>
+        </div>
+      </div>
+
+      <!-- Image Display (bound to formControlName="image_url") -->
+      <div class="col-span-1">
+        <div
+        tabindex="-1"
+          (keydown.enter)="focusNext($event)"
+          class="group relative flex items-center justify-start py-1 px-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc">
+
+          <!-- Actual image -->
+          <img [src]="orderCreationForm.get('ordc_image')?.value || '/assets/images/firm/firm-img.png'"
+               alt="Product Image"
+               class="size-7" />
+
+          <!-- Label showing file name or fallback -->
+          <label class="ms-1 text-sm lg:text-sm text-[#898989] truncate">
+            {{ orderCreationForm.get('ordc_image')?.value?.split('/')?.pop() || 'image.png' }}
+          </label>
+
+          <!-- Image preview on hover -->
+          <div
+            class="absolute left-10 -top-2.5 z-50 opacity-0 scale-90 transition-all duration-300 ease-in-out pointer-events-none group-hover:opacity-100 group-hover:scale-100">
+            <img [src]="orderCreationForm.get('ordc_image')?.value || '/assets/images/firm/firm-img.png'"
+                 alt="Zoom"
+                 class="size-20 border border-gray-300 shadow-lg bg-white rounded" />
+          </div>
+        </div>
+
+        <!-- Hidden input to bind ordc_image form control -->
+        <input type="hidden" formControlName="ordc_image"/>
+      </div>
+
+      <div class="col-span-1">
+        <div class="relative">
+          <input type="number" id="ordc_quantity" formControlName="ordc_quantity" (keydown.enter)="focusNext($event)"
+            class="block no-spinner px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            placeholder=" " autocomplete="off" />
+          <label for="ordc_quantity"
+            class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Qty</label>
+        </div>
+      </div>
+
+      <div class="col-span-1">
+        <div class="relative">
+          <select
+            id="ordc_assined_to"
+            formControlName="ordc_assined_to"
+            class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            (change)="handleAssigneeChange($event)"
+          >
+            <option value="" hidden disabled>Select Assignee</option>
+            <option *ngFor="let user of kalakarSuppliers" [value]="user.id">
+              {{ user.name }} {{ user.user_last_name }}
+            </option>
+          </select>
+
+          <label
+            for="ordc_assined_to"
+            class="absolute text-sm lg:text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+          >
+            Assignee
+          </label>
+        </div>
+      </div>
+
+      <div class="col-span-1">
+        <div class="h-full flex items-center justify-end gap-3">
+          <p class="flex items-center gap-1 text-sm lg:text-lg text-[#0BB60B] font-medium">
+            <svg class="cursor-pointer size-6 lg:size-10" fill="#0BB60B" viewBox="0 0 56.00 56.00"
+              xmlns="http://www.w3.org/2000/svg" stroke="#0BB60B" (click)="addOrderCreationData()">
+              <g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(9.52,9.52), scale(0.66)">
+                <rect x="0" y="0" width="56.00" height="56.00" rx="0" fill="#ffffff" strokewidth="0"></rect>
+              </g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M 13.7851 49.5742 L 42.2382 49.5742 C 47.1366 49.5742 49.5743 47.1367 49.5743 42.3086 L 49.5743 13.6914 C 49.5743 8.8633 47.1366 6.4258 42.2382 6.4258 L 13.7851 6.4258 C 8.9101 6.4258 6.4257 8.8398 6.4257 13.6914 L 6.4257 42.3086 C 6.4257 47.1602 8.9101 49.5742 13.7851 49.5742 Z M 27.9882 39.6367 C 26.6523 39.6367 25.9492 38.6758 25.9492 37.3164 L 25.9492 30.0274 L 18.2617 30.0274 C 16.8788 30.0274 15.9179 29.3008 15.9179 28.0118 C 15.9179 26.6758 16.8320 25.9258 18.2617 25.9258 L 25.9492 25.9258 L 25.9492 18.1680 C 25.9492 16.8086 26.6523 15.8477 27.9882 15.8477 C 29.2773 15.8477 30.0742 16.7617 30.0742 18.1680 L 30.0742 25.9258 L 37.7851 25.9258 C 39.2148 25.9258 40.1054 26.6758 40.1054 28.0118 C 40.1054 29.3008 39.1679 30.0274 37.7851 30.0274 L 30.0742 30.0274 L 30.0742 37.3164 C 30.0742 38.7227 29.2773 39.6367 27.9882 39.6367 Z">
+                </path>
+              </g>
+            </svg> Add
+          </p>
+
+          <p class="flex items-center gap-1 text-sm lg:text-lg text-[#BB0000] font-medium">
+            <svg class="cursor-pointer size-5 lg:size-8" viewBox="0 0 30 31" fill="none" (click)="clearForm()"
+              xmlns="http://www.w3.org/2000/svg">
+              <rect y="0.5" width="30" height="30" rx="5" fill="#BB0000" />
+              <path
+                d="M7.06189 17C7.02104 16.6724 7 16.3387 7 16C7 11.5817 10.5817 8 15 8C17.5006 8 19.7332 9.14727 21.2002 10.9442M21.2002 10.9442V8M21.2002 10.9442V10.9999L18.2002 11M22.9381 15C22.979 15.3276 23 15.6613 23 16C23 20.4183 19.4183 24 15 24C12.6106 24 10.4659 22.9525 9 21.2916M9 21.2916V21H12M9 21.2916V24"
+                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg> Clear
+          </p>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  </form>
+</div>
+
+<div class="w-full py-3 px-4">
+  <p class="font-semibold text-sm sm:text-base lg:text-xl text-444 mb-4">Order Creation List</p>
+
+  <div class="overflow-x-auto whitespace-nowrap hide-scrollbar">
+  <table
+    class="w-full table border border-b-0 border-[#D9D9D9] border-separate border-spacing-0 bg-white overflow-hidden"
+  >
+  <thead class="bg-[#F2F2F2] text-444 text-xs sm:text-sm lg:text-base">
+      <tr>
+        <th class="p-3 font-medium text-center border-r border-444 last:border-r-0"> Product Code </th>
+        <th class="p-3 font-medium text-left border-r border-444 last:border-r-0"> Product Name </th>
+        <th class="p-3 font-medium text-center border-r border-444 last:border-r-0" > Image </th>
+         <th class="p-3 font-medium text-center border-r border-444 last:border-r-0" > Quantity </th>
+        <th class="p-3 font-medium text-center border-r border-444 last:border-r-0"> Assignee Name </th>
+      </tr>
+  </thead>
+    <tbody class="text-xs sm:text-sm lg:text-base">
+      <tr class="text-444" *ngFor="let itemData of orederCreationDataList; let i = index">
+        <td class="p-3 border-r border-b border-[#D9D9D9]">{{ itemData.product_code }}</td>
+        <td class="p-3 border-r border-b border-[#D9D9D9]"> {{ itemData.product_name }} </td>
+        <td class="p-3 border-r border-b border-[#D9D9D9] text-center">
+          <img
+            [src]="itemData.image_url || '/assets/images/firm/firm-img.png'"
+            alt="Product Image"
+            class="w-10 h-10 object-cover rounded-md border border-gray-300"
+          />
+        </td>
+        <td class="p-3 border-r border-b border-[#D9D9D9]"> {{ itemData.quantity }} </td>
+        <td class="p-3 border-r border-b border-[#D9D9D9]"> {{ itemData.assignee_name }} </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<div class="w-full lg:flex items-start justify-between">
+  <!-- Metal Part Table -->
+<div *ngIf="completeProductData?.assembly_metal_part?.length" class="w-full lg:w-1/2 py-3 px-4">
+
+  <p class="font-semibold text-sm sm:text-base lg:text-xl text-444 mb-4 flex items-center"><img src="/assets/images/stock/gold.png" alt="Report" class="size-6 sm:size-8 lg:size-10 me-2">Metal Details</p>
+
+   <div class="overflow-x-auto whitespace-nowrap hide-scrollbar">
+  <table class="w-full border border-[#D9D9D9] bg-white">
+    <thead class="bg-[#F2F2F2] text-444 text-xs sm:text-sm lg:text-base">
+      <tr>
+        <th class="p-3 font-medium text-center border-r border-444">Product Code</th>
+        <th class="p-3 font-medium text-center border-r border-444">Product Name</th>
+        <th class="p-3 font-medium text-center border-r border-444">Per Piece WT</th>
+        <th class="p-3 font-medium text-center border-r border-444">Metal Qty</th>
+        <th class="p-3 font-medium text-center border-r border-444">Total Silver Metal Qty</th>
+        <th class="p-3 font-medium text-center border-r border-444">Total Silver Metal in GM</th>
+      </tr>
+    </thead>
+    <tbody class="text-xs sm:text-sm lg:text-base text-444">
+      <tr *ngFor="let metal of completeProductData.assembly_metal_part">
+        <td class="p-3 border border-[#D9D9D9]">{{ metal.code }}</td>
+        <td class="p-3 border border-[#D9D9D9]">{{ metal.artical_name }}</td>
+        <td class="p-3 border border-[#D9D9D9]">{{ metal.per_piece_weight }}</td>
+        <td class="p-3 border border-[#D9D9D9]">{{ metal.quantity }}</td>
+        <td class="p-3 border border-[#D9D9D9]">{{ getMetalProductQuantity(metal) }}</td>
+        <td class="p-3 border border-[#D9D9D9]">{{ getTotalSilverMetal(metal) }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<div class="w-full lg:w-1/2 py-3 px-4" *ngIf="completeProductData?.assembly_stone?.length">
+
+  <p class="font-semibold text-sm sm:text-base lg:text-xl text-444 mb-4 flex items-center"><img src="/assets/images/stock/gold-diamond.png" alt="Report" class="size-6 sm:size-8 lg:size-10 me-2">Stone List</p>
+
+  <div class="overflow-x-auto whitespace-nowrap hide-scrollbar">
+  <table class="w-full border border-[#D9D9D9] bg-white overflow-hidden">
+    <thead class="bg-[#F2F2F2] text-444 text-xs sm:text-sm lg:text-base">
+      <tr>
+        <th class="p-3 font-medium text-center border-r border-444">Product Code</th>
+        <th class="p-3 font-medium text-center border-r border-444">Product Name</th>
+        <th class="p-3 font-medium text-center border-r border-444">Stone Qty</th>
+        <th class="p-3 font-medium text-center border-r border-444">Total Stone Qty</th>
+        <th class="p-3 font-medium text-center border-r border-444">Total Stone in GM</th>
+      </tr>
+    </thead>
+    <tbody class="text-xs sm:text-sm lg:text-base text-444">
+      <tr *ngFor="let stone of completeProductData.assembly_stone">
+        <td class="p-3 border border-[#D9D9D9]">{{ stone.code }}</td>
+        <td class="p-3 border border-[#D9D9D9]">{{ stone.stone_name }}</td>
+        <td class="p-3 border border-[#D9D9D9] text-center">{{ stone.quantity }}</td>
+        <td class="p-3 border border-[#D9D9D9] text-center">
+          {{ getStoneProductQuantity(stone) }}
+        </td>
+        <td class="p-3 border border-[#D9D9D9] text-center">
+          {{ getTotalStone(stone) }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+
+<div class="w-full lg:flex items-start justify-between gap-4">
+  <!-- Metal Part Table -->
+  <div class="w-full lg:w-1/2 py-3 px-4">
+    <p class="font-semibold text-sm sm:text-base lg:text-xl text-444 mb-4 flex items-center">
+      <img src="/assets/images/stock/gold.png" alt="Metal Icon" class="size-6 sm:size-8 lg:size-10 me-2">Metal Details
+    </p>
+
+    <div class="overflow-x-auto whitespace-nowrap hide-scrollbar">
+      <ng-container *ngFor="let order of orederCreationDataList">
+        <table class="w-full border border-[#D9D9D9] bg-white mb-6">
+          <thead class="bg-[#F2F2F2] text-444 text-xs sm:text-sm lg:text-base">
+            <tr>
+              <th colspan="6" class="p-3 text-left font-semibold text-[#1A1A1A] bg-[#E9E9E9]">
+                🧾 Product Code: {{ order.product_code }} | 📦 Product Name: {{ order.product_name }}
+              </th>
+            </tr>
+            <tr>
+              <th class="p-3 font-medium text-center border border-[#D9D9D9]">Product Code</th>
+              <th class="p-3 font-medium text-center border border-[#D9D9D9]">Product Name</th>
+              <th class="p-3 font-medium text-center border border-[#D9D9D9]">Per Piece WT</th>
+              <th class="p-3 font-medium text-center border border-[#D9D9D9]">Metal Qty</th>
+              <th class="p-3 font-medium text-center border border-[#D9D9D9]">Total Silver Qty</th>
+              <th class="p-3 font-medium text-center border border-[#D9D9D9]">Total Silver in GM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngIf="order.ordc_metal_details?.length > 0; else singleMetal">
+              <tr *ngFor="let metal of order.ordc_metal_details">
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ metal.code }}</td>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ metal.artical_name }}</td>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ metal.per_piece_weight }}</td>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ metal.quantity }}</td>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ metal.calculated_product_qty }}</td>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ metal.total_silver }}</td>
+              </tr>
+            </ng-container>
+            <ng-template #singleMetal>
+              <tr>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ order.ordc_metal_details?.code }}</td>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ order.ordc_metal_details?.artical_name }}</td>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ order.ordc_metal_details?.per_piece_weight }}</td>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ order.ordc_metal_details?.quantity }}</td>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ order.ordc_metal_details?.calculated_product_qty }}</td>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ order.ordc_metal_details?.total_silver }}</td>
+              </tr>
+            </ng-template>
+          </tbody>
+        </table>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Stone Part Table -->
+  <div class="w-full lg:w-1/2 py-3 px-4">
+    <p class="font-semibold text-sm sm:text-base lg:text-xl text-444 mb-4 flex items-center">
+      <img src="/assets/images/stock/gold-diamond.png" alt="Stone Icon" class="size-6 sm:size-8 lg:size-10 me-2">Stone Details
+    </p>
+
+    <div class="overflow-x-auto whitespace-nowrap hide-scrollbar">
+      <ng-container *ngFor="let order of orederCreationDataList">
+        <table class="w-full border border-[#D9D9D9] bg-white mb-6">
+          <thead class="bg-[#F2F2F2] text-444 text-xs sm:text-sm lg:text-base">
+            <tr>
+              <th colspan="5" class="p-3 text-left font-semibold text-[#1A1A1A] bg-[#E9E9E9]">
+                🧾 Product Code: {{ order.product_code }} | 📦 Product Name: {{ order.product_name }}
+              </th>
+            </tr>
+            <tr>
+              <th class="p-3 font-medium text-center border border-[#D9D9D9]">Stone Code</th>
+              <th class="p-3 font-medium text-center border border-[#D9D9D9]">Stone Name</th>
+              <th class="p-3 font-medium text-center border border-[#D9D9D9]">Stone Qty</th>
+              <th class="p-3 font-medium text-center border border-[#D9D9D9]">Total Stone Qty</th>
+              <th class="p-3 font-medium text-center border border-[#D9D9D9]">Total Stone in GM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngIf="order.ordc_stone_details?.length > 0; else singleStone">
+              <tr *ngFor="let stone of order.ordc_stone_details">
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ stone.code }}</td>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ stone.stone_name }}</td>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ stone.quantity }}</td>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ stone.calculated_product_qty }}</td>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ stone.total_stone }}</td>
+              </tr>
+            </ng-container>
+            <ng-template #singleStone>
+              <tr>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ order.ordc_stone_details?.code }}</td>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ order.ordc_stone_details?.stone_name }}</td>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ order.ordc_stone_details?.quantity }}</td>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ order.ordc_stone_details?.calculated_product_qty }}</td>
+                <td class="p-3 border border-[#D9D9D9] text-center">{{ order.ordc_stone_details?.total_stone }}</td>
+              </tr>
+            </ng-template>
+          </tbody>
+        </table>
+      </ng-container>
+    </div>
+  </div>
+</div>

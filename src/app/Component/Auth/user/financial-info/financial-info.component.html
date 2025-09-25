@@ -1,0 +1,165 @@
+<form [formGroup]="bankForm" (submit)="OnSubmit()">
+    <div class="w-full py-4">
+        <!-- bank details form -->
+        <p class="font-medium text-sm xl:text-base text-444 capitalize mb-3">Bank Details</p>
+        <div
+            class="w-full bg-[#F2FFF0] p-3 rounded-md grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5">
+
+            <div class="col-span-1">
+                <app-custom-select label="Account Type" [options]="accountType" [(selected)]="selectedAccount" formControlName="bank_account_type" (keydown.enter)="focusNextOnEnter($event)"
+                    selectId="accountType">
+                </app-custom-select>
+            </div>
+            <div class="col-span-1">
+                <app-custom-select label="Bank Name" [options]="bankName" [(selected)]="selectedBank" formControlName="bank_name" (keydown.enter)="focusNextOnEnter($event)"
+                    selectId="bankName">
+                </app-custom-select>
+            </div>
+
+            <div class="col-span-1">
+                <div class="relative">
+                    <input type="number" id="bank_acc_no" formControlName="bank_acc_no" (keydown.enter)="focusNextOnEnter($event)"
+                        class="no-spinner block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                        placeholder=" " />
+                    <label for="bank_acc_no"
+                        class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Account
+                        No.</label>
+                </div>
+            </div>
+
+            <div class="col-span-1">
+                <div class="relative">
+                    <input type="text" id="bank_ifsc_code" formControlName="bank_ifsc_code" (keydown.enter)="focusNextOnEnter($event)"
+                        class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                        placeholder=" " />
+                    <label for="bank_ifsc_code"
+                        class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">IFSC
+                        Code</label>
+                </div>
+            </div>
+
+            <div class="col-span-1">
+                <div class="relative">
+                    <input type="text" id="bank_branch_name" formControlName="bank_branch_name" (keydown.enter)="focusNextOnEnter($event)"
+                        class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                        placeholder=" " />
+                    <label for="bank_branch_name"
+                        class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Branch
+                        Name</label>
+                </div>
+            </div>
+
+            <div class="col-span-1">
+                <div class="relative">
+                    <input type="text" id="bank_nominee_name" formControlName="bank_nominee_name" (keydown.enter)="focusNextOnEnter($event)"
+                        class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                        placeholder=" " />
+                    <label for="bank_nominee_name"
+                        class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Nominee
+                        Name</label>
+                </div>
+            </div>
+
+            <div class="col-span-1">
+                <app-custom-select label="Nominee Relation" [options]="nomineeRelation" [(selected)]="selectedNominee" formControlName="bank_nominee_relation" (keydown.enter)="focusNextOnEnter($event)"
+                    selectId="nomineeRelation">
+                </app-custom-select>
+            </div>
+        </div>
+
+        <!-- buttons -->
+        <div class="flex items-center justify-center mt-4 md:mt-8 space-x-1.5 md:space-x-4">
+            <button type="button"
+                class="size-6 md:size-9 block cursor-pointer capitalize p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6">
+                <svg class="size-3 xl:size-4 mx-auto" viewBox="0 0 12 20" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.1123 20L0.112305 10L10.1123 0L11.8873 1.775L3.6623 10L11.8873 18.225L10.1123 20Z"
+                        fill="#C19725" />
+                </svg>
+            </button>
+
+            <button type="button" (click)="clearForm()"
+                class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6">Clear</button>
+
+            <button type="submit" *ngIf="submitButton"
+                class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">Submit</button>
+
+            <button type="button" *ngIf="updateButton" (click)="updateBankDetails()"
+                class="block cursor-pointer capitalize w-[110px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6">Update</button>
+
+            <button type="button"
+                class="size-6 md:size-9 block cursor-pointer capitalize p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6">
+                <svg class="size-3 xl:size-4 mx-auto" viewBox="0 0 12 20" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.8877 20L11.8877 10L1.8877 0L0.112695 1.775L8.3377 10L0.112695 18.225L1.8877 20Z"
+                        fill="#C19725" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</form>
+<!-- account details -->
+<div class="w-full py-5 grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div class="col-span-1" *ngFor="let bank of banksInfo">
+        <div class="border border-[#d9d9d9] rounded-lg">
+            <div class="flex items-center justify-between pt-3">
+                <p
+                    class="px-3 py-2 bg-[#EEFFF4] text-[#1CC106] font-semibold text-sm lg:text-base xl:text-lg rounded-r-md">
+                    {{bank.bank_account_type}}</p>
+                <div class="flex items-center gap-3 pr-3">
+                    <button class="cursor-pointer" (click)="patchForUpdate(bank.bank_id)">
+                        <svg class="size-5 lg:size-6" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M15.552 4.332L19.5109 8.29075M3.2815 16.452L2.75 21.25L7.54788 20.7185L21.25 7.00912V5.39287L18.6071 2.75H16.9909L3.2815 16.452Z"
+                                stroke="#C19725" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M14.7166 9.23962L8.10638 15.8499" stroke="#C19725" stroke-miterlimit="5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="cursor-pointer" (click)="deleteBankDetails(bank.bank_id)">
+                        <svg class="size-5 lg:size-6" viewBox="0 0 24 25" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M14 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M4 7.5H20" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M6 10.5V18.5C6 20.1569 7.34315 21.5 9 21.5H15C16.6569 21.5 18 20.1569 18 18.5V10.5"
+                                stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M9 5.5C9 4.39543 9.89543 3.5 11 3.5H13C14.1046 3.5 15 4.39543 15 5.5V7.5H9V5.5Z"
+                                stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="w-full p-3 space-y-1">
+                <div class="sm:flex items-start space-y-1 gap-1">
+                    <p class="sm:w-1/2 text-444 font-normal text-xs lg:text-sm xl:text-base"><span
+                            class="font-semibold">Bank Name
+                            :</span><span class="ms-1">{{bank.bank_name}}</span></p>
+                    <p class="sm:w-1/2 text-444 font-normal text-xs lg:text-sm xl:text-base"><span
+                            class="font-semibold">Account No.
+                            :</span><span class="ms-1">{{bank.bank_acc_no}}</span></p>
+                </div>
+                <div class="sm:flex items-start space-y-1 gap-1">
+                    <p class="sm:w-1/2 text-444 font-normal  text-xs lg:text-sm xl:text-base"><span
+                            class="font-semibold">IFSC Code
+                            :</span><span class="ms-1">{{bank.bank_ifsc_code}}</span></p>
+                    <p class="sm:w-1/2 text-444 font-normal  text-xs lg:text-sm xl:text-base"><span
+                            class="font-semibold">Branch Name
+                            :</span><span class="ms-1">{{bank.bank_branch_name}}</span></p>
+                </div>
+                <div class="sm:flex items-start space-y-1 gap-1">
+                    <p class="sm:w-1/2 text-444 font-normal  text-xs lg:text-sm xl:text-base"><span
+                            class="font-semibold">Nominee Name
+                            :</span><span class="ms-1">{{bank.bank_nominee_name}}</span></p>
+                    <p class="sm:w-1/2 text-444 font-normal  text-xs lg:text-sm xl:text-base"><span
+                            class="font-semibold">Nominee Relation
+                            :</span><span class="ms-1">{{bank.bank_nominee_relation}}</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="w-full py-3 px-4">
+    <!-- Firm Title Section -->
+    <div class="sm:flex items-center justify-between mb-4">
+        <div class="flex items-center justify-start gap-1 lg:gap-2 mb-2 sm:mb-0">
+            <img class="size-6 sm:size-8 lg:size-10" src="/assets/images/firm/firm.png" alt="firm List">
+            <span class="font-semibold text-sm sm:text-base lg:text-xl text-444">Create New Firm</span>
+        </div>
+        <ul class="flex justify-end -mb-px text-xs sm:text-sm lg:text-base text-center" id="default-styled-tab" data-tabs-toggle="#default-styled-tab-content" data-tabs-active-classes="font-bold bg-c19725 text-white dark:text-white border-c19725 hover:shadow-lg" data-tabs-inactive-classes="border-[#D9D9D9] font-normal bg-white text-[#898989] hover:text-gray-600 dark:text-[#898989] dark:hover:text-gray-300" role="tablist">
+            <li role="presentation">
+                <button class="capitalize inline-block p-2.5 rounded-l-md border-1" id="general-styled-tab" data-tabs-target="#styled-general" type="button" role="tab" aria-controls="general" aria-selected="false">General Details</button>
+            </li>
+            <li role="presentation">
+                <button class="capitalize inline-block p-2.5 rounded-r-md border-1 hover:text-gray-600 dark:hover:text-gray-300" id="other-styled-tab" data-tabs-target="#styled-other" type="button" role="tab" aria-controls="other" aria-selected="false">Other Details</button>
+            </li>
+        </ul>
+    </div>
+
+  <div id="default-styled-tab-content">
+      <div class="hidden" id="styled-general" role="tabpanel" aria-labelledby="general-tab">
+        <app-firm-general></app-firm-general>
+      </div>
+
+      <div class="hidden" id="styled-other" role="tabpanel" aria-labelledby="other-tab">
+         <app-firm-other></app-firm-other>
+      </div>
+  </div>
+
+
+
+</div>
+

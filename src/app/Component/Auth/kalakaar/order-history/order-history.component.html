@@ -1,0 +1,186 @@
+ <div class="w-full bg-white border border-[#f2f2f2] shadow-(--my-shadow2) rounded-[5px]">
+      <p
+        class=" px-4 py-2 border-b border-[#d9d9d9] text-sm sm:text-sm lg:text-base text-[#444] font-medium capitalize ps-2">
+       Order History</p>
+      <div class="w-full flex justify-start items-center border-b border-[#d9d9d9]">
+        <button (click)="setActiveTab('day')" [ngClass]="{
+        'bg-white text-[#444] font-medium outline-0 border-b-2 border-[#c19725]': activeTab === 'day',
+        'text-[#898989]': activeTab !== 'day'
+      }"
+          class="flex-1 px-4 py-2 rounded-tl-[4px] flex justify-center items-center text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+          Day
+        </button>
+
+        <button (click)="setActiveTab('week')" [ngClass]="{
+        'bg-white text-[#444] font-medium outline-0 border-b-2 border-[#c19725]': activeTab === 'week',
+        'text-[#898989]': activeTab !== 'week'
+      }"
+          class="flex-1 px-4 py-2 rounded-tr-[4px] flex justify-center items-center text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+          Week
+        </button>
+
+        <button (click)="setActiveTab('month')" [ngClass]="{
+        'bg-white text-[#444] font-medium outline-0 border-b-2 border-[#c19725]': activeTab === 'month',
+        'text-[#898989]': activeTab !== 'month'
+      }"
+          class="flex-1 px-4 py-2 rounded-tr-[4px] flex justify-center items-center text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+          Month
+        </button>
+
+        <button (click)="setActiveTab('year')" [ngClass]="{
+        'bg-white text-[#444] font-medium outline-0 border-b-2 border-[#c19725]': activeTab === 'year',
+        'text-[#898989]': activeTab !== 'year'
+      }"
+          class="flex-1 px-4 py-2 rounded-tr-[4px] flex justify-center items-center text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+          Year
+        </button>
+      </div>
+      <div *ngIf="activeTab === 'day'">
+        <div class="px-4 py-3">
+          <div class="flex sm:flex-col justify-end">
+
+              <div class="flex justify-end items-center mb-3">
+                <svg class="cursor-pointer" (click)="navigate('prev')" width="8" height="12" viewBox="0 0 8 12" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.4 6L8 10.6L6.6 12L0.6 6L6.6 0L8 1.4L3.4 6Z" fill="#C19725" />
+                </svg> <span class="capitalize text-sm md:text-base text-444 font-medium px-1 sm:px-3">{{ activeDateLabel }}</span>
+                <svg class="cursor-pointer" (click)="navigate('next')" width="8" height="12" viewBox="0 0 8 12" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.6 6L0 1.4L1.4 0L7.4 6L1.4 12L0 10.6L4.6 6Z" fill="#C19725" />
+                </svg>
+              </div>
+            </div>
+           <div
+              class="w-full flex items-start rounded-[5px] overflow-hidden">
+              <div class="w-1/2 bg-[#D9F8F9] py-2 sm:py-4 px-2 text-center">
+                <p class="text-[#323232] font-semibold text-sm/tight lg:text-xl/tight">{{ orderStats.current }}</p>
+                <span class="text-xs sm:text-sm text-444 font-normal">Current</span>
+              </div>
+              <div class="w-1/2 bg-[#E6FFE2] py-2 sm:py-4 px-2 text-center">
+                <p class="text-[#323232] font-semibold text-sm/tight lg:text-xl/tight">{{ orderStats.completed }}</p>
+                <span class="text-xs sm:text-sm text-444 font-normal">Delivered</span>
+              </div>
+              <div class="w-1/2 bg-[#FFFAEC] py-2 sm:py-4 px-2 text-center">
+                <p class="text-[#323232] font-semibold text-sm/tight lg:text-xl/tight">{{ orderStats.pending }}</p>
+                <span class="text-xs sm:text-sm text-444 font-normal">Pending</span>
+              </div>
+              <div class="w-1/2 bg-[#FAD4D4] py-2 sm:py-4 px-2 text-center">
+                <p class="text-[#323232] font-semibold text-sm/tight lg:text-xl/tight">{{ orderStats.rejected }}</p>
+                <span class="text-xs sm:text-sm text-444 font-normal">Rejected</span>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div *ngIf="activeTab === 'week'">
+        <div class="px-4 py-3">
+          <div class="flex sm:flex-col justify-end">
+
+              <div class="flex justify-end items-center mb-3">
+                <svg class="cursor-pointer" (click)="navigate('prev')" width="8" height="12" viewBox="0 0 8 12" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.4 6L8 10.6L6.6 12L0.6 6L6.6 0L8 1.4L3.4 6Z" fill="#C19725" />
+                </svg> <span class="capitalize text-sm md:text-base text-444 font-medium px-1 sm:px-3">{{ activeDateLabel }}</span>
+                <svg class="cursor-pointer" (click)="navigate('next')" width="8" height="12" viewBox="0 0 8 12" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.6 6L0 1.4L1.4 0L7.4 6L1.4 12L0 10.6L4.6 6Z" fill="#C19725" />
+                </svg>
+              </div>
+            </div>
+           <div
+              class="w-full flex items-start rounded-[5px] overflow-hidden">
+              <div class="w-1/2 bg-[#D9F8F9] py-2 sm:py-4 px-2 text-center">
+                <p class="text-[#323232] font-semibold text-sm/tight lg:text-xl/tight">{{ orderStats.current }}</p>
+                <span class="text-xs sm:text-sm text-444 font-normal">Current</span>
+              </div>
+              <div class="w-1/2 bg-[#E6FFE2] py-2 sm:py-4 px-2 text-center">
+                <p class="text-[#323232] font-semibold text-sm/tight lg:text-xl/tight">{{ orderStats.completed }}</p>
+                <span class="text-xs sm:text-sm text-444 font-normal">Delivered</span>
+              </div>
+              <div class="w-1/2 bg-[#FFFAEC] py-2 sm:py-4 px-2 text-center">
+                <p class="text-[#323232] font-semibold text-sm/tight lg:text-xl/tight">{{ orderStats.pending }}</p>
+                <span class="text-xs sm:text-sm text-444 font-normal">Pending</span>
+              </div>
+              <div class="w-1/2 bg-[#FAD4D4] py-2 sm:py-4 px-2 text-center">
+                <p class="text-[#323232] font-semibold text-sm/tight lg:text-xl/tight">{{ orderStats.rejected }}</p>
+                <span class="text-xs sm:text-sm text-444 font-normal">Rejected</span>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div *ngIf="activeTab === 'month'">
+        <div class="px-4 py-3">
+          <div class="flex sm:flex-col justify-end">
+
+              <div class="flex justify-end items-center mb-3">
+                <svg class="cursor-pointer" (click)="navigate('prev')" width="8" height="12" viewBox="0 0 8 12" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.4 6L8 10.6L6.6 12L0.6 6L6.6 0L8 1.4L3.4 6Z" fill="#C19725" />
+                </svg> <span class="capitalize text-sm md:text-base text-444 font-medium px-1 sm:px-3">{{ activeDateLabel }}</span>
+                <svg class="cursor-pointer" (click)="navigate('next')" width="8" height="12" viewBox="0 0 8 12" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.6 6L0 1.4L1.4 0L7.4 6L1.4 12L0 10.6L4.6 6Z" fill="#C19725" />
+                </svg>
+              </div>
+            </div>
+           <div
+              class="w-full flex items-start rounded-[5px] overflow-hidden">
+              <div class="w-1/2 bg-[#D9F8F9] py-2 sm:py-4 px-2 text-center">
+                <p class="text-[#323232] font-semibold text-sm/tight lg:text-xl/tight">{{ orderStats.current }}</p>
+                <span class="text-xs sm:text-sm text-444 font-normal">Current</span>
+              </div>
+              <div class="w-1/2 bg-[#E6FFE2] py-2 sm:py-4 px-2 text-center">
+                <p class="text-[#323232] font-semibold text-sm/tight lg:text-xl/tight">{{ orderStats.completed }}</p>
+                <span class="text-xs sm:text-sm text-444 font-normal">Delivered</span>
+              </div>
+              <div class="w-1/2 bg-[#FFFAEC] py-2 sm:py-4 px-2 text-center">
+                <p class="text-[#323232] font-semibold text-sm/tight lg:text-xl/tight">{{ orderStats.pending }}</p>
+                <span class="text-xs sm:text-sm text-444 font-normal">Pending</span>
+              </div>
+              <div class="w-1/2 bg-[#FAD4D4] py-2 sm:py-4 px-2 text-center">
+                <p class="text-[#323232] font-semibold text-sm/tight lg:text-xl/tight">{{ orderStats.rejected }}</p>
+                <span class="text-xs sm:text-sm text-444 font-normal">Rejected</span>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div *ngIf="activeTab === 'year'">
+       <div class="px-4 py-3">
+          <div class="flex sm:flex-col justify-end">
+
+              <div class="flex justify-end items-center mb-3">
+                <svg class="cursor-pointer" (click)="navigate('prev')" width="8" height="12" viewBox="0 0 8 12" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.4 6L8 10.6L6.6 12L0.6 6L6.6 0L8 1.4L3.4 6Z" fill="#C19725" />
+                </svg> <span class="capitalize text-sm md:text-base text-444 font-medium px-1 sm:px-3">{{ activeDateLabel }}</span>
+                <svg class="cursor-pointer" (click)="navigate('next')" width="8" height="12" viewBox="0 0 8 12" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.6 6L0 1.4L1.4 0L7.4 6L1.4 12L0 10.6L4.6 6Z" fill="#C19725" />
+                </svg>
+              </div>
+            </div>
+           <div
+              class="w-full flex items-start rounded-[5px] overflow-hidden">
+              <div class="w-1/2 bg-[#D9F8F9] py-2 sm:py-4 px-2 text-center">
+                <p class="text-[#323232] font-semibold text-sm/tight lg:text-xl/tight">{{ orderStats.current }}</p>
+                <span class="text-xs sm:text-sm text-444 font-normal">Current</span>
+              </div>
+              <div class="w-1/2 bg-[#E6FFE2] py-2 sm:py-4 px-2 text-center">
+                <p class="text-[#323232] font-semibold text-sm/tight lg:text-xl/tight">{{ orderStats.completed }}</p>
+                <span class="text-xs sm:text-sm text-444 font-normal">Delivered</span>
+              </div>
+              <div class="w-1/2 bg-[#FFFAEC] py-2 sm:py-4 px-2 text-center">
+                <p class="text-[#323232] font-semibold text-sm/tight lg:text-xl/tight">{{ orderStats.pending }}</p>
+                <span class="text-xs sm:text-sm text-444 font-normal">Pending</span>
+              </div>
+              <div class="w-1/2 bg-[#FAD4D4] py-2 sm:py-4 px-2 text-center">
+                <p class="text-[#323232] font-semibold text-sm/tight lg:text-xl/tight">{{ orderStats.rejected }}</p>
+                <span class="text-xs sm:text-sm text-444 font-normal">Rejected</span>
+              </div>
+            </div>
+        </div>
+      </div>
+
+    </div>

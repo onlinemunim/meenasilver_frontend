@@ -1,0 +1,32 @@
+<div class="w-full bg-white border border-[#f2f2f2] shadow-(--my-shadow2) rounded-[5px]">
+    <p
+        class=" px-4 py-2 border-b border-[#d9d9d9] text-sm sm:text-sm lg:text-base text-[#444] font-medium capitalize ps-2">
+        Employee Details</p>
+
+    <div class="w-full flex border-b border-[#d9d9d9]">
+        <button (click)="activeTab = 'personal'" [ngClass]="{
+          'bg-white text-[#444] font-medium outline-0 border-b-2 border-[#c19725]': activeTab === 'personal',
+          'text-[#898989]': activeTab !== 'personal'
+        }"
+            class="flex-1 px-4 py-2 rounded-tl-[4px] flex justify-center items-center text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+            Personal Details
+        </button>
+
+        <button (click)="activeTab = 'attendance'" [ngClass]="{
+          'bg-white text-[#444] font-medium outline-0 border-b-2 border-[#c19725]': activeTab === 'attendance',
+          'text-[#898989]': activeTab !== 'attendance'
+        }"
+            class="flex-1 px-4 py-2 rounded-tr-[4px] flex justify-center items-center text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+            Attendance
+        </button>
+    </div>
+
+    <div class="px-4 py-3">
+        <div *ngIf="activeTab === 'personal'">
+            <app-personal-details></app-personal-details>
+        </div>
+        <div *ngIf="activeTab === 'attendance'">
+            <app-attendance></app-attendance>
+        </div>
+    </div>
+</div>

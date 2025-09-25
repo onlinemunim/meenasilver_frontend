@@ -1,0 +1,16 @@
+<div *ngIf="isLoading" class="fixed inset-0 flex items-center justify-center z-50 backdrop-blur-sm">
+  <i class="fas fa-spinner fa-spin text-6xl" style="color:#c19725;"></i>
+</div>
+
+<div class="w-full md:grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-11 gap-3 mt-4 space-y-2">
+  <div class="col-span-1 xl:col-span-4">
+    <app-kalakaar-income [data]="ordersData"></app-kalakaar-income>
+  </div>
+  <div class="col-span-1 xl:col-span-4">
+    <app-order-history [data]="ordersData"></app-order-history>
+    <app-received-raw-material></app-received-raw-material>
+  </div>
+  <div class="col-span-1 xl:col-span-3">
+    <app-kalakaar-details [data]="userKalakarData"></app-kalakaar-details>
+  </div>
+</div>

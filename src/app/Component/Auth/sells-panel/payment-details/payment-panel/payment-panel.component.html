@@ -1,0 +1,856 @@
+<div class="sm:flex items-center justify-between mb-4">
+  <div class="flex items-center justify-start gap-1 lg:gap-2 mb-3 lg:mb-0">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="size-6">
+      <mask id="mask0_848_1764" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24" style="mask-type: alpha;">
+        <rect width="24" height="24" fill="#C19725"></rect>
+      </mask>
+      <g mask="url(#mask0_848_1764)">
+        <path d="M16 22L6 12L16 2L17.775 3.775L9.55 12L17.775 20.225L16 22Z" fill="#C19725"></path>
+      </g>
+    </svg>
+    <img [src]="customerDetails?.documents?.[0]?.doc_user_img" alt="Report" class="size-6 sm:size-8 lg:size-10">
+
+    <span class="font-semibold text-sm sm:text-base lg:text-xl text-c19725">{{customerDetails?.user_title}}</span>
+    <span class="font-semibold text-sm sm:text-base lg:text-xl text-c19725">{{customerDetails?.name}}</span>
+    <span class="font-semibold text-sm sm:text-base lg:text-xl text-c19725">| Mobile No. :
+      {{customerDetails?.mobilenumber}}</span>
+    <span class="font-semibold text-sm sm:text-base lg:text-xl text-c19725">| Type :
+      {{customerDetails?.user_customer_type}}</span>
+    <span class="font-semibold text-sm sm:text-base lg:text-xl text-c19725">| Invoice No. :
+      {{invoiceItem?.[0]?.stout_invoice_number}}</span>
+  </div>
+</div>
+
+<div class="w-full py-3 px-4">
+  <div class="flex items-center justify-between w-full gap-4">
+    <div class="w-[3%]"></div>
+    <form [formGroup]="addProductForm" class="flex w-[80%] items-center">
+      <div class="relative w-full">
+        <input type="text" id="start_range_1" formControlName="start_range_1" (focus)="onFocusInput()" (blur)="onBlurInput()"
+          autocomplete="off" (keydown)="onKeyDown($event)"
+          class="block px-20 py-4 w-full text-base text-gray-800 bg-gradient-to-r from-white via-yellow-50 to-white rounded-l-md rounded-r-none border border-[#DCDCDC] appearance-none focus:outline-none focus:ring-0 focus:border-[#c19725] peer shadow-sm"
+          placeholder=" " />
+        <label for="start_range_1"
+          class="absolute text-base text-[#898989] duration-300 transform -translate-y-5 scale-90 top-3 z-0 bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-3 peer-focus:scale-90 peer-focus:-translate-y-5 start-1">
+          🔍 Search/Return Product Id 💍 / Barcode <i class="fas fa-barcode text-sm"></i> / RFID
+        </label>
+        <ul *ngIf="filteredBarcodes.length"
+          class="absolute left-0 right-0 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto z-50">
+          <li *ngFor="let item of filteredBarcodes; let i = index" (click)="onSelectBarcode(item.barcode)"
+            [class.bg-yellow-100]="i === selectedIndex" class="px-4 py-2 cursor-pointer hover:bg-yellow-50">
+            {{ item.barcode }}
+          </li>
+        </ul>
+      </div>
+      <button type="submit" (click)="onGoClick('add')"
+        class="px-5 py-3.5 rounded-r-md rounded-l-none border border-[#C19725] bg-[#C19725] text-white text-base xl:text-lg font-bold capitalize text-center hover:bg-white hover:text-[#C19725] hover:shadow-lg transition-shadow shadow-sm focus:ring-0 focus:outline-none">
+        GO
+      </button>
+    </form>
+    <div class="w-[5%] min-w-[100px] flex justify-end">
+      <a href="#"
+        class="flex items-center px-4 py-2 rounded-[5px] border border-[#BB0000] bg-[#BB0000] text-white text-sm lg:text-base hover:bg-white hover:text-[#BB0000] hover:shadow-lg">
+        <img class="w-4 h-4 mr-2" src="/assets/images/stock/youtube.png" alt="youtube" /> Help
+      </a>
+    </div>
+  </div>
+
+  <table *ngIf="invoiceItem"
+    class="w-full table border border-b-0 border-[#D9D9D9] border-separate border-spacing-0 bg-white overflow-hidden mt-5 mb-5">
+    <thead class="bg-[#F2F2F2] text-444 text-[13px]">
+      <tr class="uppercase">
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0"> IT ID </th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0"> METAL </th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0"> ITEM DET </th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0"> QTY </th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0"> PURITY </th>
+        <th class="p-1.5 font-medium text-right border-r border-444 last:border-r-0"> AMT </th>
+        <th class="p-1.5 font-medium text-right border-r border-444 last:border-r-0"> TOTAL WT </th>
+        <th class="p-1.5 font-medium text-right border-r border-444 last:border-r-0"> FINAL VAL </th>
+        <th class="p-1.5 font-medium text-center"> DEL </th>
+      </tr>
+    </thead>
+    <tbody class="text-[13px] text-444 text-center">
+      <tr *ngFor="let item of invoiceItem">
+        <td class="p-1.5 border-r border-b border-[#D9D9D9] text-blue-700 hover:underline cursor-pointer">
+          {{item.stout_id}}</td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">{{item.stout_metal_type || '-'}}</td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">{{item.stout_item_name || '-'}}</td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">{{item.stout_quantity || '-'}}</td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">{{item.stout_purity || '-'}}</td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9] text-right">{{item.stout_unit_price || '-'}}</td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">{{item.stout_total_wt|| '-'}}</td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9] text-right">{{item.stout_final_amount || '-'}}</td>
+        <td class="p-1.5 border-b border-[#D9D9D9] text-center">
+          <button title="Delete Item" class="hover:opacity-80 transition-opacity cursor-pointer" (click)="deleteInvoiceItem(item.stout_id)" >
+            <img src="https://next.omunim.in/2/images/img/trash.png" alt="Delete" class="h-4 w-4 mx-auto" />
+          </button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot class="text-base text-[#C19725] font-semibold text-center">
+      <tr>
+        <td colspan="3" class="p-1.5 border-r border-b border-[#D9D9D9]">Total Qty - {{ totalQty | number:'1.2-2' }}
+        </td>
+        <td colspan="2" class="p-1.5 border-r border-b border-[#D9D9D9]">Total WT - {{ totalWeight | number:'1.3-3' }}
+        </td>
+        <td colspan="4" class="p-1.5 border-b border-[#D9D9D9]">Total Valuation - {{ finalValuation | number:'1.2-2' }}
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <p class="text-2xl font-semibold text-444 tracking-wide  border-b-2 border-[#C19725] pb-2 mt-7">
+    Payment Panel
+  </p>
+
+  <div class="px-4 py-2">
+    <p class="text-xl font-semibold text-[#C19725]">Metal Received</p>
+  </div>
+
+  <form [formGroup]="metalDetailsForm">
+    <div class="bg-[#E6EFFF] rounded-b-[5px] p-0">
+      <div class="bg-[#FFF9F9] p-3 rounded-md">
+        <div class="flex flex-nowrap gap-2 items-start">
+          <div class="w-[160px] shrink-0">
+            <app-custom-select label="Type" [options]="metalTypes" formControlName="st_metal_type"
+              selectId="metalTypes"></app-custom-select>
+          </div>
+          <div class="w-[160px] relative shrink-0">
+            <input type="text" placeholder=" " formControlName="st_item_name"
+              class="block px-2 py-2 w-full text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none peer focus:outline-none focus:ring-0 focus:border-c19725" />
+            <label
+              class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">Name</label>
+          </div>
+          <div class="flex gap-1 w-auto shrink-0">
+            <div class="w-[120px] relative">
+              <input formControlName="st_gs_weight" type="number" placeholder=" "
+                class="block w-full px-2 py-2 text-sm text-[#444] font-normal bg-white rounded-md border border-[#DCDCDC] appearance-none peer focus:outline-none focus:ring-0 focus:border-[#c19725] no-spinner" />
+              <label
+                class="absolute no-spinner text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">Gs
+                wt</label>
+            </div>
+            <div class="w-[85px]">
+              <app-custom-select label="Unit" [options]="unitTypes"
+                formControlName="st_gs_weight_type"></app-custom-select>
+            </div>
+          </div>
+          <div class="flex gap-1 w-auto shrink-0">
+            <div class="w-[120px] relative">
+              <input formControlName="st_less_weight" type="number" placeholder=" "
+                class="block w-full px-2 py-2 text-sm text-[#444] font-normal bg-white rounded-md border border-[#DCDCDC] appearance-none peer focus:outline-none focus:ring-0 focus:border-[#c19725] no-spinner" />
+              <label
+                class="absolute no-spinner text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">Less
+                wt</label>
+            </div>
+            <div class="w-[85px]">
+              <app-custom-select label="Unit" [options]="unitTypes"
+                formControlName="st_less_weight_type"></app-custom-select>
+            </div>
+          </div>
+          <div class="flex gap-1 w-auto shrink-0">
+            <div class="w-[140px] relative">
+              <input formControlName="st_net_weight" type="number" placeholder=" "
+                class="block w-full px-2 py-2 text-sm text-[#444] font-normal bg-white rounded-md border border-[#DCDCDC] appearance-none peer focus:outline-none focus:ring-0 focus:border-[#c19725] no-spinner" />
+              <label
+                class="absolute no-spinner text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">Net
+                wt</label>
+            </div>
+            <div class="w-[130px]">
+              <app-custom-select label="Unit" [options]="unitTypes"
+                formControlName="st_net_weight_type"></app-custom-select>
+            </div>
+          </div>
+          <div class="flex gap-1 w-auto shrink-0">
+            <div class="w-[160px] relative">
+              <input formControlName="st_tunch" type="text" placeholder=" "
+                class="block w-full px-2 py-2 text-sm text-[#444] font-normal bg-white rounded-md border border-[#DCDCDC] appearance-none peer focus:outline-none focus:ring-0 focus:border-[#c19725]" />
+              <label
+                class="absolute no-spinner text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">Tunch</label>
+            </div>
+          </div>
+          <div class="w-[160px] relative shrink-0">
+            <input type="number" placeholder=" " formControlName="st_metal_rate"
+              class="block no-spinner px-2 py-2 w-full text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none peer focus:outline-none focus:ring-0 focus:border-c19725" />
+            <label
+              class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">Rate</label>
+          </div>
+          <div class="w-[160px] relative shrink-0">
+            <input type="number" placeholder=" " formControlName="st_valuation"
+              class="block no-spinner px-2 py-2 w-full text-sm text-444 font-normal bg-gray-100 rounded-md border border-dcdcdc appearance-none peer focus:outline-none focus:ring-0 focus:border-c19725"
+              readonly />
+            <label
+              class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-gray-100 px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">Value</label>
+          </div>
+          <div class="w-[160px] relative shrink-0">
+            <input type="number" placeholder=" " formControlName="st_avg_metal_rate"
+              class="block no-spinner px-2 py-2 w-full text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none peer focus:outline-none focus:ring-0 focus:border-c19725" />
+            <label
+              class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">Avg
+              Rate</label>
+          </div>
+          <div class="flex items-center pt-3 shrink-0">
+            <button title="Add Row" class="hover:opacity-80 transition-opacity cursor-pointer"
+              (click)="addReceivedMetal()">
+              <img src="https://cdn-icons-png.flaticon.com/128/4315/4315609.png" alt="Add" class="h-4 w-4 mx-auto">
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="w-full py-3 px-4">
+  <table *ngIf="metalReceivedData && metalReceivedData.length > 0"
+    class="w-full table border border-b-0 border-[#D9D9D9] border-separate border-spacing-0 bg-white overflow-hidden mt-5 mb-5">
+    <thead class="bg-[#F2F2F2] text-444 text-[13px]">
+      <tr class="uppercase">
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">Type</th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">Name</th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">Gs Wt</th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">Less Wt</th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">Net Wt</th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">Tunch</th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">Rate</th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">Value</th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">Avg Rate</th>
+        <th class="p-1.5 font-medium text-center">Del</th>
+      </tr>
+    </thead>
+    <tbody class="text-[13px] text-444 text-center">
+      <tr *ngFor="let item of metalReceivedData">
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">{{ item?.st_metal_type || '-' }}</td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">{{ item?.st_item_name || '-' }}</td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">{{ item?.st_gs_weight || '-' }}</td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">{{ item?.st_less_weight || '-' }}</td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">{{ item?.st_net_weight || '-' }}</td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">{{ item?.st_tunch || '-' }}</td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">{{ item?.st_metal_rate || '-' }}</td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">{{ item?.st_valuation || '-' }}</td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">{{ item?.st_avg_metal_rate || '-' }}</td>
+        <td class="p-1.5 border-b border-[#D9D9D9] text-center">
+          <button title="Delete Item" class="hover:opacity-80 transition-opacity cursor-pointer"
+            (click)="deleteReceivedMetal(item?.st_id)">
+            <img src="https://next.omunim.in/2/images/img/trash.png" alt="Delete" class="h-4 w-4 mx-auto" />
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="w-full py-3 px-4 ">
+  <!-- <div class="flex justify-between items-center pb-2">
+    <p class="text-2xl font-semibold text-444 tracking-wide ">
+      Payment Details
+    </p>
+    <div class="flex gap-2">
+      <div class="inline-flex">
+        <button (click)="goToCashDetails()" (mouseenter)="hovered = 'cash'" (mouseleave)="hovered = null" [ngClass]="
+            (hovered === 'cash' || (!hovered && showCashSection))
+              ? 'bg-[#C19725] text-white'
+              : 'bg-white text-[#C19725]'
+          "
+          class="ml-2 px-4 py-2 rounded-md border border-[#C19725] text-base xl:text-lg font-bold capitalize text-center transition-shadow shadow-sm hover:shadow-lg focus:outline-none">
+          Cash
+        </button>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- Wrapper Div for Cash Details Section -->
+<form [formGroup]="paymentDetailsForm">
+  <div *ngIf="showCashSection" class="w-full pt-3">
+    <!-- Main Grid for Form and Summary -->
+
+    <div class="grid grid-cols-12 gap-3" >
+      <!-- ========================== MAIN FORM - LEFT COLUMN ========================== -->
+      <div class="col-span-12 lg:col-span-8 space-y-8">
+        <!-- Section 1: Transaction Details -->
+        <fieldset class="bg-blue-50 border border-dashed border-blue-300 rounded-lg p-5 mb-2">
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
+            <div class="md:col-span-3 relative">
+              <select id="amountPaidReceiveOption" name="amountPaidReceiveOption" formControlName="amountPaidReceiveOption"
+                class="block w-full px-2 py-2 text-sm lg:text-sm text-444 font-normal bg-white rounded-md border border-[#dcdcdc] appearance-none focus:outline-none focus:ring-0 focus:border-[#c19725] peer shadow-sm">
+                <option value="amountReceived" selected>Amount Details - Received From Customer</option>
+                <option value="amountPaid">Amount Details - Paid To Customer</option>
+              </select>
+              <label for="amountPaidReceiveOption"
+                class="absolute text-sm lg:text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-1.5 peer-focus:px-1.5 peer-focus:text-[#c19725] peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1 pointer-events-none">
+                Amount Details
+              </label>
+            </div>
+            <div class="col-span-1 sm:col-span-2">
+              <div class="relative">
+                <input type="text" id="in_salesperson_name" name="in_salesperson_name" formControlName="in_salesperson_name" placeholder=" " autocomplete="off"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border border-[#dcdcdc] appearance-none focus:outline-none focus:ring-0 focus:border-[#c19725] peer no-spinner" />
+                <label for="in_salesperson_name"
+                  class="absolute text-sm lg:text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-focus:px-1.5 peer-focus:text-[#c19725] peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">
+                  Enter Sales Person
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Section 2: Calculation Panel -->
+        <fieldset class=" bg-yellow-50 border border-yellow-200 rounded-lg p-5">
+          <legend
+            class=" mt-0 text-xl font-semibold px-4 py-1 rounded-md bg-white shadow-sm tracking-wide flex items-center gap-x-2"
+            style="color: #444;">
+            <i class="fas fa-calculator" style="color: #c19725;"></i>
+            <span>Calculations & Payments</span>
+          </legend>
+          <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-8 gap-x-4 gap-y-5 mb-6">
+            <label class="flex items-center space-x-2 cursor-pointer text-sm font-medium text-gray-700">
+              <input type="checkbox" id="CGSTCheck" name="CGSTCheck" formControlName="isCgstSgstApplicable"
+                class="h-4 w-4 rounded border-gray-300 text-custom-gold focus:ring-custom-gold">
+              <span>Cgst/Sgst</span>
+            </label>
+            <label class="flex items-center space-x-2 cursor-pointer text-sm font-medium text-gray-700">
+              <input type="checkbox" id="utin_metal_exchange_chk" name="utin_metal_exchange_chk" formControlName="isMetalExchangeApplicable"
+                class="h-4 w-4 rounded border-gray-300 text-custom-gold focus:ring-custom-gold">
+              <span>Metal Received</span>
+            </label>
+          </div>
+
+          <div class="space-y-3">
+            <div class="relative p-5 rounded-lg border border-gray-200 shadow-sm bg-white mt-4">
+              <div
+                class="absolute -top-4 left-4 bg-white px-4 py-1 rounded-md shadow-sm text-sm font-semibold tracking-wide flex items-center gap-x-2"
+                style="color: #444;">
+                <img src="https://cdn-icons-png.flaticon.com/128/10840/10840694.png" alt="Discount Icon"
+                  class="w-5 h-5">
+                <span>Discount</span>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-10 gap-3 items-center mt-2">
+                <div class="md:col-span-2">
+                  <select id="slPrPayDiscAccId" name="slPrPayDiscAccId"
+                    class="w-full px-4 py-1.5 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-0 focus:border-custom-gold">
+                    <option value="2924" selected>Discount Paid</option>
+                    <option value="2903">Direct Expenses</option>
+                    <option value="2925">Interest Paid</option>
+                  </select>
+                </div>
+                <div class="col-span-1 sm:col-span-2">
+                  <div class="relative">
+                    <input type="text" id="utin_disc_narratn_discup" formControlName="in_discount_narration" placeholder=" " autocomplete="off"
+                      class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none peer no-spinner" />
+                    <label for="utin_disc_narratn_discup"
+                      class="absolute text-sm lg:text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 start-1">
+                      Disc Narration
+                    </label>
+                  </div>
+                </div>
+                <div class="col-span-1 sm:col-span-2">
+                  <div class="relative">
+                    <input type="text" id="utin_discount_coupon" formControlName="in_discount_coupon" placeholder=" " autocomplete="off"
+                      class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none peer no-spinner" />
+                    <label for="utin_discount_coupon"
+                      class="absolute text-sm lg:text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 start-1">
+                      Disc Coupon
+                    </label>
+                  </div>
+                </div>
+                <div class="col-span-1 sm:col-span-2">
+                  <div class="relative">
+                    <input type="number" id="utin_discount_per_discup" formControlName="in_discount_percent" placeholder=" " autocomplete="off"
+                      class="block px-2 py-2 w-full text-sm lg:text-sm text-444 text-right font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none peer no-spinner" />
+                    <label for="utin_discount_per_discup"
+                      class="absolute text-sm lg:text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 start-1">
+                      Discount %
+                    </label>
+                  </div>
+                </div>
+                <div class="col-span-1 sm:col-span-2">
+                  <div class="relative">
+                    <input type="number" formControlName="in_total_discount" id="utin_discount_amt_discup" placeholder=" "
+                      autocomplete="off"
+                      class="block px-2 py-2 w-full text-sm lg:text-sm text-444 text-right font-bold bg-pink-50 rounded-md border-1 border-pink-300 appearance-none peer no-spinner" />
+                    <label for="utin_discount_amt_discup"
+                      class="absolute text-sm lg:text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-pink-50 px-1.5 start-1">
+                      Disc Amt
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative mt-6 pt-3 px-4 pb-4 rounded-md border border-gray-200 shadow-sm"
+              style="background-color: #fffbea;">
+              <h3
+                class="inline-block bg-white px-4 py-1 rounded-md shadow-sm text-sm font-semibold tracking-wide items-center"
+                style="color: #444; position: relative; top: -1.7rem;">
+                <i class="fas fa-truck-fast mr-2" style="color: #e76f51;"></i>
+                <span>Courier Charges</span>
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 p-0">
+                <div class="grid grid-cols-1 sm:grid-cols-5 gap-3 items-center">
+                  <div class="col-span-1 sm:col-span-2">
+                    <div class="relative">
+                      <input type="number" id="courierCharge" formControlName="in_courier_charges" name="courierCharge"
+                        placeholder=" " autocomplete="off"
+                        class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border border-[#dcdcdc] appearance-none peer no-spinner" />
+                      <label for="courierCharge"
+                        class="absolute text-sm lg:text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 start-1">
+                        Courier Charges
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-span-1 sm:col-span-3">
+                    <div class="relative">
+                      <input type="text" id="courierInfo" name="courierInfo" formControlName="in_courier_info" placeholder=" " autocomplete="off"
+                        class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border border-[#dcdcdc] appearance-none peer no-spinner" />
+                      <label for="courierInfo"
+                        class="absolute text-sm lg:text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 start-1">
+                        Courier Info
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative mt-6 p-4 bg-white rounded-lg border border-gray-200 shadow-sm space-y-4"
+              style="background-color: #fff0f0;">
+              <div
+                class="absolute -top-4 left-4 bg-white px-4 py-1 rounded-md shadow-sm text-sm font-semibold tracking-wide flex items-center gap-x-2"
+                style="color: #444;">
+                <i class="fas fa-receipt" style="color: #e63946;"></i>
+                <span>Tax Details</span>
+              </div>
+              <ng-container *ngIf="paymentDetailsForm.get('isCgstSgstApplicable')?.value">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-3 items-center mt-4">
+                  <div
+                    class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc">
+                    Cgst</div>
+                  <div class="col-span-1">
+                    <div class="relative">
+                      <input type="number" formControlName="in_cgst_percent" id="slPrCGST" placeholder=" "
+                        autocomplete="off"
+                        class="block px-2 py-2 w-full text-sm lg:text-sm text-444 text-right font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none peer no-spinner" />
+                      <label for="slPrCGST"
+                        class="absolute text-sm lg:text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 start-1">Tax
+                        %</label>
+                    </div>
+                  </div>
+                  <div class="col-span-1">
+                    <div class="relative">
+                      <input type="text" [value]="summary.taxableAmount | number:'1.2-2'" id="taxOnCGSTTotAmt" placeholder=" " readonly
+                        autocomplete="off"
+                        class="block px-2 py-2 w-full text-sm lg:text-sm text-444 text-right font-normal bg-gray-100 rounded-md border-1 border-dcdcdc appearance-none peer no-spinner" />
+                      <label for="taxOnCGSTTotAmt"
+                        class="absolute text-sm lg:text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-gray-100 px-1.5 start-1">On
+                        Tt Amt</label>
+                    </div>
+                  </div>
+                  <div class="col-span-1">
+                    <div class="relative">
+                      <input type="text" formControlName="in_cgst" id="slPrCGSTAmt" readonly placeholder=" "
+                        autocomplete="off"
+                        class="block px-2 py-2 w-full text-sm lg:text-sm text-444 text-right font-bold bg-gray-100 rounded-md border-1 border-dcdcdc appearance-none peer no-spinner" />
+                      <label for="slPrCGSTAmt"
+                        class="absolute text-sm lg:text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-gray-100 px-1.5 start-1">Cgst
+                        Amount</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-3 items-center">
+                  <div class="col-span-1">
+                    <div class="relative">
+                      <div
+                        class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc">
+                        Sgst</div>
+                    </div>
+                  </div>
+                  <div class="col-span-1">
+                    <div class="relative">
+                      <input type="number" formControlName="in_sgst_percent" id="slPrSGST" placeholder=" "
+                        autocomplete="off"
+                        class="block px-2 py-2 w-full text-sm lg:text-sm text-444 text-right font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none peer no-spinner" />
+                      <label for="slPrSGST"
+                        class="absolute text-sm lg:text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 start-1">Tax
+                        %</label>
+                    </div>
+                  </div>
+                  <div class="col-span-1">
+                    <div class="relative">
+                      <input type="text" [value]="summary.taxableAmount | number:'1.2-2'" id="taxOnSGSTTotAmt" placeholder=" " readonly
+                        autocomplete="off"
+                        class="block px-2 py-2 w-full text-sm lg:text-sm text-444 text-right font-normal bg-gray-100 rounded-md border-1 border-dcdcdc appearance-none peer no-spinner" />
+                      <label for="taxOnSGSTTotAmt"
+                        class="absolute text-sm lg:text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-gray-100 px-1.5 start-1">On
+                        Tt Amt</label>
+                    </div>
+                  </div>
+                  <div class="col-span-1">
+                    <div class="relative">
+                      <input type="text" formControlName="in_sgst" id="slPrSGSTAmt" readonly placeholder=" "
+                        autocomplete="off"
+                        class="block px-2 py-2 w-full text-sm lg:text-sm text-444 text-right font-bold bg-gray-100 rounded-md border-1 border-dcdcdc appearance-none peer no-spinner" />
+                      <label for="slPrSGSTAmt"
+                        class="absolute text-sm lg:text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-gray-100 px-1.5 start-1">Sgst
+                        Amount</label>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+
+            <div class="relative mt-6 p-4 rounded-lg border border-gray-200 shadow-sm space-y-6 text-[#898989]"
+              style="background-color: #eff6ff;">
+              <div
+                class="absolute -top-4 left-4 bg-white px-4 py-1 rounded-md shadow-sm text-sm font-semibold tracking-wide flex items-center gap-x-2"
+                style="color: #444;">
+                <i class="fas fa-credit-card" style="color: #0077b6;"></i>
+                <span>Payment Methods</span>
+              </div>
+              <!-- CASH PAYMENT -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-3 items-center mt-4">
+                <div class="relative">
+                  <select id="slPrPayAccId" formControlName="in_payment_account_cash"
+                    class="block px-3 py-2 w-full text-sm bg-white rounded-md border border-[#dcdcdc] appearance-none focus:outline-none focus:ring-0 focus:border-[#c19725] peer">
+                    <option value="2893">Cash In Hand</option>
+                  </select>
+                  <label for="slPrPayAccId"
+                    class="absolute text-sm transform -translate-y-4 scale-75 top-2 bg-white px-1.5 peer-focus:text-[#c19725] origin-[0]">Payment
+                    Account</label>
+                </div>
+                <div class="relative">
+                  <input type="text" id="cashNarration" formControlName="in_cash_narration" placeholder=" " autocomplete="off"
+                    class="block px-3 py-2 w-full text-sm bg-white rounded-md border border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-[#c19725] peer" />
+                  <label for="cashNarration"
+                    class="absolute text-sm transform -translate-y-4 scale-75 top-2 bg-white px-1.5 peer-focus:text-[#c19725] origin-[0]">Cash
+                    Narration</label>
+                </div>
+                <div class="relative">
+                  <input type="number" formControlName="in_cash_amount" id="slPrcashChequeAmt" placeholder=" "
+                    autocomplete="off"
+                    class="block px-3 py-2 w-full text-sm text-right font-semibold bg-purple-100 rounded-md border border-[#c19725] focus:outline-none focus:ring-0 focus:border-[#c19725] peer no-spinner" />
+                  <label for="slPrPayChequeAmt"
+                    class="absolute text-sm transform -translate-y-4 scale-75 top-2 bg-purple-100 px-1.5 peer-focus:text-[#c19725] origin-[0]">Cash
+                    Amt</label>
+                </div>
+              </div>
+              <!-- BANK PAYMENT -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-3 items-center">
+                <div class="relative">
+                  <select id="slPrPayChequeAccId" formControlName="in_payment_account_bank"
+                    class="block px-3 py-2 w-full text-sm bg-white rounded-md border border-[#dcdcdc] appearance-none focus:outline-none focus:ring-0 focus:border-[#c19725] peer">
+                    <option value="2892">Bank Account</option>
+                  </select>
+                  <label for="slPrPayChequeAccId"
+                    class="absolute text-sm transform -translate-y-4 scale-75 top-2 bg-white px-1.5 peer-focus:text-[#c19725] origin-[0]">Payment
+                    Account</label>
+                </div>
+                <div class="relative">
+                  <input type="text" id="chequeNo" formControlName="in_cheque_narration" placeholder=" " autocomplete="off"
+                    class="block px-3 py-2 w-full text-sm bg-white rounded-md border border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-[#c19725] peer" />
+                  <label for="chequeNo"
+                    class="absolute text-sm transform -translate-y-4 scale-75 top-2 bg-white px-1.5 peer-focus:text-[#c19725] origin-[0]">Cheque/Neft/Imps</label>
+                </div>
+                <div class="relative">
+                  <input type="number" formControlName="in_bank_amount" id="slPrPayChequeAmt" placeholder=" "
+                    autocomplete="off"
+                    class="block px-3 py-2 w-full text-sm text-right font-semibold bg-blue-100 rounded-md border border-[#c19725] focus:outline-none focus:ring-0 focus:border-[#c19725] peer no-spinner" />
+                  <label for="slPrPayChequeAmt"
+                    class="absolute text-sm transform -translate-y-4 scale-75 top-2 bg-blue-100 px-1.5 peer-focus:text-[#c19725] origin-[0]">Bank
+                    Amt</label>
+                </div>
+              </div>
+              <!-- CARD PAYMENT -->
+              <div class="grid grid-cols-1 md:grid-cols-6 gap-3 items-center">
+                <div class="relative">
+                  <select id="slPrPayCardAccId" formControlName="in_payment_account_card"
+                    class="block px-3 py-2 w-full text-sm bg-white rounded-md border border-[#dcdcdc] appearance-none focus:outline-none focus:ring-0 focus:border-[#c19725] peer">
+                    <option value="2951">Card Payment</option>
+                  </select>
+                  <label for="slPrPayCardAccId"
+                    class="absolute text-sm transform -translate-y-4 scale-75 top-2 bg-white px-1.5 peer-focus:text-[#c19725] origin-[0]">Payment
+                    Account</label>
+                </div>
+                <div class="relative">
+                  <input type="text" id="cardNo" formControlName="in_card_number" placeholder=" " autocomplete="off"
+                    class="block px-3 py-2 w-full text-sm bg-white rounded-md border border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-[#c19725] peer no-spinner" />
+                  <label for="cardNo"
+                    class="absolute text-sm transform -translate-y-4 scale-75 top-2 bg-white px-1.5 peer-focus:text-[#c19725] origin-[0]">Card
+                    Number</label>
+                </div>
+                <div class="relative">
+                  <input type="number" id="slPrPayCardAmt" formControlName="in_card_amount" placeholder=" " autocomplete="off"
+                    class="block px-3 py-2 w-full text-sm text-right bg-white rounded-md border border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-[#c19725] peer no-spinner" />
+                  <label for="slPrPayCardAmt"
+                    class="absolute text-sm transform -translate-y-4 scale-75 top-2 bg-white px-1.5 peer-focus:text-[#c19725] origin-[0]">Card
+                    Amt</label>
+                </div>
+                <div class="relative">
+                  <input type="number" id="slPrPayTransChrgPer" formControlName="in_card_charges_percent" placeholder=" " autocomplete="off"
+                    class="block px-3 py-2 w-full text-sm text-right bg-white rounded-md border border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-[#c19725] peer no-spinner" />
+                  <label for="slPrPayTransChrgPer"
+                    class="absolute text-sm transform -translate-y-4 scale-75 top-2 bg-white px-1.5 peer-focus:text-[#c19725] origin-[0]">Ch
+                    %</label>
+                </div>
+                <div class="relative">
+                  <input type="number" id="slPrPayTransChrgAmt" formControlName="in_card_charges_amount" placeholder=" " autocomplete="off"
+                    class="block px-3 py-2 w-full text-sm text-right bg-white rounded-md border border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-[#c19725] peer no-spinner" />
+                  <label for="slPrPayTransChrgAmt"
+                    class="absolute text-sm transform -translate-y-4 scale-75 top-2 bg-white px-1.5 peer-focus:text-[#c19725] origin-[0]">Charges</label>
+                </div>
+                <div class="relative">
+                  <input type="number" formControlName="in_total_card_amount" id="slPrPayCardFinalAmt" value="0"
+                    placeholder=" " autocomplete="off"
+                    class="block px-3 py-2 w-full text-sm text-right font-bold bg-purple-100 rounded-md border border-purple-300 focus:outline-none focus:ring-0 focus:border-[#c19725] peer no-spinner" />
+                  <label for="slPrPayCardFinalAmt"
+                    class="absolute text-sm transform -translate-y-4 scale-75 top-2 bg-purple-100 px-1.5 peer-focus:text-[#c19725] origin-[0]">Total
+                    Card Amt</label>
+                </div>
+              </div>
+              <!-- ONLINE PAYMENT -->
+              <div class="grid grid-cols-1 md:grid-cols-6 gap-3 items-center">
+                <div class="relative">
+                  <select id="slPrPayOnlinePaymentAccId" formControlName="in_payment_account_online"
+                    class="block px-3 py-2 w-full text-sm bg-white rounded-md border border-[#dcdcdc] appearance-none focus:outline-none focus:ring-0 focus:border-[#c19725] peer">
+                    <option value="2952">Online Payment</option>
+                  </select>
+                  <label for="slPrPayOnlinePaymentAccId"
+                    class="absolute text-sm transform -translate-y-4 scale-75 top-2 bg-white px-1.5 peer-focus:text-[#c19725] origin-[0]">Payment
+                    Account</label>
+                </div>
+                <div class="relative w-full">
+                  <input
+                    type="text"
+                    id="onlinePaymentNarration"
+                    formControlName="in_online_narration"
+                    [(ngModel)]="narrationValue"
+                    (focus)="showOptions = true"
+                    (blur)="hideOptions()"
+                    (input)="filterOptions()"
+                    autocomplete="off"
+                    class="peer capitalize block pl-2 pr-5 py-2 w-full text-sm text-[#444] font-normal
+                           bg-white rounded-md border border-[#dcdcdc]
+                           focus:outline-none focus:ring-0 focus:border-[#c19725] appearance-none"
+                    placeholder=" " />
+                  <label
+                    for="onlinePaymentNarration"
+                    class="absolute text-sm transform -translate-y-4 scale-75 top-2 bg-white px-1.5 peer-focus:text-[#c19725] origin-[0]">
+                    Narration
+                  </label>
+                  <ul *ngIf="showOptions && filteredOptions.length > 0"
+                      class="absolute left-0 right-0 mt-1 bg-white border border-[#dcdcdc] rounded-md shadow-lg z-10">
+                    <li *ngFor="let option of filteredOptions"
+                        (mousedown)="selectOption(option)"
+                        class="px-3 py-2 text-sm text-[#444] hover:bg-[#f9f5eb] hover:text-[#c19725] cursor-pointer">
+                      {{ option }}
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="relative">
+                  <input type="number" id="slPrPayOnlinePaymentAmt" formControlName="in_online_amount" placeholder=" " autocomplete="off"
+                    class="block px-3 py-2 w-full text-sm text-right bg-white rounded-md border border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-[#c19725] peer no-spinner" />
+                  <label for="slPrPayOnlinePaymentAmt"
+                    class="absolute text-sm transform -translate-y-4 scale-75 top-2 bg-white px-1.5 peer-focus:text-[#c19725] origin-[0]">Online
+                    Amt</label>
+                </div>
+                <div class="relative">
+                  <input type="number" id="slPrPayCommPayPer" formControlName="in_online_commission_percent" placeholder=" " autocomplete="off"
+                    class="block px-3 py-2 w-full text-sm text-right bg-white rounded-md border border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-[#c19725] peer no-spinner" />
+                  <label for="slPrPayCommPayPer"
+                    class="absolute text-sm transform -translate-y-4 scale-75 top-2 bg-white px-1.5 peer-focus:text-[#c19725] origin-[0]">C
+                    %</label>
+                </div>
+                <div class="relative">
+                  <input type="number" id="slPrPayCommPayAmt" formControlName="in_online_commission_amount" placeholder=" " autocomplete="off"
+                    class="block px-3 py-2 w-full text-sm text-right bg-white rounded-md border border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-[#c19725] peer no-spinner" />
+                  <label for="slPrPayCommPayAmt"
+                    class="absolute text-sm transform -translate-y-4 scale-75 top-2 bg-white px-1.5 peer-focus:text-[#c19725] origin-[0]">Comm</label>
+                </div>
+                <div class="relative">
+                  <input type="number" formControlName="in_total_online_amount" id="slPrPayOnlinePaymentFinalAmt" value="0"
+                    placeholder=" " autocomplete="off"
+                    class="block px-3 py-2 w-full text-sm text-right font-bold bg-blue-100 rounded-md border border-blue-300 focus:outline-none focus:ring-0 focus:border-[#c19725] peer no-spinner" />
+                  <label for="slPrPayOnlinePaymentFinalAmt"
+                    class="absolute text-sm transform -translate-y-4 scale-75 top-2 bg-blue-100 px-1.5 peer-focus:text-[#c19725] origin-[0]">Total
+                    Online Amt</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative mt-6 p-4 rounded-lg border border-gray-200 shadow-sm space-y-4"
+              style="background-color: #fff1fe;">
+              <div
+                class="absolute -top-4 left-4 bg-white px-4 py-1 rounded-md shadow-sm text-sm font-semibold tracking-wide flex items-center gap-x-2"
+                style="color: #444;">
+                <i class="fas fa-gem" style="color: #8338ec;"></i>
+                <span>Loyalty Points</span>
+              </div>
+              <div class="flex items-end gap-4 flex-wrap">
+                <div class="w-48">
+                  <select id="lpAccount" formControlName="in_loyalty_account_id"
+                    class="w-full px-4 py-2  border border-gray-300 rounded-md shadow-sm text-sm appearance-none focus:outline-none focus:ring-0"
+                    style="border-width: 1px; color: #898989;"
+                    onfocus="this.style.borderColor='#c19725'; this.style.borderWidth='1px';"
+                    onblur="this.style.borderColor=''; this.style.borderWidth='';">
+                    <option value="2924" selected>Discount Paid</option>
+                  </select>
+                </div>
+                <div class="relative w-32">
+                  <input type="text" id="lpOpening" formControlName="loyaltyOpening" placeholder=" "
+                    class="block px-3 py-2 w-full text-sm text-right text-[#444] bg-white rounded-md border border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-[#c19725] peer">
+                  <label for="lpOpening"
+                    class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:text-[#c19725] start-1">Opening</label>
+                </div>
+                <div class="relative w-32">
+                  <input type="text" id="lpClosing" formControlName="loyaltyClosing" placeholder=" "
+                    class="block px-3 py-2 w-full text-sm text-right text-[#444] bg-white rounded-md border border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-[#c19725] peer">
+                  <label for="lpClosing"
+                    class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:text-[#c19725] start-1">Closing</label>
+                </div>
+                <div class="relative w-32">
+                  <input type="text" id="lpGain" formControlName="loyaltyGain" placeholder=" "
+                    class="block px-3 py-2 w-full text-sm text-right text-[#444] bg-white rounded-md border border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-[#c19725] peer">
+                  <label for="lpGain"
+                    class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:text-[#c19725] start-1">Gain</label>
+                </div>
+                <div class="relative w-48">
+                  <input type="number" formControlName="in_loyalty_amount" id="rdm-lty-points" placeholder=" "
+                    class="block px-3 py-2 w-full text-sm text-right text-[#444] bg-white rounded-md border border-[#dcdcdc] focus:outline-none focus:ring-0 focus:border-[#c19725] peer no-spinner">
+                  <label for="rdm-lty-points"
+                    class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:text-[#c19725] start-1">Redeem
+                    Loyalty Points</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-6 gap-3 items-start pt-2">
+            <div class="relative md:col-span-5">
+              <textarea id="slPrPayOtherInfo" name="slPrPayOtherInfo" formControlName="in_notes" placeholder=" " rows="2"
+                class="block p-2 w-full text-sm text-gray-900 bg-white rounded-lg border-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#c19725] peer"></textarea>
+              <label for="slPrPayOtherInfo"
+                class="floating-label-bg-form absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-[#c19725] peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-5 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">
+                Payment Other Info
+              </label>
+            </div>
+            <div>
+              <select id="remSelect" formControlName="reminder"
+                class="w-full h-11 px-4 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-[#c19725] focus:border-[#c19725]">
+                <option value="NotSelected">Reminder</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- ========================== SUMMARY - RIGHT COLUMN ========================== -->
+      <div class="col-span-12 lg:col-span-4" style="background-color: #f6f6f6;">
+        <div class="bg-summary-bg border border-gray-200 rounded-xl shadow-lg p-4 sticky top-8">
+          <h1 class="text-2xl font-semibold text-[#444] mb-2 border-b border-gray-200 pb-1 flex items-center gap-x-3">
+            <i
+              class="fas fa-clipboard-list text-2xl bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text"></i>
+            <span>Summary</span>
+          </h1>
+
+          <div class="space-y-1 text-base">
+            <div class="flex items-center"><span class="text-gray-600">Previous Amount :</span>
+              <input type="text" readonly [value]="summary.previousAmount | number:'1.2-2'"
+                class="w-40 ml-auto text-right font-bold text-red-600 bg-transparent border-0 focus:ring-0 py-0 pr-3">
+            </div>
+            <div class="flex items-center"><span class="text-gray-600">Amount :</span>
+              <input type="text" readonly [value]="summary.amount | number:'1.2-2'"
+                class="w-40 ml-auto text-right font-semibold text-gray-800 bg-transparent border-0 focus:ring-0 py-0 pr-3">
+            </div>
+            <hr class="!my-2 border-t-2 border-dotted border-gray-200">
+            <div class="flex items-center"><span class="font-semibold text-gray-700">Total Amount :</span>
+              <input type="text" readonly [value]="summary.totalAmountBeforeDisc | number:'1.2-2'"
+                class="w-40 ml-auto text-right font-bold text-lg text-brand-blue bg-transparent border-0 focus:ring-0 py-0 pr-3">
+            </div>
+            <div class="flex items-center"><span class="text-gray-600">Discount :</span>
+              <input type="text" readonly [value]="summary.discount | number:'1.2-2'"
+                class="w-40 ml-auto text-right font-semibold text-gray-800 bg-transparent border-0 focus:ring-0 py-0 pr-3">
+            </div>
+            <div class="bg-[#fbe4ec] border border-[#f3c1d7] rounded-xl shadow-md my-3">
+              <div class="flex items-center text-lg sm:text-xl py-2">
+                <span class="font-semibold text-[#4d041c] tracking-wide pl-3">Taxable Amount:</span>
+                <input type="text" readonly [value]="summary.taxableAmount | number:'1.2-2'"
+                  class="w-40 ml-auto text-right font-semibold text-[#4d041c] bg-transparent border-none focus:ring-0 py-0 pr-3 tracking-wide" />
+              </div>
+            </div>
+            <div *ngIf="paymentDetailsForm.get('isCgstSgstApplicable')?.value" class="flex items-center">
+              <span class="text-gray-600">Cgst :</span>
+              <input type="text" readonly [value]="summary.cgst | number:'1.2-2'"
+                class="w-40 ml-auto text-right font-semibold text-gray-800 bg-transparent border-0 focus:ring-0 py-0 pr-3">
+            </div>
+            <div *ngIf="paymentDetailsForm.get('isCgstSgstApplicable')?.value" class="flex items-center">
+              <span class="text-gray-600">Sgst :</span>
+              <input type="text" readonly [value]="summary.sgst | number:'1.2-2'"
+                class="w-40 ml-auto text-right font-semibold text-gray-800 bg-transparent border-0 focus:ring-0 py-0 pr-3">
+            </div>
+            <hr class="!my-2 border-dotted border-gray-200">
+            <div class="flex items-center"><span class="text-gray-600">Courier Charges :</span>
+              <input type="text" readonly [value]="summary.courierCharges | number:'1.2-2'"
+                class="w-40 ml-auto text-right font-semibold text-gray-800 bg-transparent border-0 focus:ring-0 py-0 pr-3">
+            </div>
+            <div class="flex items-center"><span class="text-gray-600">Round Off :</span>
+              <div class="relative w-40 ml-auto">
+                <input type="number" formControlName="in_round_off"
+                  class="w-full text-right font-semibold text-gray-800 bg-transparent border-x-0 border-t-0 border-b border-gray-300 focus:ring-0 py-0 pr-3 no-spinner">
+              </div>
+            </div>
+            <div class="bg-[#e6f0fa] border border-[#b4cff0] rounded-xl shadow-md my-3">
+              <div class="flex items-center text-lg sm:text-xl py-2">
+                <span class="font-semibold text-[#0a0b5c] tracking-wide pl-3">Grand Total:</span>
+                <input type="text" readonly [value]="summary.grandTotal | number:'1.2-2'"
+                  class="w-40 ml-auto text-right font-semibold text-[#0a0b5c] bg-transparent border-none focus:ring-0 py-0 pr-3 tracking-wide" />
+              </div>
+            </div>
+          </div>
+          <div class="space-y-1 mt-2">
+            <div class="flex items-center"><span class="text-gray-600">Metal Received :</span>
+              <input type="text" readonly [value]="summary.metalReceived | number:'1.2-2'"
+                class="w-40 ml-auto text-right font-semibold text-gray-800 bg-transparent border-0 focus:ring-0 py-0 pr-3">
+            </div>
+            <div class="flex items-center"><span class="font-semibold text-green-700">Amount Paid :</span>
+              <input type="text" readonly [value]="summary.amountPaid | number:'1.2-2'"
+                class="w-40 ml-auto text-right font-bold text-green-600 bg-transparent border-0 focus:ring-0 py-0 pr-3">
+            </div>
+            <div class="flex items-center"><span class="text-gray-600">Loyalty Amount :</span>
+              <input type="text" readonly [value]="summary.loyaltyAmount | number:'1.2-2'"
+                class="w-40 ml-auto text-right font-semibold text-gray-800 bg-transparent border-0 focus:ring-0 py-0 pr-3">
+            </div>
+            <div class="bg-[#fbe9dd] border border-[#f0c6a8] rounded-xl shadow-md my-3">
+              <div class="flex items-center text-lg sm:text-xl py-2">
+                <span class="font-semibold text-[#442604] tracking-wide pl-3" id="finCashBalTd">Balance Due:</span>
+                <input type="text" readonly [value]="summary.finalCashDeposit | number:'1.2-2'"
+                  class="w-40 ml-auto text-right font-semibold text-[#442604] bg-transparent border-none focus:ring-0 py-0 pr-3 tracking-wide" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="flex items-center justify-center mt-4 md:mt-8 space-x-1.5 md:space-x-4">
+  <button type="button" [routerLink]="'/rough-estimate-invoice/' + customerDetails?.id"
+    class="block cursor-pointer capitalize w-[140px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6">
+    Rough Estimate
+  </button>
+
+  <button type="button" (click)="storeInvoiceData('save')"
+    class="block cursor-pointer capitalize w-[140px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6">
+    Save
+  </button>
+
+  <button type="button" (click)="storeInvoiceData('print')"
+    class="block cursor-pointer capitalize w-[140px] lg:w-[200px] p-1 md:p-1.5 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6">
+    Save
+    <svg class="inline mx-1 sm:mx-2" width="12" height="13" viewBox="0 0 12 13" fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path d="M9.13125 7.25H0V5.75H9.13125L4.93125 1.55L6 0.5L12 6.5L6 12.5L4.93125 11.45L9.13125 7.25Z"
+        fill="#C19725" />
+    </svg>
+    Print
+  </button>
+</div>
+</form>

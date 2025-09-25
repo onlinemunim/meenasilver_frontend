@@ -1,0 +1,507 @@
+<div class="w-full py-3">
+  <div class="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-2">
+    <div class="col-span-4 sm:col-span-4 lg:col-span-1 bg-[#E6EFFF] rounded-[5px] p-2 order-2 lg:order-1">
+      <div class="grid grid-cols-2 sm:grid-cols-5 md:grid-cols-5 gap-2 sm:gap-2.5">
+        <div class="col-span-1">
+          <div class="relative max-w-sm">
+            <input datepicker datepicker-autohide id="billDate" type="text"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:bg-[#121212] dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder="" (focus)="setPlaceholder('billDate')" (blur)="clearPlaceholder('billDate')"
+              (input)="onDateInput('billDate', $event)" [placeholder]="placeholders.billDate" />
+            <div class="absolute inset-y-0 end-0 flex items-center pe-1 pointer-events-none">
+              <svg class="size-6" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M18.9773 3.67371H4.02272C3.48663 3.67491 2.97284 3.8884 2.59376 4.26748C2.21469 4.64655 2.0012 5.16034 2 5.69644V20.651C2.0012 21.1871 2.21469 21.7009 2.59376 22.0799C2.97284 22.459 3.48663 22.6725 4.02272 22.6737H18.9773C19.5134 22.6725 20.0272 22.459 20.4062 22.0799C20.7853 21.7009 20.9988 21.1871 21 20.651V5.69644C20.9988 5.16034 20.7853 4.64655 20.4062 4.26748C20.0272 3.8884 19.5134 3.67491 18.9773 3.67371Z"
+                  stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M6.06836 9.59113H10.8865" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M6.06836 13.2744H16.5002" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M8.56836 2.5V6.44491" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M14.4326 2.5V6.44491" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+              </svg>
+            </div>
+            <label for="billDate"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-[#121212]  px-1.5 peer-focus:px-1.5 peer-focus:text-c19725  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Bill
+              Date</label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative max-w-sm">
+            <input datepicker datepicker-autohide id="mfdDate" type="text"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:bg-[#121212] dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder="" (focus)="setPlaceholder('mfdDate')" (blur)="clearPlaceholder('mfdDate')"
+              (input)="onDateInput('mfdDate', $event)" [placeholder]="placeholders.mfdDate" />
+            <div class="absolute inset-y-0 end-0 flex items-center pe-1 pointer-events-none">
+              <svg class="size-6" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M18.9773 3.67371H4.02272C3.48663 3.67491 2.97284 3.8884 2.59376 4.26748C2.21469 4.64655 2.0012 5.16034 2 5.69644V20.651C2.0012 21.1871 2.21469 21.7009 2.59376 22.0799C2.97284 22.459 3.48663 22.6725 4.02272 22.6737H18.9773C19.5134 22.6725 20.0272 22.459 20.4062 22.0799C20.7853 21.7009 20.9988 21.1871 21 20.651V5.69644C20.9988 5.16034 20.7853 4.64655 20.4062 4.26748C20.0272 3.8884 19.5134 3.67491 18.9773 3.67371Z"
+                  stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M6.06836 9.59113H10.8865" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M6.06836 13.2744H16.5002" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M8.56836 2.5V6.44491" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M14.4326 2.5V6.44491" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+              </svg>
+            </div>
+            <label for="mfdDate"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-[#121212] px-1.5 peer-focus:px-1.5 peer-focus:text-c19725  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">MFD
+              Date</label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative max-w-sm">
+            <input datepicker datepicker-autohide id="expDate" type="text"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:bg-[#121212] dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=""
+              (focus)="setPlaceholder('expDate')"
+              (blur)="clearPlaceholder('expDate')"
+              (input)="onDateInput('expDate', $event)"
+              [placeholder]="placeholders.expDate" />
+            <div class="absolute inset-y-0 end-0 flex items-center pe-1 pointer-events-none">
+              <svg class="size-6" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M18.9773 3.67371H4.02272C3.48663 3.67491 2.97284 3.8884 2.59376 4.26748C2.21469 4.64655 2.0012 5.16034 2 5.69644V20.651C2.0012 21.1871 2.21469 21.7009 2.59376 22.0799C2.97284 22.459 3.48663 22.6725 4.02272 22.6737H18.9773C19.5134 22.6725 20.0272 22.459 20.4062 22.0799C20.7853 21.7009 20.9988 21.1871 21 20.651V5.69644C20.9988 5.16034 20.7853 4.64655 20.4062 4.26748C20.0272 3.8884 19.5134 3.67491 18.9773 3.67371Z"
+                  stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M6.06836 9.59113H10.8865" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M6.06836 13.2744H16.5002" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M8.56836 2.5V6.44491" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M14.4326 2.5V6.44491" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+              </svg>
+            </div>
+            <label for="expDate"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-[#121212] px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+              EXP Date
+            </label>
+          </div>
+        </div>
+
+
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input type="text" id="firmName" placeholder=" "
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer" />
+            <label for="firmName"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Firm
+              Name</label>
+          </div>
+        </div>
+
+        <div class="col-span-2 sm:col-span-1">
+          <div class="relative">
+            <input type="text" id="brandSellerName" placeholder=" "
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer" />
+            <label for="brandSellerName"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Brand/Seller
+              Name</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-4 sm:col-span-4 lg:col-span-1 order-1 lg:order-2">
+      <div class="flex items-center justify-end gap-2 mb-4 md:mb-0">
+        <div class="w-[300px] lg:w-[300px] flex justify-end items-center ms-auto">
+          <a routerLink="/add-stock/add-wholsale-imitation-stock-b3"
+            routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="flex-1 px-4 py-1 rounded-tl-[5px] rounded-bl-[5px] border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+            Wholesale
+          </a>
+          <a routerLink="/add-stock/add-retail-imitation-stock-b3"
+            routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="flex-1 px-4 py-1 rounded-tr-[5px] rounded-br-[5px] border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+            Retail Fine
+          </a>
+          <!-- src/app/Component/Auth/stock/retail-imitation-stock/imitation-stock-b3/imitation-stock-b3.component.html -->
+
+        </div>
+        <a href="#"
+          class="w-28 px-4 py-1 rounded-[5px] border-[0.50px] border-[#BB0000] flex justify-center items-center text-white bg-[#BB0000] text-sm sm:text-sm lg:text-base hover:bg-white hover:text-[#BB0000] hover:shadow-lg">
+          <img class="size-4 me-2" src="/assets/images/stock/youtube.png" alt="youtube" />
+          Help
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-2.5 mt-3">
+    <div class="col-span-1 w-full bg-[#EAF2F7] p-3 rounded-md">
+      <div class="grid grid-cols-4 sm:grid-cols-15 lg:grid-cols-11 2xl:grid-cols-15 gap-2 sm:gap-2.5">
+        <div class="col-span-1 sm:col-span-2">
+          <div class="relative">
+            <input type="text" id="barcode" placeholder=" "
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer text-right" />
+            <label for="barcode"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Barcode</label>
+          </div>
+        </div>
+        <div class="col-span-2 sm:col-span-3">
+          <div class="flex items-center">
+            <div class="relative">
+              <input type="text" id="product" placeholder=" "
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-l-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer" />
+              <label for="product"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Product</label>
+            </div>
+            <div class="relative">
+              <input type="text" id="code" placeholder=" "
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-r-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer" />
+              <label for="code"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Code</label>
+            </div>
+          </div>
+        </div>
+        <div class="col-span-2 sm:col-span-3">
+          <app-custom-select label="Item Category" [options]="itemCategory"
+            [(selected)]="selectedItem" selectId="itemCategory">
+          </app-custom-select>
+        </div>
+        <div class="col-span-2 sm:col-span-3">
+          <div class="relative">
+            <input type="text" id="itemName" placeholder=" "
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer" />
+            <label for="itemName"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Item
+              Name</label>
+          </div>
+        </div>
+        <div class="col-span-1 sm:col-span-2">
+          <div class="relative">
+            <input type="text" id="size" placeholder=" "
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer" />
+            <label for="size"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Size</label>
+          </div>
+        </div>
+        <div class="col-span-2 sm:col-span-2">
+          <div class="relative">
+            <input type="text" id="hsnCode" placeholder=" "
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer text-right" />
+            <label for="hsnCode"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">HSN
+              Code</label>
+          </div>
+        </div>
+
+        <div class="col-span-2 sm:col-span-2">
+          <div class="relative">
+            <input type="text" id="counterName" placeholder=" "
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer" />
+            <label for="counterName"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Counter
+              Name</label>
+          </div>
+        </div>
+
+        <div class="col-span-2 sm:col-span-3">
+          <app-custom-select label="Gender" [options]="genderType"
+            [(selected)]="selectedGender" selectId="genderType">
+          </app-custom-select>
+        </div>
+
+        <div class="col-span-2 sm:col-span-2">
+          <div class="relative">
+            <input type="text" id="otherInfo" placeholder=" "
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer" />
+            <label for="otherInfo"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Other
+              Info</label>
+          </div>
+        </div>
+
+
+        <div class="col-span-1 sm:col-span-2">
+          <div class="relative">
+            <input type="text" id="length" placeholder=" "
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer text-right" />
+            <label for="length"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Length</label>
+          </div>
+        </div>
+
+        <div class="col-span-1 sm:col-span-2">
+          <div class="relative">
+            <input type="text" id="width" placeholder=" "
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer text-right" />
+            <label for="width"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Width</label>
+          </div>
+        </div>
+
+        <div class="col-span-1 sm:col-span-2">
+          <div class="relative">
+            <input type="text" id="polish" placeholder="22"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer" />
+            <label for="polish"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Polish</label>
+          </div>
+        </div>
+        <div class="col-span-1 sm:col-span-2">
+          <div class="relative">
+            <input type="text" id="color" placeholder="color"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer" />
+            <label for="color"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Color</label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-span-1 w-full bg-[#FDF5F5] p-3 rounded-md">
+      <div class="grid grid-cols-2 sm:grid-cols-12 lg:grid-cols-7 2xl:grid-cols-12 gap-2 sm:gap-2.5">
+        <div class="col-span-1 sm:col-span-1 lg:col-span-1 xl:col-span-1">
+          <div class="relative">
+            <input type="text" id="qty" placeholder=" "
+              class="block px-2 py-2 w-full max-w-[110px] text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer text-right" />
+            <label for="qty"
+              class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">
+              Qty
+            </label>
+          </div>
+        </div>
+
+        <div class="col-span-1 sm:col-span-1 lg:col-span-1 xl:col-span-1">
+          <div class="relative">
+            <input type="text" id="gswt" placeholder=" "
+              class="block px-2 py-2 w-full max-w-[110px] text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer text-right" />
+            <label for="gswt"
+              class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">
+              GSWT
+            </label>
+          </div>
+        </div>
+        <div class="col-span-2 sm:col-span-2">
+          <div class="relative">
+            <input type="text" id="modelNo" placeholder=" "
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer text-right" />
+            <label for="modelNo"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Model
+              No</label>
+          </div>
+        </div>
+        <div class="col-span-2 sm:col-span-2">
+          <div class="relative">
+            <input type="text" id="purchaseUnitMrp" placeholder=" "
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer text-right" />
+            <label for="purchaseUnitMrp"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Purchase
+              Unit MRP</label>
+          </div>
+        </div>
+
+
+        <div class="col-span-1 sm:col-span-1 lg:col-span-1 xl:col-span-1">
+          <div class="relative">
+            <input type="text" id="qty" placeholder="Code"
+              class="block px-2 py-2 w-full max-w-[110px] text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer text-right" />
+            <label for="qty"
+              class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">
+              Code
+            </label>
+          </div>
+        </div>
+        <div class="col-span-1 sm:col-span-1 lg:col-span-1 xl:col-span-1">
+          <div class="relative">
+            <input type="text" id="" placeholder="M"
+              class="block px-2 py-2 w-full max-w-[110px] text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer" />
+            <label for=""
+              class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">
+
+            </label>
+          </div>
+        </div>
+
+        <div class="col-span-1 sm:col-span-1 lg:col-span-1 xl:col-span-1">
+          <div class="relative">
+            <input type="text" id="num" placeholder="num"
+              class="block px-2 py-2 w-full max-w-[110px] text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer text-right" />
+            <label for="num"
+              class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">
+              Num
+            </label>
+          </div>
+        </div>
+
+        <div class="col-span-2 sm:col-span-2">
+          <div class="relative">
+            <input type="text" id="sellunitPrice" placeholder=" "
+              class="block px-3 py-2 w-full text-sm text-444 font-normal bg-[#f7fbff] rounded-md border border-[#cde3f9] appearance-none focus:outline-none focus:ring-2 focus:ring-[#91caff] focus:border-[#5aa6f7] peer transition-all duration-200 text-right" />
+            <label for="sellunitPrice"
+              class="absolute text-sm text-[#7b8ca2] duration-200 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-[#f7fbff] px-1.5 peer-focus:text-[#5aa6f7] peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">
+              Sell Unit MRP
+            </label>
+          </div>
+        </div>
+
+        <div class="col-span-1 sm:col-span-2">
+          <div class="relative">
+            <input type="text" id="salespackage " placeholder="Sales Package"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer" />
+            <label for="salespackage"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Sales
+              Package</label>
+          </div>
+        </div>
+        <div class="col-span-2 sm:col-span-2">
+          <div class="relative">
+            <input type="text" id="labchrg" placeholder="1000.00"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer text-right" />
+            <label for="labchrg"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">LAB
+              Chrg</label>
+          </div>
+        </div>
+
+        <div class="col-span-1 sm:col-span-1 lg:col-span-1 xl:col-span-1">
+          <div class="relative">
+            <input type="text" id="qty" placeholder="unit"
+              class="block px-2 py-2 w-full max-w-[110px] text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer" />
+            <label for="qty"
+              class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">
+              Unit
+            </label>
+          </div>
+        </div>
+
+        <div class="col-span-1 sm:col-span-1 lg:col-span-1 xl:col-span-1">
+          <div class="relative">
+            <input type="text" id="mkgcharge" placeholder="48,500.00"
+              class="block px-2 py-2 w-full max-w-[110px] text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer text-right" />
+            <label for="qty"
+              class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">
+              Mkg Charge
+            </label>
+          </div>
+        </div>
+
+
+        <div class="col-span-1 sm:col-span-1 lg:col-span-1 xl:col-span-1">
+          <div class="relative">
+            <input type="text" id="totalprice" placeholder="48,500.00"
+              class="block px-2 py-2 w-full max-w-[110px] text-sm text-444 font-normal bg-white rounded-md border border-dcdcdc appearance-none focus:outline-none focus:ring-0 focus:border-c19725 peer text-right" />
+            <label for="totalprice"
+              class="absolute text-sm text-[#898989] duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white px-1.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 start-1">
+              Total Price
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STONE FORM LIST -->
+  <div *ngFor="let form of stoneForms; let i = index" class="relative mb-4">
+    <app-stone-form></app-stone-form>
+    <button (click)="removeStoneForm(i)" type="button"
+      class="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white px-2 py-1 text-xs rounded">
+      Delete
+    </button>
+  </div>
+
+ <!-- stone form -->
+ <app-stone-form *ngIf="isFormVisible"></app-stone-form>
+
+ <div class="flex flex-col sm:flex-row items-center px-2 py-2 w-full flex-wrap gap-y-4">
+
+   <!-- Left group: Add Jewellery and Add Stone -->
+   <div class="flex items-center gap-6 min-w-[260px] sm:min-w-[300px] flex-shrink-0">
+     <!-- Add Jewellery -->
+     <div class="cursor-pointer flex items-center text-[#B7791F] hover:text-[#A16207] transition whitespace-nowrap">
+       <img class="w-5 h-5 me-1.5" src="/assets/images/stock/gold-ring.png" alt="ring" />
+       <span class="text-sm font-medium">Add Jewellery</span>
+     </div>
+
+     <!-- Add Stone -->
+     <div (click)="toggleForm()"
+       class="cursor-pointer flex items-center text-[#5B21B6] hover:text-[#4c1c9b] transition whitespace-nowrap">
+       <img class="w-5 h-5 me-1.5" src="/assets/images/stock/gold-diamond.png" alt="diamond" />
+       <span class="text-sm font-medium">Add Stone</span>
+     </div>
+   </div>
+
+
+   <!-- Icons group: Shifted right by 100px and slightly upward -->
+   <div class="relative flex-shrink-0 mt-[-8px] left-[100px]">
+     <div class="flex items-center gap-8 text-gray-600">
+       <a href="#" class="hover:text-indigo-600 transition flex items-center gap-2">
+         <img class="w-5 h-5" src="/assets/images/stock/storage.png" alt="storage" />
+         <span>Upload Image</span>
+       </a>
+       <a href="#" class="hover:text-indigo-600 transition flex items-center gap-2">
+         <img class="w-5 h-5" src="/assets/images/stock/webcam.png" alt="webcam" />
+         <span>Capture Image</span>
+       </a>
+     </div>
+   </div>
+
+
+
+   <!-- Right group: Checkboxes + Totals -->
+   <div class="flex flex-col sm:flex-row w-full sm:w-auto justify-end items-center gap-4 sm:ms-auto mt-6 sm:mt-0">
+
+     <!-- Checkboxes group -->
+     <div class="flex flex-wrap items-center gap-3 justify-center sm:justify-start">
+       <div class="flex items-center px-2 py-2 text-xs sm:text-sm text-gray-700 font-normal whitespace-nowrap">
+         <input type="checkbox"  autocomplete="off"
+           class="cursor-pointer size-4 me-1.5 text-c19725 border-2 border-c19725 rounded focus:ring-1 focus:ring-c19725" />
+         <span>BIS Hallmark</span>
+       </div>
+       <div class="flex items-center px-2 py-2 text-xs sm:text-sm text-gray-700 font-normal whitespace-nowrap">
+         <input type="checkbox"  autocomplete="off"
+           class="cursor-pointer size-4 me-1.5 text-c19725 border-2 border-c19725 rounded focus:ring-1 focus:ring-c19725" />
+         <span>Add Detail</span>
+       </div>
+       <div class="flex items-center px-2 py-2 text-xs sm:text-sm text-gray-700 font-normal whitespace-nowrap">
+         <input type="checkbox"  autocomplete="off"
+           class="cursor-pointer size-4 me-1.5 text-c19725 border-2 border-c19725 rounded focus:ring-1 focus:ring-c19725" />
+         <span>Add Ecom</span>
+       </div>
+       <div class="flex items-center px-2 py-2 text-xs sm:text-sm text-gray-700 font-normal whitespace-nowrap">
+         <input type="checkbox"  autocomplete="off"
+           class="cursor-pointer size-4 me-1.5 text-c19725 border-2 border-c19725 rounded focus:ring-1 focus:ring-c19725" />
+         <span>Fix MRP</span>
+       </div>
+     </div>
+
+     <!-- Amount box -->
+     <div
+       class="w-max flex items-center justify-end py-3 px-3 border border-blue-gray-100 bg-white rounded-lg shadow-sm mt-4 sm:mt-0">
+
+       <!-- Taxable Amount -->
+       <div class="relative px-4">
+         <p class="text-xs text-blue-gray-500 absolute -top-5 left-0 bg-white px-1">Taxable Amount</p>
+         <p class="text-sm text-blue-gray-700 font-medium">₹ 48,500.00</p>
+       </div>
+
+       <!-- GST Amount -->
+       <div class="relative px-4 border-l border-blue-gray-100">
+         <p class="text-xs text-green-600 absolute -top-5 left-4 bg-white px-1">GST Amount</p>
+         <p class="text-sm text-green-600 font-medium"><span class="mr-1">3%</span>| ₹ 1,500.00</p>
+       </div>
+
+       <!-- Equals -->
+       <p class="text-blue-gray-400 font-bold text-xl mx-2">=</p>
+
+
+<div class="relative px-4">
+<p class="text-xs text-[#0f1e57] absolute -top-5 left-0 bg-white px-1 font-medium">
+ Final Amount
+</p>
+<p class="text-xl font-semibold text-[#00059f] text-right px-1 rounded">
+ ₹ 50,000,000.00
+</p>
+</div>
+
+
+
+     </div>
+   </div>
+ </div>
+
+  <div class="sm:flex items-center justify-center mt-4 space-y-2 sm:space-y-0 sm:space-x-2 lg:space-x-4">
+    <button type="button"
+      class="block cursor-pointer capitalize w-[200px] mx-auto p-1 md:p-1.5 text-base font-semibold text-[#00B5B0] bg-[#F2FDFD] border-1 border-[#00B5B0] hover:bg-white hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:bg-white dark:hover:bg-fdffc6">
+      Submit
+    </button>
+  </div>
+</div>

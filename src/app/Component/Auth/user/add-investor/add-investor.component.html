@@ -1,0 +1,32 @@
+<!-- information tabs -->
+<div class="overflow-x-auto overflow-y-hidden whitespace-nowrap scrollbar-hide lg:overflow-x-hidden">
+  <ul class="min-w-max flex justify-start text-sm sm:text-sm lg:text-base text-center">
+    <li *ngFor="let tab of tabs; let i = index" role="presentation" class="flex-shrink-0 sm:flex-1">
+      <button
+        class="cursor-pointer min-w-[160px] sm:w-full capitalize inline-block px-4 py-2 border transition-all duration-300"
+        [ngClass]="{
+          'rounded-l-md': i === 0,
+          'rounded-r-md': i === tabs.length - 1,
+          'font-bold bg-c19725 text-white border-c19725 hover:shadow-lg': activeTab === i,
+          'font-normal bg-white text-[#898989] border-[#D9D9D9] hover:bg-[#f6f1cb] hover:text-black hover:border-gray-300': activeTab !== i
+        }"
+        [disabled]="i !== 0 && !isUserCreated"
+        type="button"
+        (click)="selectTab(i)"
+      >
+        {{ tab.label }}
+      </button>
+    </li>
+  </ul>
+</div>
+
+<div class="transition-opacity duration-300">
+    <div *ngIf="tabs.length">
+        <ng-container *ngIf="tabs[activeTab]" [ngSwitch]="tabs[activeTab].id">
+          <app-investor-personal *ngSwitchCase="'personal'" (userCreated)="checkUserCreated()"></app-investor-personal>
+            <app-financial-info *ngSwitchCase="'financial'"></app-financial-info>
+            <app-address-details *ngSwitchCase="'address'"></app-address-details>
+            <app-other-info *ngSwitchCase="'other'"></app-other-info>
+        </ng-container>
+    </div>
+</div>

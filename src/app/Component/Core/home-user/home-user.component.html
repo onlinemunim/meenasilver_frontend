@@ -1,0 +1,403 @@
+<form [formGroup]="userForm">
+  <div class="border-1 bg-white border-[#EEEEEE] rounded-md p-2 md:p-4 md:flex items-start">
+    <div class="md:w-6/7">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 md:gap-3 space-y-0.5">
+        <div class="col-span-1">
+          <div class="relative">
+            <img class="absolute top-1.5 left-[3px] lg:left-1.5 size-6 lg:size-7" src="/assets/images/home/phone.png" alt="">
+            <input type="text" id="mobilenumber" formControlName="mobilenumber" (input)="filterCustomersByMobile($event)" autocomplete="off" (keydown.enter)="focusNext($event)"
+              class="block pl-7 pr-1 lg:pl-9 lg:pr-2 py-2 w-full text-[13px] lg:text-sm text-[#5A5959] placeholder:text-[#9CA0A9] font-normal bg-[#F9F9F9] rounded-md border-1 border-[#EEEEEE] appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder="Mobile No." />
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <img class="absolute top-1.5 left-[3px] lg:left-1.5 size-6 lg:size-7" src="/assets/images/home/profile.png" alt="">
+            <input type="text" id="name" formControlName="name" (input)="filterCustomersByName($event)" autocomplete="off" (keydown.enter)="focusNext($event)"
+              class="block pl-7 pr-1 lg:pl-9 lg:pr-2 py-2 w-full text-[13px] lg:text-sm text-[#5A5959] placeholder:text-[#9CA0A9] font-normal bg-[#F9F9F9] rounded-md border-1 border-[#EEEEEE] appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder="First Name" />
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <img class="absolute top-1.5 left-[3px] lg:left-1.5 size-6 lg:size-7" src="/assets/images/home/profile.png" alt="profile">
+            <input type="text" id="user_last_name" formControlName="user_last_name" autocomplete="off" (keydown.enter)="focusNext($event)"
+              class="block pl-7 pr-1 lg:pl-9 lg:pr-2 py-2 w-full text-[13px] lg:text-sm text-[#5A5959] placeholder:text-[#9CA0A9] font-normal bg-[#F9F9F9] rounded-md border-1 border-[#EEEEEE] appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder="Last Name" />
+          </div>
+        </div>
+
+        <!-- <div class="col-span-1">
+          <div class="relative">
+            <img class="absolute top-1.5 left-[3px] lg:left-1.5 size-6 lg:size-7" src="/assets/images/home/firm1.png" alt="firm1">
+            <input type="" id="" formControlName="user_firm_id"
+              class="block pl-7 pr-1 lg:pl-9 lg:pr-2 py-2 w-full text-[13px] lg:text-sm text-[#5A5959] placeholder:text-[#9CA0A9] font-normal bg-[#F9F9F9] rounded-md border-1 border-[#EEEEEE] appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder="Firm Name" />
+          </div>
+        </div> -->
+
+        <div class="col-span-1">
+          <div class="relative">
+            <img
+              class="absolute top-1.5 left-[3px] lg:left-1.5 size-6 lg:size-7"
+              src="/assets/images/home/firm1.png"
+              alt="firm1">
+
+            <select
+              id="user_firm_id"
+              formControlName="user_firm_id" (keydown.enter)="focusNext($event)"
+              class="block pl-7 pr-1 lg:pl-9 lg:pr-2 py-2 w-full text-[13px] lg:text-sm text-[#5A5959] placeholder:text-[#9CA0A9] font-normal bg-[#F9F9F9] rounded-md border border-[#EEEEEE] appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer">
+
+              <option value="" disabled selected>Select firm</option>
+              <option *ngFor="let firm of firmTypes" [value]="firm.id">
+                {{ firm.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="col-span-1">
+          <div class="relative">
+            <img class="absolute top-1.5 left-[3px] lg:left-1.5 size-6 lg:size-7" src="/assets/images/home/phone.png" alt="phone">
+            <input type="text" id="user_secondary_mobile_no" formControlName="user_secondary_mobile_no" (keydown.enter)="focusNext($event)"
+              class="block pl-7 pr-1 lg:pl-9 lg:pr-2 py-2 w-full text-[13px] lg:text-sm text-[#5A5959] placeholder:text-[#9CA0A9] font-normal bg-[#F9F9F9] rounded-md border-1 border-[#EEEEEE] appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder="Phone No." />
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <img class="absolute top-1.5 left-[3px] lg:left-1.5 size-6 lg:size-7" src="/assets/images/home/profile.png" alt="profile">
+            <input type="text" id="user_middle_name" formControlName="user_middle_name"
+              class="block pl-7 pr-1 lg:pl-9 lg:pr-2 py-2 w-full text-[13px] lg:text-sm text-[#5A5959] placeholder:text-[#9CA0A9] font-normal bg-[#F9F9F9] rounded-md border-1 border-[#EEEEEE] appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder="Father Name" />
+          </div>
+        </div>
+
+        <div class="col-span-2 sm:col-span-1">
+          <div class="relative">
+            <select formControlName="country_id" (change)="onCountryChange()" (keydown.enter)="focusNext($event)"
+              class="block pl-7 pr-5 lg:pl-9 lg:pr-8 py-1.5 lg:py-2 w-full text-[13px] lg:text-sm text-[#5A5959] placeholder:text-[#9CA0A9] font-normal bg-[#F9F9F9] rounded-md border-1 border-[#EEEEEE] appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer">
+              <option value="" disabled hidden>Country</option>
+              <option
+                *ngFor="let country of countries"
+                [value]="country.id"
+              >
+                {{ country.name }}
+              </option>
+            </select>
+            <img class="absolute top-1.5 left-[3px] lg:left-1.5 size-6 lg:size-7" src="/assets/images/home/state.png" alt="State">
+            <div class="absolute inset-y-0 right-1.5 lg:right-3 flex items-center pointer-events-none">
+              <svg class="size-3 lg:size-4" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <rect y="0.493591" width="15.5417" height="15" fill="url(#pattern0_413_110)" />
+                <defs>
+                  <pattern id="pattern0_413_110" patternContentUnits="objectBoundingBox" width="1" height="1">
+                    <use xlink:href="#image0_413_110" transform="matrix(0.0078125 0 0 0.00809466 0 -0.0180582)" />
+                  </pattern>
+                  <image id="image0_413_110" width="128" height="128" preserveAspectRatio="none"
+                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAABaFJREFUeF7t3b9vHFUQB/CZu7Mrn4MlhKgQgoQi/wAlEopTEqLEh+S7CIkOBRoaOnQFBXRIEaIEKbaLOysiSUWDoEL8LN04IEQDFXbOEYKzcw+tfY6tOL7bnX27+97M152dN+s38/34+bxWvEx4Mz0BNt09micAMI4AAADA+ASMt48TAACMT8B4+zgBAMD4BIy3jxMAAIxPwHj7OAEAwPgEjLePEwAAjE/AePs4AQDA+ASMt48TAACMT8B4+zgBAMD4BIy3jxMAAIxPwHj7OAEAwPgEjLePEwAAjE/AePs4AQDg5ATOLK8uEM28UOfh5t+rnYHxGUXd/tNv3W7u/vvfS0S7v91fa2893syxE8DxfHv9HUf8HpF7frzQkeNNptGHg7XWzagnYWzz88v9tiP+gNidIzr8L4D8O/Pok8HZjRvU7Y6SkewDmLt26xl2D3vk6JVT58Tubm20++aTFBmbbdDtLiz1zuzN8udEdHnCRr97yLUr/6xc+XMfQLPdvzWlYP9ajtwvdbd7AQjCNDAO/ysiejnFDu/srC5d4rnl/hIz9VIUAEHaIVWwLmP4B1kyv8HNdr9PRFez7BknQZZpFb9WEv54V+vc7KzfI+dezLpNIMg6sWLW5wifiPnX5ARIfjR4SrI9IJBMzV9NrvAPtrHNzU7/m4mv/qfsFwj8BZrlSh7CT34G/DYB8BE5ej/LJ398LRDkmV72Wi/hJ5+W6WNO7vqNeHaDiJ7NvpWjCiDIM730td7CJ/qr5obnD+4DdHqvkeMvj+4Ypd/Q8ZVAIJtb2iqP4Tti9/rOSuvOo1vBc8u9t5n5UyBIG0e563yG75y7/mCt9dnBd4Fjb/4Q0M91N1zEHUM/SIoK/wSA5ANA4Cc0X1cpMvwnAgACX9Hlv07R4Z8KAAjyh5f3CmWEPxEAEOSNUF5fVvhTAQCBPERpZZnhpwIABNIos9eVHX5qAL4RNGYaF7a/uLydfUR6K6oIPxMAICgOX1XhZwYABP4RVBm+CAAQ+ENQdfhiAD4RkKOf6rONRWuvCUIIPxcAIJCfBKGEnxsAEGRHEFL4XgAAQXoEoYXvDQAQTEcQYvheAQDB6QhCDd87ACA4iSDk8AsBAARHCEIPvzAAQEAUQ/iFArCMIJbwCwfgFQG5H+szMxdDv2MYU/ilALCEILbwSwNgAUGM4ZcKQDOCWMMvHYBGBDGHXwkA3wgaQ1rc6rfuT78Z639F7OFXBkADAg3hVwogZgRawq8cQIwINIUfBICYEGgLPxgAfhHQD42hu+j7haHG8IMCEDICreEHByBEBJrDDxJASAi0hx8sgBAQWAg/aABVIrASfvAAqkBgKfwoAJSJwFr40QAoA4HF8KMCUCQCq+FHB6AIBMk192Y57WNWJv1O2R3/C5yTFob0b1E+N9DXH7Mkou/HYaR5xo668KM8AQ5T8Igg7xdklF/5h01HeQIEhCDq8KM+AQJAEH34KgB4fmGY9tuBivDVACgZgZrwVQEoCYGq8NUBKBiBuvBVAigIgcrw1QLwjEBt+KoBeEKgOnz1AHIiUB++CQBCBCbCNwMgIwIz4ZsCkDQ7317vOHLJwzHnT7nlN2Di64PVqytpbwnGvi7qXwZJhr9wrffc3ohvENGryWMSx9d4QERfN2ru3a2brT8k1421xhyAR0F1u7XmvfPnkvd3zm5sUrc7ijXEPPu2CyDP1BTVAoCiMCWtAIBkaopqAEBRmJJWAEAyNUU1AKAoTEkrACCZmqIaAFAUpqQVAJBMTVENACgKU9IKAEimpqgGABSFKWkFACRTU1QDAIrClLQCAJKpKaoBAEVhSloBAMnUFNUAgKIwJa0AgGRqimoAQFGYklYAQDI1RTUAoChMSSsAIJmaohoAUBSmpBUAkExNUQ0AKApT0goASKamqAYAFIUpaeV/O7ZWZ/emDU8AAAAASUVORK5CYII=" />
+                </defs>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-1.5 md:gap-3 ">
+          <div class="col-span-1">
+            <div class="relative">
+            <select formControlName="state_id" (change)="onStateChange()" (keydown.enter)="focusNext($event)"
+              class="block pl-7 pr-5 lg:pl-9 lg:pr-8 py-1.5 lg:py-2 w-full text-[13px] lg:text-sm text-[#5A5959] placeholder:text-[#9CA0A9] font-normal bg-[#F9F9F9] rounded-md border-1 border-[#EEEEEE] appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer">
+              <option value="" selected hidden disabled>State </option>
+              <option *ngFor="let state of states" [value]="state.id">{{ state.name }}</option>
+            </select>
+            <img class="absolute top-1.5 left-[3px] lg:left-1.5 size-6 lg:size-7" src="/assets/images/home/state.png" alt="State">
+            <div class="absolute inset-y-0 right-1.5 lg:right-3 flex items-center pointer-events-none">
+              <svg class="size-3 lg:size-4" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <rect y="0.493591" width="15.5417" height="15" fill="url(#pattern0_413_110)" />
+                <defs>
+                  <pattern id="pattern0_413_110" patternContentUnits="objectBoundingBox" width="1" height="1">
+                    <use xlink:href="#image0_413_110" transform="matrix(0.0078125 0 0 0.00809466 0 -0.0180582)" />
+                  </pattern>
+                  <image id="image0_413_110" width="128" height="128" preserveAspectRatio="none"
+                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAABaFJREFUeF7t3b9vHFUQB/CZu7Mrn4MlhKgQgoQi/wAlEopTEqLEh+S7CIkOBRoaOnQFBXRIEaIEKbaLOysiSUWDoEL8LN04IEQDFXbOEYKzcw+tfY6tOL7bnX27+97M152dN+s38/34+bxWvEx4Mz0BNt09micAMI4AAADA+ASMt48TAACMT8B4+zgBAMD4BIy3jxMAAIxPwHj7OAEAwPgEjLePEwAAjE/AePs4AQDA+ASMt48TAACMT8B4+zgBAMD4BIy3jxMAAIxPwHj7OAEAwPgEjLePEwAAjE/AePs4AQDg5ATOLK8uEM28UOfh5t+rnYHxGUXd/tNv3W7u/vvfS0S7v91fa2893syxE8DxfHv9HUf8HpF7frzQkeNNptGHg7XWzagnYWzz88v9tiP+gNidIzr8L4D8O/Pok8HZjRvU7Y6SkewDmLt26xl2D3vk6JVT58Tubm20++aTFBmbbdDtLiz1zuzN8udEdHnCRr97yLUr/6xc+XMfQLPdvzWlYP9ajtwvdbd7AQjCNDAO/ysiejnFDu/srC5d4rnl/hIz9VIUAEHaIVWwLmP4B1kyv8HNdr9PRFez7BknQZZpFb9WEv54V+vc7KzfI+dezLpNIMg6sWLW5wifiPnX5ARIfjR4SrI9IJBMzV9NrvAPtrHNzU7/m4mv/qfsFwj8BZrlSh7CT34G/DYB8BE5ej/LJ398LRDkmV72Wi/hJ5+W6WNO7vqNeHaDiJ7NvpWjCiDIM730td7CJ/qr5obnD+4DdHqvkeMvj+4Ypd/Q8ZVAIJtb2iqP4Tti9/rOSuvOo1vBc8u9t5n5UyBIG0e563yG75y7/mCt9dnBd4Fjb/4Q0M91N1zEHUM/SIoK/wSA5ANA4Cc0X1cpMvwnAgACX9Hlv07R4Z8KAAjyh5f3CmWEPxEAEOSNUF5fVvhTAQCBPERpZZnhpwIABNIos9eVHX5qAL4RNGYaF7a/uLydfUR6K6oIPxMAICgOX1XhZwYABP4RVBm+CAAQ+ENQdfhiAD4RkKOf6rONRWuvCUIIPxcAIJCfBKGEnxsAEGRHEFL4XgAAQXoEoYXvDQAQTEcQYvheAQDB6QhCDd87ACA4iSDk8AsBAARHCEIPvzAAQEAUQ/iFArCMIJbwCwfgFQG5H+szMxdDv2MYU/ilALCEILbwSwNgAUGM4ZcKQDOCWMMvHYBGBDGHXwkA3wgaQ1rc6rfuT78Z639F7OFXBkADAg3hVwogZgRawq8cQIwINIUfBICYEGgLPxgAfhHQD42hu+j7haHG8IMCEDICreEHByBEBJrDDxJASAi0hx8sgBAQWAg/aABVIrASfvAAqkBgKfwoAJSJwFr40QAoA4HF8KMCUCQCq+FHB6AIBMk192Y57WNWJv1O2R3/C5yTFob0b1E+N9DXH7Mkou/HYaR5xo668KM8AQ5T8Igg7xdklF/5h01HeQIEhCDq8KM+AQJAEH34KgB4fmGY9tuBivDVACgZgZrwVQEoCYGq8NUBKBiBuvBVAigIgcrw1QLwjEBt+KoBeEKgOnz1AHIiUB++CQBCBCbCNwMgIwIz4ZsCkDQ7317vOHLJwzHnT7nlN2Di64PVqytpbwnGvi7qXwZJhr9wrffc3ohvENGryWMSx9d4QERfN2ru3a2brT8k1421xhyAR0F1u7XmvfPnkvd3zm5sUrc7ijXEPPu2CyDP1BTVAoCiMCWtAIBkaopqAEBRmJJWAEAyNUU1AKAoTEkrACCZmqIaAFAUpqQVAJBMTVENACgKU9IKAEimpqgGABSFKWkFACRTU1QDAIrClLQCAJKpKaoBAEVhSloBAMnUFNUAgKIwJa0AgGRqimoAQFGYklYAQDI1RTUAoChMSSsAIJmaohoAUBSmpBUAkExNUQ0AKApT0goASKamqAYAFIUpaeV/O7ZWZ/emDU8AAAAASUVORK5CYII=" />
+                </defs>
+              </svg>
+            </div>
+          </div>
+          </div>
+
+          <div class="col-span-1">
+          <div class="relative">
+            <select formControlName="city_id" (keydown.enter)="focusNext($event)"
+              class="block pl-7 pr-5 lg:pl-9 lg:pr-8 py-1.5 lg:py-2 w-full text-[13px] lg:text-sm text-[#5A5959] placeholder:text-[#9CA0A9] font-normal bg-[#F9F9F9] rounded-md border-1 border-[#EEEEEE] appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer">
+              <option value="" selected hidden disabled>City</option>
+              <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+            </select>
+            <img class="absolute top-1.5 left-[3px] lg:left-1.5 size-6 lg:size-7" src="/assets/images/home/city.png" alt="city">
+            <div class="absolute inset-y-0 right-1.5 lg:right-3 flex items-center pointer-events-none">
+              <svg class="size-3 lg:size-4" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <rect y="0.493591" width="15.5417" height="15" fill="url(#pattern0_413_110)" />
+                <defs>
+                  <pattern id="pattern0_413_110" patternContentUnits="objectBoundingBox" width="1" height="1">
+                    <use xlink:href="#image0_413_110" transform="matrix(0.0078125 0 0 0.00809466 0 -0.0180582)" />
+                  </pattern>
+                  <image id="image0_413_110" width="128" height="128" preserveAspectRatio="none"
+                    xlink:href="data:image/png;base64,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" />
+                </defs>
+              </svg>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <img class="absolute top-1.5 left-[3px] lg:left-1.5 size-6 lg:size-7" src="/assets/images/home/address.png" alt="address">
+            <input type="text" id="address" formControlName="address" autocomplete="off" (keydown.enter)="focusNext($event)"
+              class="block pl-7 pr-1 lg:pl-9 lg:pr-2 py-2 w-full text-[13px] lg:text-sm text-[#5A5959] placeholder:text-[#9CA0A9] font-normal bg-[#F9F9F9] rounded-md border-1 border-[#EEEEEE] appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder="Address" />
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <img class="absolute top-1.5 left-[3px] lg:left-1.5 size-6 lg:size-7" src="/assets/images/home/pincode.png" alt="pincode">
+            <input type="text" id="pincode" formControlName="pincode" autocomplete="off" (keydown.enter)="focusNext($event)"
+              class="block pl-7 pr-1 lg:pl-9 lg:pr-2 py-2 w-full text-[13px] lg:text-sm text-[#5A5959] placeholder:text-[#9CA0A9] font-normal bg-[#F9F9F9] rounded-md border-1 border-[#EEEEEE] appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder="Pin Code" />
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <img class="absolute top-1.5 left-[3px] lg:left-1.5 size-6 lg:size-7" src="/assets/images/home/mail.png" alt="mail">
+            <input type="email" id="email" formControlName="email" autocomplete="off" (keydown.enter)="focusNext($event)"
+              class="block pl-7 pr-1 lg:pl-9 lg:pr-2 py-2 w-full text-[13px] lg:text-sm text-[#5A5959] placeholder:text-[#9CA0A9] font-normal bg-[#F9F9F9] rounded-md border-1 border-[#EEEEEE] appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder="Mail ID" />
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <img class="absolute top-1.5 left-[3px] lg:left-1.5 size-6 lg:size-7" src="/assets/images/home/gst.png" alt="gst">
+            <input type="text" id="gstnumber" formControlName="gstnumber" autocomplete="off" (keydown.enter)="focusNext($event)"
+              class="block pl-7 pr-1 lg:pl-9 lg:pr-2 py-2 w-full text-[13px] lg:text-sm text-[#5A5959] placeholder:text-[#9CA0A9] font-normal bg-[#F9F9F9] rounded-md border-1 border-[#EEEEEE] appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder="GST No." />
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <img class="absolute top-1.5 left-[3px] lg:left-1.5 size-6 lg:size-7" src="/assets/images/home/adhaar.png" alt="adhaar">
+            <input type="text" id="user_aadhar_card_no" formControlName="user_aadhar_card_no" autocomplete="off" (keydown.enter)="focusNext($event)"
+              class="block pl-7 pr-1 lg:pl-9 lg:pr-2 py-2 w-full text-[13px] lg:text-sm text-[#5A5959] placeholder:text-[#9CA0A9] font-normal bg-[#F9F9F9] rounded-md border-1 border-[#EEEEEE] appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder="Adhaar Card No." />
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <img class="absolute top-1.5 left-[3px] lg:left-1.5 size-6 lg:size-7" src="/assets/images/home/adhaar.png" alt="pan">
+            <input type="text" id="user_pan_card_no" formControlName="user_pan_card_no" autocomplete="off" (keydown.enter)="focusNext($event)"
+              class="block pl-7 pr-1 lg:pl-9 lg:pr-2 py-2 w-full text-[13px] lg:text-sm text-[#5A5959] placeholder:text-[#9CA0A9] font-normal bg-[#F9F9F9] rounded-md border-1 border-[#EEEEEE] appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder="Pan Card No." />
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <img class="absolute top-1.5 left-[3px] lg:left-1.5 size-6 lg:size-7" src="/assets/images/home/profile.png" alt="pan">
+            <select
+              id="user_customer_type"
+              formControlName="user_customer_type" (keydown.enter)="focusNext($event)"
+              class="block pl-7 pr-1 lg:pl-9 lg:pr-2 py-2 w-full text-[13px] lg:text-sm text-[#5A5959] placeholder:text-[#9CA0A9] font-normal bg-[#F9F9F9] rounded-md border border-[#EEEEEE] appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer">
+
+              <option value="" disabled selected hidden>Customer Type</option>
+              <option *ngFor="let type of customerTypes" [value]="type">
+                {{ type }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-span-1 grid grid-cols-1 lg:grid-cols-2 gap-1.5 md:gap-3 ">
+         <div class="col-span-1">
+           <div class="flex items-center justify-start gap-1.5 lg:gap-3 2xl:gap-6 px-2 py-2 w-full bg-[#F9F9F9] rounded-md border-1 border-[#EEEEEE]">
+            <div class="flex items-center">
+              <input checked id="default-radio-1" type="radio" value="male" formControlName="user_gender" (keydown.enter)="focusNext($event)"
+                class="w-4 h-4 text-[#0278F1] bg-gray-100 border-gray-300 focus:ring-1 focus:shadow-md dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
+              <label for="default-radio-1" class="ms-2 text-[13px] lg:text-sm font-normal text-[#9CA0A9] dark:text-gray-300">M</label>
+            </div>
+            <div class="flex items-center">
+              <input id="default-radio-2" type="radio" value="female" formControlName="user_gender" (keydown.enter)="focusNext($event)"
+                class="w-4 h-4 text-[#0278F1] bg-gray-100 border-gray-300 focus:ring-1 focus:shadow-md dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
+              <label for="default-radio-2" class="ms-2 text-[13px] lg:text-sm font-normal text-[#9CA0A9] dark:text-gray-300">F</label>
+            </div>
+          </div>
+         </div>
+         <div class="col-span-1">
+        <div class="flex items-center justify-end space-x-5 xl:space-x-7 mt-2 lg:mt-0">
+          <a href="#"><img class="size-5 lg:size-7" src="/assets/images/home/fingerprint.png" alt="fingerprint"></a>
+          <a href="#"><img class="size-5 lg:size-7" src="/assets/images/home/camera.png" alt="camera"></a>
+
+          <a href="#" (click)="fileInput.click(); $event.preventDefault()">
+              <img class="size-5 lg:size-7" src="/assets/images/home/attachment.png" alt="attachment">
+          </a>
+          <input type="file" #fileInput accept="image/*" (change)="onFileSelected($event)" hidden />
+        </div>
+
+            <div class="mt-2 flex flex-wrap gap-3">
+              <div *ngFor="let img of previewImages" class="relative">
+                <span class="underline text-blue-600 cursor-pointer text-sm"
+                      (mouseenter)="hoveredImage = img"
+                      (mouseleave)="hoveredImage = null">
+                  {{ img.name }}
+                </span>
+
+                <div *ngIf="hoveredImage === img"
+                     class="absolute left-0 top-full mt-1 bg-white border p-1 shadow-lg rounded z-50">
+                  <img [src]="img.url" class="max-w-[100px] max-h-[100px]" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="md:w-1/7 mt-4 md:mt-0 md:ml-4">
+      <div class="w-full grid grid-cols-2 sm:grid-cols-4 md:grid-cols-1 gap-1.5 md:gap-2 lg:gap-3">
+        <div class="col-span-1">
+          <button (click)="onSellButtonClick()"
+          class="group w-full px-1.5 py-1.5 rounded-md text-sm font-normal text-center text-[#018F37] bg-[#DEFFEA] border border-[#018F37] hover:text-[#DEFFEA] hover:bg-[#018F37] hover:shadow-lg">
+          <svg class="inline group-hover:stroke-[#DEFFEA]" stroke="#018F37" stroke-width="0.5" width="25" height="24"
+            viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M16.1824 14.3157C16.5808 13.9173 16.5808 13.2761 16.5808 11.9936C16.5808 10.7111 16.5808 10.0699 16.1824 9.6715M16.1824 14.3157C15.7839 14.7142 15.1427 14.7142 13.8603 14.7142H11.1397C9.85725 14.7142 9.21601 14.7142 8.8176 14.3157M16.1824 9.6715C15.7839 9.27309 15.1427 9.27309 13.8603 9.27309H11.1397C9.85725 9.27309 9.21601 9.27309 8.8176 9.6715M8.8176 9.6715C8.41919 10.0699 8.41919 10.7111 8.41919 11.9936C8.41919 13.2761 8.41919 13.9173 8.8176 14.3157"
+              fill="#018F37" />
+            <path
+              d="M16.1824 14.3157C16.5808 13.9173 16.5808 13.2761 16.5808 11.9936C16.5808 10.7111 16.5808 10.0699 16.1824 9.6715C15.7839 9.27309 15.1427 9.27309 13.8603 9.27309H11.1397C9.85725 9.27309 9.21601 9.27309 8.8176 9.6715C8.41919 10.0699 8.41919 10.7111 8.41919 11.9936C8.41919 13.2761 8.41919 13.9173 8.8176 14.3157C9.21601 14.7142 9.85725 14.7142 11.1397 14.7142H13.8603C15.1427 14.7142 15.7839 14.7142 16.1824 14.3157Z"
+              stroke-width="0.5" />
+            <path
+              d="M13.1801 11.9935C13.1801 12.3692 12.8756 12.6737 12.5 12.6737C12.1243 12.6737 11.8198 12.3692 11.8198 11.9935C11.8198 11.6179 12.1243 11.3134 12.5 11.3134C12.8756 11.3134 13.1801 11.6179 13.1801 11.9935Z"
+              fill="#018F37" stroke="#018F37" stroke-width="0.5" />
+            <path d="M16.5808 11.3135C15.4539 11.3135 14.5404 10.4 14.5404 9.27307L16.5808 11.3135Z" fill="#018F37" />
+            <path d="M16.5808 11.3135C15.4539 11.3135 14.5404 10.4 14.5404 9.27307" stroke="#018F37" stroke-width="0.5"
+              stroke-linecap="round" />
+            <path d="M16.5808 12.6737C15.4539 12.6737 14.5404 13.5872 14.5404 14.7141L16.5808 12.6737Z"
+              fill="#018F37" />
+            <path d="M16.5808 12.6737C15.4539 12.6737 14.5404 13.5872 14.5404 14.7141" stroke="#018F37"
+              stroke-width="0.5" stroke-linecap="round" />
+            <path d="M8.41919 11.3135C9.54607 11.3135 10.4596 10.4 10.4596 9.27309L8.41919 11.3135Z" fill="#018F37" />
+            <path d="M8.41919 11.3135C9.54607 11.3135 10.4596 10.4 10.4596 9.27309" stroke="#018F37" stroke-width="0.5"
+              stroke-linecap="round" />
+            <path d="M8.41919 12.6737C9.54607 12.6737 10.4596 13.5872 10.4596 14.7141L8.41919 12.6737Z"
+              fill="#018F37" />
+            <path d="M8.41919 12.6737C9.54607 12.6737 10.4596 13.5872 10.4596 14.7141" stroke="#018F37"
+              stroke-width="0.5" stroke-linecap="round" />
+            <path
+              d="M19.1645 16.5905C18.9497 16.5002 18.7003 16.4477 18.4386 16.4477C18.1443 16.4477 17.8657 16.514 17.6168 16.6323L17.6285 16.6272L14.6812 17.951C14.6827 17.927 14.6945 17.9066 14.6945 17.8826C14.6868 17.1833 14.1185 16.6196 13.4182 16.6196C13.383 16.6196 13.3483 16.6211 13.3141 16.6237L13.3187 16.6232H11.389L8.96093 15.9116C8.9293 15.9014 8.89308 15.8958 8.85534 15.8958H8.8533H7.74689V15.5096C7.74689 15.2984 7.5755 15.127 7.36431 15.127H5.3836C5.17241 15.127 5.00102 15.2984 5.00102 15.5096V21.7369C5.00102 21.9481 5.17241 22.1195 5.3836 22.1195H7.36431C7.5755 22.1195 7.74689 21.9481 7.74689 21.7369V21.2243C8.67425 21.3691 9.50418 21.6028 10.2908 21.9216L10.2148 21.894C10.8014 22.1062 11.4788 22.2287 12.1848 22.2287C12.1883 22.2287 12.1919 22.2287 12.1955 22.2287H12.195C12.1975 22.2287 12.2006 22.2287 12.2036 22.2287C13.0218 22.2287 13.8018 22.0659 14.5134 21.7706L14.4736 21.7854C15.1076 21.5033 15.6458 21.2059 16.1554 20.8677L16.1135 20.8937C16.286 20.7871 16.4574 20.6805 16.6308 20.578C17.4638 20.0847 18.133 19.6516 18.737 19.215C19.0323 19.0048 19.2894 18.7972 19.5343 18.5758L19.5271 18.5825C19.7174 18.4284 19.8694 18.2346 19.9714 18.0132L19.9755 18.0035C19.9913 17.9632 20 17.9168 20 17.8678C20 17.8387 19.9969 17.8107 19.9908 17.7836L19.9913 17.7862C19.9169 17.2674 19.6062 16.8343 19.1736 16.5941L19.1655 16.59L19.1645 16.5905ZM6.98174 21.3549H5.76617V15.8922H6.98174V21.3549ZM18.9885 18.0392C18.7783 18.2279 18.5498 18.4111 18.3111 18.5809L18.2871 18.5973C17.704 19.0186 17.0537 19.4389 16.2395 19.9215C16.062 20.026 15.8871 20.1347 15.7106 20.2433C15.2749 20.5356 14.7735 20.8147 14.2496 21.0524L14.1833 21.0794C13.5957 21.3212 12.9132 21.461 12.198 21.461C11.5844 21.461 10.9947 21.3574 10.4453 21.1676L10.4831 21.1789C9.68986 20.8483 8.7676 20.5948 7.80606 20.4612L7.74638 20.4545V16.6614H8.7982L11.2263 17.373C11.2579 17.3832 11.2941 17.3888 11.3319 17.3888H11.3339H13.3182C13.7686 17.3888 13.9288 17.6546 13.9288 17.8831C13.9288 18.1116 13.7686 18.3774 13.3182 18.3774H9.84493C9.63375 18.3774 9.46235 18.5488 9.46235 18.76C9.46235 18.9712 9.63375 19.1426 9.84493 19.1426H13.814H13.8161C13.8722 19.1426 13.9252 19.1303 13.9727 19.1079L13.9706 19.1089L17.9468 17.3235C18.0938 17.2562 18.2657 17.2169 18.4467 17.2169C18.5819 17.2169 18.712 17.2389 18.8334 17.2792L18.8247 17.2766C19.0201 17.3939 19.1604 17.5847 19.2083 17.8102L19.2093 17.8158C19.14 17.8969 19.0675 17.9698 18.9905 18.0377L18.988 18.0397L18.9885 18.0392ZM19.6169 1.86819H17.6362C17.425 1.86819 17.2536 2.03958 17.2536 2.25076V2.76647C16.3283 2.62415 15.4973 2.389 14.7128 2.06559L14.7858 2.09212C14.1946 1.88043 13.5125 1.75851 12.8015 1.75851C11.9822 1.75851 11.2008 1.92124 10.4877 2.21556L10.528 2.20077C9.89441 2.48235 9.35625 2.78024 8.84717 3.11895L8.88849 3.09294C8.71659 3.19904 8.54468 3.30565 8.37125 3.40818C7.53163 3.90553 6.86238 4.33809 6.26607 4.77065C5.97225 4.97878 5.71618 5.18486 5.47286 5.40522L5.48 5.3991C5.2877 5.55417 5.13416 5.74903 5.0301 5.97194L5.02602 5.98163C5.00969 6.02295 5 6.0709 5 6.12089C5 6.14946 5.00306 6.177 5.00867 6.20353L5.00816 6.20097C5.08315 6.71924 5.3938 7.1518 5.82636 7.39257L5.83452 7.39665C6.02683 7.49153 6.25281 7.54713 6.49204 7.54713C6.49867 7.54713 6.50531 7.54713 6.51194 7.54713H6.51092C6.8231 7.54305 7.11845 7.4747 7.38574 7.35482L7.37196 7.36043L10.3193 6.0357C10.3178 6.05968 10.3061 6.08059 10.3061 6.10457C10.3132 6.80391 10.882 7.36808 11.5823 7.36808C11.6175 7.36808 11.6517 7.36655 11.6864 7.364L11.6818 7.36451H13.6115L16.0396 8.0761C16.0712 8.08579 16.1079 8.09141 16.1457 8.09141H16.1472H17.2531V8.47755C17.2531 8.68873 17.4245 8.86013 17.6357 8.86013H19.6164C19.8276 8.86013 19.999 8.68873 19.999 8.47755V2.25076C19.999 2.03958 19.8281 1.86819 19.6169 1.86819ZM16.2028 7.32626L13.7747 6.61518C13.7431 6.60548 13.7064 6.59987 13.6686 6.59987H13.6671H11.6828C11.2324 6.59987 11.0727 6.3336 11.0727 6.10508C11.0727 5.87655 11.2324 5.61028 11.6828 5.61028H15.1561C15.3673 5.61028 15.5387 5.43889 15.5387 5.2277C15.5387 5.01652 15.3673 4.84513 15.1561 4.84513H11.1865C11.1299 4.84513 11.0758 4.85737 11.0273 4.87931L11.0299 4.87829L7.05468 6.66517C6.90828 6.7325 6.73638 6.77229 6.55581 6.77229C6.42012 6.77229 6.28953 6.75035 6.16813 6.70903L6.1768 6.71159C5.98194 6.59477 5.84166 6.40349 5.79372 6.17853L5.7927 6.17292C5.86207 6.09181 5.9345 6.01836 6.01255 5.95103L6.0151 5.94899C6.22577 5.75872 6.4543 5.57559 6.69353 5.40675L6.71649 5.39145C7.29392 4.97265 7.9443 4.55182 8.76352 4.06723C8.94103 3.96164 9.11702 3.85248 9.293 3.74382C9.72863 3.45154 10.2295 3.17302 10.7539 2.93634L10.8197 2.90981C11.4079 2.66802 12.0904 2.52724 12.8061 2.52724C13.4192 2.52724 14.0084 2.63028 14.5572 2.82054L14.5195 2.80932C15.3122 3.13936 16.2344 3.39339 17.195 3.52805L17.2552 3.53519V7.32728L16.2028 7.32626ZM19.2343 8.09498H18.0188V2.63334H19.2343V8.09498Z"
+              fill="#018F37" />
+          </svg>
+          Sell</button>
+        </div>
+        <div class="col-span-1">
+          <button
+          class="group w-full px-1.5 py-1.5 rounded-md text-sm font-normal text-center text-[#BB0000] bg-[#FFEBEB] border border-[#BB0000] hover:text-[#FFEBEB] hover:bg-[#BB0000] hover:shadow-lg">
+          <svg class="inline group-hover:stroke-[#FFEBEB]" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.0502 20.2942H2.90031C2.79414 20.2942 2.69232 20.2521 2.61725 20.177C2.54218 20.1019 2.5 20.0001 2.5 19.8939V12.4192C2.5 12.3131 2.54218 12.2112 2.61725 12.1362C2.69232 12.0611 2.79414 12.0189 2.90031 12.0189H7.0502C7.15637 12.0189 7.25819 12.0611 7.33326 12.1362C7.40833 12.2112 7.45051 12.3131 7.45051 12.4192V19.8939C7.45051 20.0001 7.40833 20.1019 7.33326 20.177C7.25819 20.2521 7.15637 20.2942 7.0502 20.2942ZM3.30062 19.4936H6.64989V12.8218H3.30062V19.4936Z" fill="#BB0000"/>
+            <path d="M14.0757 21.3461C12.6546 21.3461 10.891 20.5144 9.47661 19.845C8.63596 19.4491 7.7664 19.0377 7.41056 19.0377C7.3044 19.0377 7.20257 18.9955 7.1275 18.9204C7.05243 18.8454 7.01025 18.7435 7.01025 18.6374C7.01025 18.5312 7.05243 18.4294 7.1275 18.3543C7.20257 18.2792 7.3044 18.2371 7.41056 18.2371C7.94654 18.2371 8.77162 18.6263 9.8191 19.1266C11.1535 19.7605 12.8348 20.55 14.0757 20.55C16.5221 20.55 21.715 17.4498 21.715 16.5936C21.715 15.8619 21.4037 15.5327 20.7142 15.5327C20.4918 15.5327 19.9225 15.9998 19.5044 16.3423C18.597 17.0851 17.5696 17.9257 16.5844 17.6455C16.4888 17.6184 16.4067 17.5567 16.3541 17.4724C16.3015 17.3882 16.2821 17.2874 16.2997 17.1896C16.3316 17.0859 16.3377 16.976 16.3176 16.8695C16.2974 16.7629 16.2516 16.6629 16.184 16.578C15.7393 16.0665 14.3204 16.1176 13.5553 16.1466C13.3841 16.1466 13.2351 16.1577 13.1105 16.1577C12.6658 16.1577 12.2966 15.9197 11.8296 15.6195C11.0111 15.0946 9.89027 14.3741 7.55512 14.3407C7.44895 14.3407 7.34713 14.2985 7.27206 14.2235C7.19699 14.1484 7.15481 14.0466 7.15481 13.9404C7.15481 13.8342 7.19699 13.7324 7.27206 13.6573C7.34713 13.5823 7.44895 13.5401 7.55512 13.5401C10.1193 13.5757 11.4026 14.4008 12.2499 14.9434C12.6079 15.1658 12.8904 15.3548 13.0994 15.3548C13.2106 15.3548 13.3507 15.3548 13.5109 15.3437C14.5316 15.3059 16.0773 15.2503 16.7734 16.0509C16.9755 16.2838 17.0917 16.5789 17.1025 16.8871C17.663 16.8004 18.3835 16.2199 18.9818 15.7218C19.649 15.168 20.1916 14.7321 20.6987 14.7321C21.844 14.7321 22.5001 15.3993 22.5001 16.5847C22.5156 18.3438 16.2886 21.3461 14.0757 21.3461Z" fill="#BB0000"/>
+            <path d="M16.5931 17.8034H10.7841C10.6779 17.8034 10.5761 17.7612 10.501 17.6861C10.426 17.6111 10.3838 17.5092 10.3838 17.4031C10.3838 17.2969 10.426 17.1951 10.501 17.12C10.5761 17.0449 10.6779 17.0028 10.7841 17.0028H16.5931C16.6992 17.0028 16.801 17.0449 16.8761 17.12C16.9512 17.1951 16.9934 17.2969 16.9934 17.4031C16.9934 17.5092 16.9512 17.6111 16.8761 17.6861C16.801 17.7612 16.6992 17.8034 16.5931 17.8034Z" fill="#BB0000"/>
+            <path d="M16.593 14.2762C16.2273 14.2762 15.8698 14.1679 15.5657 13.9648C15.2616 13.7618 15.0244 13.4732 14.8842 13.1355C14.7439 12.7978 14.7069 12.4261 14.7777 12.0674C14.8486 11.7086 15.0242 11.3789 15.2823 11.1199C15.5404 10.8608 15.8694 10.6841 16.2279 10.6119C16.5864 10.5398 16.9583 10.5755 17.2965 10.7145C17.6347 10.8535 17.9241 11.0896 18.1282 11.3931C18.3324 11.6965 18.442 12.0535 18.4433 12.4192C18.4439 12.6627 18.3965 12.9039 18.3038 13.129C18.2111 13.3541 18.0749 13.5588 17.9031 13.7313C17.7312 13.9037 17.5271 14.0406 17.3023 14.1341C17.0775 14.2276 16.8365 14.2759 16.593 14.2762ZM16.593 11.3851C16.3847 11.3851 16.1812 11.4471 16.0082 11.5631C15.8353 11.6792 15.7008 11.844 15.6218 12.0368C15.5428 12.2295 15.523 12.4413 15.5647 12.6454C15.6065 12.8494 15.7081 13.0364 15.8564 13.1826C16.0048 13.3287 16.1933 13.4275 16.3979 13.4662C16.6025 13.5049 16.8141 13.4819 17.0056 13.4C17.1971 13.3182 17.36 13.1812 17.4734 13.0066C17.5869 12.8319 17.6458 12.6275 17.6427 12.4192C17.6409 12.1418 17.5296 11.8763 17.333 11.6805C17.1364 11.4847 16.8704 11.3745 16.593 11.374V11.3851Z" fill="#BB0000"/>
+            <path d="M12.4433 10.9559C12.0771 10.9572 11.7187 10.8498 11.4135 10.6473C11.1083 10.4448 10.8701 10.1563 10.7291 9.81827C10.588 9.48029 10.5504 9.10804 10.621 8.74867C10.6917 8.38931 10.8674 8.05899 11.1259 7.79955C11.3844 7.54011 11.7141 7.36322 12.0732 7.29128C12.4323 7.21934 12.8047 7.25559 13.1432 7.39544C13.4817 7.53529 13.771 7.77244 13.9747 8.07687C14.1783 8.3813 14.287 8.7393 14.287 9.10555C14.2864 9.59495 14.0922 10.0642 13.7467 10.4109C13.4013 10.7576 12.9327 10.9535 12.4433 10.9559ZM12.4433 8.06474C12.2357 8.06474 12.0327 8.1263 11.8601 8.24165C11.6875 8.35699 11.553 8.52093 11.4735 8.71274C11.3941 8.90455 11.3733 9.11561 11.4138 9.31923C11.4543 9.52285 11.5542 9.70989 11.701 9.8567C11.8479 10.0035 12.0349 10.1035 12.2385 10.144C12.4421 10.1845 12.6532 10.1637 12.845 10.0842C13.0368 10.0048 13.2008 9.87025 13.3161 9.69763C13.4314 9.525 13.493 9.32206 13.493 9.11444C13.4942 8.97585 13.4679 8.83839 13.4157 8.71001C13.3634 8.58162 13.2863 8.46485 13.1887 8.36643C13.0911 8.26802 12.975 8.1899 12.8471 8.13659C12.7191 8.08328 12.5819 8.05584 12.4433 8.05584V8.06474Z" fill="#BB0000"/>
+            <path d="M16.593 7.63772C16.227 7.63772 15.8693 7.5292 15.565 7.32589C15.2607 7.12257 15.0236 6.83359 14.8835 6.49549C14.7435 6.15739 14.7068 5.78535 14.7782 5.42642C14.8496 5.06749 15.0259 4.73779 15.2846 4.47902C15.5434 4.22025 15.8731 4.04402 16.232 3.97263C16.5909 3.90123 16.963 3.93787 17.3011 4.07792C17.6392 4.21797 17.9282 4.45513 18.1315 4.75941C18.3348 5.0637 18.4433 5.42144 18.4433 5.7874C18.4427 6.27796 18.2476 6.74825 17.9007 7.09513C17.5539 7.442 17.0836 7.63714 16.593 7.63772ZM16.593 4.74659C16.3854 4.74659 16.1824 4.80816 16.0098 4.9235C15.8372 5.03884 15.7027 5.20278 15.6232 5.39459C15.5438 5.5864 15.523 5.79746 15.5635 6.00108C15.604 6.2047 15.7039 6.39174 15.8507 6.53855C15.9976 6.68535 16.1846 6.78533 16.3882 6.82583C16.5918 6.86633 16.8029 6.84554 16.9947 6.76609C17.1865 6.68665 17.3505 6.5521 17.4658 6.37948C17.5811 6.20686 17.6427 6.00391 17.6427 5.79629C17.6436 5.65778 17.6171 5.52046 17.5648 5.3922C17.5124 5.26395 17.4353 5.1473 17.3378 5.04894C17.2402 4.95058 17.1242 4.87245 16.9964 4.81904C16.8686 4.76563 16.7315 4.73799 16.593 4.7377V4.74659Z" fill="#BB0000"/>
+            <path d="M6.88559 14.3452H2.96476C2.85859 14.3452 2.75677 14.303 2.6817 14.2279C2.60663 14.1529 2.56445 14.051 2.56445 13.9449C2.56445 13.8387 2.60663 13.7369 2.6817 13.6618C2.75677 13.5867 2.85859 13.5446 2.96476 13.5446H6.88559C6.99175 13.5446 7.09358 13.5867 7.16865 13.6618C7.24372 13.7369 7.2859 13.8387 7.2859 13.9449C7.2859 14.051 7.24372 14.1529 7.16865 14.2279C7.09358 14.303 6.99175 14.3452 6.88559 14.3452Z" fill="#BB0000"/>
+            <path d="M6.88559 15.8975H2.96476C2.85859 15.8975 2.75677 15.8553 2.6817 15.7802C2.60663 15.7052 2.56445 15.6033 2.56445 15.4972C2.56445 15.391 2.60663 15.2892 2.6817 15.2141C2.75677 15.139 2.85859 15.0969 2.96476 15.0969H6.88559C6.99175 15.0969 7.09358 15.139 7.16865 15.2141C7.24372 15.2892 7.2859 15.391 7.2859 15.4972C7.2859 15.6033 7.24372 15.7052 7.16865 15.7802C7.09358 15.8553 6.99175 15.8975 6.88559 15.8975Z" fill="#BB0000"/>
+            <path d="M6.88559 17.4475H2.96476C2.85859 17.4475 2.75677 17.4054 2.6817 17.3303C2.60663 17.2552 2.56445 17.1534 2.56445 17.0472C2.56445 16.9411 2.60663 16.8392 2.6817 16.7642C2.75677 16.6891 2.85859 16.6469 2.96476 16.6469H6.88559C6.99175 16.6469 7.09358 16.6891 7.16865 16.7642C7.24372 16.8392 7.2859 16.9411 7.2859 17.0472C7.2859 17.1534 7.24372 17.2552 7.16865 17.3303C7.09358 17.4054 6.99175 17.4475 6.88559 17.4475Z" fill="#BB0000"/>
+            <path d="M6.88559 18.9977H2.96476C2.85859 18.9977 2.75677 18.9555 2.6817 18.8804C2.60663 18.8053 2.56445 18.7035 2.56445 18.5973C2.56445 18.4912 2.60663 18.3894 2.6817 18.3143C2.75677 18.2392 2.85859 18.197 2.96476 18.197H6.88559C6.99175 18.197 7.09358 18.2392 7.16865 18.3143C7.24372 18.3894 7.2859 18.4912 7.2859 18.5973C7.2859 18.7035 7.24372 18.8053 7.16865 18.8804C7.09358 18.9555 6.99175 18.9977 6.88559 18.9977Z" fill="#BB0000"/>
+            </svg>
+
+          Loan</button>
+        </div>
+        <div class="col-span-1">
+          <button
+          class="group w-full px-1.5 py-1.5 rounded-md text-sm font-normal text-center text-[#A27500] bg-[#FFEEBF] border border-[#A27500] hover:text-[#FFEEBF] hover:bg-[#A27500] hover:shadow-lg">
+          <svg class="inline group-hover:stroke-[#FFEEBF]" width="24" height="25" viewBox="0 0 24 25" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M20.5492 11.3383L19.996 10.7907C20.275 10.5146 20.275 10.0655 19.996 9.78938C19.7257 9.52185 19.2547 9.52185 18.9843 9.78938L18.4311 9.24184L18.8222 8.85466C19.1012 8.57858 19.1012 8.12941 18.8222 7.85332C18.5519 7.58579 18.0809 7.58579 17.8105 7.85332L17.4193 8.2405L16.8661 7.69297L17.6486 6.91853C17.9275 6.64244 17.9275 6.19328 17.6486 5.91719C17.3696 5.6411 16.9158 5.6411 16.6368 5.91719L15.8544 6.69163L15.3012 6.14409L15.6924 5.75691C15.8277 5.62294 15.9016 5.44523 15.9016 5.25624C15.9016 5.06725 15.8277 4.88953 15.6924 4.75557C15.4134 4.47948 14.9596 4.47948 14.6806 4.75557L14.2894 5.14275L13.7362 4.59521L14.1274 4.20803C14.7111 3.63034 15.6618 3.63034 16.2455 4.20803C16.4751 4.43533 16.614 4.71838 16.6633 5.01342C17.1851 4.84035 17.786 4.95848 18.2016 5.36965C18.617 5.78082 18.7368 6.37523 18.5615 6.89213C18.8596 6.94092 19.1456 7.07841 19.3752 7.30563C19.7907 7.7168 19.9104 8.31121 19.7351 8.82811C20.0333 8.8769 20.3192 9.01438 20.5489 9.2416C21.1333 9.81961 21.1333 10.7606 20.5492 11.3383Z"
+              fill="#A27500" />
+            <path
+              d="M14.519 15.8244L13.3986 16.933L10.6698 18.0907L6.70947 21.6181L7.23295 22.1934L8.56307 21.0086C7.86995 21.5395 8.40299 20.9378 8.56307 21.0086L9.18902 20.451C9.13189 20.4254 9.24615 20.4777 9.18902 20.451L11.0966 18.7516L13.8449 17.5862L15.0718 16.3715L14.519 15.8244Z"
+              fill="#A27500" />
+            <path
+              d="M10.337 9.57071L10.3369 9.57087L9.64962 10.5907C9.4885 10.8298 9.52021 11.1497 9.72511 11.3525L15.6474 17.214C15.8812 17.4454 16.2577 17.4454 16.4916 17.214L21.0005 12.7513C21.2377 12.5165 21.2377 12.1332 21.0005 11.8984L12.3794 3.36629C12.1456 3.13489 11.7691 3.1349 11.5353 3.3663L7.00269 7.85236C6.77848 8.07427 6.77848 8.4365 7.00269 8.65841C7.22102 8.8745 7.57173 8.87744 7.79365 8.66503L8.45158 8.03534L8.45387 8.03307L8.4539 8.03304M10.337 9.57071L8.45849 8.03773L8.73525 8.31737L8.4572 8.03638L8.45399 8.03303L8.45393 8.03308L8.4539 8.03304M10.337 9.57071C10.6617 9.08828 10.5964 8.44196 10.1833 8.03307C9.70579 7.56049 8.93139 7.56048 8.4539 8.03304M10.337 9.57071L8.4539 8.03304M15.7182 11.9834L15.7183 11.9834C16.6623 11.0486 16.6624 9.53161 15.7182 8.59716L15.7181 8.59709C14.776 7.66508 13.2504 7.66497 12.3085 8.59716L12.3085 8.59723C11.3645 9.53199 11.3644 11.049 12.3085 11.9834L12.3086 11.9835C13.2508 12.9155 14.7764 12.9156 15.7182 11.9834Z"
+              stroke="currentColor" stroke-width="0.8" />
+            <path
+              d="M8.21066 12.0112L8.86166 12.4406L10.6562 9.77666C11.0795 9.14786 10.995 8.30376 10.4551 7.76942C9.82838 7.1491 8.80849 7.1491 8.18173 7.76942L5.82817 10.0988L5.04569 13.9708L3.8102 15.1944C3.77691 15.1266 3.92899 15.3799 3.82653 15.1782L3.22806 15.7705C3.14943 15.6199 3.29965 15.9235 3.22806 15.7705L2 16.986L2.55322 17.5335L5.76667 14.3531L6.54915 10.481L8.73527 8.31728C9.05689 7.99896 9.5803 7.99896 9.90192 8.31728C10.1789 8.59145 10.2223 9.0247 10.0052 9.34725L8.21066 12.0112Z"
+              fill="#A27500" />
+          </svg>
+          Udhaar</button>
+        </div>
+        <div class="col-span-1">
+          <button
+          class="group w-full rounded-md border border-[#0D5BAB] bg-[#E6F3FF] px-1.5 py-1.5 text-center text-sm font-normal text-[#0D5BAB] hover:bg-[#0D5BAB] hover:text-[#E6F3FF] hover:shadow-lg">
+          <svg class="inline text-[#0D5BAB] group-hover:text-[#E6F3FF]" width="24" height="25" viewBox="0 0 24 25"
+            fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M4.77305 13.656C4.48847 11.6782 4.34618 10.6893 4.75153 9.84377C5.15687 8.99826 6.01964 8.48432 7.74518 7.45642L8.78381 6.83771C10.3508 5.90428 11.1343 5.43756 12 5.43756C12.8657 5.43756 13.6492 5.90428 15.2161 6.83771L16.2548 7.45642C17.9803 8.48432 18.8431 8.99826 19.2484 9.84377C19.6538 10.6893 19.5115 11.6782 19.2269 13.656L19.0179 15.109C18.6523 17.6496 18.4695 18.9199 17.5882 19.6787C16.7069 20.4376 15.4144 20.4376 12.8296 20.4376H11.1704C8.58553 20.4376 7.29307 20.4376 6.41177 19.6787C5.53047 18.9199 5.34769 17.6496 4.98213 15.109L4.77305 13.656Z"
+              stroke="currentColor" stroke-width="1.5" />
+            <path d="M12 15.1876V17.4376" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+          Home
+        </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="w-full py-3 px-4" *ngIf="filteredCustomers.length > 0">
+  <p class="font-semibold text-sm sm:text-base lg:text-xl text-444 mb-4">Customer List</p>
+
+  <div class="overflow-x-auto whitespace-nowrap hide-scrollbar mt-4">
+    <table class="w-full table bg-white border border-[#D9D9D9] overflow-hidden">
+      <thead class="bg-[#F1F8FF] border border-[#0C447D] text-444 text-xs sm:text-xs">
+        <tr>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">No.</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">First name</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">Middle Name</th>
+          <th class="p-2 font-medium text-center border-r border-[#0C447D]">Last Name</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Mobile Number</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Aadhar No.</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Pan No.</th>
+          <th class="p-2 font-medium text-left border-r border-[#0C447D]">Firm Name</th>
+        </tr>
+      </thead>
+      <tbody class="text-xs sm:text-xs" *ngIf="filteredCustomers.length > 0">
+        <tr
+          class="odd:bg-white even:bg-[#F2F2F2] text-[#5A5959]"
+          *ngFor="let customer of filteredCustomers; let i = index"
+        >
+          <td class="p-3 text-center">{{ i + 1 }}</td>
+          <td class="p-3 text-[#c19725] font-medium cursor-pointer" (click)="selectCustomer(customer)">
+            {{ customer.name || '-' }}
+          </td>
+          <td class="p-3">{{ customer.user_middle_name || '-'}}</td>
+          <td class="p-3">{{ customer.user_last_name || '-' }}</td>
+          <td class="p-3">{{ customer.mobilenumber || '-'}}</td>
+          <td class="p-3">{{ customer.user_aadhar_card_no || '-'}}</td>
+          <td class="p-3">{{ customer.user_pan_card_no || '-'}}</td>
+          <td class="p-3">{{ customer.user_firm_id || '-'}}</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<h2 class="text-2xl font-bold text-black-800 mt-4" *ngIf="owner">
+  {{ owner.fname }} {{ owner.lname }}
+</h2>
+<p class="text-md text-black-500">{{ owner.qualification }}</p>
+
+<div class="mt-6 text-left px-6 text-black-700 space-y-3">
+  <p>
+    <span class="font-semibold text-yellow-900">Father's Name:</span>
+    {{ owner.father_name }}
+  </p>
+  <p>
+    <span class="font-semibold text-yellow-900">Date of Birth:</span>
+    {{ owner.dob }}
+  </p>
+  <p>
+    <span class="font-semibold text-yellow-900">Sex:</span> {{ owner.sex }}
+  </p>
+  <p>
+    <span class="font-semibold text-yellow-900">Phone:</span> {{ owner.phone }}
+  </p>
+  <p>
+    <span class="font-semibold text-yellow-900">Mobile:</span>
+    {{ owner.mobile }}
+  </p>
+  <p>
+    <span class="font-semibold text-yellow-900">Email : </span>
+    {{ owner.email }}
+  </p>
+  <p>
+    <span class="font-semibold text-yellow-900">Website : </span>
+    {{ owner.website }}
+  </p>
+  <p>
+    <span class="font-semibold text-yellow-900">Since:</span> {{ owner.since }}
+  </p>
+  <p>
+    <span class="font-semibold text-yellow-900">Last Login:</span>
+    {{ owner.last_login }}
+  </p>
+</div>
+
+<a
+  routerLink="/owner/{{ owner.id }}/edit"
+  class="mt-6 inline-block bg-yellow-800 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-yellow-900 transition duration-300"
+>
+  Edit Profile
+</a>

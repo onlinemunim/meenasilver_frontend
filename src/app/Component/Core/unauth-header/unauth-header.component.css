@@ -1,0 +1,4 @@
+.my-card {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}

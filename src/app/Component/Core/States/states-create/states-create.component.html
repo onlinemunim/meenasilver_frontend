@@ -1,0 +1,37 @@
+<div class="max-w-sm mx-auto mt-10 bg-black p-6 rounded-lg shadow-lg border border-yellow-500">
+  <form [formGroup]="createStateForm" (ngSubmit)="onSubmit()">
+    <!-- State Name Input -->
+    <div class="mb-5">
+      <label for="name" class="block mb-2 text-sm font-medium text-yellow-400">State Name</label>
+      <input
+        type="text"
+        formControlName="name"
+        id="name"
+        class="bg-gray-900 border border-yellow-500 text-white text-sm rounded-lg focus:ring-yellow-400 focus:border-yellow-400 block w-full p-2.5 placeholder-gray-500 transition duration-300"
+        placeholder="Enter State Name"
+        required
+      />
+    </div>
+
+    <!-- Country ID Input -->
+    <div class="mb-5">
+      <label for="country_id" class="block mb-2 text-sm font-medium text-yellow-400">Country ID</label>
+      <input
+        type="text"
+        formControlName="country_id"
+        id="country_id"
+        class="bg-gray-900 border border-yellow-500 text-white text-sm rounded-lg focus:ring-yellow-400 focus:border-yellow-400 block w-full p-2.5 placeholder-gray-500 transition duration-300"
+        placeholder="Enter Country ID"
+        required
+      />
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      type="submit"
+      class="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold rounded-lg text-sm px-5 py-2.5 focus:ring-4 focus:ring-yellow-400 transition duration-300"
+    >
+      ✅ Submit
+    </button>
+  </form>
+</div>

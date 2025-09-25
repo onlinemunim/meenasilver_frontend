@@ -1,0 +1,74 @@
+<div class="overflow-x-auto whitespace-nowrap hide-scrollbar">
+  <table
+    class="w-full table border border-[#D9D9D9] border-separate border-spacing-0 bg-white overflow-hidden">
+    <thead class="bg-[#F2F2F2] text-444 text-xs sm:text-sm lg:text-base">
+      <tr class="bg-gray-100">
+        <th class="p-3 font-medium border-r border-444 last:border-r-0 border-b-0">Sr. No.</th>
+        <th class="p-3 font-medium border-r border-444 last:border-r-0 border-b-0">Product Code</th>
+        <th class="p-3 font-medium border-r border-444 last:border-r-0 border-b-0">Product Name</th>
+        <th class="p-3 font-medium border-r border-444 last:border-r-0 border-b-0">Qty</th>
+        <th class="p-3 font-medium border-r border-444 last:border-r-0 border-b-0">Status</th>
+        <th class="p-3 font-medium border-r border-444 last:border-r-0 border-b-0">Action</th> <!-- New Column -->
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let order of orders; let i = index" class="text-xs sm:text-sm lg:text-[15px]">
+        <td class="py-1 px-2 text-center border border-[#d9d9dd] border-l-0 border-b-0">
+          {{ i + 1 }}
+        </td>
+        <td class="py-1 px-2 text-center border border-[#d9d9dd] border-l-0 border-b-0">
+          {{ order.product_code }}
+        </td>
+        <td class="py-1 px-2 text-center border border-[#d9d9dd] border-l-0 border-b-0">
+          {{ order.product_name }}
+        </td>
+        <td class="py-1 px-2 text-center border border-[#d9d9dd] border-l-0 border-b-0">
+          {{ order.quantity }}
+        </td>
+        <td class="py-1 px-2 text-center text-blue-600 border border-[#d9d9dd] border-l-0 border-b-0">
+          {{ order.status }} <!-- Display dynamic status -->
+        </td>
+        <td class="py-1 px-2 text-center border border-[#d9d9dd] border-l-0 border-b-0">
+          <button (click)="openEditPopup(order)"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-xs">
+            Edit
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Edit Order Popup (Modal) -->
+<div *ngIf="showEditPopup" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center z-50">
+  <div class="relative p-5 border w-96 shadow-lg rounded-md bg-white">
+    <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Edit Order</h3>
+    <form [formGroup]="editOrderForm" (ngSubmit)="submitEdit()">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2">Product Code:</label>
+        <input type="text" formControlName="productCode" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-100 leading-tight focus:outline-none focus:shadow-outline" readonly>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="orderStatus">Order Status:</label>
+        <select id="orderStatus" formControlName="status" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <option value="pending">Pending</option>
+          <option value="completed">Completed</option>
+          <option value="rejected">Rejected</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="orderDescription">Order Description:</label>
+        <textarea id="orderDescription" formControlName="description" rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+      </div>
+      <div class="flex items-center justify-between">
+        <button type="submit" [disabled]="editOrderForm.invalid" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          Submit
+        </button>
+        <button type="button" (click)="closeEditPopup()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

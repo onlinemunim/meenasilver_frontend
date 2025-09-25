@@ -1,0 +1,463 @@
+<div class="sm:flex items-center justify-between mb-4">
+    <div class="flex items-center justify-start gap-1 lg:gap-2 mb-3 lg:mb-0">
+        <svg class="size-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_848_1764" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
+                height="24">
+                <rect width="24" height="24" fill="#C19725" />
+            </mask>
+            <g mask="url(#mask0_848_1764)">
+                <path d="M16 22L6 12L16 2L17.775 3.775L9.55 12L17.775 20.225L16 22Z" fill="#C19725" />
+            </g>
+        </svg>
+        <img class="size-6 sm:size-8 lg:size-10" src="/assets/images/user/user-profile.png" alt="User Profile">
+        <span class="font-semibold text-sm sm:text-base lg:text-xl text-444">Admin Panel</span>
+    </div>
+
+    <div
+        class="overflow-x-auto overflow-y-hidden whitespace-nowrap scrollbar-hide md:overflow-x-hidden order-last lg:order-none">
+        <div class="min-w-max flex justify-end items-center gap-4">
+            <div class="w-[300px] sm:w-[270px] lg:w-[300px] flex justify-start items-center">
+                <a routerLink="/admin-panel"
+                    routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+                    class="flex-1 px-4 py-2 rounded-tr-[5px] rounded-br-[5px] border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+                    Other Setting
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="flex flex-col lg:flex-row gap-6 p-4 bg-gray-100" (click)="closeEditor()">
+    <!-- LEFT PANEL: CONTROLS -->
+    <div class="lg:w-1/3 bg-white p-6 rounded-lg shadow-md border h-fit lg:sticky top-4">
+        <h2 class="text-xl font-bold text-[#c19725] mb-6">Invoice Layout Settings</h2>
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Top Logo</label>
+                <input type="file" (change)="onFileSelected($event, invoiceSettings.header.topLogo)"
+                    class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-yellow-50 file:text-[#c19725] hover:file:bg-yellow-100" />
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">BIS Hallmark Logo</label>
+                <input type="file" (change)="onFileSelected($event, invoiceSettings.header.bisLogo)"
+                    class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-yellow-50 file:text-[#c19725] hover:file:bg-yellow-100" />
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Header Background Image</label>
+                <input type="file" (change)="onFileSelected($event, invoiceSettings.header.backgroundImage)"
+                    class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-yellow-50 file:text-[#c19725] hover:file:bg-yellow-100" />
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Main Border Color</label>
+                <input type="color" [(ngModel)]="invoiceSettings.header.borderColor"
+                    class="mt-1 block w-full h-10 rounded-md border-gray-300">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Table Header Background Color</label>
+                <input type="color" [(ngModel)]="invoiceSettings.table.header.backgroundColor"
+                    class="mt-1 block w-full h-10 rounded-md border-gray-300">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Footer Background Color</label>
+                <input type="color" [(ngModel)]="invoiceSettings.footer.backgroundColor"
+                    class="mt-1 block w-full h-10 rounded-md border-gray-300">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Terms and Conditions</label>
+                <textarea [(ngModel)]="invoiceSettings.terms.content.text" rows="6"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#c19725] focus:border-[#c19725]"></textarea>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">QR Code URL (Website, etc.)</label>
+                <input type="text" [(ngModel)]="invoiceSettings.footer.qrCode.url"
+                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#c19725] focus:border-[#c19725]">
+            </div>
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="mt-8 space-y-3">
+            <button (click)="saveLayoutSettings()"
+                class="w-full px-8 py-2 bg-[#c19725] text-white rounded-md shadow hover:bg-yellow-700 transition">
+                Save Invoice Layout
+            </button>
+            <button (click)="resetLayoutSettings()"
+                class="w-full px-8 py-2 bg-gray-200 text-gray-700 rounded-md shadow hover:bg-gray-300 transition">
+                Reset to Default
+            </button>
+        </div>
+    </div>
+
+    <!-- RIGHT PANEL: LIVE PREVIEW -->
+    <div class="lg:w-2/3">
+        <div class="bg-white shadow-lg relative" [style.border]="'5px solid ' + invoiceSettings.header.borderColor">
+            <!-- Style Editor Popup -->
+            <div *ngIf="activeEditor"
+                class="fixed inset-x-4 top-4 bg-white p-4 rounded-lg shadow-2xl border z-50 max-w-sm mx-auto md:absolute md:top-10 md:right-10 md:max-w-md"
+                (click)="$event.stopPropagation()">
+                <div class="flex justify-between items-center mb-3">
+                    <h4 class="font-bold text-sm">{{ activeEditorLabel }}</h4>
+                    <button (click)="closeEditor()"
+                        class="text-gray-500 hover:text-red-600 font-bold text-xl">&times;</button>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                        <label class="text-xs">Visible</label>
+                        <input type="checkbox" [(ngModel)]="activeEditor.visible"
+                            class="form-checkbox h-4 w-4 accent-[#c19725]">
+                    </div>
+                    <div *ngIf="activeEditor.hasOwnProperty('color')" class="flex items-center justify-between">
+                        <label class="text-xs">Color</label>
+                        <input type="color" [(ngModel)]="activeEditor.color" class="w-24 h-6 border-none">
+                    </div>
+                    <div *ngIf="activeEditor.hasOwnProperty('backgroundColor')" class="flex items-center justify-between">
+                        <label class="text-xs">BG Color</label>
+                        <input type="color" [(ngModel)]="activeEditor.backgroundColor" class="w-24 h-6 border-none">
+                    </div>
+                    <div *ngIf="activeEditor.hasOwnProperty('fontSize')" class="flex items-center justify-between">
+                        <label class="text-xs">Font Size (px)</label>
+                        <input type="number" [(ngModel)]="activeEditor.fontSize" class="w-16 p-1 border rounded text-xs">
+                    </div>
+                    <div *ngIf="activeEditor.hasOwnProperty('text')" class="mt-2">
+                        <label class="text-xs">Text</label>
+                        <textarea *ngIf="activeEditor.text && activeEditor.text.length > 50"
+                            [(ngModel)]="activeEditor.text" class="w-full p-1 border rounded text-xs mt-1"
+                            rows="4"></textarea>
+                        <input *ngIf="!activeEditor.text || activeEditor.text.length <= 50" type="text"
+                            [(ngModel)]="activeEditor.text" class="w-full p-1 border rounded text-xs mt-1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Header Section -->
+            <header class="relative">
+                <div class="relative w-full">
+                    <img *ngIf="invoiceSettings.header.backgroundImage.visible"
+                        [src]="invoiceSettings.header.backgroundImage.url" alt="Top Banner"
+                        class="w-full object-cover clickable-element"
+                        (click)="openEditor(invoiceSettings.header.backgroundImage, 'Header Background', $event)">
+                    <div class="absolute top-1 -bottom-1 right-2 text-right rounded p-1 md:p-0">
+                        <!-- MODIFIED: Phone number is now fully dynamic and clickable -->
+                        <div *ngIf="invoiceSettings.header.contactInfo.phoneLabel.visible" class="flex gap-x-2 justify-end text-xs sm:text-sm">
+                            <p class="font-medium clickable-element"
+                                (click)="openEditor(invoiceSettings.header.contactInfo.phoneLabel, 'Phone Label', $event)"
+                                [style.color]="invoiceSettings.header.contactInfo.phoneLabel.color"
+                                [style.fontSize.px]="invoiceSettings.header.contactInfo.phoneLabel.fontSize">
+                                {{invoiceSettings.header.contactInfo.phoneLabel.text}}</p>
+                            <p class="clickable-element"
+                                (click)="openEditor(invoiceSettings.header.contactInfo.phoneValue, 'Phone Value', $event)"
+                                [style.color]="invoiceSettings.header.contactInfo.phoneValue.color"
+                                [style.fontSize.px]="invoiceSettings.header.contactInfo.phoneValue.fontSize">
+                                {{invoiceSettings.header.contactInfo.phoneValue.text}}</p>
+                        </div>
+                        <!-- MODIFIED: Email address is now fully dynamic and clickable -->
+                        <div *ngIf="invoiceSettings.header.contactInfo.emailLabel.visible" class="flex gap-x-2 justify-end text-xs sm:text-sm">
+                            <p class="font-medium clickable-element"
+                                (click)="openEditor(invoiceSettings.header.contactInfo.emailLabel, 'Email Label', $event)"
+                                [style.color]="invoiceSettings.header.contactInfo.emailLabel.color"
+                                [style.fontSize.px]="invoiceSettings.header.contactInfo.emailLabel.fontSize">
+                                {{invoiceSettings.header.contactInfo.emailLabel.text}}</p>
+                            <p class="clickable-element"
+                                (click)="openEditor(invoiceSettings.header.contactInfo.emailValue, 'Email Value', $event)"
+                                [style.color]="invoiceSettings.header.contactInfo.emailValue.color"
+                                [style.fontSize.px]="invoiceSettings.header.contactInfo.emailValue.fontSize">
+                                {{invoiceSettings.header.contactInfo.emailValue.text}}</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 items-center gap-4 mt-0 p-2 sm:p-4">
+                        <div class="flex justify-center sm:justify-start items-center">
+                            <img *ngIf="invoiceSettings.header.topLogo.visible"
+                                [src]="invoiceSettings.header.topLogo.url" alt="Logo"
+                                class="h-12 w-12 sm:h-16 sm:w-16 clickable-element"
+                                (click)="openEditor(invoiceSettings.header.topLogo, 'Top Logo', $event)">
+                        </div>
+                        <div class="text-center">
+                            <h1 *ngIf="invoiceSettings.header.firmTitle.visible"
+                                class="text-xl sm:text-3xl font-bold clickable-element"
+                                [style.color]="invoiceSettings.header.firmTitle.color"
+                                [style.fontSize.px]="invoiceSettings.header.firmTitle.fontSize"
+                                (click)="openEditor(invoiceSettings.header.firmTitle, 'Firm Title', $event)">
+                                {{invoiceSettings.header.firmTitle.text}}</h1>
+                            <p *ngIf="invoiceSettings.header.tagline.visible"
+                                class="text-xs sm:text-base clickable-element"
+                                [style.color]="invoiceSettings.header.tagline.color"
+                                [style.fontSize.px]="invoiceSettings.header.tagline.fontSize"
+                                (click)="openEditor(invoiceSettings.header.tagline, 'Firm Tagline', $event)">
+                                {{invoiceSettings.header.tagline.text}}</p>
+                            <p *ngIf="invoiceSettings.header.address.visible"
+                                class="text-xs sm:text-base clickable-element"
+                                [style.color]="invoiceSettings.header.address.color"
+                                [style.fontSize.px]="invoiceSettings.header.address.fontSize"
+                                (click)="openEditor(invoiceSettings.header.address, 'Firm Address', $event)">
+                                {{invoiceSettings.header.address.text}}</p>
+                        </div>
+                        <div class="flex flex-col items-center sm:items-end pr-0 sm:pr-5">
+                            <img *ngIf="invoiceSettings.header.bisLogo.visible"
+                                [src]="invoiceSettings.header.bisLogo.url" alt="BIS Hallmark Logo"
+                                class="h-16 w-auto sm:h-20 clickable-element"
+                                (click)="openEditor(invoiceSettings.header.bisLogo, 'BIS Logo', $event)">
+                            <p *ngIf="invoiceSettings.header.bisLabel1.visible"
+                                class="font-semibold text-xs sm:text-sm clickable-element"
+                                [style.color]="invoiceSettings.header.bisLabel1.color"
+                                [style.fontSize.px]="invoiceSettings.header.bisLabel1.fontSize"
+                                (click)="openEditor(invoiceSettings.header.bisLabel1, 'BIS Label 1', $event)">
+                                {{invoiceSettings.header.bisLabel1.text}}</p>
+                            <p *ngIf="invoiceSettings.header.bisLabel2.visible"
+                                class="font-semibold text-xs sm:text-sm clickable-element"
+                                [style.color]="invoiceSettings.header.bisLabel2.color"
+                                [style.fontSize.px]="invoiceSettings.header.bisLabel2.fontSize"
+                                (click)="openEditor(invoiceSettings.header.bisLabel2, 'BIS Label 2', $event)">
+                                {{invoiceSettings.header.bisLabel2.text}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -bottom-0 w-full border-b-2"
+                    [style.borderColor]="invoiceSettings.header.borderColor"></div>
+            </header>
+
+            <!-- Customer and Invoice Details -->
+            <section class="p-3 sm:p-5 pt-1">
+                <div class="flex flex-col sm:flex-row justify-between text-xs sm:text-sm">
+                    <div class="mb-4 sm:mb-0">
+                        <div class="flex mb-1">
+                            <strong *ngIf="invoiceSettings.labels.customerName.visible"
+                                class="w-16 sm:w-20 text-[#333333] clickable-element"
+                                (click)="openEditor(invoiceSettings.labels.customerName, 'Customer Name Label', $event)">{{invoiceSettings.labels.customerName.text}}</strong>
+                            <span class="ml-1 sm:ml-0">: CUSTOMER NAME</span>
+                        </div>
+                        <div class="flex mb-1">
+                            <strong *ngIf="invoiceSettings.labels.customerAddress.visible"
+                                class="w-16 sm:w-20 text-[#333333] clickable-element"
+                                (click)="openEditor(invoiceSettings.labels.customerAddress, 'Address Label', $event)">{{invoiceSettings.labels.customerAddress.text}}</strong>
+                            <span class="ml-1 sm:ml-0">: 123 Main St, Anytown</span>
+                        </div>
+                        <p class="ml-[72px] sm:ml-[88px]">Anytown, Anystate, 12345</p>
+                        <div class="flex">
+                            <strong *ngIf="invoiceSettings.labels.customerPhone.visible"
+                                class="w-16 sm:w-20 text-[#333333] clickable-element"
+                                (click)="openEditor(invoiceSettings.labels.customerPhone, 'Phone Label', $event)">{{invoiceSettings.labels.customerPhone.text}}</strong>
+                            <span class="ml-1 sm:ml-0">: 555-123-4567</span>
+                        </div>
+                    </div>
+                    <div class="text-left">
+                        <div class="flex mb-1">
+                            <strong *ngIf="invoiceSettings.labels.invoiceNo.visible"
+                                class="w-16 sm:w-20 text-[#333333] clickable-element"
+                                (click)="openEditor(invoiceSettings.labels.invoiceNo, 'Invoice No Label', $event)">{{invoiceSettings.labels.invoiceNo.text}}</strong>
+                            <span class="ml-1 sm:ml-0">: INV-001</span>
+                        </div>
+                        <div class="flex mb-1">
+                            <strong *ngIf="invoiceSettings.labels.invoiceDate.visible"
+                                class="w-16 sm:w-20 text-[#333333] clickable-element"
+                                (click)="openEditor(invoiceSettings.labels.invoiceDate, 'Date Label', $event)">{{invoiceSettings.labels.invoiceDate.text}}</strong>
+                            <span class="ml-1 sm:ml-0">: 2025-08-21</span>
+                        </div>
+                        <div class="flex mb-1">
+                            <strong *ngIf="invoiceSettings.labels.gstin.visible"
+                                class="w-16 sm:w-20 text-[#333333] clickable-element"
+                                (click)="openEditor(invoiceSettings.labels.gstin, 'GSTIN Label', $event)">{{invoiceSettings.labels.gstin.text}}</strong>
+                            <span class="ml-1 sm:ml-0">: 27ABCDE1234F1Z5</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Items Table -->
+            <section class="px-2 sm:px-6 overflow-x-auto">
+                <table class="w-full text-xs sm:text-sm text-center border-collapse min-w-[600px]">
+                    <thead *ngIf="invoiceSettings.table.header.visible"
+                        [style.backgroundColor]="invoiceSettings.table.header.backgroundColor"
+                        [style.color]="invoiceSettings.table.header.color"
+                        [style.fontSize.px]="invoiceSettings.table.header.fontSize">
+                        <tr>
+                            <th *ngFor="let header of invoiceSettings.table.headers"
+                                class="p-2 border border-gray-300">
+                                <span *ngIf="header.visible" class="clickable-element"
+                                    (click)="openEditor(header, 'Table Header: ' + header.text, $event)">{{header.text}}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody [style.color]="invoiceSettings.table.body.color"
+                        [style.fontSize.px]="invoiceSettings.table.body.fontSize">
+                        <!-- Sample Data Row -->
+                        <tr>
+                            <td class="p-2 border border-gray-300 align-top">PROD001</td>
+                            <td class="p-2 border border-gray-300 align-top"><img
+                                    src="https://cdn-icons-png.flaticon.com/128/3109/3109915.png" alt="Sample"
+                                    class="h-8 w-8 mx-auto sm:h-10 sm:w-10"></td>
+                            <td class="p-2 border border-gray-300 text-left align-top">Sample Item<br><span
+                                    class="text-xs">BARCODE123</span></td>
+                            <td class="p-2 border border-gray-300 align-top">1</td>
+                            <td class="p-2 border border-gray-300 align-top">10.00 Gm</td>
+                            <td class="p-2 border border-gray-300 align-top">50000.00</td>
+                            <td class="p-2 border border-gray-300 align-top text-right pr-4">50000.00</td>
+                        </tr>
+                        <!-- Summary Row -->
+                        <tr class="font-semibold"
+                            [style.backgroundColor]="invoiceSettings.table.summaryRow.backgroundColor"
+                            [style.color]="invoiceSettings.table.summaryRow.color">
+                            <td class="p-2 border border-gray-300 text-left clickable-element" colspan="4"
+                                (click)="openEditor(invoiceSettings.table.summaryRow, 'Table Summary Row', $event)">
+                                <span *ngIf="invoiceSettings.table.summaryRow.label.visible" class="clickable-element"
+                                    (click)="openEditor(invoiceSettings.table.summaryRow.label, 'Summary Label', $event)">{{invoiceSettings.table.summaryRow.label.text}}</span>
+                            </td>
+                            <td class="p-2 border border-gray-300">10.00 Gm</td>
+                            <td class="p-2 border border-gray-300"></td>
+                            <td class="p-2 border border-gray-300 text-right pr-4">50,000.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Payment and Totals Section -->
+            <section class="p-3 sm:p-6 pt-0">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6 pl-3"
+                    [style.backgroundColor]="invoiceSettings.paymentDetails.backgroundColor">
+                    <div class="text-xs sm:text-sm">
+                        <div class="flex justify-between items-center py-1">
+                            <span *ngIf="invoiceSettings.paymentDetails.labels.cash.visible"
+                                class="font-medium clickable-element"
+                                (click)="openEditor(invoiceSettings.paymentDetails.labels.cash, 'Cash Label', $event)">{{invoiceSettings.paymentDetails.labels.cash.text}}</span>
+                            <span>10000.00</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span *ngIf="invoiceSettings.paymentDetails.labels.cheque.visible"
+                                class="font-medium clickable-element"
+                                (click)="openEditor(invoiceSettings.paymentDetails.labels.cheque, 'Cheque Label', $event)">{{invoiceSettings.paymentDetails.labels.cheque.text}}</span>
+                            <span>15000.00</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span *ngIf="invoiceSettings.paymentDetails.labels.card.visible"
+                                class="font-medium clickable-element"
+                                (click)="openEditor(invoiceSettings.paymentDetails.labels.card, 'Card Label', $event)">{{invoiceSettings.paymentDetails.labels.card.text}}</span>
+                            <span>20000.00</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span *ngIf="invoiceSettings.paymentDetails.labels.online.visible"
+                                class="font-medium clickable-element"
+                                (click)="openEditor(invoiceSettings.paymentDetails.labels.online, 'Online Label', $event)">{{invoiceSettings.paymentDetails.labels.online.text}}</span>
+                            <span>8850.00</span>
+                        </div>
+                    </div>
+                    <div class="text-xs sm:text-sm pr-3">
+                        <div class="flex justify-between items-center py-1">
+                            <span *ngIf="invoiceSettings.totals.labels.taxable.visible"
+                                class="font-medium clickable-element"
+                                (click)="openEditor(invoiceSettings.totals.labels.taxable, 'Taxable Amt Label', $event)">{{invoiceSettings.totals.labels.taxable.text}}</span>
+                            <span>50000.00</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span *ngIf="invoiceSettings.totals.labels.cgst.visible"
+                                class="font-medium clickable-element"
+                                (click)="openEditor(invoiceSettings.totals.labels.cgst, 'CGST Label', $event)">{{invoiceSettings.totals.labels.cgst.text}}</span>
+                            <span>750.00</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span *ngIf="invoiceSettings.totals.labels.sgst.visible"
+                                class="font-medium clickable-element"
+                                (click)="openEditor(invoiceSettings.totals.labels.sgst, 'SGST Label', $event)">{{invoiceSettings.totals.labels.sgst.text}}</span>
+                            <span>750.00</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1">
+                            <span *ngIf="invoiceSettings.totals.labels.roundOff.visible"
+                                class="font-medium clickable-element"
+                                (click)="openEditor(invoiceSettings.totals.labels.roundOff, 'Round Off Label', $event)">{{invoiceSettings.totals.labels.roundOff.text}}</span>
+                            <span>0.00</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1 font-semibold">
+                            <span *ngIf="invoiceSettings.totals.labels.totalAmount.visible" class="clickable-element"
+                                (click)="openEditor(invoiceSettings.totals.labels.totalAmount, 'Total Amt Label', $event)">{{invoiceSettings.totals.labels.totalAmount.text}}</span>
+                            <span>51500.00</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1 font-semibold">
+                            <span *ngIf="invoiceSettings.totals.labels.totalReceived.visible"
+                                class="clickable-element"
+                                (click)="openEditor(invoiceSettings.totals.labels.totalReceived, 'Total Rec. Label', $event)">{{invoiceSettings.totals.labels.totalReceived.text}}</span>
+                            <span>53850.00</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tax Summary Table -->
+            <section class="px-2 sm:px-6 pb-6 overflow-x-auto">
+                <table class="w-full text-xs sm:text-sm text-center border-collapse min-w-[600px]">
+                    <thead *ngIf="invoiceSettings.taxSummaryTable.header.visible"
+                        [style.backgroundColor]="invoiceSettings.taxSummaryTable.header.backgroundColor"
+                        [style.color]="invoiceSettings.taxSummaryTable.header.color"
+                        [style.fontSize.px]="invoiceSettings.taxSummaryTable.header.fontSize">
+                        <tr>
+                            <th *ngFor="let header of invoiceSettings.taxSummaryTable.headers"
+                                class="p-2 border border-gray-300">
+                                <span *ngIf="header.visible" class="clickable-element"
+                                    (click)="openEditor(header, 'Tax Table Header: ' + header.text, $event)">{{header.text}}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="p-2 border border-gray-300">7113</td>
+                            <td class="p-2 border border-gray-300">50000.00</td>
+                            <td class="p-2 border border-gray-300">1.5%</td>
+                            <td class="p-2 border border-gray-300">750.00</td>
+                            <td class="p-2 border border-gray-300">1.5%</td>
+                            <td class="p-2 border border-gray-300">750.00</td>
+                            <td class="p-2 border border-gray-300">51500.00</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="font-semibold"
+                            [style.backgroundColor]="invoiceSettings.taxSummaryTable.footer.backgroundColor"
+                            [style.color]="invoiceSettings.taxSummaryTable.footer.color">
+                            <td colspan="6" class="p-2 text-right pr-4 border border-gray-300">
+                                <span *ngIf="invoiceSettings.taxSummaryTable.footer.label.visible"
+                                    class="clickable-element"
+                                    (click)="openEditor(invoiceSettings.taxSummaryTable.footer.label, 'Closing Balance Label', $event)">{{invoiceSettings.taxSummaryTable.footer.label.text}}</span>
+                            </td>
+                            <td class="p-2 border border-gray-300">0.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+
+      <!-- Terms and Conditions & Signature -->
+      <section class="p-6 text-sm text-gray-700">
+        <div class="flex justify-between items-start gap-8">
+          <div class="flex-1">
+            <h4 *ngIf="invoiceSettings.terms.title.visible" class="font-bold mb-2 clickable-element" [style.color]="invoiceSettings.terms.title.color" [style.fontSize.px]="invoiceSettings.terms.title.fontSize" (click)="openEditor(invoiceSettings.terms.title, 'Terms Title', $event)">{{invoiceSettings.terms.title.text}}</h4>
+            <div *ngIf="invoiceSettings.terms.content.visible" class="whitespace-pre-wrap clickable-element" [style.color]="invoiceSettings.terms.content.color" [style.fontSize.px]="invoiceSettings.terms.content.fontSize" (click)="openEditor(invoiceSettings.terms.content, 'Terms Content', $event)">{{invoiceSettings.terms.content.text}}</div>
+          </div>
+        </div>
+        <div class="mt-20 pt-4 flex justify-between items-start">
+          <div class="text-left">
+            <p *ngIf="invoiceSettings.signature.customer.visible" class="font-bold clickable-element" [style.color]="invoiceSettings.signature.customer.color" [style.fontSize.px]="invoiceSettings.signature.customer.fontSize" (click)="openEditor(invoiceSettings.signature.customer, 'Customer Signatory Label', $event)">{{invoiceSettings.signature.customer.text}}</p>
+            <p *ngIf="invoiceSettings.signature.thankYou.visible" class="font-semibold mt-2 clickable-element" [style.color]="invoiceSettings.signature.thankYou.color" [style.fontSize.px]="invoiceSettings.signature.thankYou.fontSize" (click)="openEditor(invoiceSettings.signature.thankYou, 'Thank You Message', $event)">{{invoiceSettings.signature.thankYou.text}}</p>
+          </div>
+          <div class="text-center">
+            <p *ngIf="invoiceSettings.signature.authorized.visible" class="font-bold clickable-element" [style.color]="invoiceSettings.signature.authorized.color" [style.fontSize.px]="invoiceSettings.signature.authorized.fontSize" (click)="openEditor(invoiceSettings.signature.authorized, 'Authorized Signatory Label', $event)">{{invoiceSettings.signature.authorized.text}}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer/Promotional Banner -->
+      <footer class="p-6 border-t" [style.backgroundColor]="invoiceSettings.footer.backgroundColor">
+        <div class="flex justify-between items-center flex-wrap gap-8 max-w-7xl mx-auto">
+            <div class="text-center">
+                <img *ngIf="invoiceSettings.footer.qrCode.visible" [src]="'https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=' + invoiceSettings.footer.qrCode.url" alt="QR Code" class="h-28 w-28 mx-auto rounded-lg shadow-md clickable-element" (click)="openEditor(invoiceSettings.footer.qrCode, 'QR Code', $event)">
+                <p *ngIf="invoiceSettings.footer.qrCode.line1.visible" class="font-serif font-semibold mt-3 clickable-element" [style.color]="invoiceSettings.footer.qrCode.line1.color" [style.fontSize.px]="invoiceSettings.footer.qrCode.line1.fontSize" (click)="openEditor(invoiceSettings.footer.qrCode.line1, 'QR Text 1', $event)">{{invoiceSettings.footer.qrCode.line1.text}}</p>
+                <p *ngIf="invoiceSettings.footer.qrCode.line2.visible" class="text-sm mt-1 clickable-element" [style.color]="invoiceSettings.footer.qrCode.line2.color" [style.fontSize.px]="invoiceSettings.footer.qrCode.line2.fontSize" (click)="openEditor(invoiceSettings.footer.qrCode.line2, 'QR Text 2', $event)">{{invoiceSettings.footer.qrCode.line2.text}}</p>
+            </div>
+            <div class="text-center max-w-xs">
+                <p *ngIf="invoiceSettings.footer.tagline.line1.visible" class="font-serif italic clickable-element" [style.color]="invoiceSettings.footer.tagline.line1.color" [style.fontSize.px]="invoiceSettings.footer.tagline.line1.fontSize" (click)="openEditor(invoiceSettings.footer.tagline.line1, 'Footer Tagline 1', $event)">{{invoiceSettings.footer.tagline.line1.text}}</p>
+                <p *ngIf="invoiceSettings.footer.tagline.line2.visible" class="font-bold text-lg mt-3 clickable-element" [style.color]="invoiceSettings.footer.tagline.line2.color" [style.fontSize.px]="invoiceSettings.footer.tagline.line2.fontSize" (click)="openEditor(invoiceSettings.footer.tagline.line2, 'Footer Tagline 2', $event)">{{invoiceSettings.footer.tagline.line2.text}}</p>
+                <p *ngIf="invoiceSettings.footer.tagline.line3.visible" class="text-2xl font-extrabold tracking-wide clickable-element" [style.color]="invoiceSettings.footer.tagline.line3.color" [style.fontSize.px]="invoiceSettings.footer.tagline.line3.fontSize" (click)="openEditor(invoiceSettings.footer.tagline.line3, 'Footer Tagline 3', $event)">{{invoiceSettings.footer.tagline.line3.text}}</p>
+            </div>
+            <div class="text-center max-w-xs">
+                <h3 *ngIf="invoiceSettings.footer.offer.line1.visible" class="text-3xl font-extrabold clickable-element" [style.color]="invoiceSettings.footer.offer.line1.color" [style.fontSize.px]="invoiceSettings.footer.offer.line1.fontSize" (click)="openEditor(invoiceSettings.footer.offer.line1, 'Offer Line 1', $event)">{{invoiceSettings.footer.offer.line1.text}}</h3>
+                <p *ngIf="invoiceSettings.footer.offer.line2.visible" class="text-lg mt-1 clickable-element" [style.color]="invoiceSettings.footer.offer.line2.color" [style.fontSize.px]="invoiceSettings.footer.offer.line2.fontSize" (click)="openEditor(invoiceSettings.footer.offer.line2, 'Offer Line 2', $event)">{{invoiceSettings.footer.offer.line2.text}}</p>
+                <p *ngIf="invoiceSettings.footer.offer.line3.visible" class="text-7xl font-extrabold leading-none clickable-element" [style.color]="invoiceSettings.footer.offer.line3.color" [style.fontSize.px]="invoiceSettings.footer.offer.line3.fontSize" (click)="openEditor(invoiceSettings.footer.offer.line3, 'Offer Line 3', $event)">{{invoiceSettings.footer.offer.line3.text}}</p>
+                <p *ngIf="invoiceSettings.footer.offer.line4.visible" class="text-lg clickable-element" [style.color]="invoiceSettings.footer.offer.line4.color" [style.fontSize.px]="invoiceSettings.footer.offer.line4.fontSize" (click)="openEditor(invoiceSettings.footer.offer.line4, 'Offer Line 4', $event)">{{invoiceSettings.footer.offer.line4.text}}</p>
+            </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>

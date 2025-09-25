@@ -1,0 +1,724 @@
+<div class="w-full py-3">
+  <div class="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-2">
+    <div class="col-span-4 sm:col-span-4 lg:col-span-1 bg-[#E6EFFF] rounded-[5px] p-2 order-2 lg:order-1">
+      <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 gap-2 sm:gap-2.5">
+        <div class="col-span-1">
+          <div class="relative max-w-sm">
+            <input datepicker datepicker-autohide id="billDate" type="text"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:bg-[#121212] dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder="" (focus)="setPlaceholder('billDate')" (blur)="clearPlaceholder('billDate')"
+              (input)="onDateInput('billDate', $event)" [placeholder]="placeholders.billDate" />
+            <div class="absolute inset-y-0 end-0 flex items-center pe-1 pointer-events-none">
+              <svg class="size-6" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M18.9773 3.67371H4.02272C3.48663 3.67491 2.97284 3.8884 2.59376 4.26748C2.21469 4.64655 2.0012 5.16034 2 5.69644V20.651C2.0012 21.1871 2.21469 21.7009 2.59376 22.0799C2.97284 22.459 3.48663 22.6725 4.02272 22.6737H18.9773C19.5134 22.6725 20.0272 22.459 20.4062 22.0799C20.7853 21.7009 20.9988 21.1871 21 20.651V5.69644C20.9988 5.16034 20.7853 4.64655 20.4062 4.26748C20.0272 3.8884 19.5134 3.67491 18.9773 3.67371Z"
+                  stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M6.06836 9.59113H10.8865" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M6.06836 13.2744H16.5002" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M8.56836 2.5V6.44491" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M14.4326 2.5V6.44491" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+              </svg>
+            </div>
+            <label for="billDate"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-[#121212]  px-1.5 peer-focus:px-1.5 peer-focus:text-c19725  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Bill
+              Date</label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative max-w-sm">
+            <input datepicker datepicker-autohide id="mfdDate" type="text"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:bg-[#121212] dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder="" (focus)="setPlaceholder('mfdDate')" (blur)="clearPlaceholder('mfdDate')"
+              (input)="onDateInput('mfdDate', $event)" [placeholder]="placeholders.mfdDate" />
+            <div class="absolute inset-y-0 end-0 flex items-center pe-1 pointer-events-none">
+              <svg class="size-6" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M18.9773 3.67371H4.02272C3.48663 3.67491 2.97284 3.8884 2.59376 4.26748C2.21469 4.64655 2.0012 5.16034 2 5.69644V20.651C2.0012 21.1871 2.21469 21.7009 2.59376 22.0799C2.97284 22.459 3.48663 22.6725 4.02272 22.6737H18.9773C19.5134 22.6725 20.0272 22.459 20.4062 22.0799C20.7853 21.7009 20.9988 21.1871 21 20.651V5.69644C20.9988 5.16034 20.7853 4.64655 20.4062 4.26748C20.0272 3.8884 19.5134 3.67491 18.9773 3.67371Z"
+                  stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M6.06836 9.59113H10.8865" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M6.06836 13.2744H16.5002" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M8.56836 2.5V6.44491" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+                <path d="M14.4326 2.5V6.44491" stroke="#C19725" stroke-miterlimit="10" stroke-linecap="round" />
+              </svg>
+            </div>
+            <label for="mfdDate"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-[#121212] px-1.5 peer-focus:px-1.5 peer-focus:text-c19725  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">MFD
+              Date</label>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <app-custom-select label="Firm Name" [options]="firmTypes" [(selected)]="selectedFirm" selectId="firmTypes">
+          </app-custom-select>
+        </div>
+
+        <div class="col-span-1">
+          <app-custom-select label="Brand/Seller Name" [options]="brandSeller"
+            [(selected)]="selectedBrandseller" selectId="sellerTypes">
+          </app-custom-select>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-4 sm:col-span-4 lg:col-span-1 order-1 lg:order-2">
+      <div class="flex items-center justify-end gap-2 mb-4 md:mb-0">
+        <div class="w-[300px] lg:w-[300px] flex justify-end items-center ms-auto">
+          <a routerLink="#"
+            routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="flex-1 px-4 py-1 rounded-tl-[5px] rounded-bl-[5px] border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+            Wholesale
+          </a>
+
+          <a routerLink="/add-stock/add-retail-fine-stock-b3"
+            routerLinkActive="bg-c19725 text-white font-medium outline-c19725 hover:bg-c19725 hover:text-white"
+            class="flex-1 px-4 py-1 rounded-tr-[5px] rounded-br-[5px] border-[0.50px] border-[#D9D9D9] flex justify-center items-center text-[#898989] text-sm sm:text-sm lg:text-base hover:bg-[#f6f1cb] hover:text-black">
+            Retail
+          </a>
+        </div>
+        <a href="#"
+          class="w-28 px-4 py-1 rounded-[5px] border-[0.50px] border-[#BB0000] flex justify-center items-center text-white bg-[#BB0000] text-sm sm:text-sm lg:text-base hover:bg-white hover:text-[#BB0000] hover:shadow-lg">
+          <img class="size-4 me-2" src="/assets/images/stock/youtube.png" alt="youtube" />
+          Help
+        </a>
+      </div>
+    </div>
+    <div class="col-span-4 sm:col-span-4 lg:col-span-2 bg-[#E6EFFF] rounded-b-[5px] p-2 order-3">
+      <!-- add prouct form -->
+      <div class="overflow-x-auto whitespace-nowrap hide-scrollbar">
+        <table class="border border-[#D9D9D9]">
+          <thead class="bg-[#FFFFBF]">
+            <tr class="uppercase text-[13px]">
+
+              <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                <label for="metalName" class="block text-[13px] mb-1">Metal Name</label>
+                <select id="metalName" name="metalName" class="w-full text-[13px] border border-[#D9D9D9] rounded px-1 py-[2px] focus:outline-none">
+
+                  <option value="Gold">Gold</option>
+                  <option value="Silver">Silver</option>
+                  <option value="Platinum">Platinum</option>
+                  <option value="Copper">Copper</option>
+                  <!-- Add more as needed -->
+                </select>
+              </th>
+
+              <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1 text-right">
+                Metal Rate
+              </th>
+              <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1 text-right">
+                Product Code
+              </th>
+              <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1 text-right">
+                Barcode
+              </th>
+              <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1 text-right">
+                HUID
+              </th>
+              <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                Item Category
+              </th>
+              <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                Item Name
+              </th>
+              <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1 text-right">
+                Size
+              </th>
+              <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1 text-right">
+                Qty
+              </th>
+              <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1 text-right">
+                GSWT
+              </th>
+              <td class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                <select class="w-full bg-transparent border-none p-0 m-0 font-medium text-444">
+                  <option value=""disabled selected>Unit</option>
+                  <option value="GM">GM</option>
+                  <option value="MG">MG</option>
+                  <option value="CT">CT</option>
+                  <option value="KG">KG</option>
+                </select>
+              </td>
+
+
+              <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1 text-right">
+                LWT
+              </th>
+              <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1 text-right">
+               PWT
+              </th>
+              <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1 text-right">
+                NTWT
+              </th>
+              <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1 text-right">
+                Purity
+              </th>
+
+
+              <th
+                class="sticky right-0 w-max font-bold bg-[#fff49f] text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1 text-right">
+                Valuation
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            <tr class="text-[13px]">
+              <td class="border-r border-[#D9D9D9] last:border-0">
+                <input type="text" id=""
+                  class="block px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                  placeholder=" Metal Name" />
+              </td>
+
+              <td class="border-r border-[#D9D9D9] last:border-0 text-right">
+                <input type="text" id=""
+                  class="block px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                  placeholder=" Metal Rate" />
+              </td>
+
+              <td class="border-r border-[#D9D9D9] last:border-0 text-right">
+                <input type="text" id=""
+                  class="block px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                  placeholder="Product Code" />
+              </td>
+
+              <td class="border-r border-[#D9D9D9] last:border-0 text-right">
+                <input type="text" id=""
+                  class="block px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                  placeholder="Barcode" />
+              </td>
+
+              <td class="border-r border-[#D9D9D9] last:border-0 text-right">
+                <input type="text" id=""
+                  class="block px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                  placeholder="HUID" />
+              </td>
+
+              <td class="border-r border-[#D9D9D9] last:border-0">
+                <input type="text" id=""
+                  class="block px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                  placeholder="Item Category" />
+              </td>
+
+              <td class="border-r border-[#D9D9D9] last:border-0">
+                <input type="text" id=""
+                  class="block px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                  placeholder="Item Name" />
+              </td>
+
+              <td class="border-r border-[#D9D9D9] last:border-0 text-right">
+                <input type="text" id=""
+                  class="block px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                  placeholder="Size" />
+              </td>
+
+              <td class="border-r border-[#D9D9D9] last:border-0 text-right">
+                <input type="text" id=""
+                  class="block px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                  placeholder="Qty" />
+              </td>
+
+              <td class="border-r border-[#D9D9D9] last:border-0 text-right">
+                <input type="text" id=""
+                  class="block px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                  placeholder="GSWT" />
+              </td>
+
+              <td class="border-r border-[#D9D9D9] last:border-0 text-right">
+                <input type="text" id=""
+                  class="block px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                  placeholder="Unit" />
+              </td>
+
+              <td class="border-r border-[#D9D9D9] last:border-0 text-right">
+                <input type="text" id=""
+                  class="block px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                  placeholder="LWT" />
+              </td>
+
+              <td class="border-r border-[#D9D9D9] last:border-0 text-right">
+                <input type="text" id=""
+                  class="block px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                  placeholder="PWT" />
+              </td>
+
+              <td class="border-r border-[#D9D9D9] last:border-0 text-right">
+                <input type="text" id=""
+                  class="block px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                  placeholder="NTWT" />
+              </td>
+
+              <td class="border-r border-[#D9D9D9] last:border-0 text-right">
+                <input type="text" id=""
+                  class="block px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                  placeholder="Purity" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- add stone form -->
+      <div *ngFor="let stone of stoneForms">
+        <div class="overflow-x-auto whitespace-nowrap hide-scrollbar">
+          <table class="border border-[#D9D9D9]">
+            <thead class="bg-[#F9F4FB]">
+              <tr class="uppercase text-[13px]">
+                <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                  Stone ID
+                </th>
+                <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                  Stone Name
+                </th>
+                <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                  Certificate
+                </th>
+                <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                  Laboratory
+                </th>
+                <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                  Clarity
+                </th>
+                <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                  Color
+                </th>
+                <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                  Size
+                </th>
+                <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                  Shape
+                </th>
+                <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                  Qty
+                </th>
+                <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                  GS WT
+                </th>
+                <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                  Unit
+                </th>
+                <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                  Pur Rate
+                </th>
+                <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                  Sell Rate
+                </th>
+                <th class="font-medium text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                  Action
+                </th>
+                <th
+                  class="sticky right-0 w-max font-bold bg-[#fff49f] text-444 border-r border-b border-[#D9D9D9] last:border-0 px-2 py-1">
+                  Valuation
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white">
+              <tr class="text-[13px]">
+                <td class="border-r border-[#D9D9D9] last:border-0">
+                  <input type="text" id=""
+                    class="block text-center px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                    placeholder="Stone ID" />
+                </td>
+
+                <td class="border-r border-[#D9D9D9] last:border-0">
+                  <input type="text" id=""
+                    class="block text-center px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                    placeholder="Stone Name" />
+                </td>
+
+                <td class="border-r border-[#D9D9D9] last:border-0">
+                  <input type="text" id=""
+                    class="block text-center px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                    placeholder="Certificate" />
+                </td>
+
+                <td class="border-r border-[#D9D9D9] last:border-0">
+                  <input type="text" id=""
+                    class="block text-center px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                    placeholder="Laboratory" />
+                </td>
+
+                <td class="border-r border-[#D9D9D9] last:border-0">
+                  <input type="text" id=""
+                    class="block text-center px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                    placeholder="Clarity" />
+                </td>
+
+                <td class="border-r border-[#D9D9D9] last:border-0">
+                  <input type="text" id=""
+                    class="block text-center px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                    placeholder="Color" />
+                </td>
+
+                <td class="border-r border-[#D9D9D9] last:border-0">
+                  <input type="text" id=""
+                    class="block text-center px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                    placeholder="Size" />
+                </td>
+
+                <td class="border-r border-[#D9D9D9] last:border-0">
+                  <input type="text" id=""
+                    class="block text-center px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                    placeholder="Shape" />
+                </td>
+
+                <td class="border-r border-[#D9D9D9] last:border-0">
+                  <input type="text" id=""
+                    class="block text-center px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                    placeholder="Qty" />
+                </td>
+
+                <td class="border-r border-[#D9D9D9] last:border-0">
+                  <input type="text" id=""
+                    class="block text-center px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                    placeholder="GS WT" />
+                </td>
+
+                <td class="border-r border-[#D9D9D9] last:border-0">
+                  <div class="flex items-center justify-center">
+                    <input type="text" id=""
+                      class="block text-center px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                      placeholder="Unit" />
+
+                    <input type="checkbox"
+                      class="cursor-pointer size-4 me-1.5 text-c19725 border-2 border-c19725 rounded focus:ring-1 focus:ring-c19725">
+                  </div>
+                </td>
+
+                <td class="border-r border-[#D9D9D9] last:border-0">
+                  <input type="text" id=""
+                    class="block text-center px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                    placeholder="Pur Rate" />
+                </td>
+
+                <td class="border-r border-[#D9D9D9] last:border-0">
+                  <input type="text" id=""
+                    class="block text-center px-2 py-2 w-full text-[13px] text-444 font-normal bg-white border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-0 peer"
+                    placeholder="Sell Rate" />
+                </td>
+                <td class="border-r border-[#D9D9D9] last:border-0" align="center">
+                  <button (click)="removeStoneForm(stone.id)" class="cursor-pointer mx-auto"><svg viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="size-5 lg:size-6"><path d="M10 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4 7.5H20" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6 10.5V18.5C6 20.1569 7.34315 21.5 9 21.5H15C16.6569 21.5 18 20.1569 18 18.5V10.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9 5.5C9 4.39543 9.89543 3.5 11 3.5H13C14.1046 3.5 15 4.39543 15 5.5V7.5H9V5.5Z" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+                </td>
+
+                <td
+                  class="sticky w-max right-0 text-right border-r border-[#D9D9D9] last:border-0 px-2 py-2 text-[13px] text-444 font-bold bg-[#FDFDCC]">
+                  &#8377; 50,000
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col sm:flex-row items-center px-2 py-2 w-full flex-wrap gap-y-4">
+
+    <!-- Left group: Add Jewellery and Add Stone -->
+    <div class="flex items-center gap-6 min-w-[260px] sm:min-w-[300px] flex-shrink-0">
+      <!-- Add Jewellery -->
+      <div class="cursor-pointer flex items-center text-[#B7791F] hover:text-[#A16207] transition whitespace-nowrap">
+        <img class="w-5 h-5 me-1.5" src="/assets/images/stock/gold-ring.png" alt="ring" />
+        <span class="text-sm font-medium">Add Jewellery</span>
+      </div>
+
+      <!-- Add Stone -->
+      <div (click)="toggleForm()"
+        class="cursor-pointer flex items-center text-[#5B21B6] hover:text-[#4c1c9b] transition whitespace-nowrap">
+        <img class="w-5 h-5 me-1.5" src="/assets/images/stock/gold-diamond.png" alt="diamond" />
+        <span class="text-sm font-medium">Add Stone</span>
+      </div>
+    </div>
+
+
+    <!-- Icons group: Shifted right by 100px and slightly upward -->
+    <div class="relative flex-shrink-0 mt-[-8px] left-[100px]">
+      <div class="flex items-center gap-8 text-gray-600">
+        <a href="#" class="hover:text-indigo-600 transition flex items-center gap-2">
+          <img class="w-5 h-5" src="/assets/images/stock/storage.png" alt="storage" />
+          <span>Upload Image</span>
+        </a>
+        <a href="#" class="hover:text-indigo-600 transition flex items-center gap-2">
+          <img class="w-5 h-5" src="/assets/images/stock/webcam.png" alt="webcam" />
+          <span>Capture Image</span>
+        </a>
+      </div>
+    </div>
+
+
+
+    <!-- Right group: Checkboxes + Totals -->
+    <div class="flex flex-col sm:flex-row w-full sm:w-auto justify-end items-center gap-4 sm:ms-auto mt-6 sm:mt-0">
+
+      <!-- Checkboxes group -->
+      <div class="flex flex-wrap items-center gap-3 justify-center sm:justify-start">
+        <div class="flex items-center px-2 py-2 text-xs sm:text-sm text-gray-700 font-normal whitespace-nowrap">
+          <input type="checkbox"  autocomplete="off"
+            class="cursor-pointer size-4 me-1.5 text-c19725 border-2 border-c19725 rounded focus:ring-1 focus:ring-c19725" />
+          <span>BIS Hallmark</span>
+        </div>
+        <div class="flex items-center px-2 py-2 text-xs sm:text-sm text-gray-700 font-normal whitespace-nowrap">
+          <input type="checkbox"  autocomplete="off"
+            class="cursor-pointer size-4 me-1.5 text-c19725 border-2 border-c19725 rounded focus:ring-1 focus:ring-c19725" />
+          <span>Add Detail</span>
+        </div>
+        <div class="flex items-center px-2 py-2 text-xs sm:text-sm text-gray-700 font-normal whitespace-nowrap">
+          <input type="checkbox"  autocomplete="off"
+            class="cursor-pointer size-4 me-1.5 text-c19725 border-2 border-c19725 rounded focus:ring-1 focus:ring-c19725" />
+          <span>Add Ecom</span>
+        </div>
+        <div class="flex items-center px-2 py-2 text-xs sm:text-sm text-gray-700 font-normal whitespace-nowrap">
+          <input type="checkbox"  autocomplete="off"
+            class="cursor-pointer size-4 me-1.5 text-c19725 border-2 border-c19725 rounded focus:ring-1 focus:ring-c19725" />
+          <span>Fix MRP</span>
+        </div>
+      </div>
+
+      <!-- Amount box -->
+      <div
+        class="w-max flex items-center justify-end py-3 px-3 border border-blue-gray-100 bg-white rounded-lg shadow-sm mt-4 sm:mt-0">
+
+        <!-- Taxable Amount -->
+        <div class="relative px-4">
+          <p class="text-xs text-blue-gray-500 absolute -top-5 left-0 bg-white px-1">Taxable Amount</p>
+          <p class="text-sm text-blue-gray-700 font-medium">₹ 48,500.00</p>
+        </div>
+
+        <!-- GST Amount -->
+        <div class="relative px-4 border-l border-blue-gray-100">
+          <p class="text-xs text-green-600 absolute -top-5 left-4 bg-white px-1">GST Amount</p>
+          <p class="text-sm text-green-600 font-medium"><span class="mr-1">3%</span>| ₹ 1,500.00</p>
+        </div>
+
+        <!-- Equals -->
+        <p class="text-blue-gray-400 font-bold text-xl mx-2">=</p>
+
+
+<div class="relative px-4">
+<p class="text-xs text-[#0f1e57] absolute -top-5 left-0 bg-white px-1 font-medium">
+  Final Amount
+</p>
+<p class="text-xl font-semibold text-[#00059f] text-right  px-1 rounded">
+  ₹ 50,000,000.00
+</p>
+</div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="sm:flex items-center flex-wrap justify-center mt-4 space-y-2 sm:space-y-0 sm:space-x-2 lg:space-x-4">
+
+  <button type="button"
+    class="block cursor-pointer capitalize w-full sm:w-auto  lg:w-[200px] p-1 md:p-1.5 text-base font-semibold text-[#EB8989] bg-[#FFF6F6] border-1 border-[#EB8989] hover:bg-white hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:bg-white dark:hover:bg-fdffc6">
+    <img class="size-6 inline items-center me-2" src="/assets/images/stock/gold.png" alt="gold">
+    Add Stock</button>
+
+  <button type="submit"
+    class="block cursor-pointer capitalize w-full sm:w-auto  lg:w-[200px] p-1 md:p-1.5 text-base font-semibold text-[#EC860D] bg-[#FFFCF3] border-1 border-[#FBBE02] hover:bg-white hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725  dark:hover:bg-fdffc6">
+
+    <img class="size-6 inline items-center me-2" src="/assets/images/stock/gold-1.png" alt="gold">Existing
+    Item</button>
+
+  <button type="button"
+    class="block cursor-pointer capitalize w-full sm:w-auto  lg:w-[200px] p-1 md:p-1.5 text-base font-semibold text-[#00B5B0] bg-[#F2FDFD] border-1 border-[#00B5B0] hover:bg-white hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:bg-white dark:hover:bg-fdffc6">
+
+    <img class="size-6 inline items-center me-2" src="/assets/images/stock/gold-2.png" alt="gold">Purchase on
+    Cash</button>
+
+  <button type="submit"
+    class="block cursor-pointer capitalize w-full sm:w-auto  lg:w-[200px] p-1 md:p-1.5 text-base font-semibold text-[#7E1F9F] bg-[#FBF0FF] border-1 border-[#7E1F9F] hover:bg-white hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:hover:bg-fdffc6">
+
+    <img class="size-6 inline items-center me-2" src="/assets/images/stock/hallmark.png" alt="gold">Hallmarking</button>
+</div>
+
+
+
+
+
+
+<!-- <div class="overflow-x-auto whitespace-nowrap">
+  <table
+    class="w-full table border border-b-0 border-[#D9D9D9] border-separate border-spacing-0 bg-white overflow-hidden mt-10">
+    <thead class="bg-[#F2F2F2] text-444 text-[13px]">
+      <tr class="uppercase">
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">
+          It ID
+        </th>
+        <th class="p-1.5 font-medium text-left border-r border-444 last:border-r-0">
+          Metal
+        </th>
+        <th class="p-1.5 font-medium text-left border-r border-444 last:border-r-0">
+          Item Details
+        </th>
+        <th class="p-1.5 font-medium text-left border-r border-444 last:border-r-0">
+          Qty
+        </th>
+        <th class="p-1.5 font-medium text-left border-r border-444 last:border-r-0">
+          Unit
+        </th>
+        <th class="p-1.5 font-medium text-left border-r border-444 last:border-r-0">
+          GS WT
+        </th>
+        <th class="p-1.5 font-medium text-left border-r border-444 last:border-r-0">
+          NT WT
+        </th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">
+          Purity
+        </th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">
+          FFN WT
+        </th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">
+          Cry WT
+        </th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">
+          Lbr Chrg
+        </th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">
+          Oth Chrg
+        </th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">
+          Valuation
+        </th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">
+          tax + Oth Chrg
+        </th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">
+          Tot Amt
+        </th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">
+          Cry Val
+        </th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">
+          Final Amt
+        </th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">
+          Item Mrp
+        </th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">
+          Tag No.
+        </th>
+        <th class="p-1.5 font-medium text-center border-r border-444 last:border-r-0">
+          Action
+        </th>
+      </tr>
+    </thead>
+    <tbody class="text-[13px] text-444 text-center">
+      <tr>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          Ring 10
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          Gold
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          Gold - Ring
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          1
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          GM
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          2.5
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          2.3
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          90%
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          0.95
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          0.100
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          60,000
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          -
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          60,000
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          -
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          60,000
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          5,000
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          65,000
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          -
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9]">
+          21485621485
+        </td>
+        <td class="p-1.5 border-r border-b border-[#D9D9D9] text-center">
+          <div class="flex items-center justify-center gap-2 xl:gap-4">
+            <button class="cursor-pointer">
+              <svg class="size-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M15.552 4.332L19.5109 8.29075M3.2815 16.452L2.75 21.25L7.54788 20.7185L21.25 7.00912V5.39287L18.6071 2.75H16.9909L3.2815 16.452Z"
+                  stroke="#C19725" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M14.7166 9.23962L8.10638 15.8499" stroke="#C19725" stroke-miterlimit="5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+            <button class="cursor-pointer">
+              <svg class="size-5" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M14 12.5V17.5" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M4 7.5H20" stroke="#BB0000" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M6 10.5V18.5C6 20.1569 7.34315 21.5 9 21.5H15C16.6569 21.5 18 20.1569 18 18.5V10.5"
+                  stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M9 5.5C9 4.39543 9.89543 3.5 11 3.5H13C14.1046 3.5 15 4.39543 15 5.5V7.5H9V5.5Z"
+                  stroke="#BB0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot class="text-base text-c19725 font-semibold text-center">
+      <tr>
+        <td colspan="3" class="p-1.5 border-r border-b border-[#D9D9D9] text-center">Gold Stock - 2</td>
+        <td colspan="5" class="p-1.5 border-r border-b border-[#D9D9D9]">
+          GSWT - 2.5
+        </td>
+        <td colspan="4" class="p-1.5 border-r border-b border-[#D9D9D9]">
+          FFN WT - 0.95
+        </td>
+        <td colspan="4" class="p-1.5 border-r border-b border-[#D9D9D9]">
+          Gold Valuation - 43,064.81
+        </td>
+        <td colspan="4" class="p-1.5 border-r border-b border-[#D9D9D9]">
+          Total Valuation - 43,064.81
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<div class="mt-4">
+  <button type="submit"
+    class="group block mx-auto cursor-pointer capitalize w-auto p-1 md:p-1.5 text-base font-semibold text-white bg-c19725 border-1 border-c19725 hover:bg-white hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-[5px] text-center dark:bg-c19725 dark:hover:bg-fdffc6">
+
+    <svg class="size-6 inline items-center me-2 stroke-white group-hover:stroke-c19725 transition-colors duration-300"
+      width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M7.12555 7L5.62555 5.5M15.1255 7L16.6255 5.5M5.62555 16.5L7.12555 15M11.1255 5V3M5.12555 11H3.12555M17.2858 16.9887L21.1775 15.4659C21.6014 15.3001 21.6011 14.7003 21.1772 14.5346L11.8247 10.8799C11.4188 10.7213 11.0184 11.1217 11.177 11.5276L14.8317 20.8801C14.9974 21.304 15.5972 21.3042 15.763 20.8803L17.2858 16.9887Z"
+        stroke-linecap="round" stroke-linejoin="round" />
+    </svg>Click here to add product into available list
+  </button>
+</div> -->
+

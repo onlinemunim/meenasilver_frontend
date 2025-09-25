@@ -1,0 +1,106 @@
+<div>
+  <form class="max-w-sm mx-auto mt-10" [formGroup]="createPackageForm" (ngSubmit)="onSubmit()">
+
+    <!-- Name Field -->
+    <div class="mb-5">
+      <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+      <input type="text" formControlName="name" id="name"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Jone Doe" required />
+      <div *ngIf="createPackageForm.controls['name'].invalid &&
+          (createPackageForm.controls['name'].touched || createPackageForm.controls['name'].dirty)">
+        <span class="text-danger" *ngIf="createPackageForm.controls['name'].errors?.['required']">Name is required</span>
+        <span class="text-danger" *ngIf="createPackageForm.controls['name'].errors?.['pattern']">Name can only contain alphabets and spaces</span>
+      </div>
+    </div>
+
+    <!-- Description Field -->
+    <div class="mb-5">
+      <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+      <textarea formControlName="description" id="description"
+        rows="4"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Enter a detailed description here..." required></textarea>
+      <div *ngIf="createPackageForm.controls['description'].invalid &&
+          (createPackageForm.controls['description'].touched || createPackageForm.controls['description'].dirty)">
+        <span class="text-danger" *ngIf="createPackageForm.controls['description'].errors?.['required']">Description is required</span>
+      </div>
+    </div>
+
+    <!-- Components Field -->
+      <div class="mb-5">
+      <label for="components" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Components</label>
+      <div formArrayName="components">
+        <!-- Add Component Button -->
+        <button type="button" (click)="addComponent()" class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mb-4">
+          Add Component
+        </button>
+
+        <!-- Loop Through Component Form Array -->
+        <div *ngFor="let component of components.controls; let i = index">
+          <div [formGroupName]="i" class="flex flex-wrap gap-4 mb-4 border p-4 rounded-lg shadow-md">
+            <!-- Component Name Input -->
+            <div class="flex-1">
+              <label for="name" class="block text-sm font-medium text-gray-700 dark:text-white">Component Name</label>
+              <input type="text" formControlName="name" id="name"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                     placeholder="Component Name" required />
+            </div>
+
+            <!-- Component Price Input -->
+            <div class="flex-1">
+              <label for="price" class="block text-sm font-medium text-gray-700 dark:text-white">Price</label>
+              <input type="text" formControlName="price" id="price"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                     placeholder="Price" required />
+            </div>
+
+            <!-- Remove Component Button -->
+            <div class="flex justify-end items-center">
+              <button type="button" (click)="removeComponent(i)" class="text-red-500 hover:text-red-700">
+                Remove
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Min Amount Field -->
+    <div class="mb-5">
+      <label for="min_amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Min Amount</label>
+      <input type="text" formControlName="min_amount" id="min_amount"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="10.00" required />
+      <div *ngIf="createPackageForm.controls['min_amount'].invalid &&
+          (createPackageForm.controls['min_amount'].touched || createPackageForm.controls['min_amount'].dirty)">
+        <span class="text-danger" *ngIf="createPackageForm.controls['min_amount'].errors?.['required']">Min Amount is required</span>
+        <span class="text-danger" *ngIf="createPackageForm.controls['min_amount'].errors?.['pattern']">Enter a valid amount (e.g., 10.00)</span>
+      </div>
+    </div>
+
+    <!-- Status Field -->
+    <div class="mb-5">
+      <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+      <select formControlName="status" id="status"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        required>
+        <option value="" disabled>Select Status</option>
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+        <option value="pending">Pending</option>
+      </select>
+      <div *ngIf="createPackageForm.controls['status'].invalid &&
+          (createPackageForm.controls['status'].touched || createPackageForm.controls['status'].dirty)">
+        <span class="text-danger" *ngIf="createPackageForm.controls['status'].errors?.['required']">Status is required</span>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      Submit
+    </button>
+  </form>
+</div>

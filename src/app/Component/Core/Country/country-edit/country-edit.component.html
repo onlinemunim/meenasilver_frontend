@@ -1,0 +1,33 @@
+<div class="max-w-md mx-auto mt-10 bg-gray-900 p-6 rounded-lg shadow-lg">
+  <form [formGroup]="editCountryForm" (ngSubmit)="onSubmit()">
+    <!-- Country Name -->
+    <div class="mb-5">
+      <label for="name" class="block mb-2 text-sm font-medium text-yellow-400">Country Name</label>
+      <input type="text" formControlName="name" id="name"
+        class="bg-gray-800 border border-yellow-500 text-yellow-300 text-sm rounded-lg focus:ring-yellow-400 focus:border-yellow-500 block w-full p-3 placeholder-yellow-500 focus:outline-none transition duration-300"
+        placeholder="Enter Country Name" required />
+    </div>
+
+    <!-- Country Code -->
+    <div class="mb-5">
+      <label for="code" class="block mb-2 text-sm font-medium text-yellow-400">Country Code</label>
+      <input type="text" formControlName="code" id="code"
+        class="bg-gray-800 border border-yellow-500 text-yellow-300 text-sm rounded-lg focus:ring-yellow-400 focus:border-yellow-500 block w-full p-3 placeholder-yellow-500 focus:outline-none transition duration-300"
+        placeholder="Enter Country Code" required />
+    </div>
+
+    <!-- Country Currency -->
+    <div class="mb-5">
+      <label for="currency" class="block mb-2 text-sm font-medium text-yellow-400">Country Currency</label>
+      <input type="text" formControlName="currency" id="currency"
+        class="bg-gray-800 border border-yellow-500 text-yellow-300 text-sm rounded-lg focus:ring-yellow-400 focus:border-yellow-500 block w-full p-3 placeholder-yellow-500 focus:outline-none transition duration-300"
+        placeholder="Enter Country Currency" required />
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit"
+      class="w-full sm:w-auto px-6 py-2.5 text-black bg-gradient-to-r from-yellow-500 to-yellow-700 hover:from-yellow-400 hover:to-yellow-600 font-bold rounded-lg shadow-md transition duration-300">
+      ✅ Submit
+    </button>
+  </form>
+</div>

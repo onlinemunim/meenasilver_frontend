@@ -1,0 +1,1360 @@
+<form class="formGroup" [formGroup]="firmForm" (ngSubmit)="onSubmit()">
+  <!-- Firm Creation General Details -->
+  <div class="w-full lg:flex items-stretch gap-3">
+    <div
+      class="w-full lg:w-3/4 2xl:w-4/5 bg-[#E6EFFF] px-2 py-3 rounded-lg shadow-(--my-shadow1) mb-3 lg:mb-0"
+    >
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-2.5 lg:gap-3 space-y-0.5"
+      >
+        <div class="col-span-1">
+          <div class="flex items-center justify-start gap-2">
+            <div class="relative grow">
+              <input
+                type="text"
+                id="gst_no"
+                formControlName="gst_no"
+                class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-md border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                placeholder=" " autocomplete="off"
+              />
+              <label
+                for="gst_no"
+                class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                >GST No.</label
+              >
+            </div>
+            <button
+            type="button"
+            (click)="patchData()"
+            class="block cursor-pointer px-2 py-1.5 lg:py-[7px] text-xs sm:text-sm lg:text-[15px] font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-[#fdffc6] hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md"
+            [disabled]="isGstLoading"
+          >
+            <span *ngIf="!isGstLoading">Fetch</span>
+            <i *ngIf="isGstLoading" class="fas fa-spinner fa-spin"></i>
+          </button>
+          </div>
+          <div
+            *ngIf="
+              firmForm.controls['gst_no'].invalid &&
+              (firmForm.controls['gst_no'].touched ||
+                firmForm.controls['gst_no'].dirty)
+            "
+          >
+            <span
+              class="text-red-500 text-xs mt-1"
+              *ngIf="firmForm.controls['gst_no'].errors?.['required']"
+            >
+              *GST Number is required
+            </span>
+            <span
+              class="text-danger"
+              *ngIf="firmForm.controls['gst_no'].errors?.['minlength'] || firmForm.controls['gst_no'].errors?.['maxlength']"
+            >
+              *GST Number must be exactly 15 characters
+            </span>
+            <span
+              class="text-danger"
+              *ngIf="firmForm.controls['gst_no'].errors?.['pattern']"
+            >
+              *Invalid GST Number format
+            </span>
+          </div>
+
+
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="text"
+              id="firm_shortid"
+              formControlName="firm_shortid"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " autocomplete="off"
+            />
+            <label
+              for="firm_shortid"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Firm Short ID</label
+            >
+          </div>
+          <div
+            *ngIf="
+              firmForm.controls['firm_shortid'].invalid &&
+              (firmForm.controls['firm_shortid'].touched ||
+                firmForm.controls['firm_shortid'].dirty)
+            "
+            class="text-red-500 text-xs mt-1"
+          >
+            <span
+              *ngIf="firmForm.controls['firm_shortid'].errors?.['required']"
+            >
+              *Firm Short ID is required
+            </span>
+            <span *ngIf="firmForm.controls['firm_shortid'].errors?.['unique']">
+              *This Short ID is already taken
+            </span>
+          </div>
+        </div>
+        <div class="col-span-1">
+          <div class="relative">
+            <select
+              formControlName="category"
+              class="block pl-2 pr-6 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            >
+              <option value="IT">IT</option>
+              <option value="Retail">Retail</option>
+              <option value="Finance">Finance</option>
+              <option value="Manufacturing">Manufacturing</option>
+            </select>
+
+            <div
+              class="absolute inset-y-0 right-2 flex items-center pointer-events-none"
+            >
+              <svg
+                width="14"
+                height="7"
+                viewBox="0 0 14 7"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z"
+                  fill="#C19725"
+                />
+              </svg>
+            </div>
+            <label
+              for="firmCategory"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Firm Category</label
+            >
+          </div>
+          <div
+            *ngIf="
+              firmForm.controls['category'].invalid &&
+              (firmForm.controls['category'].touched ||
+                firmForm.controls['category'].dirty)
+            "
+            class="text-red-500 text-xs mt-1"
+          >
+            <span *ngIf="firmForm.controls['category'].errors?.['required']">
+              *Category is required
+            </span>
+          </div>
+        </div>
+        <div class="col-span-1">
+          <div class="relative">
+            <select
+              formControlName="type"
+              name="firmType"
+              id="firmType"
+              class="block pl-2 pr-6 py-2 w-full text-sm lg:text-sm text-444 capitalize font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            >
+              <option value="" disabled selected>Select firm type</option>
+              <option *ngFor="let type of firmTypes" [value]="type">
+                {{ type }}
+              </option>
+            </select>
+
+            <div
+              class="absolute inset-y-0 right-2 flex items-center pointer-events-none"
+            >
+              <svg
+                width="14"
+                height="7"
+                viewBox="0 0 14 7"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z"
+                  fill="#C19725"
+                />
+              </svg>
+            </div>
+            <label
+              for="firmType"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Firm Type</label
+            >
+          </div>
+        </div>
+        <div class="col-span-1">
+          <div class="relative">
+            <select
+              formControlName="gst_status"
+              name="gst_status"
+              id="gst_status"
+              class="block pl-2 pr-6 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+            >
+              <option value="">Select GST Status</option>
+              <option value="0">Registered</option>
+              <option value="1">Unregistered</option>
+            </select>
+            <div
+              class="absolute inset-y-0 right-2 flex items-center pointer-events-none"
+            >
+              <svg
+                width="14"
+                height="7"
+                viewBox="0 0 14 7"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z"
+                  fill="#C19725"
+                />
+              </svg>
+            </div>
+            <label
+              for="gstFirm"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >GST Firm</label
+            >
+          </div>
+        </div>
+
+        <div class="col-span-1 sm:col-span-2 lg:col-span-5">
+          <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            <div class="col-span-2 sm:col-span-1 md:col-span-2 lg:col-span-3">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="name"
+                  formControlName="name"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " autocomplete="off"
+                />
+                <label
+                  for="shopName"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Shop Name</label
+                >
+              </div>
+              <div
+                *ngIf="
+                  firmForm.controls['name'].invalid &&
+                  (firmForm.controls['name'].touched ||
+                    firmForm.controls['name'].dirty)
+                "
+                class="text-red-500 text-xs mt-1"
+              >
+                <span *ngIf="firmForm.controls['name'].errors?.['required']">
+                  *Shop name is required
+                </span>
+                <span *ngIf="firmForm.controls['name'].errors?.['maxlength']">
+                  *Maximum 255 characters allowed
+                </span>
+              </div>
+            </div>
+
+            <div class="col-span-2 sm:col-span-1 md:col-span-2 lg:col-span-3">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="tradeName"
+                  formControlName="trade_name"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " autocomplete="off"
+                />
+                <label
+                  for="tradeName"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Trade Name</label
+                >
+              </div>
+            </div>
+            <div class="col-span-2 md:col-span-4 lg:col-span-6">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="firmDesc"
+                  formControlName="description"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " autocomplete="off"
+                />
+                <label
+                  for="firmDesc"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Firm Description</label
+                >
+              </div>
+            </div>
+
+            <div class="col-span-2 md:col-span-4">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="address"
+                  formControlName="address"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " autocomplete="off"
+                />
+                <label
+                  for="address"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Address</label
+                >
+              </div>
+              <div
+                *ngIf="
+                  firmForm.controls['address'].invalid &&
+                  (firmForm.controls['address'].touched ||
+                    firmForm.controls['address'].dirty)
+                "
+                class="text-red-500 text-xs mt-1"
+              >
+                <span *ngIf="firmForm.controls['address'].errors?.['required']">
+                  *Address is required
+                </span>
+              </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative">
+                <select
+                  formControlName="country_id"
+                  (change)="onCountryChange()"
+                  class="block pl-2 pr-6 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                >
+                  <option value="" disabled selected class="text-sm">
+                    Select Country
+                  </option>
+                  <option
+                    *ngFor="let country of countries"
+                    [value]="country.id"
+                  >
+                    {{ country.name }}
+                  </option>
+                </select>
+                <div
+                  class="absolute inset-y-0 right-2 flex items-center pointer-events-none"
+                >
+                  <svg
+                    width="14"
+                    height="7"
+                    viewBox="0 0 14 7"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z"
+                      fill="#C19725"
+                    />
+                  </svg>
+                </div>
+                <label
+                  for="country"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Country</label
+                >
+              </div>
+              <div
+                *ngIf="
+                  firmForm.controls['country_id'].invalid &&
+                  (firmForm.controls['country_id'].touched ||
+                    firmForm.controls['country_id'].dirty)
+                "
+              >
+                <span
+                  class="text-danger"
+                  *ngIf="firmForm.controls['country_id'].errors?.['required']"
+                  >*Country is required</span
+                >
+                <span
+                  class="text-danger"
+                  *ngIf="firmForm.controls['country_id'].errors?.['invalidCountry']"
+                  >*Invalid country selected</span
+                >
+              </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative">
+                <select
+                  formControlName="state_id"
+                  id="state"
+                  (change)="onStateChange()"
+                  class="block pl-2 pr-6 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                >
+                  <option value="" disabled>Select State</option>
+                  <option *ngFor="let state of states" [value]="state.id">
+                    {{ state.name }}
+                  </option>
+                </select>
+                <div
+                  class="absolute inset-y-0 right-2 flex items-center pointer-events-none"
+                >
+                  <svg
+                    width="14"
+                    height="7"
+                    viewBox="0 0 14 7"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z"
+                      fill="#C19725"
+                    />
+                  </svg>
+                </div>
+                <label
+                  for="state"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >State</label
+                >
+              </div>
+              <div
+                *ngIf="
+                  firmForm.controls['state_id'].invalid &&
+                  (firmForm.controls['state_id'].touched ||
+                    firmForm.controls['state_id'].dirty)
+                "
+              >
+                <span
+                  class="text-danger"
+                  *ngIf="firmForm.controls['state_id'].errors?.['required']"
+                  >*state is required</span
+                >
+              </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative">
+                <select
+                  id="city"
+                  formControlName="city_id"
+                  class="block pl-2 pr-6 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                >
+                  <option value="" disabled>Select City</option>
+                  <option *ngFor="let city of cities" [value]="city.id">
+                    {{ city.name }}
+                  </option>
+                </select>
+                <div
+                  class="absolute inset-y-0 right-2 flex items-center pointer-events-none"
+                >
+                  <svg
+                    width="14"
+                    height="7"
+                    viewBox="0 0 14 7"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z"
+                      fill="#C19725"
+                    />
+                  </svg>
+                </div>
+                <label
+                  for="city"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >City</label
+                >
+              </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="pincode"
+                  formControlName="pincode"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " autocomplete="off"
+                />
+                <label
+                  for="pincode"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Pincode</label
+                >
+              </div>
+              <div
+              *ngIf="
+                firmForm.controls['pincode'].invalid &&
+                (firmForm.controls['pincode'].touched ||
+                  firmForm.controls['pincode'].dirty)
+              "
+              class="text-red-500 text-xs mt-1"
+            >
+              <span *ngIf="firmForm.controls['pincode'].errors?.['required']">
+                *Pincode is required
+              </span>
+              <span *ngIf="firmForm.controls['pincode'].errors?.['pattern']">
+                *Invalid pincode format
+              </span>
+            </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative">
+                <select
+                  id="currency_code"
+                  formControlName="currency_code"
+                  class="block pl-2 pr-6 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none !bg-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                >
+                  <option
+                    *ngFor="let country of countries"
+                    [value]="country.currency"
+                  >
+                    {{ country.currency }}
+                  </option>
+                </select>
+                <div
+                  class="absolute inset-y-0 right-2 flex items-center pointer-events-none"
+                >
+                  <svg
+                    width="14"
+                    height="7"
+                    viewBox="0 0 14 7"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.00004 7.00016L0.333374 0.333496H13.6667L7.00004 7.00016Z"
+                      fill="#C19725"
+                    />
+                  </svg>
+                </div>
+                <label
+                  for="currency_code"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Currency</label
+                >
+              </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="phone_no"
+                  formControlName="phone_no"
+                  class="form-input mt-1 block w-full"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" "autocomplete="off"
+                />
+                <label
+                  for="phone_no"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Phone No.</label
+                >
+              </div>
+              <div
+                *ngIf="
+                  firmForm.controls['phone_no'].invalid &&
+                  (firmForm.controls['phone_no'].dirty ||
+                    firmForm.controls['phone_no'].touched)
+                "
+              >
+                <span
+                  class="text-red-500 text-xs mt-1"
+                  *ngIf="firmForm.controls['phone_no'].errors?.['required']"
+                  >*Phone number is required</span
+                >
+                <span
+                  class="text-red-500 text-xs mt-1"
+                  *ngIf="firmForm.controls['phone_no'].errors?.['pattern']"
+                  >*Enter a valid 10-digit number</span
+                >
+              </div>
+            </div>
+
+            <div class="text-red-500 text-xs mt-1">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="email"
+                  formControlName="email"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " autocomplete="off"
+                />
+                <label
+                  for="emailId"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Email ID</label
+                >
+              </div>
+              <div
+                *ngIf="
+                  firmForm.controls['email'].invalid &&
+                  (firmForm.controls['email'].touched ||
+                    firmForm.controls['email'].dirty)
+                "
+                class="text-red-500 text-xs mt-1"
+              >
+                <span *ngIf="firmForm.controls['email'].errors?.['required']">
+                  *Email is required
+                </span>
+                <span *ngIf="firmForm.controls['email'].errors?.['email']">
+                  *Please enter a valid email address
+                </span>
+                <span *ngIf="firmForm.controls['email'].errors?.['unique']">
+                  *This email is already registered
+                </span>
+              </div>
+            </div>
+
+            <div class="col-span-2 md:col-span-1">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="website"
+                  formControlName="website"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " autocomplete="off"
+                />
+                <label
+                  for="website"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Website Name</label
+                >
+              </div>
+              <div
+                *ngIf="
+                  firmForm.controls['website'].invalid &&
+                  (firmForm.controls['website'].touched ||
+                    firmForm.controls['website'].dirty)
+                "
+                class="text-red-500 text-xs mt-1"
+              >
+                <span *ngIf="firmForm.controls['website'].errors?.['pattern']">
+                  *Please enter a valid website URL
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="text"
+              id="registrationNum"
+              formControlName="registration_no"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " autocomplete="off"
+            />
+            <label
+              for="registrationNum"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >Registration No.</label
+            >
+          </div>
+          <div
+            *ngIf="
+              firmForm.controls['registration_no'].invalid &&
+              (firmForm.controls['registration_no'].touched ||
+                firmForm.controls['registration_no'].dirty)
+            "
+            class="text-red-500 text-xs mt-1"
+          >
+            <span
+              *ngIf="firmForm.controls['registration_no'].errors?.['required']"
+            >
+              *Registration number is required
+            </span>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="text"
+              id="pan_no"
+              formControlName="pan_no"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " autocomplete="off"
+            />
+            <label
+              for="pan_no"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >PAN No.</label
+            >
+          </div>
+          <div
+            *ngIf="
+              firmForm.controls['pan_no'].invalid &&
+              (firmForm.controls['pan_no'].touched ||
+                firmForm.controls['pan_no'].dirty)
+            "
+            class="text-red-500 text-xs mt-1"
+          >
+            <span *ngIf="firmForm.controls['pan_no'].errors?.['required']">
+              *PAN number is required
+            </span>
+            <span *ngIf="firmForm.controls['pan_no'].errors?.['pattern']">
+              *Invalid PAN number format
+            </span>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="text"
+              id="cinNum"
+              formControlName="cin_no"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " autocomplete="off"
+            />
+            <label
+              for="cinNum"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >CIN No.</label
+            >
+          </div>
+          <div
+            *ngIf="
+              firmForm.controls['cin_no'].invalid &&
+              (firmForm.controls['cin_no'].touched ||
+                firmForm.controls['cin_no'].dirty)
+            "
+            class="text-red-500 text-xs mt-1"
+          >
+            <span *ngIf="firmForm.controls['cin_no'].errors?.['required']">
+              *CIN number is required
+            </span>
+            <span *ngIf="firmForm.controls['cin_no'].errors?.['pattern']">
+              *Invalid CIN number format
+            </span>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="text"
+              id="ice_no"
+              formControlName="ice_no"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " autocomplete="off"
+            />
+            <label
+              for="iceNum"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >ICE No.</label
+            >
+          </div>
+          <div
+            *ngIf="
+              firmForm.controls['ice_no'].invalid &&
+              (firmForm.controls['ice_no'].touched ||
+                firmForm.controls['ice_no'].dirty)
+            "
+            class="text-red-500 text-xs mt-1"
+          >
+            <span *ngIf="firmForm.controls['ice_no'].errors?.['required']">
+              *ICE number is required
+            </span>
+            <span *ngIf="firmForm.controls['ice_no'].errors?.['pattern']">
+              *Invalid ICE number format
+            </span>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative">
+            <input
+              type="text"
+              id="tan_no"
+              formControlName="tan_no"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder=" " autocomplete="off"
+            />
+            <label
+              for="tanNum"
+              class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+              >TAN No.</label
+            >
+          </div>
+          <div
+            *ngIf="
+              firmForm.controls['tan_no'].invalid &&
+              (firmForm.controls['tan_no'].touched ||
+                firmForm.controls['tan_no'].dirty)
+            "
+            class="text-red-500 text-xs mt-1"
+          >
+            <span *ngIf="firmForm.controls['tan_no'].errors?.['required']">
+              *TAN number is required
+            </span>
+            <span *ngIf="firmForm.controls['tan_no'].errors?.['pattern']">
+              *Invalid TAN number format
+            </span>
+          </div>
+        </div>
+
+        <div class="col-span-1 sm:col-span-2 lg:col-span-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
+            <div class="col-span-1 sm:col-span-2 lg:col-span-6 2xl:col-span-4">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="comments"
+                  formControlName="comments_other_info"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " autocomplete="off"
+                />
+                <label
+                  for="comments_other_info"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Comments & Other Info</label
+                >
+              </div>
+              <div
+                *ngIf="
+                  firmForm.controls['comments_other_info'].invalid &&
+                  (firmForm.controls['comments_other_info'].touched ||
+                    firmForm.controls['comments_other_info'].dirty)
+                "
+                class="text-red-500 text-xs mt-1"
+              >
+                <span *ngIf="firmForm.controls['comments_other_info'].errors?.['maxlength']">
+                  *Maximum 500 characters allowed
+                </span>
+              </div>
+            </div>
+
+            <div class="col-span-1 lg:col-span-3 2xl:col-span-1">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="geoLatitude"
+                  formControlName="geo_location_latitude"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " autocomplete="off"
+                />
+                <label
+                  for="geoLatitude"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Geo Location latitude</label
+                >
+              </div>
+            </div>
+
+            <div class="col-span-1 lg:col-span-3 2xl:col-span-1">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="geoLongitude"
+                  formControlName="geo_location_longitude"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " autocomplete="off"
+                />
+                <label
+                  for="geoLongitude"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Geo Location Longitude</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="h-full flex items-center">
+            <p class="font-medium text-sm lg:text-sm text-444 capitalize">
+              Financial Year Start Date :
+            </p>
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div class="relative max-w-sm">
+            <input
+              datepicker
+              id="default-datepicker"
+              formControlName="fin_year_start_date"
+              type="text"
+              class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+              placeholder="Select date" autocomplete="off"
+            />
+            <div
+              class="absolute inset-y-0 end-0 flex items-center pe-3.5 pointer-events-none"
+            >
+              <svg
+                class="size-6"
+                viewBox="0 0 24 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18.9773 3.67371H4.02272C3.48663 3.67491 2.97284 3.8884 2.59376 4.26748C2.21469 4.64655 2.0012 5.16034 2 5.69644V20.651C2.0012 21.1871 2.21469 21.7009 2.59376 22.0799C2.97284 22.459 3.48663 22.6725 4.02272 22.6737H18.9773C19.5134 22.6725 20.0272 22.459 20.4062 22.0799C20.7853 21.7009 20.9988 21.1871 21 20.651V5.69644C20.9988 5.16034 20.7853 4.64655 20.4062 4.26748C20.0272 3.8884 19.5134 3.67491 18.9773 3.67371Z"
+                  stroke="#C19725"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M6.06836 9.59113H10.8865"
+                  stroke="#C19725"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M6.06836 13.2744H16.5002"
+                  stroke="#C19725"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M8.56836 2.5V6.44491"
+                  stroke="#C19725"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M14.4326 2.5V6.44491"
+                  stroke="#C19725"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-1 sm:col-span-2 lg:col-span-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="col-span-1">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="prinAmtFrom"
+                  formControlName="principla_amt_limit_form"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " autocomplete="off"
+                />
+                <label
+                  for="prinAmtFrom"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Principal Amt Limit From</label
+                >
+              </div>
+              <div
+                *ngIf="
+                  firmForm.controls['principla_amt_limit_form'].invalid &&
+                  (firmForm.controls['principla_amt_limit_form'].touched ||
+                    firmForm.controls['principla_amt_limit_form'].dirty)
+                "
+                class="text-red-500 text-xs mt-1"
+              >
+                <span *ngIf="firmForm.controls['principla_amt_limit_form'].errors?.['required']">
+                  *Amount is required
+                </span>
+                <span *ngIf="firmForm.controls['principla_amt_limit_form'].errors?.['min']">
+                  *Amount must be positive
+                </span>
+                <span *ngIf="firmForm.controls['principla_amt_limit_form'].errors?.['pattern']">
+                  *Invalid amount format
+                </span>
+              </div>
+            </div>
+
+            <div class="col-span-1">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="principalAmtLimitTo"
+                  formControlName="principla_amt_limit_to"
+                  class="block px-2 py-2 w-full text-sm lg:text-sm text-444 font-normal bg-white rounded-lg border-1 border-dcdcdc appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-c19725 peer"
+                  placeholder=" " autocomplete="off"
+                />
+                <label
+                  for="principalAmtLimitTo"
+                  class="absolute text-sm lg:text-sm text-[#898989] dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-0 origin-[0] bg-white dark:bg-gray-900 px-1.5 peer-focus:px-1.5 peer-focus:text-c19725 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                  >Principal Amt Limit To</label
+                >
+              </div>
+              <div
+                *ngIf="
+                  firmForm.controls['principla_amt_limit_to'].invalid &&
+                  (firmForm.controls['principla_amt_limit_to'].touched ||
+                    firmForm.controls['principla_amt_limit_to'].dirty)
+                "
+                class="text-red-500 text-xs mt-1"
+              >
+                <span *ngIf="firmForm.controls['principla_amt_limit_to'].errors?.['required']">
+                  *Amount is required
+                </span>
+                <span *ngIf="firmForm.controls['principla_amt_limit_to'].errors?.['min']">
+                  *Amount must be positive
+                </span>
+                <span *ngIf="firmForm.controls['principla_amt_limit_to'].errors?.['pattern']">
+                  *Invalid amount format
+                </span>
+                <span *ngIf="firmForm.controls['principla_amt_limit_to'].errors?.['greaterThanFrom']">
+                  *Must be greater than 'From' amount
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- firm upload images -->
+    <div class="w-full lg:w-1/4 2xl:w-1/5">
+      <p class="font-medium text-sm xl:text-base text-444 capitalize mb-3">
+        Upload Images
+      </p>
+      <div
+        class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 bg-[#F9E7FF] px-3 py-3 rounded-lg gap-3"
+      >
+        <div class="col-span-1">
+          <div>
+            <label for="leftFileInput" class="cursor-pointer">
+              <ng-container *ngIf="uploadedImageLeft; else showPlaceholderLeft">
+                <img
+                  [src]="uploadedImageLeft"
+                  class="rounded-t-md w-full h-24 2xl:h-34 object-contain"
+                  alt="left Logo"
+                />
+                <p
+                  class="flex items-center justify-between bg-white px-2 py-1.5 text-[#898989] text-xs font-normal capitalize"
+                >
+                  Left logo
+                  <svg
+                    width="20"
+                    height="23"
+                    viewBox="0 0 20 23"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.1667 16.2164H14.175M13 13.3866H15C15.7766 13.3866 16.1648 13.3866 16.4712 13.5301C16.8795 13.7216 17.204 14.0889 17.3732 14.5511C17.5 14.8979 17.5 15.3374 17.5 16.2164C17.5 17.0954 17.5 17.5349 17.3732 17.8817C17.204 18.3439 16.8795 18.7112 16.4712 18.9027C16.1648 19.0462 15.7766 19.0462 15 19.0462H5C4.22343 19.0462 3.83515 19.0462 3.52886 18.9027C3.12048 18.7112 2.79603 18.3439 2.62687 17.8817C2.5 17.5349 2.5 17.0954 2.5 16.2164C2.5 15.3374 2.5 14.8979 2.62687 14.5511C2.79603 14.0889 3.12048 13.7216 3.52886 13.5301C3.83515 13.3866 4.22343 13.3866 5 13.3866H7M10 14.3298V3.95383M10 3.95383L12.5 6.78365M10 3.95383L7.5 6.78365"
+                      stroke="#C19725"
+                      stroke-width="1.32464"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </p>
+              </ng-container>
+
+              <ng-template #showPlaceholderLeft>
+                <img
+                  class="rounded-t-md w-full h-24 2xl:h-34 object-contain"
+                  src="/assets/images/firm/firm-img.png"
+                  alt="left logo"
+                />
+                <p
+                  class="flex items-center justify-between bg-white px-2 py-1.5 text-[#898989] text-xs font-normal capitalize"
+                >
+                  Left logo
+                  <svg
+                    width="20"
+                    height="23"
+                    viewBox="0 0 20 23"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.1667 16.2164H14.175M13 13.3866H15C15.7766 13.3866 16.1648 13.3866 16.4712 13.5301C16.8795 13.7216 17.204 14.0889 17.3732 14.5511C17.5 14.8979 17.5 15.3374 17.5 16.2164C17.5 17.0954 17.5 17.5349 17.3732 17.8817C17.204 18.3439 16.8795 18.7112 16.4712 18.9027C16.1648 19.0462 15.7766 19.0462 15 19.0462H5C4.22343 19.0462 3.83515 19.0462 3.52886 18.9027C3.12048 18.7112 2.79603 18.3439 2.62687 17.8817C2.5 17.5349 2.5 17.0954 2.5 16.2164C2.5 15.3374 2.5 14.8979 2.62687 14.5511C2.79603 14.0889 3.12048 13.7216 3.52886 13.5301C3.83515 13.3866 4.22343 13.3866 5 13.3866H7M10 14.3298V3.95383M10 3.95383L12.5 6.78365M10 3.95383L7.5 6.78365"
+                      stroke="#C19725"
+                      stroke-width="1.32464"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </p>
+              </ng-template>
+            </label>
+
+            <!-- Upload Input -->
+            <input
+              type="file"
+              id="leftFileInput"
+              class="hidden"
+              accept="image/png, image/jpeg"
+              (change)="onFileSelected($event, 'left')" autocomplete="off"
+            />
+          </div>
+          <div *ngIf="fileUploadError['left']" class="text-red-500 text-xs mt-1">
+            {{ fileUploadError['left'] }}
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div>
+            <label for="rightFileInput" class="cursor-pointer">
+              <ng-container
+                *ngIf="uploadedImageRight; else showPlaceholderRight"
+              >
+                <img
+                  [src]="uploadedImageRight"
+                  class="rounded-t-md w-full h-24 2xl:h-34 object-contain"
+                  alt="right Logo"
+                />
+                <p
+                  class="flex items-center justify-between bg-white px-2 py-1.5 text-[#898989] text-xs font-normal capitalize"
+                >
+                  Right logo
+                  <svg
+                    width="20"
+                    height="23"
+                    viewBox="0 0 20 23"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.1667 16.2164H14.175M13 13.3866H15C15.7766 13.3866 16.1648 13.3866 16.4712 13.5301C16.8795 13.7216 17.204 14.0889 17.3732 14.5511C17.5 14.8979 17.5 15.3374 17.5 16.2164C17.5 17.0954 17.5 17.5349 17.3732 17.8817C17.204 18.3439 16.8795 18.7112 16.4712 18.9027C16.1648 19.0462 15.7766 19.0462 15 19.0462H5C4.22343 19.0462 3.83515 19.0462 3.52886 18.9027C3.12048 18.7112 2.79603 18.3439 2.62687 17.8817C2.5 17.5349 2.5 17.0954 2.5 16.2164C2.5 15.3374 2.5 14.8979 2.62687 14.5511C2.79603 14.0889 3.12048 13.7216 3.52886 13.5301C3.83515 13.3866 4.22343 13.3866 5 13.3866H7M10 14.3298V3.95383M10 3.95383L12.5 6.78365M10 3.95383L7.5 6.78365"
+                      stroke="#C19725"
+                      stroke-width="1.32464"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </p>
+              </ng-container>
+
+              <ng-template #showPlaceholderRight>
+                <img
+                  class="rounded-t-md w-full h-24 2xl:h-34 object-contain"
+                  src="/assets/images/firm/firm-img.png"
+                  alt="right logo"
+                />
+                <p
+                  class="flex items-center justify-between bg-white px-2 py-1.5 text-[#898989] text-xs font-normal capitalize"
+                >
+                  Right logo
+                  <svg
+                    width="20"
+                    height="23"
+                    viewBox="0 0 20 23"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.1667 16.2164H14.175M13 13.3866H15C15.7766 13.3866 16.1648 13.3866 16.4712 13.5301C16.8795 13.7216 17.204 14.0889 17.3732 14.5511C17.5 14.8979 17.5 15.3374 17.5 16.2164C17.5 17.0954 17.5 17.5349 17.3732 17.8817C17.204 18.3439 16.8795 18.7112 16.4712 18.9027C16.1648 19.0462 15.7766 19.0462 15 19.0462H5C4.22343 19.0462 3.83515 19.0462 3.52886 18.9027C3.12048 18.7112 2.79603 18.3439 2.62687 17.8817C2.5 17.5349 2.5 17.0954 2.5 16.2164C2.5 15.3374 2.5 14.8979 2.62687 14.5511C2.79603 14.0889 3.12048 13.7216 3.52886 13.5301C3.83515 13.3866 4.22343 13.3866 5 13.3866H7M10 14.3298V3.95383M10 3.95383L12.5 6.78365M10 3.95383L7.5 6.78365"
+                      stroke="#C19725"
+                      stroke-width="1.32464"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </p>
+              </ng-template>
+            </label>
+
+            <!-- Upload Input -->
+            <input
+              type="file"
+              id="rightFileInput"
+              class="hidden"
+              accept="image/png, image/jpeg"
+              (change)="onFileSelected($event, 'right')" autocomplete="off"
+            />
+          </div>
+          <div *ngIf="fileUploadError['right']" class="text-red-500 text-xs mt-1">
+            {{ fileUploadError['right'] }}
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div>
+            <label for="signFileInput" class="cursor-pointer">
+              <ng-container *ngIf="uploadedImageSign; else showPlaceholderSign">
+                <img
+                  [src]="uploadedImageSign"
+                  class="rounded-t-md w-full h-24 2xl:h-34 object-contain"
+                  alt="signature"
+                />
+                <p
+                  class="flex items-center justify-between bg-white px-2 py-1.5 text-[#898989] text-xs font-normal capitalize"
+                >
+                  Signature
+                  <svg
+                    width="20"
+                    height="23"
+                    viewBox="0 0 20 23"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.1667 16.2164H14.175M13 13.3866H15C15.7766 13.3866 16.1648 13.3866 16.4712 13.5301C16.8795 13.7216 17.204 14.0889 17.3732 14.5511C17.5 14.8979 17.5 15.3374 17.5 16.2164C17.5 17.0954 17.5 17.5349 17.3732 17.8817C17.204 18.3439 16.8795 18.7112 16.4712 18.9027C16.1648 19.0462 15.7766 19.0462 15 19.0462H5C4.22343 19.0462 3.83515 19.0462 3.52886 18.9027C3.12048 18.7112 2.79603 18.3439 2.62687 17.8817C2.5 17.5349 2.5 17.0954 2.5 16.2164C2.5 15.3374 2.5 14.8979 2.62687 14.5511C2.79603 14.0889 3.12048 13.7216 3.52886 13.5301C3.83515 13.3866 4.22343 13.3866 5 13.3866H7M10 14.3298V3.95383M10 3.95383L12.5 6.78365M10 3.95383L7.5 6.78365"
+                      stroke="#C19725"
+                      stroke-width="1.32464"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </p>
+              </ng-container>
+
+              <ng-template #showPlaceholderSign>
+                <img
+                  class="rounded-t-md w-full h-24 2xl:h-34 object-contain"
+                  src="/assets/images/firm/firm-img.png"
+                  alt="signature"
+                />
+                <p
+                  class="flex items-center justify-between bg-white px-2 py-1.5 text-[#898989] text-xs font-normal capitalize"
+                >
+                  Signature
+                  <svg
+                    width="20"
+                    height="23"
+                    viewBox="0 0 20 23"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.1667 16.2164H14.175M13 13.3866H15C15.7766 13.3866 16.1648 13.3866 16.4712 13.5301C16.8795 13.7216 17.204 14.0889 17.3732 14.5511C17.5 14.8979 17.5 15.3374 17.5 16.2164C17.5 17.0954 17.5 17.5349 17.3732 17.8817C17.204 18.3439 16.8795 18.7112 16.4712 18.9027C16.1648 19.0462 15.7766 19.0462 15 19.0462H5C4.22343 19.0462 3.83515 19.0462 3.52886 18.9027C3.12048 18.7112 2.79603 18.3439 2.62687 17.8817C2.5 17.5349 2.5 17.0954 2.5 16.2164C2.5 15.3374 2.5 14.8979 2.62687 14.5511C2.79603 14.0889 3.12048 13.7216 3.52886 13.5301C3.83515 13.3866 4.22343 13.3866 5 13.3866H7M10 14.3298V3.95383M10 3.95383L12.5 6.78365M10 3.95383L7.5 6.78365"
+                      stroke="#C19725"
+                      stroke-width="1.32464"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </p>
+              </ng-template>
+            </label>
+
+            <!-- Upload Input -->
+            <input
+              type="file"
+              id="signFileInput"
+              class="hidden"
+              accept="image/png, image/jpeg"
+              (change)="onFileSelected($event, 'sign')" autocomplete="off"
+            />
+          </div>
+          <div *ngIf="fileUploadError['sign']" class="text-red-500 text-xs mt-1">
+            {{ fileUploadError['sign'] }}
+          </div>
+        </div>
+
+        <div class="col-span-1">
+          <div>
+            <label for="qrFileInput" class="cursor-pointer">
+              <ng-container *ngIf="uploadedImageQR; else showPlaceholderQR">
+                <img
+                  [src]="uploadedImageQR"
+                  class="rounded-t-md w-full h-24 2xl:h-34 object-contain"
+                  alt="QR code"
+                />
+                <p
+                  class="flex items-center justify-between bg-white px-2 py-1.5 text-[#898989] text-xs font-normal capitalize"
+                >
+                  QR Code
+                  <svg
+                    width="20"
+                    height="23"
+                    viewBox="0 0 20 23"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.1667 16.2164H14.175M13 13.3866H15C15.7766 13.3866 16.1648 13.3866 16.4712 13.5301C16.8795 13.7216 17.204 14.0889 17.3732 14.5511C17.5 14.8979 17.5 15.3374 17.5 16.2164C17.5 17.0954 17.5 17.5349 17.3732 17.8817C17.204 18.3439 16.8795 18.7112 16.4712 18.9027C16.1648 19.0462 15.7766 19.0462 15 19.0462H5C4.22343 19.0462 3.83515 19.0462 3.52886 18.9027C3.12048 18.7112 2.79603 18.3439 2.62687 17.8817C2.5 17.5349 2.5 17.0954 2.5 16.2164C2.5 15.3374 2.5 14.8979 2.62687 14.5511C2.79603 14.0889 3.12048 13.7216 3.52886 13.5301C3.83515 13.3866 4.22343 13.3866 5 13.3866H7M10 14.3298V3.95383M10 3.95383L12.5 6.78365M10 3.95383L7.5 6.78365"
+                      stroke="#C19725"
+                      stroke-width="1.32464"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </p>
+              </ng-container>
+
+              <ng-template #showPlaceholderQR>
+                <img
+                  class="rounded-t-md w-full h-24 2xl:h-34 object-contain"
+                  src="/assets/images/firm/firm-img.png"
+                  alt="QR code"
+                />
+                <p
+                  class="flex items-center justify-between bg-white px-2 py-1.5 text-[#898989] text-xs font-normal capitalize"
+                >
+                  QR Code
+                  <svg
+                    width="20"
+                    height="23"
+                    viewBox="0 0 20 23"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.1667 16.2164H14.175M13 13.3866H15C15.7766 13.3866 16.1648 13.3866 16.4712 13.5301C16.8795 13.7216 17.204 14.0889 17.3732 14.5511C17.5 14.8979 17.5 15.3374 17.5 16.2164C17.5 17.0954 17.5 17.5349 17.3732 17.8817C17.204 18.3439 16.8795 18.7112 16.4712 18.9027C16.1648 19.0462 15.7766 19.0462 15 19.0462H5C4.22343 19.0462 3.83515 19.0462 3.52886 18.9027C3.12048 18.7112 2.79603 18.3439 2.62687 17.8817C2.5 17.5349 2.5 17.0954 2.5 16.2164C2.5 15.3374 2.5 14.8979 2.62687 14.5511C2.79603 14.0889 3.12048 13.7216 3.52886 13.5301C3.83515 13.3866 4.22343 13.3866 5 13.3866H7M10 14.3298V3.95383M10 3.95383L12.5 6.78365M10 3.95383L7.5 6.78365"
+                      stroke="#C19725"
+                      stroke-width="1.32464"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </p>
+              </ng-template>
+            </label>
+
+            <!-- Upload Input -->
+            <input
+              type="file"
+              id="qrFileInput"
+              class="hidden"
+              accept="image/png, image/jpeg"
+              (change)="onFileSelected($event, 'qrcode')" autocomplete="off"
+            />
+          </div>
+          <div *ngIf="fileUploadError['qrcode']" class="text-red-500 text-xs mt-1">
+            {{ fileUploadError['qrcode'] }}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div
+    class="flex items-center justify-center mt-4 md:mt-8 space-x-2 md:space-x-4"
+  >
+    <button
+      type="button"
+      class="size-10 md:size-11 block cursor-pointer capitalize px-2 py-2 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6"
+    >
+      <svg
+        class="size-3 xl:size-5 mx-auto"
+        viewBox="0 0 12 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10.1123 20L0.112305 10L10.1123 0L11.8873 1.775L3.6623 10L11.8873 18.225L10.1123 20Z"
+          fill="#C19725"
+        />
+      </svg>
+    </button>
+
+    <button
+      type="button"
+      (click)="clearForm()"
+      class="block cursor-pointer capitalize px-5 w-[150px] lg:w-[200px] py-2 lg:py-2 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6"
+    >
+      Clear
+    </button>
+
+    <button
+      type="submit"
+      class="block cursor-pointer capitalize px-5 w-[150px] lg:w-[200px] py-2 lg:py-2 text-base xl:text-lg font-bold text-white bg-c19725 border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-c19725 dark:hover:bg-fdffc6"
+    >
+      Update
+    </button>
+
+    <button
+      type="button"
+      class="size-10 md:size-11 block cursor-pointer capitalize px-2 py-2 text-base xl:text-lg font-bold text-c19725 bg-white border-1 border-c19725 hover:bg-fdffc6 hover:text-c19725 hover:shadow-lg focus:ring-0 focus:outline-none rounded-md text-center dark:text-c19725 dark:bg-white dark:hover:bg-fdffc6"
+    >
+      <svg
+        class="size-3 xl:size-5 mx-auto"
+        viewBox="0 0 12 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1.8877 20L11.8877 10L1.8877 0L0.112695 1.775L8.3377 10L0.112695 18.225L1.8877 20Z"
+          fill="#C19725"
+        />
+      </svg>
+    </button>
+  </div>
+</form>

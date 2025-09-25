@@ -1,0 +1,38 @@
+<div class="w-full bg-white border border-[#f2f2f2] shadow-(--my-shadow2) rounded-[5px] overflow-hidden">
+    <div class="flex items-center justify-between border-b border-[#d9d9d9]">
+        <p class="px-4 py-2 text-sm sm:text-sm lg:text-base text-[#444] font-medium capitalize ps-2">Pending Payment Customer
+            Details</p>
+    </div>
+    <div class="overflow-x-auto overflow-y-hidden whitespace-nowrap scrollbar-hide lg:overflow-x-hidden">
+    <div class="min-w-max flex items-center justify-center gap-3 px-3 py-4">
+        <p class="text-[#9CA0A9] font-normal text-sm md:text-base bg-[#F4F4F4] rounded-2xl px-3 py-1.5">0 - 20,000</p>
+        <p class="text-[#9CA0A9] font-normal text-sm md:text-base bg-[#F4F4F4] rounded-2xl px-3 py-1.5">20,000 - 1,00,000</p>
+        <p class="text-c19725 font-medium text-sm md:text-base bg-[#f6f1cb] rounded-2xl px-3 py-1.5">1,00,000 - 10,00,000</p>
+        <p class="text-[#9CA0A9] font-normal text-sm md:text-base bg-[#F4F4F4] rounded-2xl px-3 py-1.5">10,00,000 - 20,00,000</p>
+    </div>
+    </div>
+    <div *ngFor="let group of customerGroups" class="pb-3">
+        <div *ngFor="let customer of group"
+            class="customwer-card border-b border-[#EEEEEE] bg-white px-3 py-4 sm:flex items-center justify-between gap-2 overflow-hidden">
+            <div class="flex items-center justify-start gap-2 lg:gap-4">
+                <img src="/assets/images/rmportal/staff.png" alt="user profile" class="size-[40px] sm:size-[50px]">
+                <div class="space-y-0.5 text-444 font-normal text-xs md:text-sm">
+                    <p class="text-xs sm:text-sm lg:text-base font-medium">{{ customer.name }}</p>
+                    <p>
+                        <span class="text-xs sm:text-sm lg:text-base me-1">{{ customer.phone }}</span>|
+                        <span class="text-xs sm:text-sm lg:text-base ms-1">{{ customer.location }}</span>
+                    </p>
+                </div>
+            </div>
+           <div class="flex items-center justify-between gap-5">
+             <p class="text-xs sm:text-sm lg:text-lg text-[#DA0707] font-medium">&#8377; {{ customer.cash }}</p>
+            <div class="flex items-center gap-x-3 lg:gap-x-4">
+                <button class="cursor-pointer">
+                    <img src="/assets/images/rmportal/call.png" alt="user profile" class="size-6"></button>
+                <button class="cursor-pointer">
+                    <img src="/assets/images/rmportal/whatsapp.png" alt="user profile" class="size-6"></button>
+            </div>
+           </div>
+        </div>
+    </div>
+</div>

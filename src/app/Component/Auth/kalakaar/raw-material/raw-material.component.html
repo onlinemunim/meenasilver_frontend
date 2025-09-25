@@ -1,0 +1,100 @@
+<!-- Loader -->
+<div *ngIf="isLoading" class="fixed inset-0 flex items-center justify-center z-50 backdrop-blur-sm">
+  <i class="fas fa-spinner fa-spin text-6xl" style="color:#c19725;"></i>
+</div>
+
+<div *ngIf="!isLoading && orders?.length > 0" class="p-4">
+  <!-- Responsive grid for products -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <!-- Loop through products -->
+    <div *ngFor="let order of orders" class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+
+      <!-- Product Details -->
+      <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b pb-3 mb-4">
+        <div>
+          <h2 class="text-lg font-semibold text-gray-800">
+            {{ order.product_name }}
+            <span class="text-sm text-gray-500">({{ order.product_code }})</span>
+          </h2>
+          <p class="text-sm text-gray-600">Quantity: {{ order.quantity }}</p>
+        </div>
+        <span class="px-3 py-1 text-xs font-medium rounded-full"
+          [ngClass]="{
+            'bg-green-100 text-green-700': order.status === 'completed',
+            'bg-yellow-100 text-yellow-700': order.status === 'pending',
+            'bg-red-100 text-red-700': order.status === 'rejected'
+          }">
+          {{ order.status }}
+        </span>
+      </div>
+
+      <!-- Raw Metals & Stones Side by Side -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
+        <!-- Raw Metals -->
+        <div *ngIf="order.ordc_metal_details?.length > 0">
+          <div class="flex items-center mb-2">
+            <img src="/assets/images/stock/gold.png" alt="Metal Icon" class="size-2 sm:size-4 lg:size-6 me-2">
+            <h3 class="text-md font-semibold text-gray-700">Raw Metals</h3>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="min-w-full border text-sm">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="border px-3 py-2 text-left">Type</th>
+                  <th class="border px-3 py-2">Qty</th>
+                  <th class="border px-3 py-2">Weight</th>
+                  <th class="border px-3 py-2">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let metal of order.ordc_metal_details" class="hover:bg-gray-50">
+                  <td class="border px-3 py-2">{{ metal.metal_type }}</td>
+                  <td class="border px-3 py-2 text-center">{{ metal.quantity }}</td>
+                  <td class="border px-3 py-2 text-center">{{ metal.total_weight }} {{ metal.unit }}</td>
+                  <td class="border px-3 py-2 text-right">₹{{ metal.total_price }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Raw Stones -->
+        <div *ngIf="order.ordc_stone_details?.length > 0">
+          <div class="flex items-center mb-2">
+            <img src="/assets/images/stock/gold-diamond.png" alt="Stone Icon" class="size-2 sm:size-4 lg:size-6 me-2">
+            <h3 class="text-md font-semibold text-gray-700">Raw Stones</h3>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="min-w-full border text-sm">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="border px-3 py-2 text-left">Name</th>
+                  <th class="border px-3 py-2">Qty</th>
+                  <th class="border px-3 py-2">Weight</th>
+                  <th class="border px-3 py-2">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let stone of order.ordc_stone_details" class="hover:bg-gray-50">
+                  <td class="border px-3 py-2">{{ stone.stone_name }}</td>
+                  <td class="border px-3 py-2 text-center">{{ stone.quantity }}</td>
+                  <td class="border px-3 py-2 text-center">{{ stone.total_weight }} {{ stone.unit }}</td>
+                  <td class="border px-3 py-2 text-right">₹{{ stone.total_price }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Empty state -->
+<div *ngIf="!isLoading && (!orders || orders.length === 0)" class="text-center py-10 text-gray-500">
+  No raw material data found.
+</div>

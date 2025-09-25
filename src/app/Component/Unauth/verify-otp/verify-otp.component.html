@@ -1,0 +1,103 @@
+<div
+  class="w-full rounded-2xl bg-linear-(--my-gradient1) border-[#D9D9D9] shadow-(--my-shadow) pt-8 lg:pt-15 px-2 lg:px-5 mb-4 mb-md-0">
+
+  <!-- HEADER -->
+  <p
+    class="text-white font-bold text-xl md:text-2xl lg:text-4xl xl:text-[45px] capitalize text-center mb-1">
+    Welcome,
+  </p>
+  <p
+    class="text-white font-normal text-lg md:text-xl lg:text-2xl xl:text-3xl text-center">
+    Check your Mail
+  </p>
+
+  <div class="bg-white mt-6 lg:mt-10 w-full rounded-xl">
+    <div
+      class="p-4 md:py-8 md:px-10 xl:py-10 xl:px-20 rounded-xl bg-white dark:bg-gray-800">
+      <form [formGroup]="forgotPasswordForm">
+        <!-- OTP SECTION -->
+        <p class="text-444 font-bold text-base md:text-xl xl:text-2xl mb-4 lg:mb-8">
+          Check your Mail
+        </p>
+        <p
+          class="text-sm lg:text-base xl:text-base text-[#898989] mb-8">
+          We sent a reset link to
+          <a [href]="'mailto:' + emailFromState"
+            class="text-[#2563eb] font-medium underline">
+            {{ emailFromState }}
+          </a>,  Enter the 6-digit code
+          mentioned in the email.
+        </p>
+
+        <!-- OTP INPUT BOXES -->
+        <div class="relative mb-4">
+          <div
+            class="flex items-center justify-between 2xl:justify-start 2xl:gap-10 mt-3">
+            <input type="text" maxlength="1" formControlName="d1" (keydown.enter)="focusNext($event)"
+              class="block text-center px-2.5 pb-3 pt-3 size-11 xl:size-13 text-sm lg:text-base text-444 font-normal bg-transparent rounded-lg border-2 border-[#d9d9d9] focus:border-c19725" />
+            <input type="text" maxlength="1" formControlName="d2" (keydown.enter)="focusNext($event)"
+              class="block text-center px-2.5 pb-3 pt-3 size-11 xl:size-13 text-sm lg:text-base text-444 font-normal bg-transparent rounded-lg border-2 border-[#d9d9d9] focus:border-c19725" />
+            <input type="text" maxlength="1" formControlName="d3" (keydown.enter)="focusNext($event)"
+              class="block text-center px-2.5 pb-3 pt-3 size-11 xl:size-13 text-sm lg:text-base text-444 font-normal bg-transparent rounded-lg border-2 border-[#d9d9d9] focus:border-c19725" />
+            <input type="text" maxlength="1" formControlName="d4" (keydown.enter)="focusNext($event)"
+              class="block text-center px-2.5 pb-3 pt-3 size-11 xl:size-13 text-sm lg:text-base text-444 font-normal bg-transparent rounded-lg border-2 border-[#d9d9d9] focus:border-c19725" />
+            <input type="text" maxlength="1" formControlName="d5" (keydown.enter)="focusNext($event)"
+              class="block text-center px-2.5 pb-3 pt-3 size-11 xl:size-13 text-sm lg:text-base text-444 font-normal bg-transparent rounded-lg border-2 border-[#d9d9d9] focus:border-c19725" />
+            <input type="text" maxlength="1" formControlName="d6" (keydown.enter)="focusNext($event)"
+              class="block text-center px-2.5 pb-3 pt-3 size-11 xl:size-13 text-sm lg:text-base text-444 font-normal bg-transparent rounded-lg border-2 border-[#d9d9d9] focus:border-c19725" />
+          </div>
+        </div>
+
+        <!-- PASSWORD SECTION -->
+        <div class="bg-white mt-6 lg:mt-10 w-full rounded-xl">
+          <div
+            class="p-4 md:py-8 md:px-10 xl:py-10 xl:px-20 rounded-xl bg-white dark:bg-gray-800">
+
+            <p
+              class="text-444 font-bold text-base md:text-xl xl:text-2xl mb-4 lg:mb-8">
+              Set New Password
+            </p>
+            <p
+              class="text-sm lg:text-base xl:text-base text-[#898989] mb-6">
+              Create a new password. Ensure it differs from previous ones for
+              security.
+            </p>
+
+            <!-- PASSWORD INPUT -->
+            <div class="relative mb-4 lg:mb-8">
+              <input type="password" id="password" formControlName="password"
+                class="block w-full px-2.5 py-3 border rounded-lg focus:border-c19725"
+                placeholder="Password" />
+            </div>
+
+            <!-- CONFIRM PASSWORD INPUT -->
+            <div class="relative mb-4">
+              <input type="password" id="password_confirmation" formControlName="password_confirmation"
+                class="block w-full px-2.5 py-3 border rounded-lg focus:border-c19725"
+                placeholder="Confirm Password" />
+            </div>
+
+          </div>
+        </div>
+
+        <!-- UPDATE PASSWORD BUTTON (now in place of Verify button) -->
+        <div class="flex items-center justify-center mt-4">
+          <button type="button" (click)="verifyOtp()"
+            class="block cursor-pointer px-5 md:px-7 lg:px-10 w-[150px] lg:w-[300px] py-2 lg:py-3.5 text-base md:text-lg lg:text-2xl font-bold text-white bg-c19725 border-2 border-c19725 hover:bg-[#fdffc6] hover:text-c19725 hover:shadow-lg rounded-lg">
+            Update Password
+          </button>
+        </div>
+
+        <p
+          class="font-normal text-sm lg:text-lg text-center mt-6 text-[#898989]">
+          Haven’t got the email yet?
+          <a routerLink="/forgot-password"
+            class="underline underline-offset-2 mx-1 font-bold text-c19725">
+            Resend email
+          </a>
+        </p>
+
+      </form>
+    </div>
+  </div>
+</div>

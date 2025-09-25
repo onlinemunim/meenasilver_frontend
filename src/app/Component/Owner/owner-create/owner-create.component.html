@@ -1,0 +1,205 @@
+
+<div>
+  <form class="max-w-sm mx-auto mt-10" [formGroup]="createOwnerForm" (ngSubmit)="onSubmit()">
+    <div class="mb-5">
+      <label for="fname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Your Name</label>
+      <input type="text" formControlName="fname" id="fname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your name" required />
+      <div class="text-danger" *ngIf="createOwnerForm.controls['fname'].invalid && (createOwnerForm.controls['fname'].touched || createOwnerForm.controls['fname'].dirty)">
+          <span class="text-danger" *ngIf="createOwnerForm.controls['fname'].errors?.['required']">*First name is required</span>
+          <span class="text-danger" *ngIf="createOwnerForm.controls['fname'].errors?.['pattern']">*Name should contain character only</span>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="lname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Your last name</label>
+      <input type="text" formControlName="lname" id="lname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your last name"/>
+      <div class="text-danger" *ngIf="createOwnerForm.controls['lname'].invalid && (createOwnerForm.controls['lname'].touched || createOwnerForm.controls['lname'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['lname'].errors?.['required']">*Last name is required</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['lname'].errors?.['pattern']">*Last name should contain character only</span>
+      </div>
+    </div>
+
+
+    <div class="mb-5">
+      <label for="father_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Your father name</label>
+      <input type="text" formControlName="father_name" id="father_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your father name"/>
+      <div class="text-danger" *ngIf="createOwnerForm.controls['father_name'].invalid && (createOwnerForm.controls['father_name'].touched || createOwnerForm.controls['father_name'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['father_name'].errors?.['required']">*Father name is required</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['father_name'].errors?.['pattern']">*Father name should contain character only</span>
+      </div>
+    </div>
+
+
+    <div class="mb-5">
+      <label for="dob" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Your Date of birth</label>
+      <input type="date" formControlName="dob" id="dob" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter date of birth"/>
+      <div class="text-danger" *ngIf="createOwnerForm.controls['dob'].invalid && (createOwnerForm.controls['dob'].touched || createOwnerForm.controls['dob'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['dob'].errors?.['required']">*Date of birth is required</span>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="sex" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Gender</label>
+       <select formControlName="sex" id="sex" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <option value="" selected disabled> Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+       </select>
+       <div class="text-danger" *ngIf="createOwnerForm.controls['sex'].invalid && (createOwnerForm.controls['sex'].touched || createOwnerForm.controls['sex'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['sex'].errors?.['required']">*Gender is required</span>
+      </div>
+      </div>
+
+
+    <div class="mb-5">
+      <label for="qualification" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Your Qualification</label>
+      <input type="text" formControlName="qualification" id="qualification" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your qualification"/>
+      <div class="text-danger" *ngIf="createOwnerForm.controls['qualification'].invalid && (createOwnerForm.controls['qualification'].touched || createOwnerForm.controls['qualification'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['qualification'].errors?.['required']">*Qualification is required</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['qualification'].errors?.['pattern']">*Qualification should contain character only</span>
+      </div>
+    </div>
+
+
+    <div class="mb-5">
+      <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Your phone</label>
+      <input type="text" formControlName="phone" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your phone number"/>
+      <div class="text-danger" *ngIf="createOwnerForm.controls['phone'].invalid && (createOwnerForm.controls['phone'].touched || createOwnerForm.controls['phone'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['phone'].errors?.['required']">*Phone number is required</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['phone'].errors?.['minlength']"> *Minimun 10 digit required</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['phone'].errors?.['maxlength']"> *Maximun 15 digit Allowed</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['phone'].errors?.['pattern']"> *Enter only digits</span>
+      </div>
+    </div>
+
+
+
+    <div class="mb-5">
+      <label for="mobile" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Your mobile</label>
+      <input type="text" formControlName="mobile" id="mobile" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your mobile number"/>
+      <div class="text-danger" *ngIf="createOwnerForm.controls['mobile'].invalid && (createOwnerForm.controls['mobile'].touched || createOwnerForm.controls['mobile'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['mobile'].errors?.['required']">*Mobile number is required</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['mobile'].errors?.['minlength']"> *Minimun 10 digit required</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['mobile'].errors?.['maxlength']"> *Maximun 15 digit Allowed</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['mobile'].errors?.['pattern']"> *Enter only digits</span>
+      </div>
+    </div>
+
+
+    <div class="mb-5">
+      <label for="otp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">OTP</label>
+      <input type="text" formControlName="otp" id="otp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="OTP"/>
+      <div class="text-danger" *ngIf="createOwnerForm.controls['otp'].invalid && (createOwnerForm.controls['otp'].touched || createOwnerForm.controls['otp'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['otp'].errors?.['required']">*OTP is required</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['otp'].errors?.['minlength']"> *Minimun 6 digit required</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['otp'].errors?.['maxlength']"> *Maximun 6 digit Allowed</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['otp'].errors?.['pattern']"> *Enter only digits</span>
+      </div>
+    </div>
+
+
+    <div class="mb-5">
+      <label for="sec_mobile" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Alternate Mobile</label>
+      <input type="text" formControlName="sec_mobile" id="sec_mobile" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your second mobile number"/>
+      <div class="text-danger" *ngIf="createOwnerForm.controls['sec_mobile'].invalid && (createOwnerForm.controls['sec_mobile'].touched || createOwnerForm.controls['sec_mobile'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['sec_mobile'].errors?.['required']">*This field is required</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['sec_mobile'].errors?.['minlength']"> *Minimun 10 digit required</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['sec_mobile'].errors?.['maxlength']"> *Maximun 15 digit Allowed</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['sec_mobile'].errors?.['pattern']"> *Enter only digits</span>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Your email</label>
+      <input type="email" formControlName="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your email"/>
+      <div class="text-danger" *ngIf="createOwnerForm.controls['email'].invalid && (createOwnerForm.controls['email'].touched || createOwnerForm.controls['email'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['email'].errors?.['required']">*Email is required</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['email'].errors?.['email']">*Email Should be valid</span>
+      </div>
+    </div>
+
+
+    <div class="mb-5">
+      <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Website</label>
+      <input type="text" formControlName="website" id="website" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+      dark:focus:border-blue-500" placeholder="Enter website"/>
+      <div class="text-danger" *ngIf="createOwnerForm.controls['website'].invalid && (createOwnerForm.controls['website'].touched || createOwnerForm.controls['website'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['website'].errors?.['required']">*Website is required and must be valid</span>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="ecomm_website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Ecomm Website</label>
+      <input type="text" formControlName="ecomm_website" id="ecomm_website" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter ecomm website"/>
+      <div class="text-danger" *ngIf="createOwnerForm.controls['ecomm_website'].invalid && (createOwnerForm.controls['ecomm_website'].touched || createOwnerForm.controls['ecomm_website'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['ecomm_website'].errors?.['required']">*Eccom website is required and must be valid</span>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="since" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Since</label>
+      <input type="date" formControlName="since" id="since" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Since"/>
+      <div class="text-danger" *ngIf="createOwnerForm.controls['since'].invalid && (createOwnerForm.controls['since'].touched || createOwnerForm.controls['since'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['since'].errors?.['required']">*This field is required</span>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="ref" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Reference</label>
+      <input type="text" formControlName="ref" id="ref" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter reference"/>
+      <div class="text-danger" *ngIf="createOwnerForm.controls['ref'].invalid && (createOwnerForm.controls['ref'].touched || createOwnerForm.controls['ref'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['ref'].errors?.['required']">*This field is required</span>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="act_contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Active Contact</label>
+      <input type="text" formControlName="act_contact" id="act_contact" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Active Contact"/>
+      <div class="text-danger" *ngIf="createOwnerForm.controls['act_contact'].invalid && (createOwnerForm.controls['act_contact'].touched || createOwnerForm.controls['act_contact'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['act_contact'].errors?.['required']">*This field is required</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['act_contact'].errors?.['minlength']"> *Minimun 10 digit required</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['act_contact'].errors?.['maxlength']"> *Maximun 15 digit Allowed</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['act_contact'].errors?.['pattern']"> *Enter only digits</span>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="other_info" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Other Information</label>
+      <input type="text" formControlName="other_info" id="other_info" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Other information"/>
+      <div class="text-danger" *ngIf="createOwnerForm.controls['other_info'].invalid && (createOwnerForm.controls['other_info'].touched || createOwnerForm.controls['other_info'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['other_info'].errors?.['required']">*This field is required</span>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="image_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Image Id</label>
+      <input type="text" formControlName="image_id" id="image_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Image Id"/>
+      <div class="text-danger" *ngIf="createOwnerForm.controls['image_id'].invalid && (createOwnerForm.controls['image_id'].touched || createOwnerForm.controls['image_id'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['image_id'].errors?.['required']">*Image id is required and must be number</span>
+        <span class="text-danger" *ngIf="createOwnerForm.controls['image_id'].errors?.['pattern']"> *Enter only digits</span>
+
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="refferal_code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Referal Code</label>
+      <input type="text" formControlName="refferal_code" id="refferal_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Refaral code"/>
+      <div class="text-danger" *ngIf="createOwnerForm.controls['refferal_code'].invalid && (createOwnerForm.controls['refferal_code'].touched || createOwnerForm.controls['refferal_code'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['refferal_code'].errors?.['required']">*This field is required</span>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label for="last_column" class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Last Column</label>
+      <input type="text" formControlName="last_column" id="last_column" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter website"/>
+      <div class="text-danger" *ngIf="createOwnerForm.controls['last_column'].invalid && (createOwnerForm.controls['last_column'].touched || createOwnerForm.controls['last_column'].dirty)">
+        <span class="text-danger" *ngIf="createOwnerForm.controls['last_column'].errors?.['required']">*This field is required</span>
+      </div>
+    </div>
+
+
+
+    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" [disabled]="!createOwnerForm.value">Submit</button>
+  </form>
+</div>
